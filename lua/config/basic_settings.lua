@@ -1,6 +1,5 @@
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
-
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.scrolloff = 10
@@ -18,11 +17,18 @@ vim.opt.cursorline = false
 vim.opt.laststatus = 2
 vim.opt.termguicolors = true
 
+vim.opt.updatetime = 50
+vim.opt.autoread = true
+
 vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.writebackup = false
 vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true
+
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()" -- Enable case-insensitive search and highlight matchesk
+vim.opt.foldlevel = 99
 
 vim.opt.ignorecase = true
 vim.opt.hlsearch = false
@@ -32,18 +38,17 @@ vim.opt.incsearch = true
 vim.opt.mouse = "a"
 vim.opt.showmode = false
 
+vim.opt.grepprg = "rg --vimgrep --no-heading --smart-case"
+vim.opt.grepformat = "%f:%l:%m"
+
 vim.schedule(function()
-  vim.opt.clipboard = "unnamedplus"
+	vim.opt.clipboard = "unnamedplus"
 end)
 
 vim.opt.breakindent = true
 
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
-
-vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
-vim.opt.foldlevel = 99 
 
 -- Preview substitutions live, as you type!
 vim.opt.inccommand = "split"
@@ -54,5 +59,3 @@ vim.opt.splitbelow = true
 
 vim.opt.list = true
 vim.opt.listchars = { tab = "| ", trail = "·", nbsp = "␣" }
-
-

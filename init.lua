@@ -1,4 +1,8 @@
-require("basic-settings")
-require("remaps")
-require("autocmds")
-    vim.keymap.set("n", "<leader>a", function() print "hi" end)
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+
+require("config.basic_settings")
+require("config.basic_keybinds")
+require("config.copy_package_path")
+require("config.lazy")
+require("config.autocmds")
