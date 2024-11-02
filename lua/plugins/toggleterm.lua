@@ -17,6 +17,7 @@ return {
 				close_on_exit = true,
 				shell = vim.o.shell,
 			})
+			vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 		end,
 	},
 }
