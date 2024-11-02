@@ -33,3 +33,11 @@ vim.keymap.set("n", "<C-Right>", ":vertical resize +2<CR>", { noremap = true, si
 
 vim.keymap.set("n", "<leader>gm", ":Git mergetool<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>lr", ":LspRestart<CR>", { noremap = true, silent = true })
+
+-- Bind <leader>ci to copy the file path to clipboard and print it
+vim.api.nvim_set_keymap(
+	"n",
+	"<leader>ci",
+	[[<Cmd>let @+ = expand("%:p") | echo "Copied path: " .. @+<CR>]],
+	{ noremap = true, silent = true }
+)
