@@ -1,6 +1,3 @@
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
-
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.scrolloff = 10
@@ -24,6 +21,10 @@ vim.opt.writebackup = false
 vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true
 
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()" -- Enable case-insensitive search and highlight matchesk
+vim.opt.foldlevel = 99 
+
 vim.opt.ignorecase = true
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
@@ -40,10 +41,6 @@ vim.opt.breakindent = true
 
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
-
-vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
-vim.opt.foldlevel = 99 
 
 -- Preview substitutions live, as you type!
 vim.opt.inccommand = "split"
