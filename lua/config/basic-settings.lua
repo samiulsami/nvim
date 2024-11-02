@@ -23,7 +23,7 @@ vim.opt.undofile = true
 
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()" -- Enable case-insensitive search and highlight matchesk
-vim.opt.foldlevel = 99 
+vim.opt.foldlevel = 99
 
 vim.opt.ignorecase = true
 vim.opt.hlsearch = false
@@ -33,8 +33,11 @@ vim.opt.incsearch = true
 vim.opt.mouse = "a"
 vim.opt.showmode = false
 
+vim.opt.grepprg = "rg --vimgrep --no-heading --smart-case"
+vim.opt.grepformat = "%f:%l:%m"
+
 vim.schedule(function()
-  vim.opt.clipboard = "unnamedplus"
+	vim.opt.clipboard = "unnamedplus"
 end)
 
 vim.opt.breakindent = true
@@ -51,5 +54,3 @@ vim.opt.splitbelow = true
 
 vim.opt.list = true
 vim.opt.listchars = { tab = "| ", trail = "·", nbsp = "␣" }
-
-
