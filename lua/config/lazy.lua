@@ -27,4 +27,4 @@ require("lazy").setup({
 	checker = { enabled = true },
 })
 
-require("neo-tree")
+pcall(require, "neo-tree")

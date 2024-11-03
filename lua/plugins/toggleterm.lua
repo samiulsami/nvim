@@ -17,7 +17,14 @@ return {
 				close_on_exit = true,
 				shell = vim.o.shell,
 			})
-			vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
+			vim.api.nvim_create_autocmd("TermOpen", {
+				pattern = "term://*",
+				callback = function()
+					vim.wo.number = true
+					vim.wo.relativenumber = true
+				end,
+			})
+			vim.keymap.set("t", "<C-q>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 		end,
 	},
 }

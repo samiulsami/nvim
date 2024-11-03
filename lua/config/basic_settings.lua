@@ -17,6 +17,9 @@ vim.opt.cursorline = false
 vim.opt.laststatus = 2
 vim.opt.termguicolors = true
 
+vim.opt.updatetime = 300
+vim.opt.autoread = true
+
 vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.writebackup = false
