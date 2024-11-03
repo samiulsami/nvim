@@ -1,13 +1,6 @@
 return {
-	{
-		"nvim-telescope/telescope-frecency.nvim",
-		config = function()
-			require("telescope").load_extension("frecency")
-		end,
-	},
-
 	{ "nvim-telescope/telescope-dap.nvim" },
-{ -- Fuzzy Finder (files, lsp, etc)
+	{ -- Fuzzy Finder (files, lsp, etc)
 		"nvim-telescope/telescope.nvim",
 		event = "VimEnter",
 		branch = "0.1.x",
@@ -29,7 +22,7 @@ return {
 					file_ignore_patterns = { "node_modules/*", ".git/*", "vendor/*" },
 					history = {
 						path = "~/.local/share/nvim/telescope_history.sqlite3",
-						limit = 200,
+						limit = 50,
 					},
 					preview = {
 						treesitter = true,
@@ -91,7 +84,6 @@ return {
 			-- Enable Telescope extensions if they are installed
 			pcall(require("telescope").load_extension, "fzf")
 			pcall(require("telescope").load_extension, "ui-select")
-			pcall(require("telescope").load_extension, "smart_history")
 			pcall(require("telescope").load_extension, "dap")
 
 			-- See `:help telescope.builtin`
