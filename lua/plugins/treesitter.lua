@@ -9,6 +9,7 @@ return {
 				ensure_installed = {
 					"bash",
 					"c",
+					"cpp",
 					"diff",
 					"html",
 					"lua",
@@ -22,7 +23,6 @@ return {
 				},
 				-- Autoinstall languages that are not installed
 				--
-				vim.api.nvim_set_keymap("n", "K", "<nop>", { noremap = true, silent = true }),
 				auto_install = true,
 				highlight = {
 					enable = true,

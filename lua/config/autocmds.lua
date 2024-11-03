@@ -5,7 +5,6 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 		vim.highlight.on_yank()
 	end,
 })
-
 -- Autocommand to organize imports and format on save
 vim.api.nvim_create_autocmd("BufWritePre", {
 	pattern = "*.go",

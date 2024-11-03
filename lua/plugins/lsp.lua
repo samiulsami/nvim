@@ -117,7 +117,17 @@ return {
 			local capabilities = vim.lsp.protocol.make_client_capabilities()
 			capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 			local servers = {
-				-- -- clangd = {},
+				clangd = { -- Add clangd here
+					cmd = { "clangd" }, -- Command to start clangd
+					filetypes = { "c", "cpp", "objc", "objcpp" }, -- Supported file types
+					root_dir = require("lspconfig.util").root_pattern("compile_commands.json", "Makefile", ".git"), -- Determine the root directory
+					settings = {
+						clangd = {
+							-- Add any specific clangd settings here if needed
+						},
+					},
+				},
+
 				gopls = {
 					cmd = { "gopls" },
 					filetypes = { "go", "gomod", "gowork", "gotmpl" },
@@ -193,6 +203,9 @@ return {
 			local ensure_installed = vim.tbl_keys(servers or {})
 			vim.list_extend(ensure_installed, {
 				"stylua", -- Used to format Lua code
+				"golangci-lint",
+				"codelldb", -- c/c++
+				"clang-format", -- c/c++
 			})
 			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 			require("mason-lspconfig").setup({

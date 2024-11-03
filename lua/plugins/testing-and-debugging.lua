@@ -1,4 +1,4 @@
-return	{
+return {
 	{
 		"nvim-neotest/neotest",
 		dependencies = {
@@ -52,7 +52,8 @@ return	{
 			)
 		end,
 	},
-    {
+
+	{
 		"mfussenegger/nvim-dap",
 		dependencies = {
 			"leoluz/nvim-dap-go",
@@ -67,20 +68,39 @@ return	{
 			require("dapui").setup()
 			require("dap-go").setup()
 
+			dap.adapters.codelldb = {
+				type = "server",
+				port = 13000,
+				executable = {
+					command = vim.fn.expand("~/.local/share/nvim/mason/packages/codelldb/codelldb"),
+					args = { "--port", "13000" },
+				},
+			}
+
+			dap.configurations.cpp = {
+				{
+					name = "Launch C++ executable",
+					type = "codelldb",
+					request = "launch",
+					program = function()
+						return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+					end,
+					cwd = "${workspaceFolder}",
+					stopAtEntry = false,
+					runInTerminal = false,
+				},
+			}
+
 			vim.keymap.set("n", "<leader>b", dap.toggle_breakpoint)
 			vim.keymap.set("n", "<leader>rc", dap.run_to_cursor)
-
-			-- Set up your key mapping for evaluating an expression
 			vim.keymap.set("n", "<leader>?", function()
 				ui.eval(nil, { context = "hover", enter = true, width = 50, height = 10 })
 			end)
-
 			vim.keymap.set("n", "<leader>dus", function()
 				local widgets = require("dap.ui.widgets")
 				local sidebar = widgets.sidebar(widgets.scopes)
 				sidebar.open()
 			end, { desc = "Open debugging sidebar" })
-
 			vim.keymap.set("n", "<F1>", dap.continue)
 			vim.keymap.set("n", "<F2>", dap.step_into)
 			vim.keymap.set("n", "<F3>", dap.step_over)
@@ -90,28 +110,7 @@ return	{
 				require("dap").terminate()
 				require("dapui").close()
 			end, { desc = "Stop debugging session" })
-
-			vim.keymap.set("n", "<leader>dus", function()
-				local widgets = require("dap.ui.widgets")
-				local sidebar = widgets.sidebar(widgets.scopes)
-				sidebar.open()
-			end, { desc = "Open debugging sidebar" })
-
 			vim.keymap.set("n", "<F13>", dap.restart)
-
-			-- dap.listeners.before.attach.dapui_config = function()
-			--   ui.open()
-			-- end
-			-- dap.listeners.before.launch.dapui_config = function()
-			--   ui.open()
-			-- end
-			-- dap.listeners.before.event_terminated.dapui_config = function()
-			--   ui.close()
-			-- end
-			-- dap.listeners.before.event_exited.dapui_config = function()
-			--   ui.close()
-			-- end
 		end,
 	},
-
 }

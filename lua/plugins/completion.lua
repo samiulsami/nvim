@@ -2,12 +2,9 @@ return {
 	{ "hrsh7th/cmp-buffer" }, -- Buffer completions
 	{ "hrsh7th/cmp-cmdline" }, -- Command line completions
 	{ "hrsh7th/cmp-nvim-lsp" },
-	{ "girishji/vimcomplete" },
 	{ "charlespascoe/vim-go-syntax" },
 	{ "hrsh7th/cmp-path" },
 	{ "tzachar/fuzzy.nvim" },
-	{ "tzachar/cmp-fuzzy-path" },
-	{ "petertriho/cmp-git" },
 	{ "saadparwaiz1/cmp_luasnip" },
 	{ -- Autocompletion
 		"hrsh7th/nvim-cmp",
@@ -85,14 +82,14 @@ return {
 					--    $body
 					--  end
 					--
-					-- <c-l> will move you to the right of each of the expansion locations.
-					-- <c-h> is similar, except moving you backwards.
-					["<C-l>"] = cmp.mapping(function()
+					-- <alt-l> will move you to the right of each of the expansion locations.
+					-- <alt-h> is similar, except moving you backwards.
+					["<A-l>"] = cmp.mapping(function()
 						if luasnip.expand_or_locally_jumpable() then
 							luasnip.expand_or_jump()
 						end
 					end, { "i", "s" }),
-					["<C-h>"] = cmp.mapping(function()
+					["<A-h>"] = cmp.mapping(function()
 						if luasnip.locally_jumpable(-1) then
 							luasnip.jump(-1)
 						end
@@ -108,42 +105,20 @@ return {
 						group_index = 0,
 					},
 					{ name = "nvim_lsp" },
-					{ name = "vimcomplete" },
 					{ name = "luasnip" },
 					{ name = "path" },
 					{ name = "buffer" },
 					{ name = "fuzzy_buffer" },
 				},
-
-				sorting = {
-					priority_weight = 20,
-					comparators = {
-						require("cmp_fuzzy_path.compare"),
-						compare.offset,
-						compare.exact,
-						compare.score,
-						compare.recently_used,
-						compare.kind,
-						compare.sort_text,
-						compare.length,
-						compare.order,
+				window = {
+					completion = {
+						winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
+						-- other completion window options...
 					},
-				},
-			})
-
-			cmp.setup.filetype("gitcommit", {
-				sources = cmp.config.sources({
-					{ name = "git" },
-				}, {
-					{ name = "buffer" },
-				}),
-			})
-
-			require("cmp_git").setup()
-			cmp.setup.cmdline({ "/", "?" }, {
-				mapping = cmp.mapping.preset.cmdline(),
-				sources = {
-					{ name = "buffer" },
+					documentation = {
+						winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
+						-- other documentation window options...
+					},
 				},
 			})
 
