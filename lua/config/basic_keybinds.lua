@@ -1,3 +1,9 @@
+-- Unbind some default normal mode vim keybinds to prevent prevent [G]oto [R]ereferences delay
+vim.api.nvim_del_keymap("n", "grr")
+vim.api.nvim_del_keymap("n", "gri")
+vim.api.nvim_del_keymap("n", "gra")
+vim.api.nvim_del_keymap("n", "grn")
+
 vim.api.nvim_set_keymap("n", "<F7>", ":set relativenumber!<CR>", { noremap = true, silent = true })
 
 -- Center the screen when moving half a page up or down
