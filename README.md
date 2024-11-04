@@ -10,7 +10,7 @@ git clone https://github.com/samiulsami/nvimconfig.git ~/.config/nvim
 sudo cp ~/.config/nvim/fonts/* /usr/share/fonts/
 sudo fc-cache -f -v
 sudo echo "export EDITOR='nvim -f'" >> ~/.bashrc
-git config --global core.editor "nvim -f”
+git config --global core.editor 'nvim -f'
 ```
 
 ###
