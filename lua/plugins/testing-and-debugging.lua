@@ -111,6 +111,19 @@ return {
 				require("dapui").close()
 			end, { desc = "Stop debugging session" })
 			vim.keymap.set("n", "<F13>", dap.restart)
+
+			dap.listeners.before.attach.dapui_config = function()
+				ui.open()
+			end
+			dap.listeners.before.launch.dapui_config = function()
+				ui.open()
+			end
+			dap.listeners.before.event_terminated.dapui_config = function()
+				ui.close()
+			end
+			dap.listeners.before.event_exited.dapui_config = function()
+				ui.close()
+			end
 		end,
 	},
 }

@@ -50,6 +50,18 @@ return {
 					vim.keymap.set("i", "<c-g>", function()
 						return vim.fn["codeium#Accept"]()
 					end, { expr = true, silent = true })
+					vim.keymap.set(
+						"n",
+						"<leader>dc",
+						":CodeiumDisable<CR>",
+						{ noremap = true, silent = true, desc = "[D]isable [C]odeium" }
+					)
+					vim.keymap.set(
+						"n",
+						"<leader>ec",
+						":CodeiumEnable<CR>",
+						{ noremap = true, silent = true, desc = "[E]nable [C]odeium" }
+					)
 
 					vim.g.codeium_disable_bindings = 1
 					vim.g.codeium_filetypes = {
