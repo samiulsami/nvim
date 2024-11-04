@@ -10,6 +10,7 @@ return {
 
 			vim.keymap.set("n", "<leader>a", function()
 				harpoon:list():add()
+				require("neo-tree.sources.manager").refresh("filesystem")
 			end)
 			vim.keymap.set("n", "<A-e>", function()
 				harpoon.ui:toggle_quick_menu(harpoon:list())

@@ -1,4 +1,4 @@
---TODO: Automate this and integrate this with autoimports
+--TODO: Automate this and integrate with LSP
 
 function Copy_project_relative_path()
 	local current_dir = vim.fn.expand("%:p:h")

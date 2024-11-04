@@ -47,6 +47,19 @@ return {
 				":GoTagAdd yaml<CR>",
 				{ noremap = true, silent = true, desc = "Add yaml tags" }
 			)
+
+			vim.keymap.set(
+				"n",
+				"<leader>gtrj",
+				":GoTagRm json<CR>",
+				{ noremap = true, silent = true, desc = "Add json tags" }
+			)
+			vim.keymap.set(
+				"n",
+				"<leader>gtry",
+				":GoTagRm yaml<CR>",
+				{ noremap = true, silent = true, desc = "Add yaml tags" }
+			)
 			vim.keymap.set(
 				"n",
 				"<leader>gto",

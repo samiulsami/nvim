@@ -22,7 +22,7 @@ return {
 					file_ignore_patterns = { "node_modules/*", ".git/*", "vendor/*" },
 					history = {
 						path = "~/.local/share/nvim/telescope_history.sqlite3",
-						limit = 50,
+						limit = 100,
 					},
 					preview = {
 						treesitter = true,
@@ -85,8 +85,10 @@ return {
 			pcall(require("telescope").load_extension, "fzf")
 			pcall(require("telescope").load_extension, "ui-select")
 			pcall(require("telescope").load_extension, "dap")
+			pcall(require("telescope").load_extension, "projects")
 
-			-- See `:help telescope.builtin`
+			vim.keymap.set("n", "<leader>sp", ":Telescope projects<CR>", { desc = "[S]earch [P]rojects" })
+
 			local builtin = require("telescope.builtin")
 			vim.keymap.set("n", "<leader>sh", builtin.help_tags, { desc = "[S]earch [H]elp" })
 			vim.keymap.set("n", "<leader>sk", builtin.keymaps, { desc = "[S]earch [K]eymaps" })
@@ -99,8 +101,8 @@ return {
 			vim.keymap.set("n", "<leader>sn", ":Telescope notify<CR>", { desc = "[S]earch [N]otify" })
 			vim.keymap.set("n", "<leader>s.", builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
 			vim.keymap.set("n", "<leader><leader>", builtin.buffers, { desc = "[ ] Find existing buffers" })
+
 			vim.keymap.set("n", "<leader>/", function()
-				-- You can pass additional configuration to Telescope to change the theme, layout, etc.
 				builtin.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
 					winblend = 10,
 					previewer = false,
@@ -113,27 +115,8 @@ return {
 				})
 			end, { desc = "[S]earch [/] in Open Files" })
 
-			vim.api.nvim_set_keymap(
-				"n",
-				"<leader>tc",
-				":lua require('nvim-tree.api').tree.collapse_all()<CR>",
-				{ noremap = true, silent = true }
-			)
-
 			vim.keymap.set("n", "<leader>sr", function()
-				-- Resume the last search
 				require("telescope.builtin").resume()
-
-				-- Switch to normal mode after a short delay
-				vim.defer_fn(function()
-					-- Get the current buffer number
-					local bufnr = vim.api.nvim_get_current_buf()
-					-- Check if the current buffer is a TelescopePrompt
-					if vim.bo[bufnr].filetype == "TelescopePrompt" then
-						-- Force switch to normal mode
-						vim.api.nvim_input("<Esc>")
-					end
-				end, 100) -- Adjust the delay as needed (100ms in this case)
 			end, { desc = "[S]earch [R]esume" })
 		end,
 	},

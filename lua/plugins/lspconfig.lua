@@ -1,23 +1,29 @@
+-- Modified lspconfig from kickstart.nvim
 return {
 	{ "Bilal2453/luvit-meta", lazy = true },
 	{
 		-- Main LSP Configuration
 		"neovim/nvim-lspconfig",
 		dependencies = {
-			-- Automatically install LSPs and related tools to stdpath for Neovim
 			{ "williamboman/mason.nvim", config = true }, -- NOTE: Must be loaded before dependants
 			"williamboman/mason-lspconfig.nvim",
 			"WhoIsSethDaniel/mason-tool-installer.nvim",
-
-			-- Useful status updates for LSP.
-			-- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
+			{
+				"antosha417/nvim-lsp-file-operations",
+				dependencies = {
+					"nvim-lua/plenary.nvim",
+					"nvim-neo-tree/neo-tree.nvim",
+				},
+				config = function()
+					require("lsp-file-operations").setup()
+				end,
+			},
 			{ "j-hui/fidget.nvim", opts = {} },
-
 			"hrsh7th/cmp-nvim-lsp",
 		},
 		config = function()
 			vim.api.nvim_create_autocmd("LspAttach", {
-				group = vim.api.nvim_create_augroup("sami-lsp-attach", { clear = true }),
+				group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
 				callback = function(event)
 					-- NOTE: Remember that Lua is a real programming language, and as such it is possible
 					-- to define small helper and utility functions so you don't have to repeat yourself.
@@ -77,7 +83,7 @@ return {
 					-- When you move your cursor, the highlights will be cleared (the second autocommand).
 					local client = vim.lsp.get_client_by_id(event.data.client_id)
 					if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
-						local highlight_augroup = vim.api.nvim_create_augroup("sami-lsp-highlight", { clear = false })
+						local highlight_augroup = vim.api.nvim_create_augroup("lsp-highlight", { clear = false })
 						vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
 							buffer = event.buf,
 							group = highlight_augroup,
@@ -91,10 +97,10 @@ return {
 						})
 
 						vim.api.nvim_create_autocmd("LspDetach", {
-							group = vim.api.nvim_create_augroup("sami-lsp-detach", { clear = true }),
+							group = vim.api.nvim_create_augroup("lsp-detach", { clear = true }),
 							callback = function(event2)
 								vim.lsp.buf.clear_references()
-								vim.api.nvim_clear_autocmds({ group = "sami-lsp-highlight", buffer = event2.buf })
+								vim.api.nvim_clear_autocmds({ group = "lsp-highlight", buffer = event2.buf })
 							end,
 						})
 					end
@@ -115,80 +121,13 @@ return {
 			--  By default, Neovim doesn't support everything that is in the LSP specification.
 			--  So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
 			local capabilities = vim.lsp.protocol.make_client_capabilities()
-			capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
-			local servers = {
-				clangd = { -- Add clangd here
-					cmd = { "clangd" }, -- Command to start clangd
-					filetypes = { "c", "cpp", "objc", "objcpp" }, -- Supported file types
-					root_dir = require("lspconfig.util").root_pattern("compile_commands.json", "Makefile", ".git"), -- Determine the root directory
-					settings = {
-						clangd = {
-							-- Add any specific clangd settings here if needed
-						},
-					},
-				},
-
-				gopls = {
-					cmd = { "gopls" },
-					filetypes = { "go", "gomod", "gowork", "gotmpl" },
-					root_dir = function(fname)
-						-- see: https://github.com/neovim/nvim-lspconfig/issues/804
-						if not mod_cache then
-							local result = require("lspconfig.async").run_command({ "go", "env", "GOMODCACHE" })
-							if result and result[1] then
-								mod_cache = vim.trim(result[1])
-							else
-								mod_cache = vim.fn.system("go env GOMODCACHE")
-							end
-						end
-						if mod_cache and fname:sub(1, #mod_cache) == mod_cache then
-							local clients = require("lspconfig.util").get_lsp_clients({ name = "gopls" })
-							if #clients > 0 then
-								return clients[#clients].config.root_dir
-							end
-						end
-						return require("lspconfig.util").root_pattern("go.work", "go.mod", ".git")(fname)
-					end,
-
-					settings = {
-						gopls = {
-							completeUnimported = true,
-							usePlaceholders = true,
-							analyses = {
-								unusedparams = true,
-								deprecated = true,
-								fillreturns = true,
-							},
-							staticcheck = true,
-							gofumpt = true,
-						},
-					},
-				},
-				-- pyright = {},
-				-- rust_analyzer = {},
-				--
-				-- Some languages (like typescript) have entire language plugins that can be useful:
-				--    https://github.com/pmizio/typescript-tools.nvim
-				--
-				-- But for many setups, the LSP (`ts_ls`) will work just fine
-				-- ts_ls = {},
-				--
-
-				lua_ls = {
-					-- cmd = {...},
-					-- filetypes = { ...},
-					-- capabilities = {},
-					settings = {
-						Lua = {
-							completion = {
-								callSnippet = "Replace",
-							},
-							-- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-							-- diagnostics = { disable = { 'missing-fields' } },
-						},
-					},
-				},
-			}
+			capabilities = vim.tbl_deep_extend(
+				"force",
+				capabilities,
+				require("cmp_nvim_lsp").default_capabilities(),
+				require("lsp-file-operations").default_capabilities()
+			)
+			local servers = require("data.language_servers")
 
 			-- Ensure the servers and tools above are installed
 			--  To check the current status of installed tools and/or manually install
@@ -201,12 +140,7 @@ return {
 			-- You can add other tools here that you want Mason to install
 			-- for you, so that they are available from within Neovim.
 			local ensure_installed = vim.tbl_keys(servers or {})
-			vim.list_extend(ensure_installed, {
-				"stylua", -- Used to format Lua code
-				"golangci-lint",
-				"codelldb", -- c/c++
-				"clang-format", -- c/c++
-			})
+			vim.list_extend(ensure_installed, require("data.ensure_installed_mason"))
 			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 			require("mason-lspconfig").setup({
 				handlers = {
@@ -220,6 +154,13 @@ return {
 					end,
 				},
 			})
+
+			vim.keymap.set(
+				"n",
+				"<leader>RL",
+				":LspRestart<CR>",
+				{ noremap = true, silent = true, desc = "[R]efresh [L]sp" }
+			)
 		end,
 	},
 }
