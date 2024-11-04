@@ -24,8 +24,6 @@ return {
 					},
 				},
 			},
-			"tzachar/cmp-fuzzy-buffer",
-			"tzachar/fuzzy.nvim",
 			"saadparwaiz1/cmp_luasnip",
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-nvim-lsp",
@@ -35,9 +33,8 @@ return {
 			"hrsh7th/cmp-nvim-lsp-document-symbol",
 			"Snikimonkd/cmp-go-pkgs",
 			"onsails/lspkind.nvim",
-			"rcarriga/cmp-dap",
-			"hrsh7th/cmp-omni",
-			"ray-x/cmp-treesitter",
+			"prabirshrestha/vim-lsp",
+			"dmitmel/cmp-vim-lsp",
 			{
 				"lukas-reineke/cmp-rg",
 				lazy = true,
@@ -143,14 +140,6 @@ return {
 						option = {
 							additional_arguments = "--smart-case --hidden",
 						},
-						priority = 80,
-						group_index = 3,
-					},
-					{
-						name = "dap",
-						priority = 40,
-						group_index = 6,
-						max_item_count = 5,
 					},
 					{
 						name = "nvim_lsp_signature_help",
@@ -158,51 +147,21 @@ return {
 						group_index = 1,
 						max_item_count = 5,
 					},
-					{
-						name = "treesitter",
-						max_item_count = 5,
-						priority = 90,
-						group_index = 5,
-						entry_filter = function(entry, vim_item)
-							if entry.kind == 15 then
-								local cursor_pos = vim.api.nvim_win_get_cursor(0)
-								local line = vim.api.nvim_get_current_line()
-								local next_char = line:sub(cursor_pos[2] + 1, cursor_pos[2] + 1)
-								if next_char == '"' or next_char == "'" then
-									vim_item.abbr = vim_item.abbr:sub(1, -2)
-								end
-							end
-							return vim_item
-						end,
-					},
 					{ name = "nvim_lsp_document_symbol", max_item_count = 5 },
-					{ name = "dap", max_item_count = 5 },
 					{
 						name = "lazydev",
 						-- set group index to 0 to skip loading LuaLS completions as lazydev recommends it
 						group_index = 0,
 					},
-					{
-						name = "nvim_lsp",
-						max_item_count = 5,
-						option = {
-							go = {
-								keyword_pattern = [[\%([A-Za-z_]\k*\)]],
-							},
-						},
-					},
-					{ name = "luasnip" },
-					{
-						name = "omni",
-						max_item_count = 5,
-						option = {
-							disable_omnifuncs = { "v:lua.vim.lsp.omnifunc" },
-						},
-					},
+					{ name = "nvim_lsp", max_item_count = 5 },
+					{ name = "luasnip", max_item_count = 5 },
 					{ name = "path", max_item_count = 5 },
 					{ name = "buffer", max_item_count = 5 },
-					{ name = "fuzzy_buffer", max_item_count = 5 },
-					{ name = "go_pkgs", max_item_count = 5 },
+					{
+						name = "go_pkgs",
+						max_item_count = 5,
+					},
+					{ name = "vim_lsp", max_item_count = 5 },
 				},
 
 				formatting = {
@@ -223,14 +182,23 @@ return {
 						-- other documentation window options...
 					},
 				},
+				matching = {
+					disallow_symbol_nonprefix_matching = false,
+					disallow_fuzzy_matching = false,
+					disallow_fullfuzzy_matching = false,
+					disallow_partial_fuzzy_matching = false,
+					disallow_partial_matching = false,
+					disallow_prefix_unmatching = false,
+					only_sorting_matching = false,
+				},
 			})
 
 			cmp.setup.cmdline(":", {
 				mapping = cmp.mapping.preset.cmdline(),
 				sources = cmp.config.sources({
-					{ name = "path" },
+					{ name = "path", max_item_count = 5 },
 				}, {
-					{ name = "cmdline" },
+					{ name = "cmdline", max_item_count = 5 },
 				}),
 				matching = { disallow_symbol_nonprefix_matching = false },
 			})

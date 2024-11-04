@@ -22,7 +22,7 @@ return {
 					file_ignore_patterns = { "node_modules/*", ".git/*", "vendor/*" },
 					history = {
 						path = "~/.local/share/nvim/telescope_history.sqlite3",
-						limit = 50,
+						limit = 100,
 					},
 					preview = {
 						treesitter = true,
