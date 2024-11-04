@@ -34,6 +34,8 @@ return {
 			c = { "clang-format" },
 		},
 		linters_by_ft = {
+			c = { "cpplint" },
+			cpp = { "cpplint" },
 			go = { "golint" },
 		},
 	},
