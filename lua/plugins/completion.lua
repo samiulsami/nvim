@@ -1,11 +1,5 @@
 return {
-	{ "hrsh7th/cmp-buffer" }, -- Buffer completions
-	{ "hrsh7th/cmp-cmdline" }, -- Command line completions
-	{ "hrsh7th/cmp-nvim-lsp" },
 	{ "charlespascoe/vim-go-syntax" },
-	{ "hrsh7th/cmp-path" },
-	{ "tzachar/fuzzy.nvim" },
-	{ "saadparwaiz1/cmp_luasnip" },
 	{ -- Autocompletion
 		"hrsh7th/nvim-cmp",
 		event = { "InsertEnter", "CmdlineEnter" },
@@ -30,17 +24,61 @@ return {
 					},
 				},
 			},
-			"tzachar/cmp-fuzzy-buffer", -- Fuzzy buffer source
+			"tzachar/cmp-fuzzy-buffer",
+			"tzachar/fuzzy.nvim",
 			"saadparwaiz1/cmp_luasnip",
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-path",
+			"hrsh7th/cmp-cmdline",
+			"hrsh7th/cmp-nvim-lsp-signature-help",
+			"hrsh7th/cmp-nvim-lsp-document-symbol",
+			"Snikimonkd/cmp-go-pkgs",
+			"onsails/lspkind.nvim",
+			"rcarriga/cmp-dap",
+			"hrsh7th/cmp-omni",
+			"ray-x/cmp-treesitter",
+			{
+				"lukas-reineke/cmp-rg",
+				lazy = true,
+				enabled = function()
+					return vim.fn.executable("rg") == 1
+				end,
+			},
+			{
+				"Exafunction/codeium.vim",
+				lazy = true,
+				event = "BufEnter",
+				config = function()
+					vim.keymap.set("i", "<c-g>", function()
+						return vim.fn["codeium#Accept"]()
+					end, { expr = true, silent = true })
+
+					vim.g.codeium_disable_bindings = 1
+					vim.g.codeium_filetypes = {
+						TelescopePrompt = false,
+						NvimTree = false,
+						dapui_scopes = false,
+						dapui_breakpoints = false,
+						dapui_stacks = false,
+						dapui_repl = false,
+						dapui_console = false,
+						dapui_watches = false,
+						dressing = false,
+						fugitive = false,
+						gitcommit = false,
+						gitrebase = false,
+						gitsigns = false,
+						help = false,
+					}
+				end,
+			},
 		},
+
 		config = function()
 			local cmp = require("cmp")
 			local luasnip = require("luasnip")
 			luasnip.config.setup({})
-			local compare = require("cmp.config.compare")
 
 			cmp.setup({
 				snippet = {
@@ -72,7 +110,6 @@ return {
 					--['<CR>'] = cmp.mapping.confirm { select = true },
 					--['<Tab>'] = cmp.mapping.select_next_item(),
 					--['<S-Tab>'] = cmp.mapping.select_prev_item(),
-
 					--  completions whenever it has completion options available.
 					["<C-Space>"] = cmp.mapping.complete({}),
 
@@ -100,15 +137,81 @@ return {
 				}),
 				sources = {
 					{
+						name = "rg",
+						keyword_length = 5,
+						max_item_count = 5,
+						option = {
+							additional_arguments = "--smart-case --hidden",
+						},
+						priority = 80,
+						group_index = 3,
+					},
+					{
+						name = "dap",
+						priority = 40,
+						group_index = 6,
+						max_item_count = 5,
+					},
+					{
+						name = "nvim_lsp_signature_help",
+						priority = 100,
+						group_index = 1,
+						max_item_count = 5,
+					},
+					{
+						name = "treesitter",
+						max_item_count = 5,
+						priority = 90,
+						group_index = 5,
+						entry_filter = function(entry, vim_item)
+							if entry.kind == 15 then
+								local cursor_pos = vim.api.nvim_win_get_cursor(0)
+								local line = vim.api.nvim_get_current_line()
+								local next_char = line:sub(cursor_pos[2] + 1, cursor_pos[2] + 1)
+								if next_char == '"' or next_char == "'" then
+									vim_item.abbr = vim_item.abbr:sub(1, -2)
+								end
+							end
+							return vim_item
+						end,
+					},
+					{ name = "nvim_lsp_document_symbol", max_item_count = 5 },
+					{ name = "dap", max_item_count = 5 },
+					{
 						name = "lazydev",
 						-- set group index to 0 to skip loading LuaLS completions as lazydev recommends it
 						group_index = 0,
 					},
-					{ name = "nvim_lsp" },
+					{
+						name = "nvim_lsp",
+						max_item_count = 5,
+						option = {
+							go = {
+								keyword_pattern = [[\%([A-Za-z_]\k*\)]],
+							},
+						},
+					},
 					{ name = "luasnip" },
-					{ name = "path" },
-					{ name = "buffer" },
-					{ name = "fuzzy_buffer" },
+					{
+						name = "omni",
+						max_item_count = 5,
+						option = {
+							disable_omnifuncs = { "v:lua.vim.lsp.omnifunc" },
+						},
+					},
+					{ name = "path", max_item_count = 5 },
+					{ name = "buffer", max_item_count = 5 },
+					{ name = "fuzzy_buffer", max_item_count = 5 },
+					{ name = "go_pkgs", max_item_count = 5 },
+				},
+
+				formatting = {
+					format = require("lspkind").cmp_format({
+						with_text = true,
+						menu = {
+							go_pkgs = "[pkgs]",
+						},
+					}),
 				},
 				window = {
 					completion = {
