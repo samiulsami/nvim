@@ -1,5 +1,4 @@
 return {
-	{ "charlespascoe/vim-go-syntax" },
 	{
 		"olexsmir/gopher.nvim",
 		ft = "go",

@@ -106,10 +106,30 @@ return {
 					{ name = "nvim_lsp", max_item_count = 10 },
 					{ name = "luasnip", max_item_count = 10 },
 					{ name = "path", max_item_count = 10 },
-					{ name = "buffer", max_item_count = 10 },
+					{
+						name = "buffer",
+						max_item_count = 10,
+						option = {
+							get_bufnrs = function()
+								local buf = vim.api.nvim_get_current_buf()
+								local byte_size = vim.api.nvim_buf_get_offset(buf, vim.api.nvim_buf_line_count(buf))
+								if byte_size > 1024 * 1024 then -- 1 Megabyte max
+									return {}
+								end
+								return { buf }
+							end,
+						},
+					},
 					{
 						name = "go_pkgs",
 						max_item_count = 100,
+					},
+				},
+				sorting = {
+					comparators = {
+						function(...)
+							return require("cmp_buffer"):compare_locality(...)
+						end,
 					},
 				},
 
@@ -124,30 +144,22 @@ return {
 				window = {
 					completion = {
 						winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
-						-- other completion window options...
 					},
 					documentation = {
 						winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
-						-- other documentation window options...
 					},
 				},
 				matching = {
 					disallow_symbol_nonprefix_matching = false,
-					disallow_fuzzy_matching = false,
-					disallow_fullfuzzy_matching = false,
-					disallow_partial_fuzzy_matching = false,
-					disallow_partial_matching = false,
-					disallow_prefix_unmatching = false,
-					only_sorting_matching = false,
 				},
 			})
 
 			cmp.setup.cmdline(":", {
 				mapping = cmp.mapping.preset.cmdline(),
 				sources = cmp.config.sources({
-					{ name = "path", max_item_count = 5 },
+					{ name = "path", max_item_count = 20 },
 				}, {
-					{ name = "cmdline", max_item_count = 5 },
+					{ name = "cmdline", max_item_count = 20 },
 				}),
 				matching = { disallow_symbol_nonprefix_matching = false },
 			})

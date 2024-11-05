@@ -3,7 +3,7 @@ return {
 		"akinsho/toggleterm.nvim",
 		config = function()
 			require("toggleterm").setup({
-				size = 10,
+				size = 13,
 				open_mapping = [[<F12>]],
 				-- change toggleterm working dir if vim pwd changes
 				on_open = function(term)
@@ -21,17 +21,12 @@ return {
 				terminal_mappings = true, -- whether or not the open mapping applies in the opened terminals
 				close_on_exit = true, -- close the terminal window when the process exits
 				clear_env = false,
+				hide_numbers = false,
 				direction = "horizontal",
 				auto_scroll = true,
 				shell = vim.o.shell,
 			})
-			vim.api.nvim_create_autocmd("TermOpen", {
-				pattern = "term://*",
-				callback = function()
-					vim.wo.number = true
-					vim.wo.relativenumber = true
-				end,
-			})
+
 			vim.keymap.set("t", "<C-q>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 		end,
 	},

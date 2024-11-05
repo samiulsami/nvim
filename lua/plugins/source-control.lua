@@ -25,7 +25,7 @@ return {
 				numhl = true, -- Highlight line numbers
 				linehl = false, -- Highlight the entire line
 				word_diff = false, -- Enable word diff for inline changes
-				current_line_blame = false, -- Enable current line blame
+				current_line_blame = true, -- Enable current line blame
 				current_line_blame_opts = {
 					delay = 200, -- Delay before displaying blame info
 					virt_text_pos = "eol", -- Position of virtual text (eol, right, inline)

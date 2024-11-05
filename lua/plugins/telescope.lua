@@ -15,8 +15,28 @@ return {
 			},
 			{ "nvim-telescope/telescope-ui-select.nvim" },
 			{ "nvim-tree/nvim-web-devicons", enabled = vim.g.have_nerd_font },
+			{ "folke/flash.nvim" },
 		},
 		config = function()
+			local function flash(prompt_bufnr)
+				require("flash").jump({
+					-- pattern = "^",
+					label = { after = { 0, 0 } },
+					search = {
+						mode = "search",
+						exclude = {
+							function(win)
+								return vim.bo[vim.api.nvim_win_get_buf(win)].filetype ~= "TelescopeResults"
+							end,
+						},
+					},
+					action = function(match)
+						local picker = require("telescope.actions.state").get_current_picker(prompt_bufnr)
+						picker:set_selection(match.pos[1] - 1)
+					end,
+				})
+			end
+
 			local telescope_setup = {
 				defaults = {
 					file_ignore_patterns = { "node_modules/*", ".git/*", "vendor/*" },
@@ -31,6 +51,10 @@ return {
 						n = {
 							["<S-p>"] = require("telescope.actions").cycle_history_prev,
 							["<S-n>"] = require("telescope.actions").cycle_history_next,
+							["s"] = flash,
+						},
+						i = {
+							["<C-s>"] = flash,
 						},
 					},
 				},
@@ -41,15 +65,12 @@ return {
 				},
 			}
 
-			-- Store initial ignore patterns and state
 			local current_ignore_patterns = telescope_setup.defaults.file_ignore_patterns
-			_G.ignore_patterns_active = true -- Use _G to make it global
+			local ignore_patterns_active = true
 
 			-- Function to toggle ignore patterns globally
 			function _G.toggle_ignore_patterns()
-				-- Toggle the state of ignore patterns
 				ignore_patterns_active = not ignore_patterns_active
-
 				if ignore_patterns_active then
 					current_ignore_patterns = telescope_setup.defaults.file_ignore_patterns
 				else
@@ -70,10 +91,8 @@ return {
 				print("Telescope ignore patterns updated to:", vim.inspect(current_ignore_patterns))
 			end
 
-			-- Set up Telescope initially
 			require("telescope").setup(telescope_setup)
 
-			-- Key mapping to toggle ignore patterns
 			vim.api.nvim_set_keymap(
 				"n",
 				"<leader>ti",
@@ -81,7 +100,6 @@ return {
 				{ noremap = true, silent = true, desc = "[T]oggle [I]gnore patterns" }
 			)
 
-			-- Enable Telescope extensions if they are installed
 			pcall(require("telescope").load_extension, "fzf")
 			pcall(require("telescope").load_extension, "ui-select")
 			pcall(require("telescope").load_extension, "dap")
@@ -90,6 +108,13 @@ return {
 			vim.keymap.set("n", "<leader>sp", ":Telescope projects<CR>", { desc = "[S]earch [P]rojects" })
 
 			local builtin = require("telescope.builtin")
+
+			vim.keymap.set("n", "gd", builtin.lsp_definitions, { desc = "[G]oto [D]efinition" })
+			vim.keymap.set("n", "gr", builtin.lsp_references, { desc = "[G]oto [R]eferences" })
+			vim.keymap.set("n", "gi", builtin.lsp_implementations, { desc = "[G]oto [I]mplementations" })
+			vim.keymap.set("n", "<leader>ws", builtin.lsp_dynamic_workspace_symbols, { desc = "[W]orkspace [S]ymbols" })
+			vim.keymap.set("n", "<leader>ds", builtin.lsp_document_symbols, { desc = "[D]ocument [S]ymbols" })
+
 			vim.keymap.set("n", "<leader>sh", builtin.help_tags, { desc = "[S]earch [H]elp" })
 			vim.keymap.set("n", "<leader>sk", builtin.keymaps, { desc = "[S]earch [K]eymaps" })
 			vim.keymap.set("n", "<leader>sf", builtin.find_files, { desc = "[S]earch [F]iles" })
@@ -101,11 +126,12 @@ return {
 			vim.keymap.set("n", "<leader>sn", ":Telescope notify<CR>", { desc = "[S]earch [N]otify" })
 			vim.keymap.set("n", "<leader>s.", builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
 			vim.keymap.set("n", "<leader><leader>", builtin.buffers, { desc = "[ ] Find existing buffers" })
+			vim.keymap.set("n", "<leader>sr", builtin.resume, { desc = "[S]earch [R]esume" })
 
 			vim.keymap.set("n", "<leader>/", function()
 				builtin.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
 					winblend = 10,
-					previewer = false,
+					previewer = true,
 				}))
 			end, { desc = "[/] Fuzzily search in current buffer" })
 			vim.keymap.set("n", "<leader>s/", function()
@@ -114,10 +140,6 @@ return {
 					prompt_title = "Live Grep in Open Files",
 				})
 			end, { desc = "[S]earch [/] in Open Files" })
-
-			vim.keymap.set("n", "<leader>sr", function()
-				require("telescope.builtin").resume()
-			end, { desc = "[S]earch [R]esume" })
 		end,
 	},
 }

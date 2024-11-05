@@ -3,7 +3,7 @@
 ## Setup in Ubuntu:
 ```
 sudo apt update
-sudo apt install build-essential ripgrep unzip git python3.12-venv xclip cmake
+sudo apt install build-essential ripgrep unzip git python3.12-venv xclip cmake gettext
 git clone https://github.com/neovim/neovim.git
 cd neovim
 make CMAKE_BUILD_TYPE=RelWithDebInfo
