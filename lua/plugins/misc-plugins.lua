@@ -1,5 +1,4 @@
 return {
-	{ "kkharji/sqlite.lua" },
 
 	{ "AndrewRadev/splitjoin.vim" },
 
