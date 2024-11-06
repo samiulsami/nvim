@@ -30,37 +30,16 @@ return {
 			"onsails/lspkind.nvim",
 
 			{
-				"Exafunction/codeium.vim",
-				lazy = true,
-				event = "BufEnter",
+				"supermaven-inc/supermaven-nvim",
 				config = function()
-					vim.keymap.set("i", "<c-g>", function()
-						return vim.fn["codeium#Accept"]()
-					end, { expr = true, silent = true })
-					vim.keymap.set(
-						"n",
-						"<leader>tc",
-						":CodeiumToggle<CR>",
-						{ noremap = true, silent = true, desc = "[T]oggle [C]odeium" }
-					)
-
-					vim.g.codeium_disable_bindings = 1
-					vim.g.codeium_filetypes = {
-						TelescopePrompt = false,
-						NvimTree = false,
-						dapui_scopes = false,
-						dapui_breakpoints = false,
-						dapui_stacks = false,
-						dapui_repl = false,
-						dapui_console = false,
-						dapui_watches = false,
-						dressing = false,
-						fugitive = false,
-						gitcommit = false,
-						gitrebase = false,
-						gitsigns = false,
-						help = false,
-					}
+					require("supermaven-nvim").setup({
+						keymaps = {
+							accept_suggestion = "<A-y>",
+							clear_suggestion = "<c-]>",
+							accept_word = "<c-j>",
+						},
+						log_level = "info",
+					})
 				end,
 			},
 		},
@@ -77,9 +56,6 @@ return {
 					end,
 				},
 
-				-- For an understanding of why these mappings were
-				-- chosen, you will need to read `:help ins-completion`
-				-- No, but seriously. Please read `:help ins-completion`, it is really good!
 				mapping = cmp.mapping.preset.insert({
 					["<C-n>"] = cmp.mapping.select_next_item(),
 					["<C-p>"] = cmp.mapping.select_prev_item(),
