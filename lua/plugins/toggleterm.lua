@@ -1,3 +1,4 @@
+-- TODO: Learn tmux and remove this
 return {
 	{
 		"akinsho/toggleterm.nvim",
@@ -5,14 +6,11 @@ return {
 			require("toggleterm").setup({
 				size = 13,
 				open_mapping = [[<F12>]],
-				-- change toggleterm working dir if vim pwd changes
 				on_open = function(term)
-					local nvim_dir = vim.fn.getcwd()
-					if vim.b[term.bufnr].term_cwd ~= nvim_dir then
-						vim.b[term.bufnr].term_cwd = nvim_dir
-						term:send("cd " .. nvim_dir, false)
-					end
+					vim.cmd("set number")
+					vim.cmd("set relativenumber")
 				end,
+
 				autochdir = true,
 				start_in_insert = true,
 				persist_size = false,
@@ -22,7 +20,7 @@ return {
 				close_on_exit = true, -- close the terminal window when the process exits
 				clear_env = false,
 				hide_numbers = false,
-				direction = "horizontal",
+				direction = "float",
 				auto_scroll = true,
 				shell = vim.o.shell,
 			})
