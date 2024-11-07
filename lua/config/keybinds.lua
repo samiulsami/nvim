@@ -18,7 +18,6 @@ vim.api.nvim_set_keymap("n", "<C-l>", "<C-w>l", { noremap = true })
 
 -- Vertical split with alt-e
 vim.keymap.set("n", "<leader><A-e>", ":vsplit<CR>", { noremap = true, silent = true })
-
 -- Horizontal split with alt-o
 vim.keymap.set("n", "<leader><A-o>", ":split<CR>", { noremap = true, silent = true })
 
@@ -37,5 +36,6 @@ vim.keymap.set("n", "<C-Down>", ":resize -2<CR>", { noremap = true, silent = tru
 vim.keymap.set("n", "<C-Left>", ":vertical resize -2<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<C-Right>", ":vertical resize +2<CR>", { noremap = true, silent = true })
 
-vim.keymap.set("n", "<leader>gm", ":Git mergetool<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "]q", ":cnext<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "[q", ":cprevious<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>RL", ":LspRestart<CR>", { noremap = true, silent = true, desc = "[R]efresh [L]sp" })

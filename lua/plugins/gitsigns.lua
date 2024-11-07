@@ -22,37 +22,52 @@ return {
 					virt_text_pos = "right_align", -- Position of virtual text (eol, right, inline)
 				},
 			})
-			vim.api.nvim_set_keymap(
+
+			local gitsigns = require("gitsigns")
+
+			vim.keymap.set(
 				"n",
 				"<leader>gsb",
-				":lua require'gitsigns'.blame_line()<CR>",
+				gitsigns.blame_line,
 				{ noremap = true, silent = true, desc = "[G]it [S]igns [B]lame line" }
 			)
-			vim.api.nvim_set_keymap(
+			vim.keymap.set(
 				"n",
 				"<leader>gsB",
-				":Gitsigns toggle_current_line_blame<CR>",
+				gitsigns.toggle_current_line_blame,
 				{ noremap = true, silent = true, desc = "Toggle [G]it [S]igns [B]lame line " }
 			)
-			vim.api.nvim_set_keymap(
+			vim.keymap.set(
 				"n",
 				"<leader>gsw",
-				":Gitsigns toggle_word_diff<CR>",
+				gitsigns.toggle_word_diff,
 				{ noremap = true, silent = true, desc = "Toggle [G]it [S]igns [W]ord diff" }
 			)
 
-			vim.api.nvim_set_keymap(
+			vim.keymap.set(
 				"n",
 				"<leader>gsl",
-				":Gitsigns toggle_linehl<CR>",
+				gitsigns.toggle_linehl,
 				{ noremap = true, silent = true, desc = "Toggle [G]it [S]igns [L]ine Highlight" }
 			)
-			vim.api.nvim_set_keymap(
+			vim.keymap.set(
 				"n",
 				"<leader>gsn",
-				":Gitsigns toggle_numhl<CR>",
+				gitsigns.toggle_numhl,
 				{ noremap = true, silent = true, desc = "Toggle [G]it [S]igns [N]um highlight" }
 			)
+
+			vim.keymap.set("n", "<leader>gha", gitsigns.stage_hunk, { desc = "[G]it [H]unk [A]dd" })
+			vim.keymap.set("n", "<leader>ghr", gitsigns.reset_hunk, { desc = "[G]it [H]unk [R]eset" })
+			vim.keymap.set("v", "<leader>gha", function()
+				gitsigns.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
+			end, { desc = "[G]it [H]unk [A]dd" })
+
+			vim.keymap.set("v", "<leader>ghr", function()
+				gitsigns.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
+			end, { desc = "[G]it [H]unk [R]eset" })
+
+			vim.keymap.set("n", "<leader>gS", gitsigns.stage_buffer, { desc = "[G]it [S]tage Buffer" })
 		end,
 	},
 }

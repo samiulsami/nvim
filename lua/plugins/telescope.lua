@@ -112,6 +112,8 @@ return {
 
 			vim.keymap.set("n", "<leader>sp", ":Telescope projects<CR>", { desc = "[S]earch [P]rojects" })
 
+			vim.keymap.set("n", "<leader>sc", ":Telescope git_commits<CR>", { desc = "[S]earch [C]ommits" })
+			vim.keymap.set("n", "<leader>sb", ":Telescope git_branches<CR>", { desc = "[S]earch [B]ranches" })
 			local builtin = require("telescope.builtin")
 
 			vim.keymap.set("n", "gd", builtin.lsp_definitions, { desc = "[G]oto [D]efinition" })
