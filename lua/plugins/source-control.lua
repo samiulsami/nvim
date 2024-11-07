@@ -2,7 +2,7 @@ return {
 	{
 		"tpope/vim-fugitive",
 		config = function()
-			vim.keymap.set("n", "<leader>gs", ":Git<CR>", {})
+			vim.keymap.set("n", "<leader>gg", ":Git<CR>", {})
 			vim.keymap.set("n", "<leader>gd", ":Gvdiffsplit<CR>", { desc = "Git Diff Split" })
 			vim.keymap.set("n", "<leader>gb", ":Git blame<CR>", { desc = "Git Blame" })
 		end,
@@ -27,15 +27,40 @@ return {
 				word_diff = false, -- Enable word diff for inline changes
 				current_line_blame = true, -- Enable current line blame
 				current_line_blame_opts = {
-					delay = 200, -- Delay before displaying blame info
-					virt_text_pos = "eol", -- Position of virtual text (eol, right, inline)
+					delay = 100, -- Delay before displaying blame info
+					virt_text_pos = "right_align", -- Position of virtual text (eol, right, inline)
 				},
 			})
 			vim.api.nvim_set_keymap(
 				"n",
-				"<leader>hb",
+				"<leader>gsb",
 				":lua require'gitsigns'.blame_line()<CR>",
-				{ noremap = true, silent = true, desc = "Blame line" }
+				{ noremap = true, silent = true, desc = "[G]it [S]igns [B]lame line" }
+			)
+			vim.api.nvim_set_keymap(
+				"n",
+				"<leader>gsB",
+				":Gitsigns toggle_current_line_blame<CR>",
+				{ noremap = true, silent = true, desc = "Toggle [G]it [S]igns [B]lame line " }
+			)
+			vim.api.nvim_set_keymap(
+				"n",
+				"<leader>gsw",
+				":Gitsigns toggle_word_diff<CR>",
+				{ noremap = true, silent = true, desc = "Toggle [G]it [S]igns [W]ord diff" }
+			)
+
+			vim.api.nvim_set_keymap(
+				"n",
+				"<leader>gsl",
+				":Gitsigns toggle_linehl<CR>",
+				{ noremap = true, silent = true, desc = "Toggle [G]it [S]igns [L]ine Highlight" }
+			)
+			vim.api.nvim_set_keymap(
+				"n",
+				"<leader>gsn",
+				":Gitsigns toggle_numhl<CR>",
+				{ noremap = true, silent = true, desc = "Toggle [G]it [S]igns [N]um highlight" }
 			)
 		end,
 	},
