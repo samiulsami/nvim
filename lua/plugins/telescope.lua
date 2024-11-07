@@ -36,7 +36,13 @@ return {
 
 			local telescope_setup = {
 				defaults = {
-					file_ignore_patterns = { "node_modules/*", ".git/*", "vendor/*" },
+					file_ignore_patterns = {
+						"node_modules/*",
+						".git/*",
+						"vendor/*",
+						"zz_generated*",
+						"openapi_generated*",
+					},
 					preview = {
 						treesitter = true,
 					},
