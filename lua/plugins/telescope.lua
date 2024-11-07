@@ -8,10 +8,7 @@ return {
 			"nvim-lua/plenary.nvim",
 			{
 				"nvim-telescope/telescope-fzf-native.nvim",
-				build = "make",
-				cond = function()
-					return vim.fn.executable("make") == 1
-				end,
+				build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release",
 			},
 			{ "nvim-telescope/telescope-ui-select.nvim" },
 			{ "nvim-tree/nvim-web-devicons", enabled = vim.g.have_nerd_font },
@@ -55,6 +52,12 @@ return {
 					},
 				},
 				extensions = {
+					fzf = {
+						fuzzy = true,
+						override_generic_sorter = true,
+						override_file_sorter = true,
+						case_mode = "smart_case",
+					},
 					["ui-select"] = {
 						require("telescope.themes").get_dropdown(),
 					},
