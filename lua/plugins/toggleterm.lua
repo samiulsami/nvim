@@ -7,8 +7,7 @@ return {
 				size = 13,
 				open_mapping = [[<F12>]],
 				on_open = function(term)
-					vim.cmd("set number")
-					vim.cmd("set relativenumber")
+					vim.cmd("set number relativenumber")
 				end,
 
 				autochdir = true,
