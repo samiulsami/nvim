@@ -10,7 +10,8 @@ return {
           w	<c-w>	change_working_directory
     ]]
 	{
-		"ahmedkhalf/project.nvim",
+		"LennyPhoenix/project.nvim",
+		commit = "6f1937d134515adb7302e3847981063842a65c8b",
 		config = function()
 			require("project_nvim").setup({
 				manual_mode = false,
