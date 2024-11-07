@@ -1,14 +1,5 @@
 return {
 	{
-		"tpope/vim-fugitive",
-		config = function()
-			vim.keymap.set("n", "<leader>gg", ":Git<CR>", {})
-			vim.keymap.set("n", "<leader>gd", ":Gvdiffsplit<CR>", { desc = "Git Diff Split" })
-			vim.keymap.set("n", "<leader>gb", ":Git blame<CR>", { desc = "Git Blame" })
-		end,
-	},
-
-	{
 		"lewis6991/gitsigns.nvim",
 		dependencies = {
 			"nvim-lua/plenary.nvim", -- Required dependency
