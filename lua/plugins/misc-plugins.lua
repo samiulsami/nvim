@@ -61,38 +61,6 @@ return {
 	},
 
 	{
-		"xiyaowong/nvim-transparent",
-		config = function()
-			require("transparent").setup({
-				enable = true, -- Enable transparency
-				extra_groups = { -- Specify groups to make transparent
-					"Normal",
-					"Comment",
-					"Constant",
-					"Identifier",
-					"Function",
-					"Statement",
-					"PreProc",
-					"Type",
-					"Special",
-					"Underlined",
-					"Error",
-					"Todo",
-					"TelescopeNormal",
-					"TelescopeBorder",
-					"TelescopePromptNormal",
-					"TelescopePromptBorder",
-					"TelescopeResultsNormal",
-					"TelescopeResultsBorder",
-					"TelescopePreviewNormal",
-					"TelescopePreviewBorder",
-				},
-				exclude_groups = {}, -- Optionally exclude groups here
-			})
-		end,
-	},
-
-	{
 		"lukas-reineke/indent-blankline.nvim",
 		config = function()
 			require("ibl").setup()
