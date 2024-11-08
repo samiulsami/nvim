@@ -12,4 +12,6 @@ return {
 	"vim",
 	"vimdoc",
 	"go",
+	"yaml",
+	"json",
 }

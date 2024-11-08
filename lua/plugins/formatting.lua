@@ -27,16 +27,6 @@ return {
 				lsp_format = lsp_format_opt,
 			}
 		end,
-		formatters_by_ft = {
-			lua = { "stylua" },
-			go = { "gofmt", "goimports" },
-			cpp = { "clang-format" },
-			c = { "clang-format" },
-		},
-		linters_by_ft = {
-			c = { "cpplint" },
-			cpp = { "cpplint" },
-			go = { "golint" },
-		},
+		formatters_by_ft = require("data.formatters_by_ft"),
 	},
 }
