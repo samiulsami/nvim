@@ -1,55 +1,72 @@
 return {
 	{
-		"nvim-neotest/neotest",
+		"rcarriga/nvim-dap-ui",
 		dependencies = {
+			"nvim-neotest/nvim-nio",
+			"mfussenegger/nvim-dap",
+		},
+	},
+
+	{
+		"nvim-neotest/neotest",
+		opts = {
+			discovery = {
+				enabled = false,
+				concurent = 1,
+			},
+
+			running = {
+				concurrent = true,
+			},
+			summary = {
+				animated = false,
+			},
+		},
+		dependencies = {
+
 			"nvim-neotest/nvim-nio",
 			"nvim-lua/plenary.nvim",
 			"nvim-treesitter/nvim-treesitter",
 			"antoinemadec/FixCursorHold.nvim", -- Improves responsiveness
-			"nvim-neotest/neotest-go", -- Go adapter
+			{
+				"fredrikaverpil/neotest-golang",
+				dependencies = {
+					"leoluz/nvim-dap-go",
+				},
+			},
 		},
 		config = function()
 			local neotest = require("neotest")
 			neotest.setup({
 				adapters = {
-					require("neotest-go")({}),
+					require("neotest-golang")({}),
 				},
 			})
 
 			-- Add keymaps for running tests
 			vim.keymap.set("n", "<leader>tx", function()
-				require("neotest").run.stop({ strategy = "all", interactive = true })
+				neotest.run.stop({ strategy = "all", interactive = true })
 			end, { desc = "Stop all Neotest tests" })
-			vim.api.nvim_set_keymap(
-				"n",
-				"<leader>tt",
-				"<cmd>lua require('neotest').run.run()<CR>",
-				{ noremap = true, desc = "Run nearest test" }
-			)
-			vim.api.nvim_set_keymap(
-				"n",
-				"<leader>tf",
-				"<cmd>lua require('neotest').run.run(vim.fn.expand('%'))<CR>",
-				{ noremap = true, desc = "Run all tests in file" }
-			)
-			vim.api.nvim_set_keymap(
-				"n",
-				"<leader>ta",
-				'<cmd>lua require("neotest").run.run({strategy = "dap"})<CR>',
-				{ noremap = true, silent = true, desc = "Run all tests" }
-			)
-			vim.api.nvim_set_keymap(
-				"n",
-				"<leader>ts",
-				"<cmd>lua require('neotest').summary.toggle()<CR>",
-				{ noremap = true, desc = "Toggle sumary" }
-			)
-			vim.api.nvim_set_keymap(
-				"n",
-				"<leader>to",
-				"<cmd>lua require('neotest').output_panel.toggle()<CR>",
-				{ noremap = true, desc = "Toggle output panel" }
-			)
+
+			vim.keymap.set("n", "<leader>tt", function()
+				neotest.run.run()
+			end, { noremap = true, desc = "Run nearest test" })
+
+			vim.keymap.set("n", "<leader>tf", function()
+				neotest.run.run(vim.fn.expand("%"))
+			end, { noremap = true, desc = "Run all tests in file" })
+
+			vim.keymap.set("n", "<leader>td", function()
+				neotest.run.run({ suite = false, strategy = "dap" })
+			end, { noremap = true, silent = true, desc = "Debug nearest test" })
+
+			vim.keymap.set("n", "<leader>ts", function()
+				neotest.summary.toggle()
+			end, { noremap = true, desc = "Toggle sumary" })
+
+			vim.keymap.set("n", "<leader>to", function()
+				neotest.output_panel.toggle()
+			end, { noremap = true, desc = "Toggle output panel" })
 		end,
 	},
 

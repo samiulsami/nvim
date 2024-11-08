@@ -1,26 +1,30 @@
 return {
-
 	{
-		"VidocqH/lsp-lens.nvim",
+		"folke/zen-mode.nvim",
+		event = "VeryLazy",
+	},
+	{
+		"Wansmer/symbol-usage.nvim",
+		event = "BufReadPre", -- need run before LspAttach if you use nvim 0.9. On 0.10 use 'LspAttach'
 		config = function()
 			local SymbolKind = vim.lsp.protocol.SymbolKind
-			require("lsp-lens").setup({
-				enable = true,
-				include_declaration = false,
-				sections = {
-					definition = false,
-					references = true,
-					implements = true,
-					git_authors = false,
+			require("symbol-usage").setup({
+				kinds = {
+					SymbolKind.Function,
+					SymbolKind.Method,
+					SymbolKind.Interface,
+					SymbolKind.Class,
+					SymbolKind.Struct,
+					SymbolKind.Enum,
+					SymbolKind.Constant,
+					-- SymbolKind.Field,
+					-- SymbolKind.Variable,
+					-- SymbolKind.Object,
 				},
-				ignore_filetype = {
-					"prisma",
-				},
-				target_symbol_kinds = { SymbolKind.Function, SymbolKind.Method, SymbolKind.Interface },
-				wrapper_symbol_kinds = { SymbolKind.Class, SymbolKind.Struct },
 			})
 		end,
 	},
+
 	{ "AndrewRadev/splitjoin.vim" },
 
 	{

@@ -80,6 +80,7 @@ return {
 						event = "neo_tree_buffer_enter",
 						handler = function()
 							vim.cmd("highlight! Cursor blend=100")
+							vim.cmd("set number relativenumber")
 						end,
 					},
 					{
