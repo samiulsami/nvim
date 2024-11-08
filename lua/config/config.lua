@@ -6,6 +6,27 @@ vim.api.nvim_create_autocmd("CursorHold", {
 	command = "checktime",
 })
 
+-- show cursor line only in active window
+local cursorGrp = vim.api.nvim_create_augroup("CursorLine", { clear = true })
+vim.api.nvim_create_autocmd(
+	{ "InsertLeave", "WinEnter" },
+	{ pattern = "*", command = "set cursorline", group = cursorGrp }
+)
+vim.api.nvim_create_autocmd(
+	{ "InsertEnter", "WinLeave" },
+	{ pattern = "*", command = "set nocursorline", group = cursorGrp }
+)
+
+-- show cursor col line only in active window
+local cursorColGrp = vim.api.nvim_create_augroup("CursorColumn", { clear = true })
+vim.api.nvim_create_autocmd(
+	{ "InsertLeave", "WinEnter" },
+	{ pattern = "*", command = "set cursorcolumn", group = cursorColGrp }
+)
+vim.api.nvim_create_autocmd(
+	{ "InsertEnter", "WinLeave" },
+	{ pattern = "*", command = "set nocursorcolumn", group = cursorColGrp }
+)
 vim.g.everforest_enable_italic = true
 vim.g.everforest_background = "hard"
 vim.g.everforest_better_performance = 1

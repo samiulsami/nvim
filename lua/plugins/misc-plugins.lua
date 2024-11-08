@@ -3,27 +3,6 @@ return {
 		"folke/zen-mode.nvim",
 		event = "VeryLazy",
 	},
-	{
-		"Wansmer/symbol-usage.nvim",
-		event = "BufReadPre", -- need run before LspAttach if you use nvim 0.9. On 0.10 use 'LspAttach'
-		config = function()
-			local SymbolKind = vim.lsp.protocol.SymbolKind
-			require("symbol-usage").setup({
-				kinds = {
-					SymbolKind.Function,
-					SymbolKind.Method,
-					SymbolKind.Interface,
-					SymbolKind.Class,
-					SymbolKind.Struct,
-					SymbolKind.Enum,
-					SymbolKind.Constant,
-					-- SymbolKind.Field,
-					-- SymbolKind.Variable,
-					-- SymbolKind.Object,
-				},
-			})
-		end,
-	},
 
 	{ "AndrewRadev/splitjoin.vim" },
 

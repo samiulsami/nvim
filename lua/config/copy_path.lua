@@ -44,6 +44,6 @@ vim.api.nvim_set_keymap(
 
 vim.keymap.set("n", "<leader>cp", function()
 	local directory_path = vim.fn.expand("%:p:h")
-	vim.fn.setreg("+", directory_path)
+	vim.fn.setreg("+", '"' .. directory_path .. '"')
 	vim.notify('"' .. directory_path .. '" copied to clipboard', vim.log.levels.INFO)
 end, { noremap = true, silent = true, desc = "[C]opy [P]ath" })

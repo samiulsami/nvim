@@ -4,7 +4,9 @@ vim.api.nvim_del_keymap("n", "gri")
 vim.api.nvim_del_keymap("n", "gra")
 vim.api.nvim_del_keymap("n", "grn")
 
-vim.api.nvim_set_keymap("n", "<F7>", ":set relativenumber!<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<F7>", function()
+	vim.cmd("set number! relativenumber!")
+end, { noremap = true, silent = true, desc = "Toggle line numbers" })
 
 -- Center the screen when moving half a page up or down
 vim.api.nvim_set_keymap("n", "<C-d>", "<C-d>zz", { noremap = true })

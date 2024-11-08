@@ -6,9 +6,6 @@ return {
 			require("toggleterm").setup({
 				size = 13,
 				open_mapping = [[<F12>]],
-				on_open = function(term)
-					vim.cmd("set number relativenumber")
-				end,
 
 				autochdir = true,
 				start_in_insert = true,
