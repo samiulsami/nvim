@@ -1,9 +1,10 @@
-# Neovim PDE for cpp/go. Based on kickstart.nvim
+# Neovim PDE Based on kickstart.nvim
 
 ## Setup in Ubuntu:
 ```
 sudo apt update
-sudo apt install build-essential ripgrep unzip git python3.12-venv xclip cmake gettext
+sudo apt install build-essential unzip git python3.12-venv xclip cmake gettext fd-find ripgrep 
+sudo ln -s $(which fdfind) /usr/bin/fd
 git clone https://github.com/neovim/neovim.git
 cd neovim
 make CMAKE_BUILD_TYPE=RelWithDebInfo
@@ -17,6 +18,11 @@ sudo cp ~/.config/nvim/fonts/* /usr/share/fonts/
 sudo fc-cache -f -v
 sudo echo "export EDITOR='nvim -f'" >> ~/.bashrc
 git config --global core.editor 'nvim -f'
+```
+##### <i>For yaml/json language servers</i>
+```
+wget -q -O- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash
+nvm install 18 
 ```
 ## Notes
 - `<leader>` key is space

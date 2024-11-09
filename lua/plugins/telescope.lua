@@ -34,15 +34,16 @@ return {
 				})
 			end
 
-			local telescope_setup = {
+			local file_ignore_patterns = {
+				"node_modules/*",
+				"^.git/*",
+				"vendor/*",
+				"zz_generated*",
+				"openapi_generated*",
+			}
+			local telescope_setup = require("telescope").setup({
 				defaults = {
-					file_ignore_patterns = {
-						"node_modules/*",
-						"^.git/*",
-						"vendor/*",
-						"zz_generated*",
-						"openapi_generated*",
-					},
+					file_ignore_patterns = file_ignore_patterns,
 					preview = {
 						treesitter = true,
 					},
@@ -68,16 +69,16 @@ return {
 						require("telescope.themes").get_dropdown(),
 					},
 				},
-			}
+			})
 
-			local current_ignore_patterns = telescope_setup.defaults.file_ignore_patterns
+			local current_ignore_patterns = file_ignore_patterns
 			local ignore_patterns_active = true
 
-			-- Function to toggle ignore patterns globally
-			function _G.toggle_ignore_patterns()
+			-- Function to toggle ignore patterns
+			local function toggle_ignore_patterns()
 				ignore_patterns_active = not ignore_patterns_active
 				if ignore_patterns_active then
-					current_ignore_patterns = telescope_setup.defaults.file_ignore_patterns
+					current_ignore_patterns = file_ignore_patterns
 				else
 					current_ignore_patterns = {}
 				end
@@ -86,22 +87,18 @@ return {
 				require("telescope").setup({
 					defaults = {
 						file_ignore_patterns = current_ignore_patterns,
-						history = telescope_setup.defaults.history,
-						mappings = telescope_setup.defaults.mappings,
-						preview = telescope_setup.defaults.preview,
 					},
-					extensions = telescope_setup.extensions,
 				})
-
-				print("Telescope ignore patterns updated to:", vim.inspect(current_ignore_patterns))
+				vim.notify(
+					"Telescope ignore patterns updated to: " .. vim.inspect(current_ignore_patterns),
+					vim.log.levels.INFO
+				)
 			end
 
-			require("telescope").setup(telescope_setup)
-
-			vim.api.nvim_set_keymap(
+			vim.keymap.set(
 				"n",
 				"<leader>ti",
-				":lua toggle_ignore_patterns()<CR>",
+				toggle_ignore_patterns,
 				{ noremap = true, silent = true, desc = "[T]oggle [I]gnore patterns" }
 			)
 

@@ -63,22 +63,22 @@ return {
 		},
 	},
 
-	-- yamlls = {
-	-- 	cmd = { "yaml-language-server", "--stdio" },
-	-- 	filetypes = { "yaml", "yml", "yaml.docker-compose", "yaml.gitlab" },
-	-- 	settings = {
-	-- 		yaml = {
-	-- 			schemas = {
-	-- 				["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*.yml",
-	-- 				["https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json"] = "/docker-compose*.y*ml$",
-	-- 			},
-	-- 		},
-	-- 		redhat = {
-	-- 			telemetry = {
-	-- 				enabled = false,
-	-- 			},
-	-- 		},
-	-- 		single_file_support = true,
-	-- 	},
-	-- },
+	yamlls = {
+		cmd = { "yaml-language-server", "--stdio" },
+		filetypes = { "yaml", "yml", "yaml.docker-compose", "yaml.gitlab" },
+		settings = {
+			yaml = {
+				schemas = {
+					["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*.yml",
+					["https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json"] = "/docker-compose*.y*ml$",
+				},
+			},
+			redhat = {
+				telemetry = {
+					enabled = false,
+				},
+			},
+			single_file_support = true,
+		},
+	},
 }

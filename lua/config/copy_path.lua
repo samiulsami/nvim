@@ -32,7 +32,7 @@ function Copy_project_relative_path()
 
 	local strippedPath = string.sub(current_dir, projectPathStartPos)
 	vim.fn.setreg("+", '"' .. strippedPath .. '"')
-	vim.notify("Package path '" .. strippedPath .. "' copied to clipboard", vim.log.levels.INFO)
+	vim.notify("'" .. strippedPath .. "'\ncopied to clipboard", vim.log.levels.INFO)
 end
 
 vim.api.nvim_set_keymap(
@@ -45,5 +45,5 @@ vim.api.nvim_set_keymap(
 vim.keymap.set("n", "<leader>cp", function()
 	local directory_path = vim.fn.expand("%:p:h")
 	vim.fn.setreg("+", '"' .. directory_path .. '"')
-	vim.notify('"' .. directory_path .. '" copied to clipboard', vim.log.levels.INFO)
+	vim.notify("'" .. directory_path .. "'\ncopied to clipboard", vim.log.levels.INFO)
 end, { noremap = true, silent = true, desc = "[C]opy [P]ath" })

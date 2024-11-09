@@ -1,5 +1,5 @@
 return {
-	c = { "cpplint" },
-	cpp = { "cpplint" },
+	--	c = { "cpplint" },
+	--	cpp = { "cpplint" },
 	go = { "golangcilint" },
 }

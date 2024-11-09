@@ -4,5 +4,5 @@ return {
 	cpp = { "clang-format" },
 	c = { "clang-format" },
 	yaml = { "yamlfmt" },
-	json = { "clang-format" },
+	json = { "fixjson" },
 }

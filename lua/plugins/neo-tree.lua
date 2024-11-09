@@ -90,7 +90,7 @@ return {
 						end,
 					},
 				},
-				close_if_last_window = true, -- Close Neo-tree if it is the last window left in the tab
+				close_if_last_window = false, -- Close Neo-tree if it is the last window left in the tab
 				popup_border_style = "rounded",
 				enable_git_status = true,
 				enable_diagnostics = true,
@@ -135,7 +135,7 @@ return {
 					},
 					window = {
 						position = "left",
-						width = 40,
+						width = 35,
 					},
 					follow_current_file = {
 						enabled = true, -- This will find and focus the file in the active buffer every time

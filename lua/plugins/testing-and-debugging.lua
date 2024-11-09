@@ -9,19 +9,6 @@ return {
 
 	{
 		"nvim-neotest/neotest",
-		opts = {
-			discovery = {
-				enabled = false,
-				concurent = 1,
-			},
-
-			running = {
-				concurrent = true,
-			},
-			summary = {
-				animated = false,
-			},
-		},
 		dependencies = {
 
 			"nvim-neotest/nvim-nio",
@@ -38,6 +25,17 @@ return {
 		config = function()
 			local neotest = require("neotest")
 			neotest.setup({
+				discovery = {
+					enabled = false,
+					concurent = 1,
+				},
+
+				running = {
+					concurrent = true,
+				},
+				summary = {
+					animated = false,
+				},
 				adapters = {
 					require("neotest-golang")({}),
 				},

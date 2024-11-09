@@ -1,10 +1,13 @@
 return {
-	"stylua", -- Used to format Lua code
+	"stylua",
 	"gomodifytags",
 	"cpplint",
 	"goimports",
 	"yamlfmt",
-	"delve", -- go debugging
-	"codelldb", -- c/c++
-	"clang-format", -- c/c++
+	"delve",
+	"codelldb",
+	"clang-format",
+	"yaml-language-server",
+	"json-lsp",
+	"fixjson",
 }

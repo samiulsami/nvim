@@ -1,7 +1,13 @@
 return {
 	{
 		"folke/zen-mode.nvim",
+		dependencies = {
+			"lewis6991/gitsigns.nvim",
+		},
 		event = "VeryLazy",
+		config = function()
+			vim.keymap.set("n", "<leader>z", require("zen-mode").toggle, { desc = "Toggle Zen Mode" })
+		end,
 	},
 
 	{ "AndrewRadev/splitjoin.vim" },
@@ -45,13 +51,10 @@ return {
 	},
 
 	{
-		-- `lazydev` configures Lua LSP for your Neovim config, runtime and plugins
-		-- used for completion, annotations and signatures of Neovim apis
 		"folke/lazydev.nvim",
 		ft = "lua",
 		opts = {
 			library = {
-				-- Load luvit types when the `vim.uv` word is found
 				{ path = "luvit-meta/library", words = { "vim%.uv" } },
 			},
 		},
