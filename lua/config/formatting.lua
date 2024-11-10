@@ -11,9 +11,8 @@ vim.opt.cursorline = false
 vim.opt.laststatus = 2
 vim.opt.termguicolors = true
 
-vim.wo.foldmethod = "expr"
-vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-vim.wo.foldtext = "v:lua.vim.treesitter.foldtext()"
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.opt.foldlevelstart = 99
 vim.opt.foldenable = true
 

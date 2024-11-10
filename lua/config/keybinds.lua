@@ -1,8 +1,16 @@
--- Unbind some default normal mode vim keybinds to prevent prevent [G]oto [R]ereferences delay
-vim.api.nvim_del_keymap("n", "grr")
-vim.api.nvim_del_keymap("n", "gri")
-vim.api.nvim_del_keymap("n", "gra")
-vim.api.nvim_del_keymap("n", "grn")
+-- Unbind some redundant keybinds to prevent prevent [G]oto [R]ereferences delay
+-- These are already bound using telescope
+vim.api.nvim_del_keymap("n", "grr") -- Unbind LSP [G]oto [R]eferences
+vim.api.nvim_del_keymap("n", "gri") -- UNbind LSP [G]oto [I]implementation
+vim.api.nvim_del_keymap("n", "gra") -- Unbind LSP Code Actions
+vim.api.nvim_del_keymap("n", "grn") -- Unbind LSP Rename
+
+vim.keymap.set(
+	"n",
+	"<leader>h",
+	vim.diagnostic.open_float,
+	{ noremap = true, silent = true, desc = "Toggle [H]over Diagnostic Float" }
+)
 
 vim.keymap.set("n", "<F7>", function()
 	vim.cmd("set number! relativenumber!")
@@ -33,10 +41,10 @@ vim.keymap.set("x", "<leader>p", '"_dP')
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
-vim.keymap.set("n", "<C-Up>", ":resize +2<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<C-Down>", ":resize -2<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<C-Left>", ":vertical resize -2<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<C-Right>", ":vertical resize +2<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<C-Up>", ":resize +4<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<C-Down>", ":resize -4<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<C-Left>", ":vertical resize -4<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<C-Right>", ":vertical resize +4<CR>", { noremap = true, silent = true })
 
 vim.keymap.set("n", "]q", ":cnext<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "[q", ":cprevious<CR>", { noremap = true, silent = true })

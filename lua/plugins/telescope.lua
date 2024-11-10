@@ -41,6 +41,7 @@ return {
 				"zz_generated*",
 				"openapi_generated*",
 			}
+
 			local telescope_setup = require("telescope").setup({
 				defaults = {
 					file_ignore_patterns = file_ignore_patterns,
@@ -49,12 +50,11 @@ return {
 					},
 					mappings = {
 						n = {
-							["<S-p>"] = require("telescope.actions").cycle_history_prev,
-							["<S-n>"] = require("telescope.actions").cycle_history_next,
+							["<c-d>"] = require("telescope.actions").delete_buffer,
 							["s"] = flash,
 						},
 						i = {
-							["<C-s>"] = flash,
+							["<c-d>"] = require("telescope.actions").delete_buffer,
 						},
 					},
 				},
@@ -71,19 +71,19 @@ return {
 				},
 			})
 
-			local current_ignore_patterns = file_ignore_patterns
-			local ignore_patterns_active = true
+			require("telescope").setup({
+				defaults = telescope_setup,
+			})
 
-			-- Function to toggle ignore patterns
+			local current_ignore_patterns = file_ignore_patterns
+
 			local function toggle_ignore_patterns()
-				ignore_patterns_active = not ignore_patterns_active
-				if ignore_patterns_active then
+				if #current_ignore_patterns == 0 then
 					current_ignore_patterns = file_ignore_patterns
 				else
 					current_ignore_patterns = {}
 				end
 
-				-- Update Telescope defaults without a complete re-setup
 				require("telescope").setup({
 					defaults = {
 						file_ignore_patterns = current_ignore_patterns,
