@@ -25,7 +25,15 @@ return {
 			"anuvyklack/middleclass",
 		},
 		config = function()
-			require("windows").setup()
+			require("windows").setup({
+				autowidth = {
+					enable = false,
+				},
+				ignore = {},
+				animation = {
+					enable = false,
+				},
+			})
 
 			vim.keymap.set("n", "<M-CR>", ":WindowsMaximize<CR>", { desc = "Toggle Windows" })
 			vim.keymap.set("n", "<C-w>_", ":WindowsMaximizeVertically<CR>", { desc = "Vertically Maximize Windows" })
