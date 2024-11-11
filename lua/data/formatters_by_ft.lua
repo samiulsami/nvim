@@ -1,6 +1,6 @@
 return {
 	lua = { "stylua" },
-	go = { "gofmt", "goimports" },
+	go = { "gofumpt", "goimports" },
 	cpp = { "clang-format" },
 	c = { "clang-format" },
 	yaml = { "yamlfmt" },

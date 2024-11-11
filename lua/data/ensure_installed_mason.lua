@@ -10,4 +10,7 @@ return {
 	"yaml-language-server",
 	"json-lsp",
 	"fixjson",
+	"golangci-lint",
+	"gopls",
+	"gofumpt",
 }
