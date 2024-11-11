@@ -79,8 +79,8 @@ return {
 						name = "lazydev",
 						group_index = 0,
 					},
-					{ name = "nvim_lsp", max_item_count = 10 },
 					{ name = "luasnip", max_item_count = 10 },
+					{ name = "nvim_lsp", max_item_count = 10 },
 					{ name = "path", max_item_count = 10 },
 					{
 						name = "buffer",
@@ -89,7 +89,7 @@ return {
 							get_bufnrs = function()
 								local buf = vim.api.nvim_get_current_buf()
 								local byte_size = vim.api.nvim_buf_get_offset(buf, vim.api.nvim_buf_line_count(buf))
-								if byte_size > 1024 * 1024 then -- 1 Megabyte max
+								if byte_size > 1024 * 256 then -- 256kb MAX
 									return {}
 								end
 								return { buf }
@@ -134,8 +134,9 @@ return {
 				mapping = cmp.mapping.preset.cmdline(),
 				sources = cmp.config.sources({
 					{ name = "path", max_item_count = 20 },
-				}, {
 					{ name = "cmdline", max_item_count = 20 },
+					{ name = "lazydev", group_index = 0 },
+					{ name = "luasnip", max_item_count = 10 },
 				}),
 				matching = { disallow_symbol_nonprefix_matching = false },
 			})
