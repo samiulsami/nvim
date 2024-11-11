@@ -10,4 +10,5 @@ return {
 	"yaml-language-server",
 	"json-lsp",
 	"fixjson",
+	"jdtls",
 }

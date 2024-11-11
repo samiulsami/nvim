@@ -1,5 +1,4 @@
 return {
-
 	{
 		"VidocqH/lsp-lens.nvim",
 		dependencies = {
