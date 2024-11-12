@@ -1,4 +1,4 @@
-vim.opt.updatetime = 200
+vim.opt.updatetime = 50
 vim.api.nvim_create_augroup("CheckTimeOnCursorHold", { clear = true })
 vim.api.nvim_create_autocmd("CursorHold", {
 	group = "CheckTimeOnCursorHold",
