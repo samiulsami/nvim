@@ -74,6 +74,13 @@ return {
 			vim.fn.sign_define("DiagnosticSignInfo", { text = " ", texthl = "DiagnosticSignInfo" })
 			vim.fn.sign_define("DiagnosticSignHint", { text = "󰌵", texthl = "DiagnosticSignHint" })
 
+			local set_highlights = function()
+				vim.cmd("highlight NeoTreeNormal guibg=#1B1B1B") -- Neo-tree active window background
+				vim.cmd("highlight NeoTreeNormalNC guibg=#1F1F1F") -- Neo-tree inactive window background
+				vim.cmd("highlight NeoTreeStatusLine guibg=#1F1F1F") -- Neo-tree status line background
+				vim.cmd("highlight NeoTreeEndOfBuffer guibg=#1F1F1F") -- End of buffer background, same as normal
+			end
+
 			require("neo-tree").setup({
 				event_handlers = {
 					{
@@ -81,12 +88,14 @@ return {
 						handler = function()
 							vim.cmd("highlight! Cursor blend=100")
 							vim.cmd("set number relativenumber")
+							set_highlights()
 						end,
 					},
 					{
 						event = "neo_tree_buffer_leave",
 						handler = function()
 							vim.cmd("highlight! Cursor guibg=#5f87af blend=0")
+							set_highlights()
 						end,
 					},
 				},
