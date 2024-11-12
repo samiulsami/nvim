@@ -21,6 +21,16 @@ return {
 				},
 			},
 
+			{ "Bilal2453/luvit-meta", lazy = true },
+			{
+				"folke/lazydev.nvim",
+				ft = "lua",
+				opts = {
+					library = {
+						{ path = "luvit-meta/library", words = { "vim%.uv" } },
+					},
+				},
+			},
 			"saadparwaiz1/cmp_luasnip",
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-nvim-lsp",
@@ -47,7 +57,24 @@ return {
 		config = function()
 			local cmp = require("cmp")
 			local luasnip = require("luasnip")
+			local compare = require("cmp.config.compare")
 			luasnip.config.setup({})
+
+			local buffer_source = {
+				name = "buffer",
+				priority = 5,
+				max_item_count = 10,
+				option = {
+					get_bufnrs = function()
+						local buf = vim.api.nvim_get_current_buf()
+						local byte_size = vim.api.nvim_buf_get_offset(buf, vim.api.nvim_buf_line_count(buf))
+						if byte_size > 1024 * 512 then -- 512kb MAX
+							return {}
+						end
+						return { buf }
+					end,
+				},
+			}
 
 			cmp.setup({
 				snippet = {
@@ -75,30 +102,32 @@ return {
 					end, { "i", "s" }),
 				}),
 				sources = {
+
+					{
+						name = "go_pkgs",
+						priority = 1000,
+					},
+
+					{
+						name = "nvim_lsp",
+						priority = 100,
+					},
+
+					{
+						name = "path",
+						priority = 10,
+					},
+
+					buffer_source,
+
+					{
+						name = "luasnip",
+						priority = 1,
+					},
+
 					{
 						name = "lazydev",
 						group_index = 0,
-					},
-					{ name = "luasnip", max_item_count = 10 },
-					{ name = "nvim_lsp", max_item_count = 10 },
-					{ name = "path", max_item_count = 10 },
-					{
-						name = "buffer",
-						max_item_count = 10,
-						option = {
-							get_bufnrs = function()
-								local buf = vim.api.nvim_get_current_buf()
-								local byte_size = vim.api.nvim_buf_get_offset(buf, vim.api.nvim_buf_line_count(buf))
-								if byte_size > 1024 * 256 then -- 256kb MAX
-									return {}
-								end
-								return { buf }
-							end,
-						},
-					},
-					{
-						name = "go_pkgs",
-						max_item_count = 100,
 					},
 				},
 				sorting = {
@@ -106,9 +135,17 @@ return {
 						function(...)
 							return require("cmp_buffer"):compare_locality(...)
 						end,
+						compare.offset,
+						compare.exact,
+						compare.score,
+						compare.recently_used,
+						compare.locality,
+						compare.kind,
+						compare.sort_text,
+						compare.length,
+						compare.order,
 					},
 				},
-
 				formatting = {
 					format = require("lspkind").cmp_format({
 						with_text = true,
@@ -130,13 +167,29 @@ return {
 				},
 			})
 
+			cmp.setup.cmdline({ "/", "?" }, {
+				mapping = cmp.mapping.preset.cmdline(),
+				sources = {
+					buffer_source,
+				},
+			})
+
 			cmp.setup.cmdline(":", {
 				mapping = cmp.mapping.preset.cmdline(),
 				sources = cmp.config.sources({
-					{ name = "path", max_item_count = 20 },
-					{ name = "cmdline", max_item_count = 20 },
-					{ name = "lazydev", group_index = 0 },
-					{ name = "luasnip", max_item_count = 10 },
+					{
+						name = "path",
+					},
+
+					{
+						name = "cmdline",
+					},
+
+					{
+						name = "lazydev",
+					},
+
+					buffer_source,
 				}),
 				matching = { disallow_symbol_nonprefix_matching = false },
 			})

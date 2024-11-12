@@ -23,7 +23,7 @@ vim.opt.incsearch = true
 vim.opt.showmode = true
 
 vim.opt.breakindent = true
-
+vim.opt.wrap = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 

@@ -1,6 +1,6 @@
 {
   "FixCursorHold.nvim": { "branch": "master", "commit": "1900f89dc17c603eec29960f57c00bd9ae696495" },
-  "LuaSnip": { "branch": "master", "commit": "2737edc9e674e537dc0a97e3405658d57d2d31ed" },
+  "LuaSnip": { "branch": "master", "commit": "48a02259693cb7bbbd1092993406773d5ce14664" },
   "cmp-buffer": { "branch": "main", "commit": "3022dbc9166796b644a841a02de8dd1cc1d311fa" },
   "cmp-cmdline": { "branch": "main", "commit": "d250c63aa13ead745e3a40f61fdd3470efde3923" },
   "cmp-go-pkgs": { "branch": "main", "commit": "7a76e1f9c8d5f40fe27b8d6fcac04de4456875bb" },
@@ -45,7 +45,7 @@
   "persistence.nvim": { "branch": "main", "commit": "f6aad7dde7fcf54148ccfc5f622c6d5badd0cc3d" },
   "plenary.nvim": { "branch": "master", "commit": "2d9b06177a975543726ce5c73fca176cedbffe9d" },
   "project.nvim": { "branch": "jeff", "commit": "2aa7f746a6a048738eace3f1c9e834243b9faad6" },
-  "render-markdown.nvim": { "branch": "main", "commit": "d69a885e1bf21cb329d2eafe56fd80b6de627216" },
+  "render-markdown.nvim": { "branch": "main", "commit": "78a2eb7fc273f36790aa390262f390a3265eedff" },
   "splitjoin.vim": { "branch": "main", "commit": "f72d59c9f5d4c8b865e0abfeee98f85b47fe5a3a" },
   "supermaven-nvim": { "branch": "main", "commit": "07d20fce48a5629686aefb0a7cd4b25e33947d50" },
   "symbol-usage.nvim": { "branch": "main", "commit": "0f9b3da014b7e41559b643e7461fcabb2a7dc83a" },
