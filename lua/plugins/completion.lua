@@ -105,7 +105,7 @@ return {
 
 					{
 						name = "go_pkgs",
-						priority = 1000,
+						priority = 150,
 					},
 
 					{
