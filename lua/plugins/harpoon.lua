@@ -2,11 +2,20 @@ return {
 	{
 		"ThePrimeagen/harpoon",
 		branch = "harpoon2",
+		commit = "e76cb03c420bb74a5900a5b3e1dde776156af45f",
 		dependencies = { "nvim-lua/plenary.nvim" },
 		config = function()
 			local harpoon = require("harpoon")
 
-			harpoon:setup()
+			harpoon:setup({
+				settings = {
+					save_on_toggle = true,
+					save_on_close = true,
+					key_ = function()
+						return vim.loop.cwd()
+					end,
+				},
+			})
 
 			vim.keymap.set("n", "<leader>a", function()
 				harpoon:list():add()
