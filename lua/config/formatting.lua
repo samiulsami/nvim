@@ -37,9 +37,9 @@ vim.opt.listchars = { tab = "| ", trail = "·", nbsp = "␣" }
 
 vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
-vim.api.nvim_create_augroup("cppShiftWidth", { clear = true })
 
-vim.api.nvim_create_autocmd("FileType", {
+vim.api.nvim_create_augroup("cppShiftWidth", { clear = true })
+vim.api.nvim_create_autocmd("FileType", { --FIXME: This breaks when switching between c/cpp and other languages
 	pattern = { "cpp", "c" },
 	callback = function()
 		vim.opt.shiftwidth = 2
