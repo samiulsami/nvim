@@ -37,12 +37,12 @@ end
 
 vim.api.nvim_set_keymap(
 	"n",
-	"<leader>cP",
+	"<leader>cp",
 	":lua Copy_project_relative_path()<CR>",
 	{ noremap = true, silent = true, desc = "[C]opy trimmed [P]ath" }
 )
 
-vim.keymap.set("n", "<leader>cp", function()
+vim.keymap.set("n", "<leader>cP", function()
 	local directory_path = vim.fn.expand("%:p:h")
 	vim.fn.setreg("+", '"' .. directory_path .. '"')
 	vim.notify("'" .. directory_path .. "'\ncopied to clipboard", vim.log.levels.INFO)
