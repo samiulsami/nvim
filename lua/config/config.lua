@@ -18,7 +18,7 @@ vim.g.everforest_better_performance = 1
 vim.g.everforest_current_word = "bold"
 vim.opt.isfname:append("@-@")
 vim.opt.autoread = true
-vim.opt.swapfile = true
+vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.writebackup = false
 vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
