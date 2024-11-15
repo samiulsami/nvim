@@ -62,7 +62,7 @@ return {
 
 			local buffer_source = {
 				name = "buffer",
-				priority = 5,
+				keyword_length = 2,
 				max_item_count = 10,
 				option = {
 					get_bufnrs = function()
@@ -105,24 +105,27 @@ return {
 
 					{
 						name = "go_pkgs",
-						priority = 150,
+						keyword_length = 2,
+						priority = 1000,
 					},
 
 					{
 						name = "nvim_lsp",
-						priority = 100,
+						keyword_length = 3,
 					},
 
 					{
 						name = "path",
-						priority = 10,
+
+						keyword_length = 3,
 					},
 
 					buffer_source,
 
 					{
 						name = "luasnip",
-						priority = 1,
+
+						keyword_length = 3,
 					},
 
 					{
@@ -179,10 +182,14 @@ return {
 				sources = cmp.config.sources({
 					{
 						name = "path",
+
+						keyword_length = 3,
 					},
 
 					{
 						name = "cmdline",
+
+						keyword_length = 2,
 					},
 
 					{
