@@ -5,7 +5,7 @@ return {
 		event = "VimEnter",
 		branch = "0.1.x",
 		dependencies = {
-			"nvim-lua/plenary.nvim",
+			{ "nvim-lua/plenary.nvim" },
 			{
 				"nvim-telescope/telescope-fzf-native.nvim",
 				build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release",
@@ -13,6 +13,7 @@ return {
 			{ "nvim-telescope/telescope-ui-select.nvim" },
 			{ "nvim-tree/nvim-web-devicons", enabled = vim.g.have_nerd_font },
 			{ "folke/flash.nvim" },
+			{ "big-snippets.nvim" },
 		},
 		config = function()
 			local function flash(prompt_bufnr)
@@ -107,6 +108,9 @@ return {
 			pcall(require("telescope").load_extension, "dap")
 			pcall(require("telescope").load_extension, "projects")
 
+			pcall(require("telescope").load_extension, "big_snippets")
+			vim.keymap.set("n", "<leader>ss", ":Telescope big_snippets<CR>", { desc = "[S]earch [S]nippets" })
+
 			vim.keymap.set("n", "<leader>sp", ":Telescope projects<CR>", { desc = "[S]earch [P]rojects" })
 
 			vim.keymap.set("n", "<leader>sc", ":Telescope git_commits<CR>", { desc = "[S]earch [C]ommits" })
@@ -122,8 +126,7 @@ return {
 			vim.keymap.set("n", "<leader>sh", builtin.help_tags, { desc = "[S]earch [H]elp" })
 			vim.keymap.set("n", "<leader>sk", builtin.keymaps, { desc = "[S]earch [K]eymaps" })
 			vim.keymap.set("n", "<leader>sf", builtin.find_files, { desc = "[S]earch [F]iles" })
-			vim.keymap.set("n", "<C-p>", builtin.git_files, {})
-			vim.keymap.set("n", "<leader>ss", builtin.builtin, { desc = "[S]earch [S]elect Telescope" })
+			vim.keymap.set("n", "<C-p>", builtin.git_files, { desc = "Search Git files" })
 			vim.keymap.set("n", "<leader>sw", builtin.grep_string, { desc = "[S]earch current [W]ord" })
 			vim.keymap.set("n", "<leader>sg", builtin.live_grep, { desc = "[S]earch by [G]rep" })
 			vim.keymap.set("n", "<leader>sd", builtin.diagnostics, { desc = "[S]earch [D]iagnostics" })
