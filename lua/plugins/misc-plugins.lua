@@ -79,16 +79,5 @@ return {
 		dependencies = { "nvim-lua/plenary.nvim" },
 		opts = { signs = false },
 	},
-
-	{
-		"lukas-reineke/indent-blankline.nvim",
-		config = function()
-			require("ibl").setup()
-		end,
-
-		main = "ibl",
-		---@module "ibl"
-		---@type ibl.config
-		opts = {},
-	},
+	{ "echasnovski/mini.nvim", version = "*" },
 }

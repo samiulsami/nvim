@@ -52,3 +52,5 @@ vim.keymap.set("n", "<C-Right>", ":vertical resize +4<CR>", { noremap = true, si
 vim.keymap.set("n", "]q", ":cnext<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "[q", ":cprevious<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>RL", ":LspRestart<CR>", { noremap = true, silent = true, desc = "[R]efresh [L]sp" })
+
+vim.keymap.set("n", "<leader>vs", ":Sleuth", { noremap = true, silent = true, desc = "[V]im [S]leuth" })
