@@ -11,10 +11,10 @@ vim.opt.cursorline = false
 vim.opt.laststatus = 2
 vim.opt.termguicolors = true
 
-vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-vim.opt.foldlevelstart = 99
-vim.opt.foldenable = true
+vim.o.foldcolumn = "1" -- '0' is not bad
+vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+vim.o.foldlevelstart = 99
+vim.o.foldenable = true
 
 vim.opt.ignorecase = true
 vim.opt.hlsearch = false
@@ -38,20 +38,19 @@ vim.opt.listchars = { tab = "| ", trail = "·", nbsp = "␣" }
 vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
 
-vim.api.nvim_create_augroup("cppShiftWidth", { clear = true })
 vim.api.nvim_create_autocmd("FileType", { --FIXME: This breaks when switching between c/cpp and other languages
 	pattern = { "cpp", "c" },
 	callback = function()
 		vim.opt.shiftwidth = 2
 		vim.opt.tabstop = 2
 	end,
-	group = "cppShiftWidth",
+	group = vim.api.nvim_create_augroup("cppShiftWidth", { clear = true }),
 })
 
 vim.api.nvim_create_autocmd("TextYankPost", {
 	desc = "Highlight when yanking (copying) text",
-	group = vim.api.nvim_create_augroup("highlight_yank_group", { clear = true }),
 	callback = function()
 		vim.highlight.on_yank()
 	end,
+	group = vim.api.nvim_create_augroup("highlight_yank_group", { clear = true }),
 })

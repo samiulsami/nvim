@@ -8,6 +8,16 @@ return {
 			"williamboman/mason-lspconfig.nvim",
 			"WhoIsSethDaniel/mason-tool-installer.nvim",
 			{
+				"kevinhwang91/nvim-ufo",
+				dependencies = {
+					"kevinhwang91/promise-async",
+				},
+				config = function()
+					vim.keymap.set("n", "zR", require("ufo").openAllFolds)
+					vim.keymap.set("n", "zM", require("ufo").closeAllFolds)
+				end,
+			},
+			{
 				"antosha417/nvim-lsp-file-operations",
 				dependencies = {
 					"nvim-lua/plenary.nvim",
@@ -71,6 +81,10 @@ return {
 				require("cmp_nvim_lsp").default_capabilities(),
 				require("lsp-file-operations").default_capabilities()
 			)
+			capabilities.textDocument.foldingRange = {
+				dynamicRegistration = false,
+				lineFoldingOnly = true,
+			}
 			local servers = require("data.language_servers")
 
 			require("mason").setup()
@@ -87,6 +101,8 @@ return {
 					end,
 				},
 			})
+
+			require("ufo").setup()
 
 			vim.keymap.set(
 				"n",
