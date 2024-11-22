@@ -17,9 +17,9 @@ return {
 							SymbolKind.Struct,
 							SymbolKind.Enum,
 							SymbolKind.Constant,
-							-- SymbolKind.Field,
-							-- SymbolKind.Variable,
-							-- SymbolKind.Object,
+							SymbolKind.Field,
+							SymbolKind.Variable,
+							SymbolKind.Object,
 						},
 					})
 				end,
