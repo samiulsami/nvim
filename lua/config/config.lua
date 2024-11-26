@@ -27,6 +27,7 @@ vim.opt.mouse = "a"
 vim.opt.grepprg = "rg --vimgrep --no-heading --smart-case"
 vim.opt.grepformat = "%f:%l:%m"
 vim.opt.cmdheight = 1
+
 vim.schedule(function()
 	vim.opt.clipboard = "unnamedplus"
 end)

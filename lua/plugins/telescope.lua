@@ -51,11 +51,7 @@ return {
 					},
 					mappings = {
 						n = {
-							["<c-d>"] = require("telescope.actions").delete_buffer,
 							["s"] = flash,
-						},
-						i = {
-							["<c-d>"] = require("telescope.actions").delete_buffer,
 						},
 					},
 				},
