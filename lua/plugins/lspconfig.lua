@@ -114,7 +114,7 @@ return {
 				{ noremap = true, silent = true, desc = "[R]efresh [L]sp" }
 			)
 
-			vim.cmd("highlight LspReferenceText guibg=#3b4252")
+			vim.cmd("highlight LspReferenceText guibg=#3b4252 gui=underline")
 			vim.cmd("highlight LspReferenceRead guibg=#3b4252 gui=underline")
 			vim.cmd("highlight LspReferenceWrite guibg=#232c3e")
 		end,
