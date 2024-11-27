@@ -31,7 +31,7 @@ return {
 		},
 		config = function()
 			vim.api.nvim_create_autocmd("LspAttach", {
-				group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
+				group = vim.api.nvim_create_augroup("LSPDocumentHighlightAttachGroup32", { clear = true }),
 				callback = function(event)
 					local map = function(keys, func, desc, mode)
 						mode = mode or "n"
@@ -43,7 +43,8 @@ return {
 
 					local client = vim.lsp.get_client_by_id(event.data.client_id)
 					if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
-						local highlight_augroup = vim.api.nvim_create_augroup("lsp-highlight", { clear = false })
+						local highlight_augroup =
+							vim.api.nvim_create_augroup("LSPDocumentHighlightGroup32", { clear = false })
 						vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
 							buffer = event.buf,
 							group = highlight_augroup,
@@ -57,10 +58,13 @@ return {
 						})
 
 						vim.api.nvim_create_autocmd("LspDetach", {
-							group = vim.api.nvim_create_augroup("lsp-detach", { clear = true }),
+							group = vim.api.nvim_create_augroup("LSPDocumentHighlightDetachGroup32", { clear = true }),
 							callback = function(event2)
 								vim.lsp.buf.clear_references()
-								vim.api.nvim_clear_autocmds({ group = "lsp-highlight", buffer = event2.buf })
+								vim.api.nvim_clear_autocmds({
+									group = "LSPDocumentHighlightGroup32",
+									buffer = event2.buf,
+								})
 							end,
 						})
 					end
@@ -109,6 +113,10 @@ return {
 				":LspRestart<CR>",
 				{ noremap = true, silent = true, desc = "[R]efresh [L]sp" }
 			)
+
+			vim.cmd("highlight LspReferenceText guibg=#3b4252")
+			vim.cmd("highlight LspReferenceRead guibg=#3b4252 gui=underline")
+			vim.cmd("highlight LspReferenceWrite guibg=#232c3e")
 		end,
 	},
 }
