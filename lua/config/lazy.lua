@@ -27,4 +27,4 @@ require("lazy").setup({
 	checker = { enabled = true },
 })
 
-pcall(require, "neo-tree")
+vim.cmd("Neotree toggle")
