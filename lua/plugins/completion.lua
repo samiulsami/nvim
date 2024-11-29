@@ -37,6 +37,12 @@ return {
 			"hrsh7th/cmp-path",
 			"hrsh7th/cmp-cmdline",
 			"Snikimonkd/cmp-go-pkgs",
+			{
+				"petertriho/cmp-git",
+				config = function()
+					require("cmp_git").setup()
+				end,
+			},
 			"onsails/lspkind.nvim",
 		},
 
@@ -141,6 +147,7 @@ return {
 					{ name = "path", keyword_length = 3 },
 					{ name = "cmdline", keyword_length = 2 },
 					{ name = "lazydev" },
+					{ name = "git" },
 					buffer_source,
 				}),
 				matching = { disallow_symbol_nonprefix_matching = false },
