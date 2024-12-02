@@ -12,14 +12,19 @@ sudo make install
 git clone https://github.com/samiulsami/nvimconfig.git ~/.config/nvim 
 ```
 
-#### <i>Optional</i>
+#### <i>Nerd font for icons</i>
+
+<i>must manually set in the terminal emulator</i>
 ```
 sudo cp ~/.config/nvim/fonts/* /usr/share/fonts/
 sudo fc-cache -f -v
+```
+#### Set Neovim as default editor
+```
 sudo echo "export EDITOR='nvim -f'" >> ~/.bashrc
 git config --global core.editor 'nvim -f'
 ```
-##### <i>For yaml/json language servers</i>
+##### <i>(Optional) Node.js for yaml/json language servers, and markdown-preview</i>
 ```
 wget -q -O- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash
 nvm install 18 
