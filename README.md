@@ -14,7 +14,7 @@ git clone https://github.com/samiulsami/nvimconfig.git ~/.config/nvim
 
 #### <i>Nerd font for icons</i>
 
-<i>must manually set in the terminal emulator</i>
+<i>Must be manually set in the terminal emulator</i>
 ```
 sudo cp ~/.config/nvim/fonts/* /usr/share/fonts/
 sudo fc-cache -f -v

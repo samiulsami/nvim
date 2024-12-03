@@ -1,8 +1,4 @@
 vim.opt.updatetime = 50
--- show cursor line only in active window
-local cursorGrp = vim.api.nvim_create_augroup("CursorLine", { clear = true })
-
--- show cursor col line only in active window
 local cursorXYGRP = vim.api.nvim_create_augroup("CursorColumn", { clear = true })
 vim.api.nvim_create_autocmd(
 	{ "InsertLeave", "WinEnter" },
