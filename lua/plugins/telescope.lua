@@ -12,29 +12,9 @@ return {
 			},
 			{ "nvim-telescope/telescope-ui-select.nvim" },
 			{ "nvim-tree/nvim-web-devicons", enabled = vim.g.have_nerd_font },
-			{ "folke/flash.nvim" },
 			{ "big-snippets.nvim" },
 		},
 		config = function()
-			local function flash(prompt_bufnr)
-				require("flash").jump({
-					-- pattern = "^",
-					label = { after = { 0, 0 } },
-					search = {
-						mode = "search",
-						exclude = {
-							function(win)
-								return vim.bo[vim.api.nvim_win_get_buf(win)].filetype ~= "TelescopeResults"
-							end,
-						},
-					},
-					action = function(match)
-						local picker = require("telescope.actions.state").get_current_picker(prompt_bufnr)
-						picker:set_selection(match.pos[1] - 1)
-					end,
-				})
-			end
-
 			local file_ignore_patterns = {
 				"node_modules/*",
 				"^.git/*",
@@ -48,11 +28,6 @@ return {
 					file_ignore_patterns = file_ignore_patterns,
 					preview = {
 						treesitter = true,
-					},
-					mappings = {
-						n = {
-							["s"] = flash,
-						},
 					},
 				},
 				extensions = {
@@ -132,10 +107,7 @@ return {
 			vim.keymap.set("n", "<leader>sr", builtin.resume, { desc = "[S]earch [R]esume" })
 
 			vim.keymap.set("n", "<leader>/", function()
-				builtin.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
-					winblend = 10,
-					previewer = true,
-				}))
+				builtin.current_buffer_fuzzy_find({})
 			end, { desc = "[/] Fuzzily search in current buffer" })
 			vim.keymap.set("n", "<leader>s/", function()
 				builtin.live_grep({

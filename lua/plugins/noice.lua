@@ -25,10 +25,18 @@ return {
 		},
 		config = function()
 			require("noice").setup({
+				messages = {
+					enabled = true,
+					view = "notify",
+					view_warn = "notify",
+					view_error = "notify",
+					view_search = "cmdline",
+					view_history = "messages",
+				},
 
 				routes = {
 					{
-						view = "notify",
+						view = "cmdline",
 						filter = { event = "msg_showmode" },
 					},
 				},
@@ -38,7 +46,7 @@ return {
 					-- event is always "notify" and kind can be any log level as a string
 					-- The default routes will forward notifications to nvim-notify
 					-- Benefit of using Noice for this is the routing and consistent history view
-					enabled = false,
+					enabled = true,
 					view = "notify",
 				},
 				-- you can enable a preset for easier configuration
