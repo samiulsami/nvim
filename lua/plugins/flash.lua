@@ -1,25 +1,12 @@
 return {
-	-- {
-	-- 	"ggandor/leap.nvim",
-	-- 	config = function()
-	-- 		require("leap").create_default_mappings()
-	-- 	end,
-	-- },
-
 	{
 		"folke/flash.nvim",
 		event = "VeryLazy",
 		---@type Flash.Config
-		opts = {},
+		opts = {
+			modes = { search = { enabled = true } },
+		},
 		keys = {
-			{
-				"s",
-				mode = { "n", "x", "o" },
-				function()
-					require("flash").jump()
-				end,
-				desc = "Flash",
-			},
 			{
 				"S",
 				mode = { "n", "x", "o" },
@@ -27,22 +14,6 @@ return {
 					require("flash").treesitter()
 				end,
 				desc = "Flash Treesitter",
-			},
-			{
-				"r",
-				mode = "o",
-				function()
-					require("flash").remote()
-				end,
-				desc = "Remote Flash",
-			},
-			{
-				"R",
-				mode = { "o", "x" },
-				function()
-					require("flash").treesitter_search()
-				end,
-				desc = "Treesitter Search",
 			},
 			{
 				"<c-s>",
