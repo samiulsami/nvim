@@ -31,6 +31,7 @@ return {
 					},
 				},
 			},
+			"dmitmel/cmp-cmdline-history",
 			"saadparwaiz1/cmp_luasnip",
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-nvim-lsp",
@@ -138,12 +139,16 @@ return {
 
 			cmp.setup.cmdline({ "/", "?" }, {
 				mapping = cmp.mapping.preset.cmdline(),
-				sources = { buffer_source },
+				sources = {
+					buffer_source,
+					{ name = "cmdline_history", keyword_length = 3 },
+				},
 			})
 
 			cmp.setup.cmdline(":", {
 				mapping = cmp.mapping.preset.cmdline(),
 				sources = cmp.config.sources({
+					{ name = "cmdline_history", keyword_length = 3 },
 					{ name = "path", keyword_length = 3 },
 					{ name = "cmdline", keyword_length = 2 },
 					{ name = "lazydev" },
