@@ -28,18 +28,34 @@ return {
 			if vim.fn.match(path, "^" .. home) ~= -1 then
 				path = vim.fn.substitute(path, "^" .. home, "~", "")
 			end
-			local components = vim.split(path, "/")
-			for i, component in ipairs(components) do
-				if i >= #components - 1 then
-					break
-				end
 
-				if component:sub(1, 1) == "." and #component > 1 then
-					components[i] = component:sub(1, 2)
-				else
-					components[i] = component:sub(1, 1)
+			local res = {}
+			local components = {}
+			for i, component in ipairs(vim.split(path, "/")) do
+				component = component:match("^%s*(.-)%s*$")
+				if #component > 0 then
+					-- if i == 1 then
+					-- 	vim.print(component)
+					-- end
+
+					if i == 1 and component:sub(-1) == ":" then
+						component = "[" .. component:sub(1, #component - 1):upper() .. "]:"
+					end
+					table.insert(components, component)
 				end
 			end
+
+			-- for i, component in ipairs(components) do
+			-- 	if i >= #components - 1 then
+			-- 		break
+			-- 	end
+			--
+			-- 	if component:sub(1, 1) == "." and #component > 1 then
+			-- 		components[i] = component:sub(1, 2)
+			-- 	else
+			-- 		components[i] = component:sub(1, 1)
+			-- 	end
+			-- end
 
 			if vim.bo.modified and #components > 0 then
 				components[#components] = components[#components] .. " ●"
