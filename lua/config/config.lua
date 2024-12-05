@@ -1,12 +1,12 @@
 vim.opt.updatetime = 50
-local cursorXYGRP = vim.api.nvim_create_augroup("CursorColumn", { clear = true })
+local cursorXYGRP = vim.api.nvim_create_augroup("CursorXYGRP", { clear = true })
 vim.api.nvim_create_autocmd(
 	{ "InsertLeave", "WinEnter" },
-	{ pattern = "*", command = "set cursorcolumn cursorline", group = cursorXYGRP }
+	{ pattern = "*", command = "set cursorline", group = cursorXYGRP }
 )
 vim.api.nvim_create_autocmd(
 	{ "InsertEnter", "WinLeave" },
-	{ pattern = "*", command = "set nocursorcolumn nocursorline", group = cursorXYGRP }
+	{ pattern = "*", command = "set nocursorline", group = cursorXYGRP }
 )
 
 vim.opt.isfname:append("@-@")
