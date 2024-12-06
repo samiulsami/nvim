@@ -21,7 +21,6 @@ return {
 
 			vim.keymap.set("n", "<leader>a", function()
 				harpoon:list():add()
-				require("neo-tree.sources.manager").refresh("filesystem")
 			end)
 
 			vim.keymap.set("n", "<A-1>", function()

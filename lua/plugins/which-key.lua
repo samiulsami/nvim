@@ -10,17 +10,18 @@ return {
 				-- default whick-key.nvim defined Nerd Font icons, otherwise define a string table
 				keys = {},
 			},
-
-			-- Document existing key chains
-			spec = {
-				{ "<leader><A>", group = "[A]lternate", mode = { "n" } },
-				{ "<leader>c", group = "[C]ode", mode = { "n", "x" } },
-				{ "<leader>d", group = "[D]ocument" },
-				{ "<leader>r", group = "[R]ename" },
-				{ "<leader>s", group = "[S]earch" },
-				{ "<leader>w", group = "[W]orkspace" },
-				{ "<leader>t", group = "[T]oggle" },
-				{ "<leader>h", group = "Git [H]unk", mode = { "n", "v" } },
+			defer = function(ctx)
+				return ctx.mode ~= "n"
+			end,
+			plugins = {
+				presets = {
+					operators = false,
+					motions = false,
+					text_objects = false,
+					windows = false,
+					nav = false,
+					g = false,
+				},
 			},
 		},
 	},

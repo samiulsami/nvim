@@ -27,7 +27,7 @@ vim.opt.ignorecase = true
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
 
-vim.opt.showmode = true
+vim.opt.showmode = false
 
 vim.opt.breakindent = true
 vim.opt.wrap = true

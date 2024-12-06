@@ -9,7 +9,7 @@ local project_buffers = function()
 	}
 
 	local project_buffer_exclusion_patterns = {
-		"neo-tree",
+		-- "neo-tree",
 		"Neotest",
 	}
 
