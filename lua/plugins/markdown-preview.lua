@@ -9,7 +9,7 @@ return {
 		ft = { "markdown" },
 
 		config = function()
-			vim.keymap.set("n", "<leader>mp", ":MarkdownPreview<CR>", { desc = "Markdown Preview" })
+			vim.keymap.set("n", "<leader>mp", ":MarkdownPreview<CR>", { desc = "[M]arkdown browser [P]review" })
 		end,
 	},
 }
