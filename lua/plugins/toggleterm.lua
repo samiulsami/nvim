@@ -32,12 +32,12 @@ return {
 			vim.keymap.set("t", "<C-j>", [[<Cmd>wincmd j<CR>]])
 			vim.keymap.set("t", "<C-k>", [[<Cmd>wincmd k<CR>]])
 			vim.keymap.set("t", "<C-l>", [[<Cmd>wincmd l<CR>]])
-			vim.keymap.set("t", "<C-w>", function()
-				local term = require("toggleterm.terminal").get(vim.b.toggle_number)
-				if term and term:is_open() then
-					term.close(term)
-				end
-			end)
+			-- vim.keymap.set("t", "<C-w>", function()
+			-- 	local term = require("toggleterm.terminal").get(vim.b.toggle_number)
+			-- 	if term and term:is_open() then
+			-- 		term.close(term)
+			-- 	end
+			-- end)
 		end,
 	},
 }
