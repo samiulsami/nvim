@@ -61,7 +61,7 @@ return {
 					get_bufnrs = function()
 						local buf = vim.api.nvim_get_current_buf()
 						local byte_size = vim.api.nvim_buf_get_offset(buf, vim.api.nvim_buf_line_count(buf))
-						if byte_size > 1024 * 512 then -- 512kb MAX
+						if byte_size > 1024 * 1024 then -- 1MB MAX
 							return {}
 						end
 						return { buf }
@@ -141,18 +141,18 @@ return {
 				mapping = cmp.mapping.preset.cmdline(),
 				sources = {
 					buffer_source,
-					{ name = "cmdline_history", keyword_length = 3 },
 				},
 			})
 
 			cmp.setup.cmdline(":", {
 				mapping = cmp.mapping.preset.cmdline(),
 				sources = cmp.config.sources({
-					{ name = "cmdline_history", keyword_length = 3 },
+					{ name = "cmdline_history", keyword_length = 2 },
 					{ name = "path", keyword_length = 3 },
 					{ name = "cmdline", keyword_length = 2 },
 					{ name = "lazydev" },
 					{ name = "git" },
+					{ name = "nvim_lsp", keyword_length = 2 },
 					buffer_source,
 				}),
 				matching = { disallow_symbol_nonprefix_matching = false },
