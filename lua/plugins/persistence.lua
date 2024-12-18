@@ -21,6 +21,22 @@ return {
 			vim.keymap.set("n", "<leader>qd", function()
 				require("persistence").stop()
 			end, { desc = "Stop Persistence" })
+
+			vim.api.nvim_create_autocmd("User", {
+				pattern = "PersistenceSavePre",
+				desc = "Close Neotree before saving",
+				callback = function()
+					vim.cmd("Neotree close")
+				end,
+			})
+
+			vim.api.nvim_create_autocmd("User", {
+				pattern = "PersistenceLoadPost",
+				desc = "Open Neotree after loading",
+				callback = function()
+					vim.cmd("Neotree reveal")
+				end,
+			})
 		end,
 	},
 }

@@ -139,16 +139,13 @@ return {
 				},
 			})
 
-			local group_id = vim.api.nvim_create_augroup("neo-tree-launch", { clear = true })
 			vim.api.nvim_create_autocmd("BufWinEnter", {
-				group = group_id,
 				pattern = "*",
 				callback = function()
 					if vim.bo.filetype == "neo-tree" then
 						vim.defer_fn(function()
 							vim.cmd("wincmd l")
 						end, 0)
-						vim.api.nvim_clear_autocmds({ group = group_id })
 					end
 				end,
 			})

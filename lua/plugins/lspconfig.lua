@@ -60,6 +60,8 @@ return {
 
 			require("ufo").setup()
 
+			vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { desc = "LSP [R]e[n]ame" })
+			vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "LSP [C]ode [A]ction" })
 			vim.keymap.set(
 				"n",
 				"<leader>RL",

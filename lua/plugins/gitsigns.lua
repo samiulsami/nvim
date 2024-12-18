@@ -5,6 +5,47 @@ return {
 			"nvim-lua/plenary.nvim", -- Required dependency
 		},
 		config = function()
+			local on_attach = function(bufnr)
+				local gitsigns = require("gitsigns")
+
+				vim.keymap.set(
+					"n",
+					"<leader>gsb",
+					gitsigns.blame_line,
+					{ noremap = true, silent = true, desc = "[G]it [S]igns [B]lame line" }
+				)
+				vim.keymap.set(
+					"n",
+					"<leader>gsB",
+					gitsigns.toggle_current_line_blame,
+					{ noremap = true, silent = true, desc = "Toggle [G]it [S]igns [B]lame line " }
+				)
+				vim.keymap.set("n", "<leader>gst", function()
+					gitsigns.toggle_word_diff()
+					gitsigns.toggle_linehl()
+				end, { noremap = true, silent = true, desc = "Toggle [G]it [S]igns diff highlights" })
+
+				local function map(mode, l, r, opts)
+					opts = opts or {}
+					opts.buffer = bufnr
+					vim.keymap.set(mode, l, r, opts)
+				end
+
+				map("n", "<leader>hs", gitsigns.stage_hunk, { desc = "Git [H]unk [S]tage" })
+				map("n", "<leader>hr", gitsigns.reset_hunk, { desc = "Git [H]unk [R]eset" })
+				map("v", "<leader>hs", function()
+					gitsigns.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
+				end, { desc = "Git [H]unk [S]tage" })
+				map("v", "<leader>hr", function()
+					gitsigns.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
+				end, { desc = "Git [H]unk [R]eset" })
+				map("n", "<leader>hS", gitsigns.stage_buffer, { desc = "Git [H]unk [S]tage Buffer" })
+				map("n", "<leader>hu", gitsigns.undo_stage_hunk, { desc = "Git [H]unk [U]ndo Stage Hunk" })
+				map("n", "<leader>hR", gitsigns.reset_buffer, { desc = "Git [H]unk [R]eset Buffer" })
+				map("n", "<leader>hp", gitsigns.preview_hunk, { desc = "Git [H]unk [P]review" })
+				map("n", "<leader>td", gitsigns.toggle_deleted, { desc = "Git [T]oggle [D]eleted" })
+			end
+
 			require("gitsigns").setup({
 				signs = {
 					add = { text = "┃" }, -- Sign for added lines
@@ -21,53 +62,8 @@ return {
 					delay = 100, -- Delay before displaying blame info
 					virt_text_pos = "right_align", -- Position of virtual text (eol, right, inline)
 				},
+				on_attach = on_attach,
 			})
-
-			local gitsigns = require("gitsigns")
-
-			vim.keymap.set(
-				"n",
-				"<leader>gsb",
-				gitsigns.blame_line,
-				{ noremap = true, silent = true, desc = "[G]it [S]igns [B]lame line" }
-			)
-			vim.keymap.set(
-				"n",
-				"<leader>gsB",
-				gitsigns.toggle_current_line_blame,
-				{ noremap = true, silent = true, desc = "Toggle [G]it [S]igns [B]lame line " }
-			)
-			vim.keymap.set(
-				"n",
-				"<leader>gsw",
-				gitsigns.toggle_word_diff,
-				{ noremap = true, silent = true, desc = "Toggle [G]it [S]igns [W]ord diff" }
-			)
-
-			vim.keymap.set(
-				"n",
-				"<leader>gsl",
-				gitsigns.toggle_linehl,
-				{ noremap = true, silent = true, desc = "Toggle [G]it [S]igns [L]ine Highlight" }
-			)
-			vim.keymap.set(
-				"n",
-				"<leader>gsn",
-				gitsigns.toggle_numhl,
-				{ noremap = true, silent = true, desc = "Toggle [G]it [S]igns [N]um highlight" }
-			)
-
-			vim.keymap.set("n", "<leader>gha", gitsigns.stage_hunk, { desc = "[G]it [H]unk [A]dd" })
-			vim.keymap.set("n", "<leader>ghr", gitsigns.reset_hunk, { desc = "[G]it [H]unk [R]eset" })
-			vim.keymap.set("v", "<leader>gha", function()
-				gitsigns.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
-			end, { desc = "[G]it [H]unk [A]dd" })
-
-			vim.keymap.set("v", "<leader>ghr", function()
-				gitsigns.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
-			end, { desc = "[G]it [H]unk [R]eset" })
-
-			vim.keymap.set("n", "<leader>gS", gitsigns.stage_buffer, { desc = "[G]it [S]tage Buffer" })
 		end,
 	},
 }

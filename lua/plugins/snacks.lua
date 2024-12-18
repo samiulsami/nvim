@@ -21,6 +21,9 @@ return {
 					enabled = true,
 					debounce = 50,
 				},
+				scratch = {
+					enabled = true,
+				},
 			}
 
 			local Snacks = require("snacks")
@@ -29,6 +32,14 @@ return {
 			vim.keymap.set("n", "<leader>gp", function()
 				Snacks.gitbrowse()
 			end, { desc = "[G]ithub [P]review" })
+
+			vim.keymap.set("n", "<leader>.", function()
+				Snacks.scratch()
+			end, { desc = "Toggle Scratch Buffer" })
+
+			vim.keymap.set("n", "<leader>S", function()
+				Snacks.scratch.select()
+			end, { desc = "Toggle Scratch Buffer" })
 		end,
 	},
 }
