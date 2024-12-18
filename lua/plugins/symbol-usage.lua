@@ -30,10 +30,13 @@ return {
 
 				if showing_usages then
 					vim.notify("Enabled Symbol Usage Inlay Hint", vim.log.levels.INFO)
+					vim.cmd("bufdo e")
 				else
 					vim.notify("Disabled Symbol Usage Inlay Hint", vim.log.levels.INFO)
 				end
 			end
+
+			toggle_usages()
 
 			vim.keymap.set("n", "<leader>tu", toggle_usages, { desc = "[T]oggle Symbol [U]sages" })
 		end,
