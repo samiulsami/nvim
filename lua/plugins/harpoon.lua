@@ -27,15 +27,19 @@ return {
 
 			vim.keymap.set("n", "<A-1>", function()
 				harpoon:list():select(1)
+				require("neo-tree.sources.manager").refresh("filesystem")
 			end)
 			vim.keymap.set("n", "<A-2>", function()
 				harpoon:list():select(2)
+				require("neo-tree.sources.manager").refresh("filesystem")
 			end)
 			vim.keymap.set("n", "<A-3>", function()
 				harpoon:list():select(3)
+				require("neo-tree.sources.manager").refresh("filesystem")
 			end)
 			vim.keymap.set("n", "<A-4>", function()
 				harpoon:list():select(4)
+				require("neo-tree.sources.manager").refresh("filesystem")
 			end)
 
 			-- Toggle previous & next buffers stored within Harpoon list
