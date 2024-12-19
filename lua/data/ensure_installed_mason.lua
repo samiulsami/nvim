@@ -8,6 +8,7 @@ return {
 	"codelldb",
 	"clang-format",
 	"yaml-language-server",
+	"bash-language-server",
 	"json-lsp",
 	"fixjson",
 	"golangci-lint",

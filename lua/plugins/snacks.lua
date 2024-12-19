@@ -14,7 +14,7 @@ return {
 					enabled = true,
 					animate = { enabled = false },
 				},
-				input = { enabled = true },
+				input = { enabled = false },
 				quickfile = { enabled = true },
 				statuscolumn = { enabled = true },
 				words = {

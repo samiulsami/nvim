@@ -27,16 +27,12 @@ return {
 				end,
 			},
 			{ "j-hui/fidget.nvim", opts = {} },
-			"hrsh7th/cmp-nvim-lsp",
+			{ "saghen/blink.cmp" },
 		},
 		config = function()
 			local capabilities = vim.lsp.protocol.make_client_capabilities()
-			capabilities = vim.tbl_deep_extend(
-				"force",
-				capabilities,
-				require("cmp_nvim_lsp").default_capabilities(),
-				require("lsp-file-operations").default_capabilities()
-			)
+			capabilities =
+				vim.tbl_deep_extend("force", capabilities, require("lsp-file-operations").default_capabilities())
 			capabilities.textDocument.foldingRange = {
 				dynamicRegistration = false,
 				lineFoldingOnly = true,
@@ -53,6 +49,7 @@ return {
 					function(server_name)
 						local server = servers[server_name] or {}
 						server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
+						server.capabilities = require("blink.cmp").get_lsp_capabilities(server.capabilities)
 						require("lspconfig")[server_name].setup(server)
 					end,
 				},

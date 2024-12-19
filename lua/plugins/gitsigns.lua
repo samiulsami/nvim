@@ -7,16 +7,9 @@ return {
 		config = function()
 			local on_attach = function(bufnr)
 				local gitsigns = require("gitsigns")
-
 				vim.keymap.set(
 					"n",
-					"<leader>gsb",
-					gitsigns.blame_line,
-					{ noremap = true, silent = true, desc = "[G]it [S]igns [B]lame line" }
-				)
-				vim.keymap.set(
-					"n",
-					"<leader>gsB",
+					"<leader>gB",
 					gitsigns.toggle_current_line_blame,
 					{ noremap = true, silent = true, desc = "Toggle [G]it [S]igns [B]lame line " }
 				)
@@ -43,7 +36,7 @@ return {
 				map("n", "<leader>hu", gitsigns.undo_stage_hunk, { desc = "Git [H]unk [U]ndo Stage Hunk" })
 				map("n", "<leader>hR", gitsigns.reset_buffer, { desc = "Git [H]unk [R]eset Buffer" })
 				map("n", "<leader>hp", gitsigns.preview_hunk, { desc = "Git [H]unk [P]review" })
-				map("n", "<leader>td", gitsigns.toggle_deleted, { desc = "Git [T]oggle [D]eleted" })
+				map("n", "<leader>gtd", gitsigns.toggle_deleted, { desc = "[G]it [T]oggle [D]eleted" })
 			end
 
 			require("gitsigns").setup({
