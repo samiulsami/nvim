@@ -14,6 +14,27 @@ return {
 					cmdline = {},
 				},
 
+				completion = {
+					menu = {
+						winblend = 15,
+						draw = {
+							padding = { 1, 0 },
+							columns = { { "label", "label_description", gap = 1 }, { "kind_icon", "kind" } },
+							components = {
+								kind_icon = { width = { fill = true } },
+							},
+						},
+					},
+
+					documentation = {
+						auto_show = true,
+						auto_show_delay_ms = 100,
+						update_delay_ms = 100,
+						window = {
+							winblend = 10,
+						},
+					},
+				},
 				appearance = {
 					use_nvim_cmp_as_default = false,
 					nerd_font_variant = "mono",
