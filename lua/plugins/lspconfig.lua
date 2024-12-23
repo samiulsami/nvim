@@ -31,8 +31,12 @@ return {
 		},
 		config = function()
 			local capabilities = vim.lsp.protocol.make_client_capabilities()
-			capabilities =
-				vim.tbl_deep_extend("force", capabilities, require("lsp-file-operations").default_capabilities())
+			capabilities = vim.tbl_deep_extend(
+				"force",
+				capabilities,
+				require("cmp_nvim_lsp").default_capabilities(),
+				require("lsp-file-operations").default_capabilities()
+			)
 			capabilities.textDocument.foldingRange = {
 				dynamicRegistration = false,
 				lineFoldingOnly = true,
@@ -48,7 +52,6 @@ return {
 				handlers = {
 					function(server_name)
 						local server = servers[server_name] or {}
-						server.capabilities = require("blink.cmp").get_lsp_capabilities(server.capabilities)
 						server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
 						require("lspconfig")[server_name].setup(server)
 					end,

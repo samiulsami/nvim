@@ -42,6 +42,7 @@ local project_buffers = function()
 
 	vim.fn.setqflist({}, " ", { title = "Project Buffers", items = project_buffers })
 	vim.cmd("copen")
+	vim.cmd("cdo noautocmd w")
 end
 
 vim.keymap.set("n", "<leader>pb", project_buffers, { noremap = true, silent = true, desc = "[P]roject [B]uffers" })
