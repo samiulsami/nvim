@@ -9,20 +9,22 @@ return {
 				local gitsigns = require("gitsigns")
 				vim.keymap.set(
 					"n",
-					"<leader>gB",
+					"<leader>gtb",
 					gitsigns.toggle_current_line_blame,
-					{ noremap = true, silent = true, desc = "Toggle [G]it [S]igns [B]lame line " }
+					{ noremap = true, silent = true, desc = "[G]it [T]oggle [B]lame line" }
 				)
-				vim.keymap.set("n", "<leader>gst", function()
+				vim.keymap.set("n", "<leader>gth", function()
 					gitsigns.toggle_word_diff()
 					gitsigns.toggle_linehl()
-				end, { noremap = true, silent = true, desc = "Toggle [G]it [S]igns diff highlights" })
+				end, { noremap = true, silent = true, desc = "[G]it [T]oggle Word Diff [H]ighlights" })
 
 				local function map(mode, l, r, opts)
 					opts = opts or {}
 					opts.buffer = bufnr
 					vim.keymap.set(mode, l, r, opts)
 				end
+
+				map("n", "<leader>gtd", gitsigns.toggle_deleted, { desc = "[G]it [T]oggle [D]eleted" })
 
 				map("n", "<leader>hs", gitsigns.stage_hunk, { desc = "Git [H]unk [S]tage" })
 				map("n", "<leader>hr", gitsigns.reset_hunk, { desc = "Git [H]unk [R]eset" })
@@ -36,7 +38,6 @@ return {
 				map("n", "<leader>hu", gitsigns.undo_stage_hunk, { desc = "Git [H]unk [U]ndo Stage Hunk" })
 				map("n", "<leader>hR", gitsigns.reset_buffer, { desc = "Git [H]unk [R]eset Buffer" })
 				map("n", "<leader>hp", gitsigns.preview_hunk, { desc = "Git [H]unk [P]review" })
-				map("n", "<leader>gtd", gitsigns.toggle_deleted, { desc = "[G]it [T]oggle [D]eleted" })
 			end
 
 			require("gitsigns").setup({

@@ -14,6 +14,7 @@ return {
 					return
 				end
 				vim.cmd("Git fetch --prune --all")
+				vim.cmd("Git stash")
 				vim.cmd("Git reset --hard @{upstream}")
 			end, {
 				desc = "[G]it [H]ard [R]eset",
