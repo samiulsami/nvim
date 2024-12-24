@@ -8,14 +8,6 @@ return {
 		},
 		keys = {
 			{
-				"S",
-				mode = { "n", "x", "o" },
-				function()
-					require("flash").treesitter()
-				end,
-				desc = "Flash Treesitter",
-			},
-			{
 				"<c-s>",
 				mode = { "c" },
 				function()
