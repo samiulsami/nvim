@@ -27,7 +27,6 @@ return {
 				end,
 			},
 			{ "j-hui/fidget.nvim", opts = {} },
-			{ "saghen/blink.cmp" },
 		},
 		config = function()
 			local capabilities = vim.lsp.protocol.make_client_capabilities()

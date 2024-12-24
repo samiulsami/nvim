@@ -8,6 +8,7 @@ return {
 
 			vim.keymap.set("n", "<leader>qs", function()
 				require("persistence").load()
+				vim.cmd("Neotree reveal")
 			end, { desc = "Resume Directory [S]ession" })
 
 			vim.keymap.set("n", "<leader>qS", function()
@@ -16,6 +17,7 @@ return {
 
 			vim.keymap.set("n", "<leader>ql", function()
 				require("persistence").load({ last = true })
+				vim.cmd("Neotree reveal")
 			end, { desc = "[Q]uickload [L]ast Session" })
 
 			vim.keymap.set("n", "<leader>qd", function()
@@ -27,14 +29,6 @@ return {
 				desc = "Close Neotree before saving",
 				callback = function()
 					vim.cmd("Neotree close")
-				end,
-			})
-
-			vim.api.nvim_create_autocmd("User", {
-				pattern = "PersistenceLoadPost",
-				desc = "Open Neotree after loading",
-				callback = function()
-					vim.cmd("Neotree reveal")
 				end,
 			})
 		end,
