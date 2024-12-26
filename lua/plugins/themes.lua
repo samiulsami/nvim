@@ -1,5 +1,31 @@
 return {
-
+	-- {
+	-- 	"slugbyte/lackluster.nvim",
+	-- 	lazy = false,
+	-- 	priority = 1000,
+	-- 	init = function()
+	-- 		vim.cmd.colorscheme("lackluster-night")
+	-- 	end,
+	-- },
+	--
+	-- {
+	-- 	"vague2k/vague.nvim",
+	-- 	config = function()
+	-- 		require("vague").setup({
+	-- 			-- optional configuration here
+	-- 		})
+	-- 	end,
+	-- },
+	-- {
+	-- 	"DanielEliasib/sweet-fusion",
+	-- 	name = "sweet-fusion",
+	-- 	priority = 1000,
+	-- 	opts = {
+	-- 		-- Set transparent background
+	-- 		transparency = false,
+	-- 		dim_inactive = true,
+	-- 	},
+	-- },
 	{
 		"sainnhe/everforest",
 		priority = 1000,
