@@ -4,8 +4,6 @@ return {
 	"cpplint",
 	"goimports",
 	"yamlfmt",
-	"delve",
-	"codelldb",
 	"clang-format",
 	"yaml-language-server",
 	"bash-language-server",
