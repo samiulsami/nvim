@@ -76,9 +76,6 @@ return {
 			pcall(require("telescope").load_extension, "ui-select")
 			pcall(require("telescope").load_extension, "projects")
 
-			pcall(require("telescope").load_extension, "big_snippets")
-			vim.keymap.set("n", "<leader>ss", ":Telescope big_snippets<CR>", { desc = "[S]earch [S]nippets" })
-
 			vim.keymap.set("n", "<leader>sp", ":Telescope projects<CR>", { desc = "[S]earch [P]rojects" })
 
 			vim.keymap.set("n", "<leader>sc", ":Telescope git_commits<CR>", { desc = "[S]earch [C]ommits" })
