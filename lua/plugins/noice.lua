@@ -16,8 +16,9 @@ return {
 				config = function()
 					vim.notify = require("notify") -- Set as the default notify handler
 					require("notify").setup({
+						background_colour = "#101010",
 						stages = "fade",
-						timeout = 2000,
+						timeout = 0,
 					})
 				end,
 				event = "VeryLazy", -- Load after other plugins

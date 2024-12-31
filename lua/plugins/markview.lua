@@ -53,6 +53,7 @@ return {
 			-- Heading 6: Subtle pink/mauve on dark mauve-gray background
 			vim.api.nvim_set_hl(0, "MarkviewHeading6", { fg = "#d3869b", bg = "#4a3d4d", bold = true })
 			vim.api.nvim_set_hl(0, "MarkviewHeading6Sign", { fg = "#935f73", bg = "#4a3d4d", bold = true })
+			vim.api.nvim_set_hl(0, "MarkviewCode", { bg = "#2f2f2f", bold = true })
 		end,
 	},
 }

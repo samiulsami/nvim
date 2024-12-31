@@ -67,9 +67,9 @@ return {
 				":LspRestart<CR>",
 				{ noremap = true, silent = true, desc = "[R]efresh [L]sp" }
 			)
-			vim.api.nvim_set_hl(0, "LspReferenceText", { bg = "#3b4252", underline = true })
-			vim.api.nvim_set_hl(0, "LspReferenceRead", { bg = "#3b4252", underline = true })
-			vim.api.nvim_set_hl(0, "LspReferenceWrite", { bg = "#232c3e", underline = true })
+			vim.api.nvim_set_hl(0, "LspReferenceText", { underline = true })
+			vim.api.nvim_set_hl(0, "LspReferenceRead", { underline = true })
+			vim.api.nvim_set_hl(0, "LspReferenceWrite", { underline = true })
 		end,
 	},
 }

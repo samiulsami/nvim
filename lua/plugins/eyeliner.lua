@@ -7,8 +7,8 @@ return {
 				dim = true,
 				max_length = 1000,
 			})
-			-- vim.api.nvim_set_hl(0, "EyelinerPrimary", { fg = "#ff0000", bold = true, underline = true })
-			-- vim.api.nvim_set_hl(0, "EyelinerSecondary", { fg = "#00ff00", bold = true, underline = true })
+			vim.api.nvim_set_hl(0, "EyelinerPrimary", { fg = "#ff0000", underline = true })
+			vim.api.nvim_set_hl(0, "EyelinerSecondary", { fg = "#00ff00", underline = true })
 		end,
 	},
 }
