@@ -28,7 +28,7 @@ return {
 			require("noice").setup({
 				messages = {
 					enabled = true,
-					view = "notify",
+					view = "false",
 					view_warn = "notify",
 					view_error = "notify",
 					view_search = "cmdline",
