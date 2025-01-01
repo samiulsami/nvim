@@ -2,7 +2,7 @@ return {
 	{
 		"nvim-neo-tree/neo-tree.nvim",
 		event = "VimEnter",
-		version = "*",
+		branch = "v3.x",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
@@ -34,7 +34,6 @@ return {
 				desc = "[P]roject [V]iew (Neo-Tree)",
 				{
 					silent = true,
-					desc = "[N]eotree [R]eveal",
 				},
 			},
 
@@ -109,6 +108,11 @@ return {
 					filtered_items = {
 						visible = true,
 						hide_hidden = false,
+						hide_by_name = {
+							"node_modules",
+							"vendor",
+							"target",
+						},
 						hide_gitignored = false,
 						hide_dotfiles = false,
 					},
