@@ -55,6 +55,8 @@ return {
 				vim.api.nvim_set_hl(0, "SymbolUsageContent", { fg = "#aaaaaa", italic = true })
 				vim.api.nvim_set_hl(0, "SymbolUsageRef", { fg = "#ff6666", italic = true })
 				vim.api.nvim_set_hl(0, "SymbolUsageImpl", { fg = "#6666ff", italic = true })
+
+				vim.api.nvim_set_hl(0, "Search", { fg = "black", bg = "orange", italic = true })
 			end
 
 			local setup_default_theme = function()
@@ -84,6 +86,8 @@ return {
 					setup_default_theme()
 				end
 			end, { desc = "[C]hange [T]heme" })
+
+			vim.keymap.set("n", "<leader>l", ":nohlsearch<CR>", { desc = "Remove Search Highlights" })
 		end,
 	},
 }
