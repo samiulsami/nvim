@@ -1,7 +1,6 @@
 return {
 	{
 		"nvim-neo-tree/neo-tree.nvim",
-		event = "VimEnter",
 		branch = "v3.x",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
@@ -110,7 +109,6 @@ return {
 						hide_hidden = false,
 						hide_by_name = {
 							"node_modules",
-							"vendor",
 							"target",
 						},
 						hide_gitignored = false,
@@ -154,10 +152,9 @@ return {
 				end,
 			})
 
-			require("neo-tree.sources.manager").refresh("filesystem")
+			-- require("neo-tree.sources.manager").refresh("filesystem")
 			local bg_color = "#0e0f12"
 
-			-- Set the background color for Neo-tree
 			vim.api.nvim_set_hl(0, "NeoTreeNormal", { bg = bg_color })
 			vim.api.nvim_set_hl(0, "NeoTreeNormalNC", { bg = bg_color })
 			vim.api.nvim_set_hl(0, "NeoTreeEndOfBuffer", { bg = bg_color })

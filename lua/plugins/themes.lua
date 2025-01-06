@@ -59,7 +59,9 @@ return {
 				vim.api.nvim_set_hl(0, "Search", { fg = "black", bg = "orange", italic = true })
 			end
 
+			local alternate_theme = true
 			local setup_default_theme = function()
+				alternate_theme = false
 				vim.cmd.colorscheme("everforest")
 
 				local bg_color = "#1e1f22"
@@ -70,12 +72,12 @@ return {
 			end
 
 			local setup_alternate_theme = function()
+				alternate_theme = true
 				vim.cmd.colorscheme("darkvoid")
 				setup_highlights()
 			end
 
-			local alternate_theme = true
-			setup_alternate_theme()
+			setup_default_theme()
 
 			vim.keymap.set("n", "<leader>ct", function()
 				vim.cmd.colorscheme("default")
