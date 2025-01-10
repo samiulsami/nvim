@@ -11,8 +11,10 @@ return {
 			{
 				"rcarriga/nvim-notify",
 				config = function()
-					vim.notify = require("notify") -- Set as the default notify handler
-					require("notify").setup({
+					local notify = require("notify")
+					vim.notify = notify
+					notify.setup({
+						level = vim.log.levels.INFO,
 						background_colour = "#101010",
 						stages = "fade",
 						timeout = 0,
@@ -31,20 +33,49 @@ return {
 					view_search = "virtualtext",
 					view_history = "messages",
 				},
-
 				routes = {
-
 					{ filter = { find = "E162" }, view = "mini" },
 					{ filter = { event = "msg_show", kind = "", find = "written" }, view = "mini" },
-					-- { filter = { event = "msg_show", find = "search hit BOTTOM" }, skip = true },
-					-- { filter = { event = "msg_show", find = "search hit TOP" }, skip = true },
-					{ filter = { event = "emsg", find = "E23" }, skip = true },
-					{ filter = { event = "emsg", find = "E20" }, skip = true },
-					{ filter = { find = "No signature help" }, skip = true },
-					{ filter = { find = "E37" }, skip = true },
+					{ filter = { event = "emsg", find = "E23" }, opts = { skip = true } },
+					{ filter = { event = "emsg", find = "E20" }, opts = { skip = true } },
+					{ filter = { find = "No signature help" }, opts = { skip = true } },
+					{ filter = { find = "E37" }, opts = { skip = true } },
+
 					{
 						view = "cmdline",
 						filter = { event = "msg_showmode" },
+					},
+
+					{ -- pipe undo/redo messages into mini view
+						filter = {
+							event = "msg_show",
+							cond = function(message)
+								return (message:content():match("change") or message:content():match("line"))
+									and (message:content():match("before") or message:content():match("after"))
+							end,
+							max_height = 1,
+						},
+						view = "mini",
+					},
+					{ -- filter out buffer change messages and messages that contain the current buffer
+						filter = {
+							event = "msg_show",
+							cond = function(message)
+								return message:content():find(vim.fn.expand("%"))
+							end,
+							max_height = 1,
+						},
+						skip = true,
+					},
+					{ -- filter out messages that contain the home directory
+						filter = {
+							event = "msg_show",
+							cond = function(message)
+								return message:content():find(vim.fn.expand("~"))
+							end,
+							max_height = 1,
+						},
+						skip = true,
 					},
 				},
 				notify = {
