@@ -28,7 +28,7 @@ return {
 					view = "notify",
 					view_warn = "notify",
 					view_error = "notify",
-					view_search = "cmdline",
+					view_search = "virtualtext",
 					view_history = "messages",
 				},
 
