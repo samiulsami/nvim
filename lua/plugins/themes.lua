@@ -28,10 +28,6 @@ return {
 				vim.api.nvim_set_hl(0, "LspReferenceRead", { underline = true })
 				vim.api.nvim_set_hl(0, "LspReferenceWrite", { underline = true })
 
-				local bg_color = "#0e0f12"
-				vim.api.nvim_set_hl(0, "NeoTreeNormal", { bg = bg_color })
-				vim.api.nvim_set_hl(0, "NeoTreeNormalNC", { bg = bg_color })
-				vim.api.nvim_set_hl(0, "NeoTreeEndOfBuffer", { bg = bg_color })
 				vim.api.nvim_set_hl(0, "MarkviewHeading1", { fg = "#a89984", bg = "#3c3836", bold = true })
 				vim.api.nvim_set_hl(0, "MarkviewHeading1Sign", { fg = "#7c6f64", bg = "#3c3836", bold = true })
 
@@ -57,6 +53,13 @@ return {
 				vim.api.nvim_set_hl(0, "SymbolUsageImpl", { fg = "#6666ff", italic = true })
 
 				vim.api.nvim_set_hl(0, "Search", { fg = "black", bg = "orange", italic = true })
+
+				local neotree_bg_color = "#0e0f12"
+				vim.defer_fn(function()
+					vim.api.nvim_set_hl(0, "NeoTreeNormal", { bg = neotree_bg_color })
+					vim.api.nvim_set_hl(0, "NeoTreeNormalNC", { bg = neotree_bg_color })
+					vim.api.nvim_set_hl(0, "NeoTreeEndOfBuffer", { bg = neotree_bg_color })
+				end, 100)
 			end
 
 			local alternate_theme = true
@@ -64,10 +67,10 @@ return {
 				alternate_theme = false
 				vim.cmd.colorscheme("everforest")
 
-				local bg_color = "#1e1f22"
-				vim.api.nvim_set_hl(0, "Normal", { bg = bg_color })
-				vim.api.nvim_set_hl(0, "NormalNC", { bg = bg_color })
-				vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = bg_color })
+				local buffer_bg_color = "#1a1b1e"
+				vim.api.nvim_set_hl(0, "Normal", { bg = buffer_bg_color })
+				vim.api.nvim_set_hl(0, "NormalNC", { bg = buffer_bg_color })
+				vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = buffer_bg_color })
 				setup_highlights()
 			end
 

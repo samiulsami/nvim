@@ -26,6 +26,7 @@ return {
 					require("lsp-file-operations").setup()
 				end,
 			},
+			{ "b0o/schemastore.nvim" },
 			{ "j-hui/fidget.nvim", opts = {} },
 		},
 		config = function()

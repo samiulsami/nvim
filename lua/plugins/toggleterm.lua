@@ -44,7 +44,7 @@ return {
 
 			vim.api.nvim_create_autocmd({
 				"TermEnter",
-			}, { pattern = "*", command = "set number relativenumber" })
+			}, { pattern = "*", command = "set number" })
 		end,
 	},
 }

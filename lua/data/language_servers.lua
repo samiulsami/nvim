@@ -68,10 +68,14 @@ return {
 		filetypes = { "yaml", "yml", "yaml.docker-compose", "yaml.gitlab" },
 		settings = {
 			yaml = {
-				schemas = {
-					["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*.yml",
-					["https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json"] = "/docker-compose*.y*ml$",
+				schemaStore = {
+					-- You must disable built-in schemaStore support if you want to use
+					-- this plugin and its advanced options like `ignore`.
+					enable = false,
+					-- Avoid TypeError: Cannot read properties of undefined (reading 'length')
+					url = "",
 				},
+				schemas = require("schemastore").yaml.schemas(),
 			},
 			redhat = {
 				telemetry = {
@@ -82,7 +86,14 @@ return {
 		},
 	},
 
-	jsonls = {},
+	jsonls = {
+		settings = {
+			json = {
+				schemas = require("schemastore").json.schemas(),
+				validate = { enable = true },
+			},
+		},
+	},
 
 	bashls = {
 		filetypes = { "sh", "bash", "zsh", "make" },
