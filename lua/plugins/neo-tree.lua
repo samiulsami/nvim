@@ -1,3 +1,10 @@
+_G.setup_neo_tree_highlights = function()
+	local bg_color = "#0e0f12"
+	vim.api.nvim_set_hl(0, "NeoTreeNormal", { bg = bg_color })
+	vim.api.nvim_set_hl(0, "NeoTreeNormalNC", { bg = bg_color })
+	vim.api.nvim_set_hl(0, "NeoTreeEndOfBuffer", { bg = bg_color })
+end
+
 return {
 	{
 		"nvim-neo-tree/neo-tree.nvim",
@@ -53,6 +60,13 @@ return {
 
 			require("neo-tree").setup({
 				event_handlers = {
+
+					{
+						event = "neo_tree_window_after_open",
+						handler = function(args)
+							setup_neo_tree_highlights()
+						end,
+					},
 					{
 						event = "neo_tree_buffer_enter",
 						handler = function()
@@ -153,11 +167,7 @@ return {
 			})
 
 			-- require("neo-tree.sources.manager").refresh("filesystem")
-			local bg_color = "#0e0f12"
-
-			vim.api.nvim_set_hl(0, "NeoTreeNormal", { bg = bg_color })
-			vim.api.nvim_set_hl(0, "NeoTreeNormalNC", { bg = bg_color })
-			vim.api.nvim_set_hl(0, "NeoTreeEndOfBuffer", { bg = bg_color })
+			_G.setup_neo_tree_highlights()
 		end,
 	},
 }

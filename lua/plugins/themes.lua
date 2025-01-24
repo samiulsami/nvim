@@ -54,12 +54,7 @@ return {
 
 				vim.api.nvim_set_hl(0, "Search", { fg = "black", bg = "orange", italic = true })
 
-				local neotree_bg_color = "#0e0f12"
-				vim.defer_fn(function()
-					vim.api.nvim_set_hl(0, "NeoTreeNormal", { bg = neotree_bg_color })
-					vim.api.nvim_set_hl(0, "NeoTreeNormalNC", { bg = neotree_bg_color })
-					vim.api.nvim_set_hl(0, "NeoTreeEndOfBuffer", { bg = neotree_bg_color })
-				end, 100)
+				_G.setup_neo_tree_highlights()
 			end
 
 			local alternate_theme = true
