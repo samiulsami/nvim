@@ -13,8 +13,11 @@ return {
 			require("markview").setup({
 				highlight_groups = "dark",
 				checkboxes = presets.checkboxes.nerd,
-				headings = presets.headings.arrowed,
-				horizontal_rules = presets.horizontal_rules.thin,
+				markdown = {
+					enable = true,
+					headings = presets.headings.arrowed,
+					horizontal_rules = presets.horizontal_rules.thin,
+				},
 			})
 
 			vim.keymap.set(
