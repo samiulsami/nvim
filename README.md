@@ -5,7 +5,7 @@
 sudo apt update
 sudo apt install build-essential unzip git python3.12-venv xclip cmake gettext fd-find ripgrep 
 sudo ln -s $(which fdfind) /usr/bin/fd
-wget -q -O- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
 nvm install 18
 source ~/.bashrc
 git clone https://github.com/neovim/neovim.git ~/neovim
