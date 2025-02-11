@@ -5,6 +5,7 @@ return {
 		branch = "0.1.x",
 		dependencies = {
 			{ "nvim-lua/plenary.nvim" },
+			{ "nvim-telescope/telescope-frecency.nvim", version = "*" },
 			{
 				"nvim-telescope/telescope-fzf-native.nvim",
 				build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release",
@@ -21,6 +22,17 @@ return {
 				"openapi_generated*",
 			}
 
+			local frecency_config = {
+				bootstrap = true,
+				db_version = "v2",
+				auto_validate = true,
+				matcher = "fuzzy", --> "default" | "fuzzy"
+				scoring_function = function(recency, fzy_score) -- https://github.com/nvim-telescope/telescope-frecency.nvim/pull/166
+					return (10 / (recency == 0 and 1 or recency)) - 1 / fzy_score
+				end,
+				ignore_patterns = file_ignore_patterns,
+			}
+
 			local telescope_setup = require("telescope").setup({
 				defaults = {
 					file_ignore_patterns = file_ignore_patterns,
@@ -35,11 +47,17 @@ return {
 						override_file_sorter = true,
 						case_mode = "smart_case",
 					},
+					frecency = frecency_config,
 					["ui-select"] = {
 						require("telescope.themes").get_dropdown(),
 					},
 				},
 			})
+
+			pcall(require("telescope").load_extension, "fzf")
+			pcall(require("telescope").load_extension, "ui-select")
+			pcall(require("telescope").load_extension, "projects")
+			pcall(require("telescope").load_extension, "frecency")
 
 			require("telescope").setup({
 				defaults = telescope_setup,
@@ -59,6 +77,8 @@ return {
 						file_ignore_patterns = current_ignore_patterns,
 					},
 				})
+
+				require("frecency.config").setup(frecency_config)
 				vim.notify(
 					"Telescope ignore patterns updated to: " .. vim.inspect(current_ignore_patterns),
 					vim.log.levels.INFO
@@ -72,9 +92,12 @@ return {
 				{ noremap = true, silent = true, desc = "[T]oggle [I]gnore patterns" }
 			)
 
-			pcall(require("telescope").load_extension, "fzf")
-			pcall(require("telescope").load_extension, "ui-select")
-			pcall(require("telescope").load_extension, "projects")
+			vim.keymap.set("n", "<leader>ff", function()
+				require("telescope").extensions.frecency.frecency({
+					workspace = "CWD",
+					prompt_title = "Search Files (Frecency)",
+				})
+			end, { desc = "[F]recency [F]ile" })
 
 			vim.keymap.set("n", "<leader>sp", ":Telescope projects<CR>", { desc = "[S]earch [P]rojects" })
 
