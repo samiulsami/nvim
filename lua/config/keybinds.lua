@@ -27,9 +27,9 @@ vim.api.nvim_set_keymap("n", "<C-k>", "<C-w>k", { noremap = true })
 vim.api.nvim_set_keymap("n", "<C-l>", "<C-w>l", { noremap = true })
 
 -- Vertical split with alt-e
-vim.keymap.set("n", "<leader><A-e>", ":vsplit<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>e", ":vsplit<CR>", { noremap = true, silent = true })
 -- Horizontal split with alt-o
-vim.keymap.set("n", "<leader><A-o>", ":split<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>o", ":split<CR>", { noremap = true, silent = true })
 
 -- Command-line mappings for history navigation
 vim.api.nvim_set_keymap("c", "<C-p>", "<Up>", { noremap = true })
@@ -45,11 +45,6 @@ vim.keymap.set("x", "<leader>p", "p") -- paste and overwrite the register
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
-vim.keymap.set("n", "<C-Up>", ":resize +4<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<C-Down>", ":resize -4<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<C-Left>", ":vertical resize -4<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<C-Right>", ":vertical resize +4<CR>", { noremap = true, silent = true })
-
 vim.keymap.set("n", "]q", ":cnext<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "[q", ":cprevious<CR>", { noremap = true, silent = true })
 
@@ -57,3 +52,38 @@ vim.keymap.set("n", "<leader>RR", ":checktime<CR>", { noremap = true, silent = t
 vim.keymap.set("n", "<leader>l", ":nohlsearch<CR>", { desc = "Remove Search Highlights" })
 
 vim.keymap.set("n", "<leader>vs", ":Sleuth<CR>", { noremap = true, silent = true, desc = "[V]im [S]leuth" })
+
+-- TMUX compatible pane switching and resizing
+local function move_or_tmux(direction, tmux_cmd)
+	local current_win = vim.api.nvim_get_current_win()
+	vim.cmd("wincmd " .. direction)
+	if current_win == vim.api.nvim_get_current_win() then
+		vim.fn.system("tmux select-pane -" .. tmux_cmd)
+	end
+end
+
+vim.keymap.set("n", "<C-h>", function()
+	move_or_tmux("h", "L")
+end, { noremap = true, silent = true })
+vim.keymap.set("n", "<C-j>", function()
+	move_or_tmux("j", "D")
+end, { noremap = true, silent = true })
+vim.keymap.set("n", "<C-k>", function()
+	move_or_tmux("k", "U")
+end, { noremap = true, silent = true })
+vim.keymap.set("n", "<C-l>", function()
+	move_or_tmux("l", "R")
+end, { noremap = true, silent = true })
+
+vim.keymap.set({ "n", "i", "v", "t" }, "<A-k>", function()
+	vim.cmd("resize +4")
+end, { noremap = true, silent = true })
+vim.keymap.set({ "n", "i", "v", "t" }, "<A-j>", function()
+	vim.cmd("resize -4")
+end, { noremap = true, silent = true })
+vim.keymap.set({ "n", "i", "v", "t" }, "<A-h>", function()
+	vim.cmd("vertical resize -4")
+end, { noremap = true, silent = true })
+vim.keymap.set({ "n", "i", "v", "t" }, "<A-l>", function()
+	vim.cmd("vertical resize +4")
+end, { noremap = true, silent = true })
