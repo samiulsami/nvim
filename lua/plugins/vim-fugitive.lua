@@ -49,6 +49,8 @@ return {
 			end, {
 				desc = "[G]it [C]ommit",
 			})
+
+			vim.keymap.set("n", "<leader>gm", ":Git mergetool<CR>", { desc = "[G]it [M]ergetool" })
 		end,
 	},
 }
