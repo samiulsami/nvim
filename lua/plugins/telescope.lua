@@ -92,12 +92,12 @@ return {
 				{ noremap = true, silent = true, desc = "[T]oggle [I]gnore patterns" }
 			)
 
-			vim.keymap.set("n", "<leader>ff", function()
-				require("telescope").extensions.frecency.frecency({
-					workspace = "CWD",
-					prompt_title = "Search Files (Frecency)",
-				})
-			end, { desc = "[F]recency [F]ile" })
+			vim.keymap.set(
+				"n",
+				"<leader>ff",
+				":Telescope frecency workspace=CWD prompt_title=[F]recency_[F]iles<CR><BS>",
+				{ desc = "[F]recency [F]ile" }
+			)
 
 			vim.keymap.set("n", "<leader>sp", ":Telescope projects<CR>", { desc = "[S]earch [P]rojects" })
 
