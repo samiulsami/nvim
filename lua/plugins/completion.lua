@@ -109,7 +109,7 @@ return {
 			local buffer_source = {
 				name = "buffer",
 				keyword_length = 2,
-				max_item_count = 10,
+				max_item_count = 5,
 				option = {
 					get_bufnrs = function()
 						local buf = vim.api.nvim_get_current_buf()
@@ -143,11 +143,16 @@ return {
 				}),
 				sources = {
 					{ name = "go_pkgs", keyword_length = 2, priority = 1000 },
-					{ name = "nvim_lsp", keyword_length = 2 },
-					{ name = "path", keyword_length = 3 },
+					{ name = "nvim_lsp", keyword_length = 2, max_item_count = 10 },
+					{ name = "path", keyword_length = 3, max_item_count = 10 },
 					buffer_source,
-					{ name = "luasnip", keyword_length = 2, option = { show_autosnippets = true } },
-					{ name = "lazydev", group_index = 0 },
+					{
+						name = "luasnip",
+						keyword_length = 2,
+						option = { show_autosnippets = true },
+						max_item_count = 10,
+					},
+					{ name = "lazydev", group_index = 0, max_item_count = 10 },
 				},
 				sorting = {
 					comparators = {
@@ -182,12 +187,12 @@ return {
 			cmp.setup.cmdline({ ":", "?", "/" }, {
 				mapping = cmp.mapping.preset.cmdline(),
 				sources = cmp.config.sources({
-					{ name = "cmdline_history", keyword_length = 2 },
-					{ name = "path", keyword_length = 3 },
-					{ name = "cmdline", keyword_length = 2 },
+					{ name = "cmdline_history", keyword_length = 2, max_item_count = 5 },
+					{ name = "path", keyword_length = 3, max_item_count = 5 },
+					{ name = "cmdline", keyword_length = 2, max_item_count = 5 },
 					{ name = "lazydev" },
-					{ name = "git" },
-					{ name = "nvim_lsp", keyword_length = 2 },
+					{ name = "git", max_item_count = 5 },
+					{ name = "nvim_lsp", keyword_length = 2, max_item_count = 5 },
 					buffer_source,
 				}),
 				formatting = formatting,
