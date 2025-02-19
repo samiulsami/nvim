@@ -159,11 +159,11 @@ return {
 						function(...)
 							return require("cmp_buffer"):compare_locality(...)
 						end,
-						compare.offset,
 						compare.exact,
 						compare.score,
 						compare.recently_used,
 						compare.locality,
+						compare.offset,
 						compare.kind,
 						compare.sort_text,
 						compare.length,
@@ -192,7 +192,7 @@ return {
 					{ name = "cmdline", keyword_length = 2, max_item_count = 5 },
 					{ name = "lazydev" },
 					{ name = "git", max_item_count = 5 },
-					{ name = "nvim_lsp", keyword_length = 2, max_item_count = 5 },
+					{ name = "nvim_lsp", keyword_length = 2, max_item_count = 20 },
 					buffer_source,
 				}),
 				formatting = formatting,
