@@ -53,8 +53,6 @@ return {
 				vim.api.nvim_set_hl(0, "SymbolUsageImpl", { fg = "#6666ff", italic = true })
 
 				vim.api.nvim_set_hl(0, "Search", { fg = "black", bg = "orange", italic = true })
-
-				_G.setup_neo_tree_highlights()
 			end
 
 			local alternate_theme = true

@@ -29,6 +29,5 @@ git config --global core.editor 'nvim -f'
 ```
 ## Notes
 - `<leader>` key is space
-- Press `<leader>sk` to search keybinds with Telescope
 - Most plugin keybinds are defined in their respective `.lua` file
 - LSPs, Mason packages, and Treesitter configs are defined in lua/data/
