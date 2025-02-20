@@ -30,8 +30,6 @@ return {
 				},
 				sources = {
 					explorer = {
-						-- TODO: read the docs
-						-- https://github.com/folke/snacks.nvim/blob/main/docs/picker.md#explorer
 						diagnostics_open = false,
 						git_status = true,
 						git_status_open = false,
@@ -42,6 +40,20 @@ return {
 						config = function(opts)
 							return require("snacks.picker.source.explorer").setup(opts)
 						end,
+					},
+				},
+				win = {
+					-- input window
+					input = {
+						keys = {
+							["<c-d>"] = { "preview_scroll_down", mode = { "i", "n" } },
+							["<c-u>"] = { "preview_scroll_up", mode = { "i", "n" } },
+						},
+					},
+					list = {
+						keys = {
+							["<ESC>"] = { "", mode = { "i", "n" } },
+						},
 					},
 				},
 			},
@@ -70,11 +82,11 @@ return {
 				desc = "Notification History",
 			},
 			{
-				"<leader>pv",
+				"<leader>p",
 				function()
 					Snacks.explorer()
 				end,
-				desc = "[P]roject [V]iew",
+				desc = "[P]roject View",
 			},
 			-- find
 			{
