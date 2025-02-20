@@ -24,8 +24,8 @@ return {
 						git_status_hl = true,
 					},
 					selected = {
-						show_always = true,
-						unselected = true,
+						show_always = false,
+						unselected = false,
 					},
 				},
 				sources = {
@@ -46,8 +46,8 @@ return {
 					-- input window
 					input = {
 						keys = {
-							["<c-d>"] = { "preview_scroll_down", mode = { "i", "n" } },
-							["<c-u>"] = { "preview_scroll_up", mode = { "i", "n" } },
+							["<a-d>"] = { "preview_scroll_down", mode = { "i", "n" } },
+							["<a-u>"] = { "preview_scroll_up", mode = { "i", "n" } },
 						},
 					},
 					list = {
@@ -75,6 +75,7 @@ return {
 			-- Grep
 			{ "<leader>/", function() Snacks.picker.lines() end, desc = "Buffer Lines" },
 			{ "<leader>sg", function() Snacks.picker.grep() end, desc = "Grep" },
+			{ "<leader>sw", function() Snacks.picker.grep_word() end, desc = "Grep Word" },
 			{ '<leader>s"', function() Snacks.picker.registers() end, desc = "Registers" },
 			{ "<leader>s/", function() Snacks.picker.search_history() end, desc = "Search History" },
 			{ "<leader>sa", function() Snacks.picker.autocmds() end, desc = "Autocmds" },
