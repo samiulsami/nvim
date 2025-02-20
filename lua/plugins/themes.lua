@@ -20,10 +20,6 @@ return {
 			vim.g.everforest_background = "hard"
 			vim.g.everforest_better_performance = 1
 			local setup_highlights = function()
-				vim.api.nvim_set_hl(0, "EyelinerPrimary", { fg = "#ff0000", underline = true })
-				vim.api.nvim_set_hl(0, "EyelinerSecondary", { fg = "#00ff00", underline = true })
-				vim.api.nvim_set_hl(0, "LeapBackdrop", { link = "Comment" })
-				vim.api.nvim_set_hl(0, "LeapLabel", { fg = "#ff0000", bold = true })
 				vim.api.nvim_set_hl(0, "LspReferenceText", { underline = true })
 				vim.api.nvim_set_hl(0, "LspReferenceRead", { underline = true })
 				vim.api.nvim_set_hl(0, "LspReferenceWrite", { underline = true })
