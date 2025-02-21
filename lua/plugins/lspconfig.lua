@@ -16,26 +16,12 @@ return {
 					vim.keymap.set("n", "zM", require("ufo").closeAllFolds)
 				end,
 			},
-			{
-				"antosha417/nvim-lsp-file-operations",
-				dependencies = {
-					"nvim-lua/plenary.nvim",
-				},
-				config = function()
-					require("lsp-file-operations").setup()
-				end,
-			},
 			{ "b0o/schemastore.nvim" },
 			{ "j-hui/fidget.nvim", opts = {} },
 		},
 		config = function()
 			local capabilities = vim.lsp.protocol.make_client_capabilities()
-			capabilities = vim.tbl_deep_extend(
-				"force",
-				capabilities,
-				require("cmp_nvim_lsp").default_capabilities(),
-				require("lsp-file-operations").default_capabilities()
-			)
+			capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 			capabilities.textDocument.foldingRange = {
 				dynamicRegistration = false,
 				lineFoldingOnly = true,
@@ -67,7 +53,7 @@ return {
 				":LspRestart<CR>",
 				{ noremap = true, silent = true, desc = "[R]efresh [L]sp" }
 			)
-			vim.api.nvim_set_hl(0, "LspReferenceText", { underline = true })
+			vim.api.nvim_set_hl(0, "LspReferenceText", { bold = true, underline = true })
 			vim.api.nvim_set_hl(0, "LspReferenceRead", { underline = true })
 			vim.api.nvim_set_hl(0, "LspReferenceWrite", { underline = true })
 		end,
