@@ -54,8 +54,8 @@ return {
 				{ noremap = true, silent = true, desc = "[R]efresh [L]sp" }
 			)
 			vim.api.nvim_set_hl(0, "LspReferenceText", { bold = true, underline = true })
-			vim.api.nvim_set_hl(0, "LspReferenceRead", { underline = true })
-			vim.api.nvim_set_hl(0, "LspReferenceWrite", { underline = true })
+			vim.api.nvim_set_hl(0, "LspReferenceRead", { bold = true, underline = true })
+			vim.api.nvim_set_hl(0, "LspReferenceWrite", { bold = true, underline = true })
 		end,
 	},
 }

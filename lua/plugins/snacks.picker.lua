@@ -34,7 +34,7 @@ return {
 						git_status = true,
 						git_status_open = false,
 						auto_close = false,
-						jump = { close = true },
+						jump = { close = false },
 						layout = { preset = "sidebar", preview = false },
 						matcher = { sort_empty = false, fuzzy = true },
 						config = function(opts)

@@ -20,6 +20,7 @@ vim.opt.mouse = "a"
 vim.opt.grepprg = "rg --vimgrep --no-heading --smart-case"
 vim.opt.grepformat = "%f:%l:%m"
 vim.opt.cmdheight = 0
+vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 
 vim.diagnostic.config({
 	severity_sort = true,
