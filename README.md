@@ -16,12 +16,6 @@ git clone https://github.com/samiulsami/nvimconfig.git ~/.config/nvim
 nvim
 ```
 
-#### <i>Nerd font for icons</i>
-<i>Must be manually set in the terminal emulator</i>
-```bash
-sudo cp ~/.config/nvim/fonts/* /usr/share/fonts/
-sudo fc-cache -f -v
-```
 #### Set Neovim as default editor
 ```bash
 sudo echo "export EDITOR='nvim -f'" >> ~/.bashrc

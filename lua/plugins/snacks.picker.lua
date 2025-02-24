@@ -1,3 +1,11 @@
+local picker_ignore_patterns = {
+	"node_modules/*",
+	"^.git/*",
+	"vendor/*",
+	"zz_generated*",
+	"openapi_generated*",
+}
+
 return {
 	{
 
@@ -30,9 +38,6 @@ return {
 				},
 				sources = {
 					explorer = {
-						diagnostics_open = false,
-						git_status = true,
-						git_status_open = false,
 						auto_close = false,
 						jump = { close = false },
 						layout = { preset = "sidebar", preview = false },
@@ -61,21 +66,23 @@ return {
 
 		-- stylua: ignore
 		keys = {
-			{ "<leader><space>", function() Snacks.picker.smart() end, desc = "Smart Find Files" },
-			{ "<leader>,", function() Snacks.picker.buffers() end, desc = "Buffers" },
+			{ "<leader><space>", function() Snacks.picker.smart({hidden = true, ignored = true}) end, desc = "Smart Find Files" },
+			{ "<leader>,", function() Snacks.picker.buffers({hidden = true, ignored = true}) end, desc = "Buffers" },
 			{ "<leader>sn", function() Snacks.picker.notifications() end, desc = "Notification History" },
 			{ "<leader>p", function() Snacks.explorer() end, desc = "[P]roject View" },
-			-- find
-			{ "<leader>fb", function() Snacks.picker.buffers() end, desc = "Buffers" },
-			{ "<leader>fc", function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, desc = "Find Config File" },
-			{ "<leader>sf", function() Snacks.picker.files() end, desc = "Search Files" },
+
+			{ "<leader>sf", function() Snacks.picker.files({exclude = picker_ignore_patterns, hidden = true, ignored = true}) end, desc = "Search Files" },
+			{ "<leader>sF", function() Snacks.picker.files({title = "Search All Files", hidden = true, ignored = true}) end, desc = "ALL Search Files" },
+			{ "<leader>sg", function() Snacks.picker.grep({exclude = picker_ignore_patterns, hidden = true, ignored = true}) end, desc = "Grep" },
+			{ "<leader>sG", function() Snacks.picker.grep({title = "Grep All Files", hidden = true, ignored = true}) end, desc = "ALL Grep" },
+			{ "<leader>sw", function() Snacks.picker.grep_word({exclude = picker_ignore_patterns, hidden = true, ignored = true}) end, desc = "Grep Word" },
+			{ "<leader>sW", function() Snacks.picker.grep_word({title = "Grep Word All Files", hidden = true, ignored = true}) end, desc = "ALL Grep Word" },
+
 			{ "<leader>fg", function() Snacks.picker.git_files() end, desc = "Find Git Files" },
 			{ "<leader>sp", function() Snacks.picker.projects() end, desc = "Projects" },
-			{ "<leader>ff", function() Snacks.picker.recent() end, desc = "Recent" },
-			-- Grep
+			{ "<leader>ff", function() Snacks.picker.recent({hidden = true, ignored = true}) end, desc = "Recent" },
+
 			{ "<leader>/", function() Snacks.picker.lines() end, desc = "Buffer Lines" },
-			{ "<leader>sg", function() Snacks.picker.grep() end, desc = "Grep" },
-			{ "<leader>sw", function() Snacks.picker.grep_word() end, desc = "Grep Word" },
 			{ '<leader>s"', function() Snacks.picker.registers() end, desc = "Registers" },
 			{ "<leader>s/", function() Snacks.picker.search_history() end, desc = "Search History" },
 			{ "<leader>sa", function() Snacks.picker.autocmds() end, desc = "Autocmds" },

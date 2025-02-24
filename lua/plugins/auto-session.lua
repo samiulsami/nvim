@@ -6,5 +6,11 @@ return {
 	---@type AutoSession.Config
 	opts = {
 		suppressed_dirs = { "~/", "~/Projects", "~/Downloads", "/" },
+		cwd_change_handling = true,
 	},
+	--stylua: ignore
+	keys = {
+		{"<leader>ss", ":SessionSearch<CR>", desc = "Search sessions"},
+	}
+,
 }
