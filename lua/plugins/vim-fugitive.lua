@@ -9,35 +9,73 @@ return {
 			vim.keymap.set("n", "<leader>gl", ":Git log --oneline --full-history<CR>", { desc = "[G]it [L]og Oneline" })
 			vim.keymap.set("n", "<leader>gL", ":Git log<CR>", { desc = "[G]it [L]og" })
 
+			local function run_git_command(command)
+				local result = vim.fn.system(command)
+				if vim.v.shell_error ~= 0 then
+					return "", result
+				end
+				return result, nil
+			end
+
 			vim.keymap.set("n", "<leader>ghr", function()
-				if vim.fn.input("Hard reset? (y/n)"):lower() ~= "y" then
+				local current_branch = vim.fn.FugitiveHead()
+
+				local upstream, err = run_git_command("git rev-parse --abbrev-ref --symbolic-full-name @{upstream}")
+				if upstream == "" and err ~= nil and err:match("fatal: no upstream configured for branch '") then
+					upstream = vim.fn.input(
+						"Upstream not found for branch '" .. current_branch .. "'.\nSet upstream: ",
+						"origin/" .. current_branch
+					)
+					_, err = run_git_command("git branch --set-upstream-to=" .. upstream .. " " .. current_branch)
+					if err ~= nil then
+						vim.notify(err, vim.log.levels.ERROR)
+						return
+					end
+					return
+				elseif err ~= nil then
+					vim.notify(err, vim.log.levels.ERROR)
 					return
 				end
-				vim.cmd("Git fetch --prune --all")
-				vim.cmd("Git stash")
-				vim.cmd("Git reset --hard @{upstream}")
+
+				if vim.fn.input("Hard reset? (y/n) "):lower() ~= "y" then
+					return
+				end
+
+				local result = ""
+				result, err = run_git_command("git fetch --prune --all")
+				if err ~= nil then
+					vim.notify(err, vim.log.levels.ERROR)
+					return
+				end
+				vim.notify(result, vim.log.levels.INFO)
+
+				result, err = run_git_command("git stash")
+				if err ~= nil then
+					vim.notify(err, vim.log.levels.ERROR)
+					return
+				end
+				vim.notify("git stash\n" .. result, vim.log.levels.INFO)
+
+				result, err = run_git_command("git reset --hard " .. upstream)
+				if err ~= nil then
+					vim.notify(err, vim.log.levels.ERROR)
+					return
+				end
+				vim.cmd("Git")
+				vim.notify("git reset --hard " .. upstream .. result, vim.log.levels.INFO)
 			end, {
 				desc = "[G]it [H]ard [R]eset",
 			})
 
-			vim.keymap.set(
-				"n",
-				"<leader>gA",
-				":Git commit --amend --no-edit -s --allow-empty<CR>",
-				{ desc = "[G]it Commit [A]mend" }
-			)
-
-			vim.keymap.set("n", "<leader>gac", function()
-				local input = vim.fn.input("git add . ; git commit -m <msg> -s\nCommit message: ")
-				if input:match("^%s*(.-)%s*$") == "" then
-					vim.notify("Empty commit message. Aborting commit", vim.log.levels.WARN)
+			vim.keymap.set("n", "<leader>gA", function()
+				local result, err = run_git_command("git commit --amend --no-edit -s --allow-empty")
+				if err ~= nil then
+					vim.notify(err, vim.log.levels.ERROR)
 					return
 				end
-				vim.cmd("Git add .")
-				vim.cmd("Git commit  -m '" .. input .. "' -s")
-			end, {
-				desc = "[G]it Add All [C]ommit",
-			})
+				vim.cmd("Git")
+				vim.notify(result, vim.log.levels.INFO)
+			end, { desc = "[G]it Commit [A]mend" })
 
 			vim.keymap.set("n", "<leader>gc", function()
 				local input = vim.fn.input("git commit -m <msg> -s\nCommit message: ")
@@ -45,7 +83,14 @@ return {
 					vim.notify("Empty commit message. Aborting commit", vim.log.levels.WARN)
 					return
 				end
-				vim.cmd("Git commit  -m '" .. input .. "' -s")
+
+				local result, err = run_git_command("git commit -m '" .. input .. "' -s")
+				if err ~= nil then
+					vim.notify(err, vim.log.levels.ERROR)
+					return
+				end
+				vim.cmd("Git")
+				vim.notify(result, vim.log.levels.INFO)
 			end, {
 				desc = "[G]it [C]ommit",
 			})

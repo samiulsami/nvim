@@ -47,7 +47,6 @@ vim.diagnostic.config({
 			return diagnostic_message[diagnostic.severity]
 		end,
 	},
-	temp,
 })
 
 vim.schedule(function()
