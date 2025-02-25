@@ -115,8 +115,8 @@ return {
 		optional = true,
 		-- stylua: ignore
 		keys = {
-			{ "<leader>st", function() Snacks.picker.todo_comments() end, desc = "Todo" },
-			{ "<leader>sT", function() Snacks.picker.todo_comments({ keywords = { "TODO", "FIX", "FIXME" } }) end, desc = "Todo/Fix/Fixme" },
+			{ "<leader>st", function() Snacks.picker.todo_comments({exclude = picker_ignore_patterns}) end, desc = "Todo" },
+			{ "<leader>sT", function() Snacks.picker.todo_comments({ exclude = picker_ignore_patterns, keywords = { "TODO", "FIX", "FIXME" }}) end, desc = "Todo/Fix/Fixme" },
 		},
 	},
 	{
