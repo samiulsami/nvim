@@ -31,7 +31,6 @@ return {
 						vim.notify(err, vim.log.levels.ERROR)
 						return
 					end
-					return
 				elseif err ~= nil then
 					vim.notify(err, vim.log.levels.ERROR)
 					return
