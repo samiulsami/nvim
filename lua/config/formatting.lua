@@ -7,7 +7,8 @@ vim.opt.fillchars:append({ vert = "|" })
 vim.opt.autoindent = true
 vim.opt.smartindent = true
 vim.opt.expandtab = true
-vim.opt.cursorline = false
+vim.opt.cursorline = true
+vim.opt.cursorcolumn = true
 vim.opt.laststatus = 2
 vim.opt.termguicolors = true
 

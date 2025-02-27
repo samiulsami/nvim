@@ -1,6 +1,7 @@
 return {
 	{
 		"akinsho/toggleterm.nvim",
+		--stylua: ignore
 		config = function()
 			require("toggleterm").setup({
 				size = 13,
@@ -18,7 +19,7 @@ return {
 				direction = "float",
 				float_opts = {
 					border = { " ", "─", " ", " ", " ", " ", " ", " " },
-					winblend = 16,
+					winblend = 13,
 					width = 999999,
 					height = 13,
 					row = 999999,
@@ -29,18 +30,6 @@ return {
 			})
 
 			vim.keymap.set("t", "<C-q>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
-			vim.keymap.set("t", "<C-h>", [[<Cmd>wincmd h<CR>]])
-			vim.keymap.set("t", "<C-j>", [[<Cmd>wincmd j<CR>]])
-			vim.keymap.set("t", "<C-k>", [[<Cmd>wincmd k<CR>]])
-			vim.keymap.set("t", "<C-l>", [[<Cmd>wincmd l<CR>]])
-			-- vim.keymap.set("t", "<C-w>", function()
-			-- 	local term = require("toggleterm.terminal").get(vim.b.toggle_number)
-			-- 	if term and term:is_open() then
-			-- 		term.close(term)
-			-- 	end
-			-- end)
-			--
-
 			vim.api.nvim_create_autocmd({
 				"TermEnter",
 			}, { pattern = "*", command = "set number" })

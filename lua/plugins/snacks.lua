@@ -12,7 +12,6 @@ return {
 			quickfile = { enabled = true },
 			statuscolumn = { enabled = true },
 			words = { enabled = true, debounce = 50 },
-			scratch = { enabled =  false},
 			picker = { enabled = true },
 			notifier = { enabled = true, timeout = 3000},
 			explorer = { enabled = true},

@@ -6,6 +6,16 @@ vim.api.nvim_del_keymap("n", "gra") -- Unbind LSP Code Actions
 vim.api.nvim_del_keymap("n", "grn") -- Unbind LSP Rename
 
 vim.keymap.set("n", "<ESC>", ":nohlsearch<CR>", { desc = "Remove Search Highlights" })
+local cursorXYGRP = vim.api.nvim_create_augroup("CursorXYGRP", { clear = true })
+vim.api.nvim_create_autocmd(
+	{ "BufEnter", "WinEnter", "InsertLeave" },
+	{ pattern = "*", command = "set cursorline cursorcolumn", group = cursorXYGRP }
+)
+vim.api.nvim_create_autocmd(
+	{ "WinLeave", "InsertEnter" },
+	{ pattern = "*", command = "set nocursorline nocursorcolumn", group = cursorXYGRP }
+)
+
 vim.keymap.set(
 	"n",
 	"<leader>h",
@@ -18,14 +28,8 @@ vim.keymap.set("n", "<F7>", function()
 end, { noremap = true, silent = true, desc = "Toggle line numbers" })
 
 -- Center the screen when moving half a page up or down
-vim.api.nvim_set_keymap("n", "<C-d>", "<C-d>zz", { noremap = true })
-vim.api.nvim_set_keymap("n", "<C-u>", "<C-u>zz", { noremap = true })
-
--- Remap window navigation keys
-vim.api.nvim_set_keymap("n", "<C-h>", "<C-w>h", { noremap = true })
-vim.api.nvim_set_keymap("n", "<C-j>", "<C-w>j", { noremap = true })
-vim.api.nvim_set_keymap("n", "<C-k>", "<C-w>k", { noremap = true })
-vim.api.nvim_set_keymap("n", "<C-l>", "<C-w>l", { noremap = true })
+-- vim.api.nvim_set_keymap("n", "<C-d>", "<C-d>zz", { noremap = true })
+-- vim.api.nvim_set_keymap("n", "<C-u>", "<C-u>zz", { noremap = true })
 
 -- Vertical split with <leader>-e
 vim.keymap.set("n", "<leader>e", ":vsplit<CR>", { noremap = true, silent = true })
@@ -54,7 +58,7 @@ vim.keymap.set("n", "<leader>RR", ":checktime<CR>", { noremap = true, silent = t
 vim.keymap.set("n", "<leader>vs", ":Sleuth<CR>", { noremap = true, silent = true, desc = "[V]im [S]leuth" })
 
 -- stylua: ignore
-function setup_tmux_compatible_pane_switching_and_resizing()
+local function setup_tmux_compatible_pane_switching_and_resizing()
 	local function move_or_tmux(direction, tmux_cmd)
 		local current_win = vim.api.nvim_get_current_win()
 		vim.cmd("wincmd " .. direction)

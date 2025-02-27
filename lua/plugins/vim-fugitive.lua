@@ -19,24 +19,15 @@ return {
 
 			vim.keymap.set("n", "<leader>ghr", function()
 				local current_branch = vim.fn.FugitiveHead()
-
-				local upstream, err = run_git_command("git rev-parse --abbrev-ref --symbolic-full-name @{upstream}")
-				if upstream == "" and err ~= nil and err:match("fatal: no upstream configured for branch '") then
-					upstream = vim.fn.input(
-						"Upstream not found for branch '" .. current_branch .. "'.\nSet upstream: ",
-						"origin/" .. current_branch
-					)
-					_, err = run_git_command("git branch --set-upstream-to=" .. upstream .. " " .. current_branch)
-					if err ~= nil then
-						vim.notify(err, vim.log.levels.ERROR)
-						return
-					end
-				elseif err ~= nil then
-					vim.notify(err, vim.log.levels.ERROR)
+				local upstream = vim.fn.input("Hard resetting... \nSet upstream: ", "origin/" .. current_branch)
+				if upstream:match("^%s*(.-)%s*$") == "" then
+					vim.notify("Aborting hard reset", vim.log.levels.WARN)
 					return
 				end
 
-				if vim.fn.input("Hard reset? (y/n) "):lower() ~= "y" then
+				local _, err = run_git_command("git branch --set-upstream-to=" .. upstream .. " " .. current_branch)
+				if err ~= nil then
+					vim.notify(err, vim.log.levels.ERROR)
 					return
 				end
 
@@ -60,7 +51,7 @@ return {
 					vim.notify(err, vim.log.levels.ERROR)
 					return
 				end
-				vim.cmd("Git")
+
 				vim.notify("git reset --hard " .. upstream .. result, vim.log.levels.INFO)
 			end, {
 				desc = "[G]it [H]ard [R]eset",
