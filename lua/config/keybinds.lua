@@ -23,11 +23,11 @@ vim.keymap.set(
 	{ noremap = true, silent = true, desc = "Toggle [H]over Diagnostic Float" }
 )
 
-vim.keymap.set("n", "<F7>", function()
+vim.keymap.set("n", "<leader>l", function()
 	vim.cmd("set number! relativenumber!")
 end, { noremap = true, silent = true, desc = "Toggle line numbers" })
 
--- Center the screen when moving half a page up or down
+-- (Rendered unnecessary by NeoScroll) Center the screen when moving half a page up or down
 -- vim.api.nvim_set_keymap("n", "<C-d>", "<C-d>zz", { noremap = true })
 -- vim.api.nvim_set_keymap("n", "<C-u>", "<C-u>zz", { noremap = true })
 
