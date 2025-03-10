@@ -36,6 +36,7 @@ return {
 						unselected = false,
 					},
 				},
+
 				sources = {
 					explorer = {
 						auto_close = false,
@@ -45,10 +46,18 @@ return {
 						config = function(opts)
 							return require("snacks.picker.source.explorer").setup(opts)
 						end,
+						win = {
+							list = {
+								wo = {
+									number = true,
+									relativenumber = true,
+								},
+							},
+						},
 					},
 				},
+
 				win = {
-					-- input window
 					input = {
 						keys = {
 							["<a-d>"] = { "preview_scroll_down", mode = { "i", "n" } },
@@ -56,6 +65,10 @@ return {
 						},
 					},
 					list = {
+						wo = {
+							number = true,
+							relativenumber = true,
+						},
 						keys = {
 							["<ESC>"] = { "", mode = { "i", "n" } },
 						},

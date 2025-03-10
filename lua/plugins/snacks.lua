@@ -14,7 +14,7 @@ return {
 			words = { enabled = true, debounce = 50 },
 			picker = { enabled = true },
 			notifier = { enabled = true, timeout = 3000},
-			explorer = { enabled = true},
+			explorer = { enabled = true },
 		},
 		--stylua: ignore
 		keys = {
