@@ -18,6 +18,11 @@ return {
 			vim.api.nvim_set_hl(0, "LspReferenceRead", { bold = true, underline = true })
 			vim.api.nvim_set_hl(0, "LspReferenceWrite", { bold = true, underline = true })
 
+			vim.api.nvim_set_hl(0, "DiagnosticVirtualTextError", { fg = "#d75f5f", bold = true })
+			vim.api.nvim_set_hl(0, "DiagnosticVirtualTextWarn", { fg = "#d7af5f", bold = true })
+			vim.api.nvim_set_hl(0, "DiagnosticVirtualTextInfo", { fg = "#5f87d7", bold = true })
+			vim.api.nvim_set_hl(0, "DiagnosticVirtualTextHint", { fg = "#5fd7d7", bold = true })
+
 			vim.api.nvim_set_hl(0, "SymbolUsageRounding", { italic = true })
 			vim.api.nvim_set_hl(0, "SymbolUsageContent", { fg = "#aaaaaa", italic = true })
 			vim.api.nvim_set_hl(0, "SymbolUsageRef", { fg = "#ff6666", italic = true })

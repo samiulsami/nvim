@@ -54,7 +54,7 @@ return {
 			luasnip.config.setup({})
 
 			-- https://github.com/hrsh7th/nvim-cmp/discussions/609#discussioncomment-5727678
-			formatting = {
+			local formatting = {
 				fields = {
 					"abbr",
 					-- "menu",
