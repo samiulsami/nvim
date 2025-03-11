@@ -39,9 +39,13 @@ return {
 
 				sources = {
 					explorer = {
-						auto_close = false,
-						jump = { close = false },
-						layout = { preset = "sidebar", preview = false },
+						auto_close = true,
+						jump = { close = true },
+						layout = {
+							preset = "ivy",
+							layout = { position = "left" },
+							preview = true,
+						},
 						matcher = { sort_empty = false, fuzzy = true },
 						config = function(opts)
 							return require("snacks.picker.source.explorer").setup(opts)
@@ -71,6 +75,14 @@ return {
 						},
 						keys = {
 							["<ESC>"] = { "", mode = { "i", "n" } },
+							["<A-h>"] = {
+								function()
+									vim.cmd("vertical resize -4")
+								end,
+								mode = { "i", "n" },
+							},
+							["<A-u>"] = "preview_scroll_up",
+							["<A-d>"] = "preview_scroll_down",
 						},
 					},
 				},
