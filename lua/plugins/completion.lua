@@ -38,12 +38,6 @@ return {
 			"hrsh7th/cmp-path",
 			"hrsh7th/cmp-cmdline",
 			"Snikimonkd/cmp-go-pkgs",
-			{
-				"petertriho/cmp-git",
-				config = function()
-					require("cmp_git").setup()
-				end,
-			},
 			"onsails/lspkind.nvim",
 		},
 
@@ -139,6 +133,7 @@ return {
 						winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
 					},
 				},
+
 				matching = {
 					disallow_symbol_nonprefix_matching = false,
 				},
@@ -151,7 +146,6 @@ return {
 					{ name = "path", keyword_length = 3, max_item_count = 5 },
 					{ name = "cmdline", keyword_length = 2, max_item_count = 5 },
 					{ name = "lazydev", priority = 1001 },
-					{ name = "git", max_item_count = 5 },
 					{ name = "nvim_lsp", priority = 1000, keyword_length = 2, max_item_count = 20 },
 					buffer_source,
 				}),
