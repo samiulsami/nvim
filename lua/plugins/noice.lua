@@ -17,18 +17,18 @@ return {
 					view_history = "messages",
 				},
 				routes = {
+					{
+						view = "cmdline",
+						filter = { event = "msg_showmode" },
+					},
+
 					-- { filter = { find = "E162" }, view = "mini" },
 					-- { filter = { event = "msg_show", kind = "", find = "written" }, view = "mini" },
 					-- { filter = { event = "emsg", find = "E23" }, opts = { skip = true } },
 					-- { filter = { event = "emsg", find = "E20" }, opts = { skip = true } },
 					-- { filter = { find = "No signature help" }, opts = { skip = true } },
 					-- { filter = { find = "E37" }, opts = { skip = true } },
-					--
-					-- {
-					-- 	view = "cmdline",
-					-- 	filter = { event = "msg_showmode" },
-					-- },
-					--
+
 					-- { -- pipe undo/redo messages into mini view
 					-- 	filter = {
 					-- 		event = "msg_show",
