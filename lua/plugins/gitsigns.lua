@@ -7,6 +7,8 @@ return {
 		config = function()
 			local on_attach = function(bufnr)
 				local gitsigns = require("gitsigns")
+
+				vim.keymap.set("n", "<leader>gb", gitsigns.blame, { desc = "[G]it [B]lame" })
 				vim.keymap.set(
 					"n",
 					"<leader>gtb",
@@ -23,8 +25,21 @@ return {
 					opts.buffer = bufnr
 					vim.keymap.set(mode, l, r, opts)
 				end
+				map("n", "]c", function()
+					if vim.wo.diff then
+						vim.cmd.normal({ "]c", bang = true })
+					else
+						gitsigns.nav_hunk("next")
+					end
+				end)
 
-				map("n", "<leader>gtd", gitsigns.toggle_deleted, { desc = "[G]it [T]oggle [D]eleted" })
+				map("n", "[c", function()
+					if vim.wo.diff then
+						vim.cmd.normal({ "[c", bang = true })
+					else
+						gitsigns.nav_hunk("prev")
+					end
+				end)
 
 				map("n", "<leader>hs", gitsigns.stage_hunk, { desc = "Git [H]unk [S]tage" })
 				map("n", "<leader>hr", gitsigns.reset_hunk, { desc = "Git [H]unk [R]eset" })
@@ -35,17 +50,32 @@ return {
 					gitsigns.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
 				end, { desc = "Git [H]unk [R]eset" })
 				map("n", "<leader>hS", gitsigns.stage_buffer, { desc = "Git [H]unk [S]tage Buffer" })
-				map("n", "<leader>hu", gitsigns.undo_stage_hunk, { desc = "Git [H]unk [U]ndo Stage Hunk" })
 				map("n", "<leader>hR", gitsigns.reset_buffer, { desc = "Git [H]unk [R]eset Buffer" })
 				map("n", "<leader>hp", gitsigns.preview_hunk, { desc = "Git [H]unk [P]review" })
+				map("n", "<leader>hi", gitsigns.preview_hunk_inline, { desc = "Git [H]unk [I]nline Preview " })
+
+				map("n", "<leader>hd", function()
+					gitsigns.diffthis("~", {
+						vertical = true,
+						split = "botright",
+					})
+				end, { expr = true, desc = "Git [H]unk [D]iff" })
+
+				map("n", "<leader>hQ", function()
+					gitsigns.setqflist("all")
+				end, { desc = "Git [H]unk [Q]uickfixList ALL" })
+
+				map("n", "<leader>hq", gitsigns.setqflist, { desc = "Git [H]unk [Q]uickfixList" })
+
+				map({ "o", "x" }, "ih", gitsigns.select_hunk)
 			end
 
 			require("gitsigns").setup({
 				signs = {
-					add = { text = "┃" }, -- Sign for added lines
-					change = { text = "┃" }, -- Sign for changed lines
-					delete = { text = "✖" }, -- Sign for deleted lines
-					topdelete = { text = "✖" }, -- Sign for deleted lines at the top
+					add = { text = "+" }, -- Sign for added lines
+					change = { text = "~" }, -- Sign for changed lines
+					delete = { text = "-" }, -- Sign for deleted lines
+					topdelete = { text = "-" }, -- Sign for deleted lines at the top
 					changedelete = { text = "≃" }, -- Sign for changed lines that were deleted
 				},
 				numhl = true, -- Highlight line numbers

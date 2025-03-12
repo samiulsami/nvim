@@ -22,44 +22,44 @@ return {
 						filter = { event = "msg_showmode" },
 					},
 
-					-- { filter = { find = "E162" }, view = "mini" },
-					-- { filter = { event = "msg_show", kind = "", find = "written" }, view = "mini" },
-					-- { filter = { event = "emsg", find = "E23" }, opts = { skip = true } },
-					-- { filter = { event = "emsg", find = "E20" }, opts = { skip = true } },
-					-- { filter = { find = "No signature help" }, opts = { skip = true } },
-					-- { filter = { find = "E37" }, opts = { skip = true } },
+					{ filter = { find = "E162" }, view = "mini" },
+					{ filter = { event = "msg_show", kind = "", find = "written" }, view = "mini" },
+					{ filter = { event = "emsg", find = "E23" }, opts = { skip = true } },
+					{ filter = { event = "emsg", find = "E20" }, opts = { skip = true } },
+					{ filter = { find = "No signature help" }, opts = { skip = true } },
+					{ filter = { find = "E37" }, opts = { skip = true } },
 
-					-- { -- pipe undo/redo messages into mini view
-					-- 	filter = {
-					-- 		event = "msg_show",
-					-- 		cond = function(message)
-					-- 			return (message:content():match("change") or message:content():match("line"))
-					-- 				and (message:content():match("before") or message:content():match("after"))
-					-- 		end,
-					-- 		max_height = 1,
-					-- 	},
-					-- 	view = "mini",
-					-- },
-					-- { -- filter out buffer change messages and messages that contain the current buffer
-					-- 	filter = {
-					-- 		event = "msg_show",
-					-- 		cond = function(message)
-					-- 			return message:content():find(vim.fn.expand("%"))
-					-- 		end,
-					-- 		max_height = 1,
-					-- 	},
-					-- 	skip = true,
-					-- },
-					-- { -- filter out messages that contain the home directory
-					-- 	filter = {
-					-- 		event = "msg_show",
-					-- 		cond = function(message)
-					-- 			return message:content():find(vim.fn.expand("~"))
-					-- 		end,
-					-- 		max_height = 1,
-					-- 	},
-					-- 	skip = true,
-					-- },
+					{ -- pipe undo/redo messages into mini view
+						filter = {
+							event = "msg_show",
+							cond = function(message)
+								return (message:content():match("change") or message:content():match("line"))
+									and (message:content():match("before") or message:content():match("after"))
+							end,
+							max_height = 1,
+						},
+						view = "mini",
+					},
+					{ -- filter out buffer change messages and messages that contain the current buffer
+						filter = {
+							event = "msg_show",
+							cond = function(message)
+								return message:content():find(vim.fn.expand("%"))
+							end,
+							max_height = 1,
+						},
+						skip = true,
+					},
+					{ -- filter out messages that contain the home directory
+						filter = {
+							event = "msg_show",
+							cond = function(message)
+								return message:content():find(vim.fn.expand("~"))
+							end,
+							max_height = 1,
+						},
+						skip = true,
+					},
 				},
 
 				-- you can enable a preset for easier configuration

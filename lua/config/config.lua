@@ -1,5 +1,6 @@
 vim.opt.updatetime = 50
-
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 vim.opt.isfname:append("@-@")
 vim.opt.autoread = true
 vim.opt.swapfile = false
@@ -11,7 +12,7 @@ vim.opt.mouse = "a"
 vim.opt.grepprg = "rg --vimgrep --no-heading --smart-case"
 vim.opt.grepformat = "%f:%l:%m"
 vim.opt.cmdheight = 0
-vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+vim.o.sessionoptions = "buffers,curdir,folds,help,tabpages,winsize,winpos,terminal"
 
 vim.diagnostic.config({
 	severity_sort = true,

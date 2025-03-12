@@ -1,7 +1,6 @@
 return {
 	{
 		"hrsh7th/nvim-cmp",
-		event = { "InsertEnter", "CmdlineEnter" },
 		dependencies = {
 			{
 				"L3MON4D3/LuaSnip",
@@ -11,6 +10,7 @@ return {
 					end
 					return "make install_jsregexp"
 				end)(),
+
 				dependencies = {
 					{
 						"rafamadriz/friendly-snippets",
@@ -111,6 +111,19 @@ return {
 						luasnip.jump(-1)
 					end, { "i", "s" }),
 				}),
+				sorting = {
+					comparators = {
+						compare.recently_used,
+						compare.exact,
+						compare.score,
+						compare.locality,
+						compare.offset,
+						compare.kind,
+						compare.sort_text,
+						compare.length,
+						compare.order,
+					},
+				},
 				sources = {
 					{ name = "go_pkgs", keyword_length = 2, priority = 1000 },
 					{ name = "nvim_lsp", keyword_length = 2, max_item_count = 10 },
@@ -149,6 +162,16 @@ return {
 					{ name = "nvim_lsp", priority = 1000, keyword_length = 2, max_item_count = 20 },
 					buffer_source,
 				}),
+				comparators = {
+					compare.recently_used,
+					compare.exact,
+					compare.score,
+					compare.kind,
+					compare.offset,
+					compare.sort_text,
+					compare.length,
+					compare.order,
+				},
 				formatting = formatting,
 				matching = { disallow_symbol_nonprefix_matching = false },
 			})

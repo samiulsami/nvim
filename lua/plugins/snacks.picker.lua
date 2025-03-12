@@ -39,11 +39,12 @@ return {
 
 				sources = {
 					explorer = {
+						enabled = false,
 						auto_close = true,
 						jump = { close = true },
 						layout = {
-							preset = "ivy",
-							layout = { position = "left" },
+							preset = "default",
+							layout = { position = "float" },
 							preview = true,
 						},
 						matcher = { sort_empty = false, fuzzy = true },
@@ -91,10 +92,10 @@ return {
 
 		-- stylua: ignore
 		keys = {
-			{ "<leader><space>", function() Snacks.picker.smart({hidden = true, ignored = true}) end, desc = "Smart Find Files" },
+			{ "<leader>ff", function() Snacks.picker.smart({hidden = true, ignored = true}) end, desc = "Smart Find Files" },
 			{ "<leader>,", function() Snacks.picker.buffers({hidden = true, ignored = true}) end, desc = "Buffers" },
 			{ "<leader>sn", function() Snacks.picker.notifications() end, desc = "Notification History" },
-			{ "<leader>p", function() Snacks.explorer() end, desc = "[P]roject View" },
+			-- { "<leader>p", function() Snacks.explorer() end, desc = "[P]roject View" },
 
 			{ "<leader>sf", function() Snacks.picker.files({exclude = picker_ignore_patterns, hidden = true, ignored = true}) end, desc = "Search Files" },
 			{ "<leader>sF", function() Snacks.picker.files({title = "Search All Files", hidden = true, ignored = true}) end, desc = "ALL Search Files" },
@@ -105,7 +106,7 @@ return {
 
 			{ "<leader>fg", function() Snacks.picker.git_files() end, desc = "Find Git Files" },
 			{ "<leader>sp", function() Snacks.picker.projects() end, desc = "Projects" },
-			{ "<leader>ff", function() Snacks.picker.recent({hidden = true, ignored = true}) end, desc = "Recent" },
+			{ "<leader><space>", function() Snacks.picker.recent({hidden = true, ignored = true}) end, desc = "Recent" },
 
 			{ "<leader>/", function() Snacks.picker.lines() end, desc = "Buffer Lines" },
 			{ '<leader>s"', function() Snacks.picker.registers() end, desc = "Registers" },
