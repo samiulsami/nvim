@@ -5,6 +5,8 @@ return {
 			"nvim-lua/plenary.nvim", -- Required dependency
 		},
 		config = function()
+			vim.api.nvim_del_keymap("n", "<leader>h")
+
 			local on_attach = function(bufnr)
 				local gitsigns = require("gitsigns")
 
@@ -59,7 +61,7 @@ return {
 						vertical = true,
 						split = "botright",
 					})
-				end, { expr = true, desc = "Git [H]unk [D]iff" })
+				end, { desc = "Git [H]unk [D]iff" })
 
 				map("n", "<leader>hQ", function()
 					gitsigns.setqflist("all")
