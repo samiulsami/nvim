@@ -53,6 +53,18 @@ return {
 				":LspRestart<CR>",
 				{ noremap = true, silent = true, desc = "[R]efresh [L]sp" }
 			)
+
+			vim.lsp.inlay_hint.enable(true)
+			vim.keymap.set("n", "<leader>th", function()
+				local hinstsEnabled = vim.lsp.inlay_hint.is_enabled()
+				vim.lsp.inlay_hint.enable(not hinstsEnabled)
+				if not hinstsEnabled then
+					vim.notify("Inlay hints enabled")
+				else
+					vim.notify("Inlay hints disabled")
+				end
+			end, { desc = "[T]oggle Inlay [H]ints" })
+
 			vim.api.nvim_set_hl(0, "LspReferenceText", { bold = true, underline = true })
 			vim.api.nvim_set_hl(0, "LspReferenceRead", { bold = true, underline = true })
 			vim.api.nvim_set_hl(0, "LspReferenceWrite", { bold = true, underline = true })

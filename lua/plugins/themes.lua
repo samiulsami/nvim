@@ -27,6 +27,7 @@ return {
 			vim.api.nvim_set_hl(0, "SymbolUsageContent", { fg = "#aaaaaa", italic = true })
 			vim.api.nvim_set_hl(0, "SymbolUsageRef", { fg = "#ff6666", italic = true })
 			vim.api.nvim_set_hl(0, "SymbolUsageImpl", { fg = "#6666ff", italic = true })
+			vim.api.nvim_set_hl(0, "LspInlayHint", { fg = "#5f6b68", bg = "#1f1b18", underline = true, italic = true })
 
 			vim.api.nvim_set_hl(0, "FlashLabel", { fg = "#ffffff", bg = "#000000", bold = true, italic = true })
 		end,
