@@ -53,6 +53,9 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 vim.keymap.set("n", "]q", ":cnext<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "[q", ":cprevious<CR>", { noremap = true, silent = true })
 
+vim.keymap.set("n", "]t", ":tabnext<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "[t", ":tabprevious<CR>", { noremap = true, silent = true })
+
 vim.keymap.set("n", "<leader>RR", ":checktime<CR>", { noremap = true, silent = true, desc = "[R]efresh buffer" })
 
 vim.keymap.set("n", "<leader>vs", ":Sleuth<CR>", { noremap = true, silent = true, desc = "[V]im [S]leuth" })
