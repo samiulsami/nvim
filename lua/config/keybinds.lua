@@ -18,7 +18,7 @@ vim.api.nvim_create_autocmd(
 
 vim.keymap.set(
 	"n",
-	"<leader>h",
+	"<leader>H",
 	vim.diagnostic.open_float,
 	{ noremap = true, silent = true, desc = "Toggle [H]over Diagnostic Float" }
 )

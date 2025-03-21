@@ -5,8 +5,6 @@ return {
 			"nvim-lua/plenary.nvim", -- Required dependency
 		},
 		config = function()
-			vim.api.nvim_del_keymap("n", "<leader>h")
-
 			local on_attach = function(bufnr)
 				local gitsigns = require("gitsigns")
 
