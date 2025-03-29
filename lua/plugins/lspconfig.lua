@@ -54,7 +54,7 @@ return {
 				{ noremap = true, silent = true, desc = "[R]efresh [L]sp" }
 			)
 
-			vim.lsp.inlay_hint.enable(true)
+			vim.lsp.inlay_hint.enable(false)
 			vim.keymap.set("n", "<leader>th", function()
 				local hinstsEnabled = vim.lsp.inlay_hint.is_enabled()
 				vim.lsp.inlay_hint.enable(not hinstsEnabled)
