@@ -124,6 +124,7 @@ return {
 						luasnip.jump(-1)
 					end, { "i", "s" }),
 				}),
+
 				sorting = {
 					comparators = {
 						compare.recently_used,
