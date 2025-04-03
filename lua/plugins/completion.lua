@@ -1,6 +1,8 @@
 return {
 	{
-		"hrsh7th/nvim-cmp",
+		"samiulsami/nvim-cmp",
+		branch = "feat/above",
+
 		dependencies = {
 			{
 				"L3MON4D3/LuaSnip",
@@ -106,6 +108,12 @@ return {
 			}
 
 			cmp.setup({
+				view = {
+					entries = {
+						vertical_positioning = "above",
+					},
+				},
+
 				snippet = {
 					expand = function(args)
 						luasnip.lsp_expand(args.body)
