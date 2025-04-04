@@ -4,8 +4,8 @@ return {
 		"neovim/nvim-lspconfig",
 		dependencies = {
 			{ "williamboman/mason.nvim", config = true },
-			"williamboman/mason-lspconfig.nvim",
-			"WhoIsSethDaniel/mason-tool-installer.nvim",
+			{ "williamboman/mason-lspconfig.nvim" },
+			{ "WhoIsSethDaniel/mason-tool-installer.nvim" },
 			{
 				"kevinhwang91/nvim-ufo",
 				dependencies = {
@@ -16,6 +16,7 @@ return {
 					vim.keymap.set("n", "zM", require("ufo").closeAllFolds)
 				end,
 			},
+			{ "hrsh7th/cmp-nvim-lsp" },
 			{ "b0o/schemastore.nvim" },
 			{ "j-hui/fidget.nvim", opts = {} },
 		},
