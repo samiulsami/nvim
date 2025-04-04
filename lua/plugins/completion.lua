@@ -36,7 +36,6 @@ return {
 			"dmitmel/cmp-cmdline-history",
 			"saadparwaiz1/cmp_luasnip",
 			"hrsh7th/cmp-buffer",
-			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-path",
 			"hrsh7th/cmp-cmdline",
 			"Snikimonkd/cmp-go-pkgs",
@@ -147,13 +146,13 @@ return {
 					},
 				},
 				sources = {
-					{ name = "go_pkgs", keyword_length = 2, priority = 1000 },
-					{ name = "nvim_lsp", keyword_length = 2, max_item_count = 10 },
+					{ name = "go_pkgs", keyword_length = 1, priority = 1000 },
+					{ name = "nvim_lsp", keyword_length = 1, max_item_count = 10 },
 					{ name = "path", keyword_length = 3, max_item_count = 10 },
 					buffer_source,
 					{
 						name = "luasnip",
-						keyword_length = 2,
+						keyword_length = 1,
 						option = { show_autosnippets = true },
 						max_item_count = 10,
 					},
@@ -171,15 +170,20 @@ return {
 
 				matching = {
 					disallow_symbol_nonprefix_matching = false,
+					disallow_fullfuzzy_matching = false,
+					disallow_fuzzy_matching = false,
+					disallow_partial_fuzzy_matching = false,
+					disallow_partial_matching = false,
+					disallow_prefix_unmatching = false,
 				},
 			})
 
 			cmp.setup.cmdline({ ":", "?", "/" }, {
 				mapping = cmp.mapping.preset.cmdline(),
 				sources = cmp.config.sources({
-					{ name = "cmdline_history", keyword_length = 2, max_item_count = 5 },
-					{ name = "path", keyword_length = 3, max_item_count = 5 },
-					{ name = "cmdline", keyword_length = 2, max_item_count = 5 },
+					{ name = "cmdline_history", keyword_length = 1, max_item_count = 5 },
+					{ name = "path", keyword_length = 1, max_item_count = 5 },
+					{ name = "cmdline", keyword_length = 1, max_item_count = 5 },
 					{ name = "lazydev", priority = 1001 },
 					{ name = "nvim_lsp", priority = 1000, keyword_length = 2, max_item_count = 20 },
 					buffer_source,
