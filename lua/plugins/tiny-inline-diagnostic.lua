@@ -22,5 +22,8 @@ return {
 		})
 
 		vim.diagnostic.config({ virtual_text = false })
+		vim.keymap.set("n", "<leader>td", function()
+			require("tiny-inline-diagnostic").toggle()
+		end, { noremap = true, desc = "[T]oggle tiny inline [D]iagnostic", silent = true })
 	end,
 }
