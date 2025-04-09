@@ -8,6 +8,11 @@ return {
 			post_hook = function()
 				vim.cmd("normal! zz")
 			end,
+			mappings = {
+				"<C-u>",
+				"<C-d>",
+				"zz",
+			},
 		})
 	end,
 }
