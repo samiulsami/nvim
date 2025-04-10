@@ -42,10 +42,6 @@ vim.api.nvim_set_keymap("c", "<C-n>", "<Down>", { noremap = true })
 
 vim.keymap.set("n", "J", "mzJ`z")
 
-vim.keymap.set("x", "p", '"_dp') -- paste without overwriting the register
-vim.keymap.set("x", "P", '"_dP') -- paste without overwriting the register
-vim.keymap.set("x", "<leader>p", "p") -- paste and overwrite the register
-
 --vim.keymap.set("n", "<leader>pv", vim.cmd.Ex) -- open netrw
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
