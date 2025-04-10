@@ -52,6 +52,13 @@ return {
 							end
 						end,
 					},
+					["<ESC>"] = {
+						mode = "n",
+						desc = "[T]oggle Oil [D]etails",
+						callback = function()
+							require("oil").close()
+						end,
+					},
 				},
 
 				skip_confirm_for_simple_edits = false,
