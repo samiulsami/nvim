@@ -1,27 +1,6 @@
 local cmp = require("cmp")
 local source = {}
-
--- Helper function to check if inside an import block (already updated)
-local check_if_inside_imports = function()
-	local cur_node = require("nvim-treesitter.ts_utils").get_node_at_cursor()
-	local is_in_string = false
-
-	while cur_node do
-		local node_type = cur_node:type()
-
-		if node_type == "interpreted_string_literal" then
-			is_in_string = true
-		end
-
-		if node_type == "import_declaration" then
-			return is_in_string
-		end
-
-		cur_node = cur_node:parent()
-	end
-
-	return false
-end
+local protocol = require("vim.lsp.protocol")
 
 source.new = function()
 	return setmetatable({}, { __index = source })
@@ -43,37 +22,63 @@ source.complete = function(self, request, callback)
 
 		local items = {}
 		for _, symbol in ipairs(result) do
-			local alias = symbol.containerName:match("([^/]+)$") or "A"
-			local import_stmt = string.format('%s "%s"', alias, symbol.containerName)
-
-			-- Add items to completion list
 			table.insert(items, {
 				label = symbol.name,
-				kind = symbol.kind,
-				detail = symbol.containerName,
-				documentation = symbol.location.uri,
-				sortText = "z" .. symbol.name,
-
-				-- Resolve function for inserting import or usage
-				resolve = function(completion_item, resolve_callback)
-					if check_if_inside_imports() then
-						-- Inside import block: Insert import statement
-						completion_item.insertText = import_stmt
-					else
-						-- Outside import block: Insert symbol with alias
-						completion_item.insertText = alias .. "." .. symbol.name
-					end
-
-					resolve_callback(completion_item)
-				end,
-
-				-- Insert symbol content on selection
-				insertTextFormat = 1, -- PlainText
+				kind = protocol.SymbolKind[symbol.kind] or "Unknown",
+				detail = "[" .. symbol.containerName .. "]",
+				data = symbol,
 			})
 		end
 
 		callback({ items = items, isIncomplete = false })
 	end)
+end
+
+function source:resolve(completion_item, callback)
+	local symbol = completion_item.data
+	if not symbol or not symbol.location then
+		return callback(completion_item)
+	end
+
+	local path = vim.uri_to_fname(symbol.location.uri)
+	local line = symbol.location.range.start.line
+
+	local lines = {}
+	local fd = io.open(path, "r")
+	if fd then
+		for file_line in fd:lines() do
+			table.insert(lines, file_line)
+		end
+		fd:close()
+	end
+
+	local docs = {}
+	for i = line - 1, 1, -1 do
+		local l = lines[i]
+		-- if l:match("^%s*//") then
+		table.insert(docs, l)
+		-- elseif l:match("^%s*$") then
+		-- 	-- skip blank lines
+		-- else
+		-- 	break
+		-- end
+	end
+
+	if #docs > 0 then
+		completion_item.documentation = {
+			kind = "markdown",
+			value = table.concat(docs, "\n"),
+		}
+	end
+
+	callback(completion_item)
+end
+
+---Executed after the item was selected.
+---@param completion_item lsp.CompletionItem
+---@param callback fun(completion_item: lsp.CompletionItem|nil)
+function source:execute(completion_item, callback)
+	callback(completion_item)
 end
 
 cmp.register_source("gosymbols", source)

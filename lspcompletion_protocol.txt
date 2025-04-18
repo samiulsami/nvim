@@ -1,0 +1,1 @@
+/usr/local/share/nvim/runtime/lua/vim/lsp/_meta
