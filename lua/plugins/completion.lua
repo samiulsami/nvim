@@ -43,6 +43,7 @@ return {
 		},
 
 		config = function()
+			require("cmp_gosymbols")
 			local cmp = require("cmp")
 			local luasnip = require("luasnip")
 			local compare = require("cmp.config.compare")
@@ -146,17 +147,18 @@ return {
 					},
 				},
 				sources = {
-					{ name = "go_pkgs", keyword_length = 1, priority = 1000 },
-					{ name = "nvim_lsp", keyword_length = 1, max_item_count = 10 },
-					{ name = "path", keyword_length = 3, max_item_count = 10 },
-					buffer_source,
-					{
-						name = "luasnip",
-						keyword_length = 1,
-						option = { show_autosnippets = true },
-						max_item_count = 10,
-					},
-					{ name = "lazydev", group_index = 0, max_item_count = 10 },
+					-- { name = "go_pkgs", keyword_length = 1, priority = 1000 },
+					-- { name = "nvim_lsp", keyword_length = 1, max_item_count = 10 },
+					-- { name = "path", keyword_length = 3, max_item_count = 10 },
+					-- buffer_source,
+					-- {
+					-- 	name = "luasnip",
+					-- 	keyword_length = 1,
+					-- 	option = { show_autosnippets = true },
+					-- 	max_item_count = 10,
+					-- },
+					-- { name = "lazydev", group_index = 0, max_item_count = 10 },
+					{ name = "gosymbols", keyword_length = 1, priority = 1000 },
 				},
 				formatting = formatting,
 				window = {
