@@ -13,7 +13,7 @@ return {
 		use_git_branch = true,
 		restore_error_handler = function(error_msg)
 			vim.notify(error_msg, vim.log.levels.ERROR)
-			return true
+			return false
 		end,
 	},
 	--stylua: ignore

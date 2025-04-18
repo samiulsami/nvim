@@ -1,7 +1,7 @@
 return {
 	clangd = { -- Add clangd here
 		cmd = { "clangd" },
-		filetypes = { "c", "cpp", "objc", "objcpp" }, -- Supported file types
+		filetypes = { "c", "cpp", "objc", "objcpp" }, -- Supported filetypes
 		root_dir = require("lspconfig.util").root_pattern("compile_commands.json", "Makefile", ".git"), -- Determine the root directory
 		settings = {
 			clangd = {
@@ -24,7 +24,7 @@ return {
 				end
 			end
 			if mod_cache and fname:sub(1, #mod_cache) == mod_cache then
-				local clients = require("lspconfig.util").get_lsp_clients({ name = "gopls" })
+				local clients = vim.lsp.get_clients({ name = "gopls" })
 				if #clients > 0 then
 					return clients[#clients].config.root_dir
 				end
@@ -114,6 +114,12 @@ return {
 			bashIde = {
 				globPattern = "*@(.sh|.inc|.bash|.command|Makefile)",
 			},
+		},
+	},
+
+	harper_ls = {
+		settings = {
+			["harper-ls"] = {},
 		},
 	},
 }
