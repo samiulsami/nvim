@@ -41,11 +41,3 @@ vim.opt.splitbelow = true
 
 vim.opt.list = true
 vim.opt.listchars = { tab = "| ", trail = "·", nbsp = "␣" }
-
-vim.api.nvim_create_autocmd("TextYankPost", {
-	desc = "Highlight when yanking (copying) text",
-	callback = function()
-		vim.highlight.on_yank()
-	end,
-	group = vim.api.nvim_create_augroup("highlight_yank_group", { clear = true }),
-})

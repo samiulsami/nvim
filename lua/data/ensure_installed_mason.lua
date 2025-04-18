@@ -1,4 +1,5 @@
 return {
+	"harper-ls",
 	"stylua",
 	"gomodifytags",
 	"cpplint",

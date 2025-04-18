@@ -1,5 +1,6 @@
 return {
 	"gbprod/yanky.nvim",
+	lazy = false,
 	opts = {
 		ring = {
 			update_register_on_cycle = true,
