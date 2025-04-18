@@ -116,10 +116,4 @@ return {
 			},
 		},
 	},
-
-	harper_ls = {
-		settings = {
-			["harper-ls"] = {},
-		},
-	},
 }
