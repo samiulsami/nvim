@@ -6,7 +6,7 @@ return {
 	"goimports",
 	"yamlfmt",
 	"clang-format",
-	"yaml-language-server",
+	-- "yaml-language-server",
 	"bash-language-server",
 	"json-lsp",
 	"fixjson",
