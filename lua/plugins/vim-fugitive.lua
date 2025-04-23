@@ -85,6 +85,48 @@ return {
 			})
 
 			vim.keymap.set("n", "<leader>gm", ":Git mergetool<CR>", { desc = "[G]it [M]ergetool" })
+
+			vim.keymap.set("n", "<leader>B", function()
+				local curPosXY = vim.api.nvim_win_get_cursor(0)
+				local cursorPosition = curPosXY[2]
+				local line = vim.api.nvim_get_current_line()
+
+				-- FIXME: More complex patterns don't work well with matchstrpos, find the best one
+				local pattern = [[\vhttps?://[a-zA-Z0-9._~:/?#@!$&'()*+,;=%-]+]]
+
+				local closest_url = ""
+
+				local pos = 0
+				while pos < #line do
+					local matchData = vim.fn.matchstrpos(line, pattern, pos)
+					local url = matchData[1]
+					local start = matchData[2]
+					local end_ = matchData[3]
+
+					if url == "" or start < 0 then
+						break
+					end
+
+					if start <= cursorPosition and end_ > cursorPosition then
+						closest_url = url
+						break
+					end
+
+					pos = end_ + 1
+				end
+
+				if closest_url == "" then
+					vim.notify("No URL found under cursor", vim.log.levels.WARN)
+					return
+				end
+
+				local modified_url = vim.fn.input("Confirm url: ", closest_url)
+				if modified_url == "" then
+					return
+				end
+
+				vim.cmd("GBrowse " .. modified_url)
+			end, { desc = "Open the URL under cursor in the cmdline with G[B]rowse" })
 		end,
 	},
 }
