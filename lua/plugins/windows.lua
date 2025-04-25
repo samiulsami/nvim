@@ -15,15 +15,9 @@ return {
 				},
 			})
 
-			vim.keymap.set("n", "<M-CR>", ":WindowsMaximize<CR>", { desc = "Toggle Windows" })
-			vim.keymap.set("n", "<C-w>_", ":WindowsMaximizeVertically<CR>", { desc = "Vertically Maximize Windows" })
-			vim.keymap.set(
-				"n",
-				"<c-w>|",
-				":WindowsMaximizeHorizontally<CR>",
-				{ desc = "Horizontally Maximize Windows" }
-			)
-			vim.keymap.set("n", "<c-w>=", ":WindowsEqualize<CR>", { desc = "Equalize Windows" })
+			vim.keymap.set("n", "<leader>z", ":WindowsMaximize<CR>", { desc = "Toggle Windows" })
+			vim.keymap.set("n", "<leader>=", ":WindowsEqualize<CR>", { desc = "Equalize Windows" })
+			vim.keymap.set("n", "<leader>O", ":only<CR>", { desc = "[O]nly Current Window" })
 		end,
 	},
 }
