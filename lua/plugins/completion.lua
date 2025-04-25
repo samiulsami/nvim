@@ -4,6 +4,7 @@ return {
 		branch = "feat/above",
 
 		dependencies = {
+			{ "samiulsami/cmp-go-deep" },
 			{
 				"L3MON4D3/LuaSnip",
 				build = (function()
@@ -147,7 +148,11 @@ return {
 				},
 				sources = {
 					{ name = "go_pkgs", keyword_length = 1, priority = 1000 },
-					{ name = "nvim_lsp", keyword_length = 1, max_item_count = 10 },
+					{
+						name = "nvim_lsp",
+						keyword_length = 1,
+						max_item_count = 10,
+					},
 					{ name = "path", keyword_length = 3, max_item_count = 10 },
 					buffer_source,
 					{
@@ -157,6 +162,18 @@ return {
 						max_item_count = 10,
 					},
 					{ name = "lazydev", group_index = 0, max_item_count = 10 },
+					{
+						name = "go_deep",
+						---@module "cmp_go_deep"
+						---@type cmp_go_deep.Options
+						option = {
+							get_documentation_implementation = "regex",
+							workspace_symbol_timeout_ms = 1500,
+						},
+						priority = 1000,
+						keyword_length = 1,
+						max_item_count = 5,
+					},
 				},
 				formatting = formatting,
 				window = {

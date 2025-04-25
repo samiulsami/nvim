@@ -43,9 +43,8 @@ return {
 						auto_close = true,
 						jump = { close = true },
 						layout = {
-							preset = "default",
-							layout = { position = "float" },
-							preview = true,
+							preset = "sidebar",
+							preview = false,
 						},
 						matcher = { sort_empty = false, fuzzy = true },
 						config = function(opts)

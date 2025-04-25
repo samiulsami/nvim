@@ -19,6 +19,7 @@ return {
 		--stylua: ignore
 		keys = {
 			{ "<leader>gp", function() Snacks.gitbrowse() end, { desc = "[G]ithub [P]review" } },
+			{ "<leader>P", function() Snacks.explorer.open() end, { desc = "snacks.explorer" } },
 		},
 	},
 }
