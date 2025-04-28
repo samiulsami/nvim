@@ -4,7 +4,9 @@ return {
 		branch = "feat/above",
 
 		dependencies = {
-			{ "samiulsami/cmp-go-deep" },
+			{
+				"samiulsami/cmp-go-deep",
+			},
 			{
 				"L3MON4D3/LuaSnip",
 				build = (function()
@@ -168,7 +170,8 @@ return {
 						---@type cmp_go_deep.Options
 						option = {
 							get_documentation_implementation = "regex",
-							workspace_symbol_timeout_ms = 1500,
+							timeout_notifications = false,
+							workspace_symbol_timeout_ms = 100,
 						},
 						priority = 1000,
 						keyword_length = 1,
