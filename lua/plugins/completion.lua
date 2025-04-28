@@ -6,6 +6,8 @@ return {
 		dependencies = {
 			{
 				"samiulsami/cmp-go-deep",
+				-- dir = "~/cmp_go_deep",
+				-- module = "cmp_go_deep",
 			},
 			{
 				"L3MON4D3/LuaSnip",
@@ -171,7 +173,7 @@ return {
 						option = {
 							get_documentation_implementation = "regex",
 							timeout_notifications = false,
-							workspace_symbol_timeout_ms = 100,
+							workspace_symbol_timeout_ms = 137,
 						},
 						priority = 1000,
 						keyword_length = 1,
