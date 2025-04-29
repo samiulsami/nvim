@@ -172,8 +172,9 @@ return {
 						---@type cmp_go_deep.Options
 						option = {
 							get_documentation_implementation = "regex",
+							add_import_statement_implementation = "gopls",
 							timeout_notifications = false,
-							workspace_symbol_timeout_ms = 137,
+							workspace_symbol_timeout_ms = 150,
 						},
 						priority = 1000,
 						keyword_length = 1,
