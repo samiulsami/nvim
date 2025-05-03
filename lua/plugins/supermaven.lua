@@ -9,6 +9,9 @@ return {
 					accept_word = "<c-k>",
 				},
 				log_level = "off",
+				condition = function()
+					return true
+				end,
 			})
 		end,
 	},

@@ -6,8 +6,10 @@ return {
 		dependencies = {
 			{
 				"samiulsami/cmp-go-deep",
-				-- dir = "~/cmp_go_deep",
-				-- module = "cmp_go_deep",
+				dependencies = {
+					"kkharji/sqlite.lua",
+				},
+				branch = "cache",
 			},
 			{
 				"L3MON4D3/LuaSnip",
@@ -172,12 +174,12 @@ return {
 						---@type cmp_go_deep.Options
 						option = {
 							get_documentation_implementation = "regex",
-							add_import_statement_implementation = "gopls",
 							timeout_notifications = false,
-							workspace_symbol_timeout_ms = 150,
+							documentation_wait_timeout_ms = 150,
+							debounce_ms = 100,
 						},
 						priority = 1000,
-						keyword_length = 1,
+						keyword_length = 3,
 						max_item_count = 5,
 					},
 				},
