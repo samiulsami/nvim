@@ -8,4 +8,4 @@ require("config.keybinds")
 require("config.profiling")
 require("config.lazy")
 
-require("custom-scripts.copy_path")
+require("utils.copy_path")

@@ -9,7 +9,6 @@ return {
 				dependencies = {
 					"kkharji/sqlite.lua",
 				},
-				branch = "cache",
 			},
 			{
 				"L3MON4D3/LuaSnip",
@@ -46,7 +45,6 @@ return {
 			"hrsh7th/cmp-path",
 			"hrsh7th/cmp-cmdline",
 			"Snikimonkd/cmp-go-pkgs",
-			"onsails/lspkind.nvim",
 		},
 
 		config = function()
@@ -176,10 +174,9 @@ return {
 							get_documentation_implementation = "regex",
 							timeout_notifications = false,
 							documentation_wait_timeout_ms = 150,
-							debounce_ms = 100,
+							debounce_cache_requests_ms = 200,
 						},
-						priority = 1000,
-						keyword_length = 3,
+						keyword_length = 1,
 						max_item_count = 5,
 					},
 				},
