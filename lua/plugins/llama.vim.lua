@@ -21,7 +21,6 @@ return {
 			if not llama_utils:status() then
 				vim.cmd("LlamaDisable")
 			else
-				vim.notify("Enabled llama.vim")
 				vim.cmd("LlamaEnable")
 				vim.api.nvim_set_hl(0, "llama_hl_hint", { fg = "#B59289", italic = true, ctermfg = 209 })
 			end
