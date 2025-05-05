@@ -174,7 +174,7 @@ return {
 							get_documentation_implementation = "regex",
 							timeout_notifications = false,
 							documentation_wait_timeout_ms = 150,
-							debounce_cache_requests_ms = 200,
+							debounce_cache_requests_ms = 300,
 						},
 						keyword_length = 1,
 						max_item_count = 5,

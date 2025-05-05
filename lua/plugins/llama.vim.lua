@@ -9,6 +9,7 @@ return {
 			endpoint = llama_utils.host .. ":" .. llama_utils.port .. "/infill",
 			max_line_suffix = 9999999,
 			auto_fim = true,
+			stop_strings = { "\n" },
 			keymap_accept_full = "<C-j>",
 			keymap_accept_line = "<C-k>",
 			ring_n_chunks = 2048,
