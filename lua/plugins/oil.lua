@@ -69,12 +69,10 @@ return {
 
 			vim.keymap.set("n", "<leader>p", function()
 				if vim.api.nvim_buf_get_name(0):match("oil:///") then
-					require("oil").close({ exit_if_last_buf = true })
+					require("oil").close()
 					return
 				end
-				require("oil").open(nil, {
-					preview = { vertical = true },
-				}, nil)
+				require("oil").open()
 			end, { desc = "Toggle Oil Project View" })
 		end,
 	},

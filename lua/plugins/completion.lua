@@ -151,21 +151,21 @@ return {
 					},
 				},
 				sources = {
-					{ name = "go_pkgs", keyword_length = 1, priority = 1000 },
+					{ name = "go_pkgs", keyword_length = 3, priority = 1000 },
 					{
 						name = "nvim_lsp",
 						keyword_length = 1,
-						max_item_count = 10,
+						max_item_count = 7,
 					},
-					{ name = "path", keyword_length = 3, max_item_count = 10 },
+					{ name = "path", keyword_length = 2, max_item_count = 10 },
 					buffer_source,
 					{
 						name = "luasnip",
-						keyword_length = 1,
+						keyword_length = 2,
 						option = { show_autosnippets = true },
-						max_item_count = 10,
+						max_item_count = 5,
 					},
-					{ name = "lazydev", group_index = 0, max_item_count = 10 },
+					{ name = "lazydev", group_index = 0, max_item_count = 5 },
 					{
 						name = "go_deep",
 						---@module "cmp_go_deep"
@@ -176,7 +176,7 @@ return {
 							documentation_wait_timeout_ms = 150,
 							debounce_cache_requests_ms = 300,
 						},
-						keyword_length = 1,
+						keyword_length = 3,
 						max_item_count = 5,
 					},
 				},
@@ -203,9 +203,9 @@ return {
 			cmp.setup.cmdline({ ":", "?", "/" }, {
 				mapping = cmp.mapping.preset.cmdline(),
 				sources = cmp.config.sources({
-					{ name = "cmdline_history", keyword_length = 1, max_item_count = 5 },
-					{ name = "path", keyword_length = 1, max_item_count = 5 },
-					{ name = "cmdline", keyword_length = 1, max_item_count = 5 },
+					{ name = "cmdline_history", keyword_length = 2, max_item_count = 5 },
+					{ name = "path", keyword_length = 2, max_item_count = 5 },
+					{ name = "cmdline", keyword_length = 2, max_item_count = 5 },
 					{ name = "lazydev", priority = 1001 },
 					{ name = "nvim_lsp", priority = 1000, keyword_length = 2, max_item_count = 20 },
 					buffer_source,

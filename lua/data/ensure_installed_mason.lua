@@ -12,5 +12,6 @@ return {
 	"fixjson",
 	"golangci-lint",
 	"gopls",
+	"delve",
 	"gofumpt",
 }
