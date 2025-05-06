@@ -5,13 +5,9 @@ return {
 	---@type AutoSession.Config
 	opts = {
 		suppressed_dirs = { "~/", "~/Projects", "~/Downloads", "/" },
-		cwd_change_handling = true,
-		continue_restore_on_error = true,
-		show_auto_restore_notif = true,
-		restore_error_handler = function(error_msg)
-			vim.notify(error_msg, vim.log.levels.ERROR)
-			return true
-		end,
+		cwd_change_handling = false,
+		continue_restore_on_error = false,
+		show_auto_restore_notif = false,
 	},
 	--stylua: ignore
 	keys = {
