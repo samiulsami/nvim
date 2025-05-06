@@ -6,15 +6,6 @@ vim.api.nvim_del_keymap("n", "gra") -- Unbind LSP Code Actions
 vim.api.nvim_del_keymap("n", "grn") -- Unbind LSP Rename
 
 vim.keymap.set("n", "<ESC>", ":nohlsearch<CR>", { desc = "Remove Search Highlights" })
-local cursorXYGRP = vim.api.nvim_create_augroup("CursorXYGRP", { clear = true })
-vim.api.nvim_create_autocmd(
-	{ "BufEnter", "WinEnter", "InsertLeave" },
-	{ pattern = "*", command = "set cursorline cursorcolumn", group = cursorXYGRP }
-)
-vim.api.nvim_create_autocmd(
-	{ "WinLeave", "InsertEnter" },
-	{ pattern = "*", command = "set nocursorline nocursorcolumn", group = cursorXYGRP }
-)
 
 vim.keymap.set(
 	"n",

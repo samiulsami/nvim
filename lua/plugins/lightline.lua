@@ -4,6 +4,15 @@ return {
 		local function trimString(s)
 			return s:match("^%s*(.-)%s*$")
 		end
+
+		function _G.LuaLineCurrentGitBranch()
+			local branchName = vim.fn["FugitiveHead"]()
+			if branchName ~= "" then
+				branchName = " " .. branchName
+			end
+			return branchName
+		end
+
 		function _G.LightlineShortenedPath()
 			local path = vim.fn.expand("%:p")
 			local homePattern = "^/*" .. vim.fn.expand("~")
@@ -47,7 +56,7 @@ return {
 		end
 
 		vim.g.lightline = {
-			colorscheme = "deus",
+			colorscheme = "simpleblack",
 			active = {
 				left = {
 					{ "mode", "paste" },
@@ -55,7 +64,7 @@ return {
 				},
 			},
 			component_function = {
-				gitbranch = "FugitiveHead",
+				gitbranch = "v:lua.LuaLineCurrentGitBranch",
 				shortenedpath = "v:lua.LightlineShortenedPath",
 			},
 			mode_map = {
