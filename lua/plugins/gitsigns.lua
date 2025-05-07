@@ -83,8 +83,12 @@ return {
 				word_diff = false, -- Enable word diff for inline changes
 				current_line_blame = true, -- Enable current line blame
 				current_line_blame_opts = {
-					delay = 100, -- Delay before displaying blame info
-					virt_text_pos = "right_align", -- Position of virtual text (eol, right, inline)
+					virt_text = true,
+					virt_text_pos = "eol", -- 'eol' | 'overlay' | 'right_align'
+					delay = 500,
+					ignore_whitespace = false,
+					virt_text_priority = 0,
+					use_focus = true,
 				},
 				on_attach = on_attach,
 			})

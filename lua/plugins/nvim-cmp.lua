@@ -39,23 +39,25 @@ return {
 					},
 				},
 			},
+			{ "b0o/schemastore.nvim" },
 			"dmitmel/cmp-cmdline-history",
 			"saadparwaiz1/cmp_luasnip",
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-path",
 			"hrsh7th/cmp-cmdline",
+			"hrsh7th/cmp-nvim-lsp",
 			"Snikimonkd/cmp-go-pkgs",
 		},
 
 		config = function()
 			local cmp = require("cmp")
+
 			local luasnip = require("luasnip")
 			local compare = require("cmp.config.compare")
 			luasnip.config.setup({})
 
 			-- https://github.com/hrsh7th/nvim-cmp/discussions/609#discussioncomment-5727678
 			local formatting = {
-
 				fields = {
 					"abbr",
 					-- "menu",
@@ -138,6 +140,7 @@ return {
 				}),
 
 				sorting = {
+					priority_weight = 1,
 					comparators = {
 						compare.recently_used,
 						compare.exact,

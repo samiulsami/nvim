@@ -7,5 +7,4 @@ require("config.formatting")
 require("config.keybinds")
 require("config.profiling")
 require("config.lazy")
-
-require("utils.copy_path")
+require("config.lspconfig")

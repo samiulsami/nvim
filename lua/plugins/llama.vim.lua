@@ -1,6 +1,5 @@
 return {
-	"samiulsami/llama.vim",
-	branch = "single-line",
+	"ggml-org/llama.vim",
 	init = function()
 		local llama_utils = require("utils.llama_utils")
 

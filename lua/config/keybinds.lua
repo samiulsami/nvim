@@ -5,6 +5,18 @@ vim.api.nvim_del_keymap("n", "gri") -- UNbind LSP [G]oto [I]implementation
 vim.api.nvim_del_keymap("n", "gra") -- Unbind LSP Code Actions
 vim.api.nvim_del_keymap("n", "grn") -- Unbind LSP Rename
 
+vim.keymap.set("n", "<leader>cp", function()
+	local directory_path = vim.fn.expand("%:p:h")
+	vim.fn.setreg("+", '"' .. directory_path .. '"')
+	vim.notify("'" .. directory_path .. "'\ncopied to clipboard", vim.log.levels.INFO)
+end, { noremap = true, silent = true, desc = "[C]opy [P]ath to current file directory" })
+
+vim.keymap.set("n", "<leader>cP", function()
+	local current_file_path = vim.fn.expand("%:p")
+	vim.fn.setreg("+", '"' .. current_file_path .. '"')
+	vim.notify("'" .. current_file_path .. "'\ncopied to clipboard", vim.log.levels.INFO)
+end, { noremap = true, silent = true, desc = "[C]opy [P]ath to current file" })
+
 vim.keymap.set("n", "<ESC>", ":nohlsearch<CR>", { desc = "Remove Search Highlights" })
 
 vim.keymap.set(
