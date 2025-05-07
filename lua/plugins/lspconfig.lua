@@ -37,7 +37,11 @@ return {
 				ensure_installed = ensure_installed,
 				run_on_start = false,
 			})
+			---@module "mason-lspconfig"
+			---@type MasonLspconfigSettings
 			require("mason-lspconfig").setup({
+				automatic_enable = nil,
+				ensure_installed = nil,
 				handlers = {
 					function(server_name)
 						local server = servers[server_name] or {}
