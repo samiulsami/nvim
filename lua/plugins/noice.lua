@@ -5,7 +5,6 @@ return {
 		dependencies = {
 			-- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
 			"MunifTanjim/nui.nvim",
-			commit = "13fbbcbe815c3bbbb8c5977a12cfb0b9318deaf8",
 		},
 		config = function()
 			require("noice").setup({

@@ -17,6 +17,19 @@ return {
 				lsp_format = lsp_format_opt,
 			}
 		end,
-		formatters_by_ft = require("data.formatters_by_ft"),
+		formatters_by_ft = {
+			lua = { "stylua" }, -- done
+			go = {
+				"gofumpt",
+				"goimports",
+				-- "golines",
+			},
+			cpp = { "clang-format" },
+			c = { "clang-format" },
+			yaml = { "yamlfix" },
+			json = { "fixjson" },
+			["*"] = { "codespell" },
+			["_"] = { "trim_whitespace" },
+		},
 	},
 }

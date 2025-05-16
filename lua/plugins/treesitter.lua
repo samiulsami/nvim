@@ -54,7 +54,7 @@ return {
 			--@type TSContext.UserConfig
 			require("treesitter-context").setup({
 				enable = true, -- Enable this plugin (can be toggled on/off)
-				max_lines = 4, -- How many lines the context window should show
+				max_lines = 1, -- How many lines the context window should show
 				trim_scope = "outer", -- Remove lines from outer context when exceeded
 				min_window_height = 0, -- Only show context if the window is larger than this value
 				mode = "cursor", -- Line used to calculate context ('cursor' or 'topline')

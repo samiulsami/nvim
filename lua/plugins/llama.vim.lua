@@ -1,6 +1,5 @@
 return {
-	"samiulsami/llama.vim",
-	branch = "single-line",
+	"ggml-org/llama.vim",
 	init = function()
 		local llama_utils = require("utils.llama_utils")
 
@@ -12,10 +11,7 @@ return {
 			stop_strings = { "\n" },
 			keymap_accept_full = "<C-j>",
 			keymap_accept_line = "<C-k>",
-			ring_n_chunks = 2048,
-			ring_chunk_Size = 2048,
-			ring_scope = 2048,
-			n_prefix = 2048,
+			n_prefix = 4096,
 		}
 
 		vim.defer_fn(function()
@@ -23,7 +19,11 @@ return {
 				vim.cmd("LlamaDisable")
 			else
 				vim.cmd("LlamaEnable")
-				vim.api.nvim_set_hl(0, "llama_hl_hint", { fg = "#C59289", italic = true, ctermfg = 209 })
+				vim.api.nvim_set_hl(
+					0,
+					"llama_hl_hint",
+					{ fg = "#A59289", bg = "#222222", italic = true, ctermfg = 209 }
+				)
 			end
 		end, 0)
 	end,

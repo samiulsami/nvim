@@ -20,13 +20,14 @@ return {
 					filename_bonus = true,
 					file_pos = true,
 					cwd_bonus = true,
+					history_bonus = true,
 					frecency = true,
 				},
 				ui_select = true,
 				formatters = {
 					file = {
 						filename_first = true,
-						truncate = 40,
+						truncate = 80,
 						filename_only = false,
 						icon_width = 2,
 						git_status_hl = true,
@@ -38,13 +39,39 @@ return {
 				},
 
 				sources = {
+					---@type snacks.picker.explorer.Config
 					explorer = {
 						enabled = false,
+						hidden = true,
 						auto_close = true,
 						jump = { close = true },
 						layout = {
-							preset = "sidebar",
 							preview = false,
+							layout = {
+								box = "horizontal",
+								backdrop = false,
+								width = 0.999,
+								height = 0.999,
+								border = "none",
+								{
+									box = "vertical",
+									{ win = "list", title = " Results ", title_pos = "center", border = "rounded" },
+									{
+										win = "input",
+										height = 1,
+										border = "rounded",
+										title = "{title} {live} {flags}",
+										title_pos = "center",
+									},
+								},
+								{
+									win = "preview",
+									title = "{preview:Preview}",
+									width = 0.55,
+									border = "rounded",
+									title_pos = "center",
+								},
+							},
 						},
 						matcher = { sort_empty = false, fuzzy = true },
 						config = function(opts)
@@ -74,7 +101,9 @@ return {
 							relativenumber = true,
 						},
 						keys = {
-							["<ESC>"] = { "", mode = { "i", "n" } },
+							["l"] = { "confirm", mode = { "i", "n" } },
+							["<C-p>"] = { "toggle_preview", mode = { "i", "n" } },
+							["<ESC>"] = { "close", mode = { "i", "n" } },
 							["<A-h>"] = {
 								function()
 									vim.cmd("vertical resize -4")
@@ -131,10 +160,10 @@ return {
 			{ "gr", function() Snacks.picker.lsp_references() end, nowait = true, desc = "References" },
 			{ "gi", function() Snacks.picker.lsp_implementations() end, desc = "Goto Implementation" },
 			{ "gy", function() Snacks.picker.lsp_type_definitions() end, desc = "Goto T[y]pe Definition" },
-			{ "<leader>ds", function() Snacks.picker.lsp_symbols({exclude = picker_ignore_patterns, hidden = true, ignored = true}) end, desc = "[D]ocument [S]ymbols" },
-			{ "<leader>dS", function() Snacks.picker.lsp_symbols() end, desc = "ALL [D]ocument [S]ymbols" },
-			{ "<leader>ws", function() Snacks.picker.lsp_workspace_symbols({exclude = picker_ignore_patterns, hidden = true, ignored = true}) end, desc = "[W]orkspace [S]ymbols" },
-			{ "<leader>wS", function() Snacks.picker.lsp_workspace_symbols() end, desc = "ALL [W]orkspace [S]ymbols" },
+			{ "<leader>ds", function() Snacks.picker.lsp_symbols({exclude = picker_ignore_patterns, hidden = true, ignored = true}) end, desc = "[D]ocument [S]symbols" },
+			{ "<leader>dS", function() Snacks.picker.lsp_symbols() end, desc = "ALL [D]ocument [S]symbols" },
+			{ "<leader>ws", function() Snacks.picker.lsp_workspace_symbols({exclude = picker_ignore_patterns, hidden = true, ignored = true}) end, desc = "[W]orkspace [S]symbols" },
+			{ "<leader>wS", function() Snacks.picker.lsp_workspace_symbols() end, desc = "ALL [W]orkspace [S]symbols" },
 		},
 	},
 	{

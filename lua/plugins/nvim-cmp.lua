@@ -39,23 +39,25 @@ return {
 					},
 				},
 			},
+			{ "b0o/schemastore.nvim" },
 			"dmitmel/cmp-cmdline-history",
 			"saadparwaiz1/cmp_luasnip",
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-path",
 			"hrsh7th/cmp-cmdline",
+			"hrsh7th/cmp-nvim-lsp",
 			"Snikimonkd/cmp-go-pkgs",
 		},
 
 		config = function()
 			local cmp = require("cmp")
+
 			local luasnip = require("luasnip")
 			local compare = require("cmp.config.compare")
 			luasnip.config.setup({})
 
 			-- https://github.com/hrsh7th/nvim-cmp/discussions/609#discussioncomment-5727678
 			local formatting = {
-
 				fields = {
 					"abbr",
 					-- "menu",
@@ -138,26 +140,27 @@ return {
 				}),
 
 				sorting = {
+					priority_weight = 1,
 					comparators = {
-						compare.recently_used,
 						compare.exact,
+						compare.length,
+						compare.recently_used,
 						compare.score,
 						compare.locality,
 						compare.offset,
 						compare.kind,
 						compare.sort_text,
-						compare.length,
 						compare.order,
 					},
 				},
 				sources = {
-					{ name = "go_pkgs", keyword_length = 3, priority = 1000 },
+					{ name = "go_pkgs", keyword_length = 2, priority = 1000 },
 					{
 						name = "nvim_lsp",
 						keyword_length = 1,
 						max_item_count = 7,
 					},
-					{ name = "path", keyword_length = 2, max_item_count = 10 },
+					{ name = "path", keyword_length = 2, max_item_count = 5 },
 					buffer_source,
 					{
 						name = "luasnip",
@@ -174,8 +177,8 @@ return {
 							get_documentation_implementation = "regex",
 							timeout_notifications = false,
 							documentation_wait_timeout_ms = 150,
-							debounce_gopls_requests_ms = 20,
 							debounce_cache_requests_ms = 0,
+							debounce_gopls_requests_ms = 20,
 						},
 						keyword_length = 3,
 						max_item_count = 5,
@@ -204,12 +207,9 @@ return {
 			cmp.setup.cmdline({ ":", "?", "/" }, {
 				mapping = cmp.mapping.preset.cmdline(),
 				sources = cmp.config.sources({
-					{ name = "cmdline_history", keyword_length = 2, max_item_count = 5 },
-					{ name = "path", keyword_length = 2, max_item_count = 5 },
-					{ name = "cmdline", keyword_length = 2, max_item_count = 5 },
-					{ name = "lazydev", priority = 1001 },
-					{ name = "nvim_lsp", priority = 1000, keyword_length = 2, max_item_count = 20 },
-					buffer_source,
+					-- { name = "cmdline_history", keyword_length = 2, max_item_count = 2 },
+					-- { name = "cmdline", keyword_length = 2, max_item_count = 5 },
+					-- -- { name = "nvim_lsp", priority = 1000, keyword_length = 2, max_item_count = 5 },
 				}),
 				comparators = {
 					compare.recently_used,

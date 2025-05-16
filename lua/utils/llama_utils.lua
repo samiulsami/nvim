@@ -1,3 +1,7 @@
+--- build/bin/llama-server -m qwen2.5-coder-3B.gguf --port 11397 -ngl 500 -fa -dt 0.1 \
+                                      --ubatch-size 512 --batch-size 1024 \
+                                      --ctx-size 4096 --cache-reuse 256
+
 ---@class utils.llama_utils
 ---@field status fun (self): boolean
 ---@field public host string

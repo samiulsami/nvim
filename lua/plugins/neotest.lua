@@ -3,13 +3,10 @@ return {
 	{
 		"nvim-neotest/neotest",
 		dependencies = {
-
 			"nvim-neotest/nvim-nio",
 			"nvim-lua/plenary.nvim",
 			"nvim-treesitter/nvim-treesitter",
-			{
-				"fredrikaverpil/neotest-golang",
-			},
+			"fredrikaverpil/neotest-golang",
 		},
 		config = function()
 			local neotest = require("neotest")
