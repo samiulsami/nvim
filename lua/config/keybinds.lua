@@ -44,6 +44,7 @@ vim.api.nvim_set_keymap("c", "<C-p>", "<Up>", { noremap = true })
 vim.api.nvim_set_keymap("c", "<C-n>", "<Down>", { noremap = true })
 
 vim.keymap.set("n", "J", "mzJ`z")
+vim.keymap.set("v", "p", '"_dP')
 
 --vim.keymap.set("n", "<leader>pv", vim.cmd.Ex) -- open netrw
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")

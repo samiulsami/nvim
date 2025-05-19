@@ -15,7 +15,7 @@ return {
 		{ "<leader>sy", function() Snacks.picker.yanky() end, mode = { "n", "x" }, desc = "Open Yank History" },
 		{ "<c-p>", "<Plug>(YankyPreviousEntry)", mode = { "n" } },
 		{ "<c-n>", "<Plug>(YankyNextEntry)", mode = { "n" } },
-		{ "p", "<Plug>(YankyPutAfter)", mode = { "n", "x" } },
-		{ "P", "<Plug>(YankyPutBefore)", mode = { "n", "x" } },
+		-- { "p", "<Plug>(YankyPutAfter)", mode = { "n", "x" } },
+		-- { "P", "<Plug>(YankyPutBefore)", mode = { "n", "x" } },
 	},
 }

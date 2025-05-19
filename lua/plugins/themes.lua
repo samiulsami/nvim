@@ -24,17 +24,18 @@ return {
 		lazy = false,
 		priority = 1000,
 		config = function()
-			vim.g.everforest_background = "hard"
-			vim.g.everforest_better_performance = 1
-			vim.cmd.colorscheme("everforest")
-			local buffer_bg_color = "#1a1b1e"
-			vim.api.nvim_set_hl(0, "Normal", { bg = buffer_bg_color })
-			vim.api.nvim_set_hl(0, "NormalNC", { bg = buffer_bg_color })
-			vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = buffer_bg_color })
-			set_default_colors()
+			-- vim.g.everforest_transparent_background = 2
+
+			-- vim.g.everforest_background = "hard"
+			-- vim.g.everforest_better_performance = 1
+			-- vim.cmd.colorscheme("everforest")
+			-- local buffer_bg_color = nil
+			-- vim.api.nvim_set_hl(0, "Normal", { bg = buffer_bg_color })
+			-- vim.api.nvim_set_hl(0, "NormalNC", { bg = buffer_bg_color })
+			-- vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = buffer_bg_color })
+			-- set_default_colors()
 		end,
 	},
-
 	{
 		"sainnhe/gruvbox-material",
 		lazy = false,
@@ -45,78 +46,40 @@ return {
 			-- vim.g.gruvbox_material_transparent_background = 2
 			-- vim.cmd.colorscheme("gruvbox-material")
 			-- set_default_colors()
-			-- vim.api.nvim_set_hl(0, "NoiceCmdlinePopupBorder", { fg = "#aacc99", bold = true })
+			-- vim.api.nvim_set_hl(0, "NoiceCmdlinePopupBorder", { fg = "#ffcc77", bold = true })
 		end,
 	},
-
-	{
-		"vague2k/vague.nvim",
-		config = function()
-			require("vague").setup({
-				transparent = true,
-			})
-			-- vim.cmd.colorscheme("vague")
-			-- set_default_colors()
-			-- vim.api.nvim_set_hl(0, "NoiceCmdlinePopupBorder", { fg = "#ffccee", bold = true })
-		end,
-	},
-
-	{
-		"rose-pine/neovim",
-		name = "rose-pine",
-		lazy = false,
-		priority = 1000,
-		config = function()
-			require("rose-pine").setup({
-				dark_variant = "main",
-				disable_background = true,
-				styles = {
-					transparency = true,
-				},
-			})
-			-- vim.cmd.colorscheme("rose-pine")
-			-- set_default_colors()
-			-- vim.api.nvim_set_hl(0, "NoiceCmdlinePopupBorder", { fg = "#ffccaa", bold = true })
-		end,
-	},
-
 	{
 		"projekt0n/github-nvim-theme",
-		name = "github-theme",
-		lazy = false, -- make sure we load this during startup if it is your main colorscheme
-		priority = 1000, -- make sure to load this before all the other start plugins
 		config = function()
 			require("github-theme").setup({
 				options = {
-					transparent = true,
+					-- transparent = true,
 				},
 			})
-			-- vim.cmd.colorscheme("github_dark")
+			-- vim.cmd.colorscheme("github_light_high_contrast")
 			-- set_default_colors()
+			-- vim.api.nvim_set_hl(0, "LspReferenceText", { bg = "#efffff", bold = true })
+			-- vim.api.nvim_set_hl(0, "LspReferenceRead", { bg = "#efefff", bold = true })
+			-- vim.api.nvim_set_hl(0, "LspReferenceWrite", { bg = "#efefff", bold = true })
+			-- vim.api.nvim_set_hl(0, "llama_hl_hint", { fg = "#5f87d7", bg = "#eeeeff", italic = true, ctermfg = 209 })
 		end,
 	},
-
 	{
-		"drewxs/ash.nvim",
+		"folke/tokyonight.nvim",
 		lazy = false,
 		priority = 1000,
 		config = function()
-			require("ash").setup({
+			require("tokyonight").setup({
 				transparent = true,
+				styles = {
+					sidebars = "transparent",
+					floats = "transparent",
+				},
 			})
-			-- vim.cmd.colorscheme("ash")
-			-- set_default_colors()
-		end,
-	},
-	{
-
-		"sainnhe/sonokai",
-		lazy = false,
-		priority = 1000,
-		config = function()
-			-- vim.g.sonokai_transparent_background = 2
-			-- vim.cmd.colorscheme("sonokai")
-			-- set_default_colors()
+			vim.cmd.colorscheme("tokyonight-night")
+			set_default_colors()
+			vim.api.nvim_set_hl(0, "NoiceCmdlinePopupBorder", { fg = "#ffcc77", bold = true })
 		end,
 	},
 }

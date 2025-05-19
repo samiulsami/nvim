@@ -4,7 +4,16 @@ return {
 		build = ":TSUpdate",
 		config = function()
 			local configs = require("nvim-treesitter.configs")
-
+			vim.filetype.add({
+				extension = {
+					gotmpl = "gotmpl",
+				},
+				pattern = {
+					[".*/templates/.*%.tpl"] = "helm",
+					[".*/templates/.*%.ya?ml"] = "helm",
+					["helmfile.*%.ya?ml"] = "helm",
+				},
+			})
 			configs.setup({
 				ensure_installed = {
 					"bash",
@@ -20,6 +29,8 @@ return {
 					"vim",
 					"vimdoc",
 					"go",
+					"gotmpl",
+					"helm",
 				},
 				-- Autoinstall languages that are not installed
 				--

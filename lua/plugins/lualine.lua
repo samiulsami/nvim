@@ -53,59 +53,21 @@ return {
 			return str.mode:upper()
 		end
 
-		local custom_lualine_theme = require("lualine.themes.horizon")
-		custom_lualine_theme.normal.a.fg = "#1d1d1d"
-		custom_lualine_theme.normal.a.bg = "#0099aa"
-
-		custom_lualine_theme.insert.a.fg = "#1d1d1d"
-		custom_lualine_theme.insert.a.bg = "#dd11dd"
-
-		custom_lualine_theme.visual.a.fg = "#1d1d1d"
-		custom_lualine_theme.visual.a.bg = "#dd0000"
-
-		custom_lualine_theme.replace.a.fg = "#1d1d1d"
-		custom_lualine_theme.replace.a.bg = "#dddd55"
-
-		custom_lualine_theme.command.a.fg = "#1d1d1d"
-		custom_lualine_theme.command.a.bg = "#6fdd6f"
-
-		custom_lualine_theme.normal.b.fg = "#ffffff"
-		custom_lualine_theme.replace.b.fg = "#ffffff"
-		custom_lualine_theme.insert.b.fg = "#ffffff"
-		custom_lualine_theme.visual.b.fg = "#ffffff"
-		custom_lualine_theme.command.b.fg = "#ffffff"
-
-		custom_lualine_theme.normal.b.bg = "#110a11"
-		custom_lualine_theme.replace.b.bg = "#110a11"
-		custom_lualine_theme.insert.b.bg = "#110a11"
-		custom_lualine_theme.visual.b.bg = "#110a11"
-		custom_lualine_theme.command.b.bg = "#110a11"
-
-		custom_lualine_theme.normal.c.fg = "#dddddd"
-		custom_lualine_theme.replace.c.fg = "#dddddd"
-		custom_lualine_theme.insert.c.fg = "#dddddd"
-		custom_lualine_theme.visual.c.fg = "#dddddd"
-		custom_lualine_theme.command.c.fg = "#dddddd"
+		local custom_lualine_theme = require("lualine.themes.tokyonight")
+		custom_lualine_theme.normal.b.bg = "#110a22"
+		custom_lualine_theme.replace.b.bg = "#110a22"
+		custom_lualine_theme.insert.b.bg = "#110a22"
+		custom_lualine_theme.visual.b.bg = "#110a22"
+		custom_lualine_theme.command.b.bg = "#110a22"
 
 		custom_lualine_theme.normal.c.bg = "#0a0a0a"
-		custom_lualine_theme.replace.c.bg = "#0a0a0a"
-		custom_lualine_theme.insert.c.bg = "#0a0a0a"
-		custom_lualine_theme.visual.c.bg = "#0a0a0a"
-		custom_lualine_theme.command.c.bg = "#0a0a0a"
 
-		custom_lualine_theme.inactive.c.fg = "#444444"
+		custom_lualine_theme.inactive.c.fg = "#555555"
 		custom_lualine_theme.inactive.c.bg = "#000000"
 
 		require("lualine").setup({
 			options = {
 				theme = custom_lualine_theme,
-				section_separators = "|",
-				component_separators = "|",
-				refresh = {
-					statusline = 100,
-					tabline = 1000,
-					winbar = 1000,
-				},
 			},
 
 			sections = {
@@ -119,7 +81,11 @@ return {
 				lualine_y = { "progress" },
 				lualine_z = { "location" },
 			},
-			inactive_sections = {},
+			inactive_sections = {
+				lualine_c = {
+					luaLineShortenedPath,
+				},
+			},
 		})
 	end,
 }

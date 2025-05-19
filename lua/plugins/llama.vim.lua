@@ -19,11 +19,7 @@ return {
 				vim.cmd("LlamaDisable")
 			else
 				vim.cmd("LlamaEnable")
-				vim.api.nvim_set_hl(
-					0,
-					"llama_hl_hint",
-					{ fg = "#A59289", bg = "#222222", italic = true, ctermfg = 209 }
-				)
+				-- vim.api.nvim_set_hl(0, "llama_hl_hint", { fg = "#A592A9", bg = "#111111", italic = true, ctermfg = 209 })
 			end
 		end, 0)
 	end,

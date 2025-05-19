@@ -28,8 +28,7 @@ return {
 			c = { "clang-format" },
 			yaml = { "yamlfix" },
 			json = { "fixjson" },
-			["*"] = { "codespell" },
-			["_"] = { "trim_whitespace" },
+			bash = { "shfmt" },
 		},
 	},
 }
