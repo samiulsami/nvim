@@ -13,7 +13,7 @@ return {
 			statuscolumn = { enabled = true },
 			words = { enabled = true, debounce = 50 },
 			picker = { enabled = true },
-			notifier = { enabled = true, timeout = 3000},
+			notifier = { enabled = true, timeout = 1500, keys = { q = "close" } },
 			explorer = { enabled = false},
 		},
 		--stylua: ignore

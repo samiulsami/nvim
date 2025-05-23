@@ -34,6 +34,8 @@ return {
 			-- vim.api.nvim_set_hl(0, "NormalNC", { bg = buffer_bg_color })
 			-- vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = buffer_bg_color })
 			-- set_default_colors()
+			local buffer_bg_color = "#1a1b1e"
+			--local buffer_bg_color = "#1a1b1e"
 		end,
 	},
 	{

@@ -135,6 +135,7 @@ return {
 			{ "<leader>fg", function() Snacks.picker.git_files() end, desc = "Find Git Files" },
 			{ "<leader>sp", function() Snacks.picker.projects() end, desc = "Projects" },
 			{ "<leader><space>", function() Snacks.picker.recent({hidden = true, ignored = true}) end, desc = "Recent" },
+			{ "<leader>gs", function() Snacks.picker.git_stash() end, desc = "Git Stash" },
 
 			{ "<leader>/", function() Snacks.picker.lines() end, desc = "Buffer Lines" },
 			{ '<leader>s"', function() Snacks.picker.registers() end, desc = "Registers" },

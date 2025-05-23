@@ -8,6 +8,8 @@ return {
 				go = { "golangcilint" },
 				yaml = { "yamllint" },
 				bash = { "shellcheck" },
+				json = { "jsonlint" },
+				make = { "checkmake" },
 			}
 			vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 				callback = function()
