@@ -1,5 +1,5 @@
 local arg = vim.fn.argv(0)
-if arg ~= "." and arg ~= "" then
+if type(arg) ~= "string" or arg ~= "." then
 	return
 end
 
