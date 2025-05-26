@@ -45,7 +45,8 @@ return {
 					lsp = {
 						name = "lsp",
 						module = "blink.cmp.sources.lsp",
-						min_keyword_length = 0,
+						max_items = 5,
+						min_keyword_length = 2,
 					},
 					go_deep = {
 						name = "go_deep",
@@ -55,7 +56,7 @@ return {
 							debounce_cache_requests_ms = 0,
 							debounce_gopls_requests_ms = 20,
 						},
-						max_items = 4,
+						max_items = 5,
 						min_keyword_length = 3,
 						score_offset = -10000,
 					},
@@ -97,7 +98,7 @@ return {
 					cmdline_lsp = {
 						name = "cmdline_lsp",
 						module = "blink.cmp.sources.lsp",
-						max_items = 10,
+						max_items = 100,
 						min_keyword_length = 0,
 					},
 					lazydev = {
