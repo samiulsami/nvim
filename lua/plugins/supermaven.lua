@@ -4,9 +4,9 @@ return {
 		local llama_utils = require("utils.llama_utils")
 		require("supermaven-nvim").setup({
 			keymaps = {
-				accept_suggestion = "<c-j>",
-				clear_suggestion = "<c-h>",
-				accept_word = "<c-k>",
+				accept_suggestion = "<C-o>",
+				clear_suggestion = "<C-h>",
+				accept_word = "<C-k>",
 			},
 			log_level = "off",
 		})

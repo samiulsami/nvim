@@ -9,7 +9,7 @@ return {
 			max_line_suffix = 9999999,
 			auto_fim = true,
 			stop_strings = { "\n" },
-			keymap_accept_full = "<C-j>",
+			keymap_accept_full = "<C-o>",
 			keymap_accept_line = "<C-k>",
 			n_prefix = 4096,
 		}

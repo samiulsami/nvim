@@ -23,10 +23,10 @@ return {
 			keymap = {
 				preset = "default",
 				["<CR>"] = {},
-				["<C-o>"] = { "show" },
 				["<C-b>"] = { "scroll_documentation_up", "fallback" },
 				["<C-f>"] = { "scroll_documentation_down", "fallback" },
 			},
+
 			sources = {
 				default = { "lsp", "path", "snippets", "buffer", "go_deep", "lazydev" },
 				providers = {
@@ -85,7 +85,7 @@ return {
 						timeout_ms = 100,
 						max_items = 5,
 						min_keyword_length = 2,
-						score_offset = -10000,
+						score_offset = 100,
 						transform_items = function(_, items)
 							for _, item in ipairs(items) do
 								item.kind_name = "HISTORY"
