@@ -13,7 +13,11 @@ return {
 				},
 			},
 			"dmitmel/cmp-cmdline-history",
-			{ "samiulsami/cmp-go-deep", dependencies = { "kkharji/sqlite.lua" } },
+			{
+				"samiulsami/cmp-go-deep",
+				branch = "sqlite-trigram",
+				dependencies = { "kkharji/sqlite.lua" },
+			},
 		},
 		build = "cargo build --release",
 
@@ -57,10 +61,11 @@ return {
 						timeout_ms = 500,
 						opts = {
 							debounce_cache_requests_ms = 0,
-							debounce_gopls_requests_ms = 20,
+							debounce_gopls_requests_ms = 50,
+							db_size_limit_bytes = 100 * 1024 * 1024,
 						},
 						max_items = 5,
-						min_keyword_length = 3,
+						min_keyword_length = 1,
 						score_offset = -10000,
 					},
 					cmdline = {
