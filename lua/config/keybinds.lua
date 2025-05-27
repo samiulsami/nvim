@@ -58,23 +58,40 @@ vim.keymap.set("n", "[t", ":tabprevious<CR>", { noremap = true, silent = true })
 
 vim.keymap.set("n", "<leader>RR", ":checktime<CR>", { noremap = true, silent = true, desc = "[R]efresh buffer" })
 
--- stylua: ignore
-local function setup_tmux_compatible_pane_switching_and_resizing()
-	local function move_or_tmux(direction, tmux_cmd)
-		local current_win = vim.api.nvim_get_current_win()
-		vim.cmd("wincmd " .. direction)
-		if current_win == vim.api.nvim_get_current_win() then
-			vim.fn.system("tmux select-pane -" .. tmux_cmd)
-		end
+local function move_or_tmux(direction, tmux_cmd)
+	local current_win = vim.api.nvim_get_current_win()
+	vim.cmd("wincmd " .. direction)
+	if current_win == vim.api.nvim_get_current_win() then
+		vim.fn.system("tmux select-pane -" .. tmux_cmd)
 	end
-	vim.keymap.set({"n", "t" }, "<C-h>", function() move_or_tmux("h", "L") end, { noremap = true, silent = true })
-	vim.keymap.set({"n", "t" }, "<C-j>", function() move_or_tmux("j", "D") end, { noremap = true, silent = true })
-	vim.keymap.set({"n", "t" }, "<C-k>", function() move_or_tmux("k", "U") end, { noremap = true, silent = true })
-	vim.keymap.set({"n", "t" }, "<C-l>", function() move_or_tmux("l", "R") end, { noremap = true, silent = true })
-	vim.keymap.set({ "n", "i", "v", "t" }, "<A-k>", function() vim.cmd("resize +4") end, { noremap = true, silent = true })
-	vim.keymap.set({ "n", "i", "v", "t" }, "<A-j>", function() vim.cmd("resize -4") end, { noremap = true, silent = true })
-	vim.keymap.set({ "n", "i", "v", "t" }, "<A-h>", function() vim.cmd("vertical resize -4") end, { noremap = true, silent = true })
-	vim.keymap.set({ "n", "i", "v", "t" }, "<A-l>", function() vim.cmd("vertical resize +4") end, { noremap = true, silent = true })
 end
+vim.keymap.set({ "n", "t" }, "<C-h>", function()
+	move_or_tmux("h", "L")
+end, { noremap = true, silent = true })
+vim.keymap.set({ "n", "t" }, "<C-j>", function()
+	move_or_tmux("j", "D")
+end, { noremap = true, silent = true })
+vim.keymap.set({ "n", "t" }, "<C-k>", function()
+	move_or_tmux("k", "U")
+end, { noremap = true, silent = true })
+vim.keymap.set({ "n", "t" }, "<C-l>", function()
+	move_or_tmux("l", "R")
+end, { noremap = true, silent = true })
 
-setup_tmux_compatible_pane_switching_and_resizing()
+vim.keymap.set({ "n", "i", "v", "t" }, "<A-k>", function()
+	vim.cmd("resize +4")
+end, { noremap = true, silent = true })
+vim.keymap.set({ "n", "i", "v", "t" }, "<A-j>", function()
+	vim.cmd("resize -4")
+end, { noremap = true, silent = true })
+vim.keymap.set({ "n", "i", "v", "t" }, "<A-h>", function()
+	vim.cmd("vertical resize -4")
+end, { noremap = true, silent = true })
+vim.keymap.set({ "n", "i", "v", "t" }, "<A-l>", function()
+	vim.cmd("vertical resize +4")
+end, { noremap = true, silent = true })
+
+vim.keymap.set("t", "<ESC>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
+vim.api.nvim_create_autocmd({
+	"TermEnter",
+}, { pattern = "*", command = "set number" })

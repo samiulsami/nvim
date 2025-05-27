@@ -59,6 +59,7 @@ return {
 		custom_lualine_theme.insert.b.bg = "#110a22"
 		custom_lualine_theme.visual.b.bg = "#110a22"
 		custom_lualine_theme.command.b.bg = "#110a22"
+		custom_lualine_theme.terminal.b.bg = "#110a22"
 
 		custom_lualine_theme.normal.c.bg = "#0a0a0a"
 

@@ -34,19 +34,22 @@ return {
 						name = "snippets",
 						module = "blink.cmp.sources.snippets",
 						max_items = 5,
-						min_keyword_length = 2,
+						score_offset = 1,
+						min_keyword_length = 0,
 					},
 					buffer = {
 						name = "buffer",
 						module = "blink.cmp.sources.buffer",
 						max_items = 5,
-						min_keyword_length = 2,
+						score_offset = 10,
+						min_keyword_length = 1,
 					},
 					lsp = {
 						name = "lsp",
 						module = "blink.cmp.sources.lsp",
-						max_items = 5,
-						min_keyword_length = 2,
+						max_items = 10,
+						score_offset = 1000,
+						min_keyword_length = 1,
 					},
 					go_deep = {
 						name = "go_deep",
@@ -165,7 +168,7 @@ return {
 			},
 
 			signature = {
-				enabled = true,
+				enabled = false,
 			},
 			fuzzy = {
 				implementation = "prefer_rust_with_warning",

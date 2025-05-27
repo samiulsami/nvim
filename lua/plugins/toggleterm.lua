@@ -28,11 +28,6 @@ return {
 				auto_scroll = true,
 				shell = vim.o.shell,
 			})
-
-			vim.keymap.set("t", "<ESC>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
-			vim.api.nvim_create_autocmd({
-				"TermEnter",
-			}, { pattern = "*", command = "set number" })
 		end,
 	},
 }
