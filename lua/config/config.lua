@@ -1,6 +1,19 @@
 vim.opt.updatetime = 50
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
+vim.opt.cursorcolumn = true
+vim.opt.cursorline = true
+
+local cursorXYGRP = vim.api.nvim_create_augroup("CursorXYGRP", { clear = true })
+vim.api.nvim_create_autocmd(
+	{ "InsertLeave", "WinEnter" },
+	{ pattern = "*", command = "set cursorline cursorcolumn", group = cursorXYGRP }
+)
+vim.api.nvim_create_autocmd(
+	{ "InsertEnter", "WinLeave" },
+	{ pattern = "*", command = "set nocursorline nocursorcolumn", group = cursorXYGRP }
+)
+
 vim.opt.isfname:append("@-@")
 vim.opt.autoread = true
 vim.opt.swapfile = false

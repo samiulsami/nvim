@@ -50,29 +50,4 @@ return {
 			})
 		end,
 	},
-	{
-		"nvim-treesitter/nvim-treesitter-context",
-		dependencies = { "nvim-treesitter/nvim-treesitter" }, -- Ensure nvim-treesitter is loaded
-		config = function()
-			vim.api.nvim_set_hl(0, "TreesitterContext", { bg = "NONE" })
-			vim.api.nvim_set_hl(0, "TreesitterContextLineNumber", { bg = "NONE" })
-
-			-- You can add additional setup options here if needed
-			require("treesitter-context").setup({
-				-- Options for the context setup
-			})
-
-			--@type TSContext.UserConfig
-			require("treesitter-context").setup({
-				enable = true, -- Enable this plugin (can be toggled on/off)
-				max_lines = 1, -- How many lines the context window should show
-				trim_scope = "outer", -- Remove lines from outer context when exceeded
-				min_window_height = 0, -- Only show context if the window is larger than this value
-				mode = "cursor", -- Line used to calculate context ('cursor' or 'topline')
-				separator = "-", -- Separator for the context line
-				zindex = 20, -- The Z-index of the context window
-				on_attach = nil, -- Callback when context is attached to buffer
-			})
-		end,
-	},
 }

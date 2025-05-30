@@ -6,11 +6,12 @@ return {
 		vim.g.llama_config = {
 			show_info = 0,
 			endpoint = llama_utils.host .. ":" .. llama_utils.port .. "/infill",
-			max_line_suffix = 9999999,
+			max_line_suffix = 4096,
 			auto_fim = true,
 			stop_strings = { "\n" },
 			keymap_accept_full = "<C-o>",
-			keymap_accept_line = "<C-k>",
+			keymap_accept_word = "<C-k>",
+			ring_n_chunks = 64,
 			n_prefix = 4096,
 		}
 
@@ -19,7 +20,11 @@ return {
 				vim.cmd("LlamaDisable")
 			else
 				vim.cmd("LlamaEnable")
-				-- vim.api.nvim_set_hl(0, "llama_hl_hint", { fg = "#A592A9", bg = "#111111", italic = true, ctermfg = 209 })
+				vim.api.nvim_set_hl(
+					0,
+					"llama_hl_hint",
+					{ fg = "#A592A9", bg = "#111111", italic = true, ctermfg = 209 }
+				)
 			end
 		end, 0)
 	end,

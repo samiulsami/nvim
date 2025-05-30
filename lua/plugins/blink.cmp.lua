@@ -15,9 +15,9 @@ return {
 			"dmitmel/cmp-cmdline-history",
 			{
 				"samiulsami/cmp-go-deep",
-				branch = "sqlite-trigram",
 				dependencies = { "kkharji/sqlite.lua" },
 			},
+			{ "Snikimonkd/cmp-go-pkgs" },
 		},
 		build = "cargo build --release",
 
@@ -32,40 +32,45 @@ return {
 			},
 
 			sources = {
-				default = { "lsp", "path", "snippets", "buffer", "go_deep", "lazydev" },
+				default = { "lsp", "path", "buffer", "go_deep", "go_pkgs", "snippets", "lazydev" },
 				providers = {
 					snippets = {
 						name = "snippets",
 						module = "blink.cmp.sources.snippets",
-						max_items = 5,
+						max_items = 3,
 						score_offset = 1,
 						min_keyword_length = 0,
 					},
 					buffer = {
 						name = "buffer",
 						module = "blink.cmp.sources.buffer",
-						max_items = 5,
-						score_offset = 10,
-						min_keyword_length = 1,
+						max_items = 3,
+						score_offset = 2,
+						min_keyword_length = 2,
 					},
 					lsp = {
 						name = "lsp",
 						module = "blink.cmp.sources.lsp",
-						max_items = 10,
-						score_offset = 1000,
-						min_keyword_length = 1,
+						max_items = 5,
+						score_offset = 100000000,
+						min_keyword_length = 2,
+					},
+					go_pkgs = {
+						name = "go_pkgs",
+						module = "blink.compat.source",
+						min_keyword_length = 0,
 					},
 					go_deep = {
 						name = "go_deep",
 						module = "blink.compat.source",
-						timeout_ms = 500,
 						opts = {
 							debounce_cache_requests_ms = 0,
-							debounce_gopls_requests_ms = 50,
-							db_size_limit_bytes = 100 * 1024 * 1024,
+							debounce_gopls_requests_ms = 0,
+							db_size_limit_bytes = 200 * 1024 * 1024,
+							filetypes = { "go" },
 						},
-						max_items = 5,
-						min_keyword_length = 1,
+						max_items = 3,
+						min_keyword_length = 3,
 						score_offset = -10000,
 					},
 					cmdline = {
@@ -73,7 +78,7 @@ return {
 						module = "blink.cmp.sources.cmdline",
 						max_items = 10,
 						min_keyword_length = 0,
-						score_offset = 1500,
+						score_offset = -1000,
 						transform_items = function(_, items)
 							for _, item in ipairs(items) do
 								item.kind_name = "CMDLINE"
@@ -86,15 +91,16 @@ return {
 						name = "buffer",
 						module = "blink.cmp.sources.buffer",
 						max_items = 5,
-						min_keyword_length = 1,
+						score_offset = -100,
+						min_keyword_length = 0,
 					},
 					cmdline_history = {
 						name = "cmdline_history",
 						module = "blink.compat.source",
 						timeout_ms = 100,
-						max_items = 5,
-						min_keyword_length = 2,
-						score_offset = 100,
+						max_items = 2,
+						min_keyword_length = 0,
+						score_offset = -100000000,
 						transform_items = function(_, items)
 							for _, item in ipairs(items) do
 								item.kind_name = "HISTORY"
@@ -103,17 +109,11 @@ return {
 							return items
 						end,
 					},
-					cmdline_lsp = {
-						name = "cmdline_lsp",
-						module = "blink.cmp.sources.lsp",
-						max_items = 100,
-						min_keyword_length = 0,
-					},
 					lazydev = {
 						name = "LazyDev",
 						module = "lazydev.integrations.blink",
 						score_offset = 100,
-						max_items = 5,
+						max_items = 3,
 						min_keyword_length = 0,
 					},
 				},
@@ -132,7 +132,6 @@ return {
 							"cmdline",
 							"cmdline_buffer",
 							"cmdline_history",
-							"cmdline_lsp",
 						}
 					end
 					return {}
@@ -173,7 +172,7 @@ return {
 			},
 
 			signature = {
-				enabled = false,
+				enabled = true,
 			},
 			fuzzy = {
 				implementation = "prefer_rust_with_warning",

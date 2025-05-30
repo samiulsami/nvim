@@ -36,7 +36,7 @@ return {
 			}
 		end)
 
-		vim.keymap.set("n", "<leader>n", "<Cmd>tab split<CR>", { noremap = true })
+		vim.keymap.set("n", "<leader>tn", "<Cmd>tab split<CR>", { noremap = true })
 		vim.keymap.set("n", "<leader>tr", ":Tabby rename_tab ", { noremap = true })
 		vim.keymap.set("n", "<leader>tc", "<Cmd>tabclose<CR>", { noremap = true })
 		vim.keymap.set("n", "<leader>tO", "<Cmd>tabonly<CR>", { noremap = true })
