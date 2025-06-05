@@ -20,25 +20,6 @@ end
 
 return {
 	{
-		"sainnhe/everforest",
-		lazy = false,
-		priority = 1000,
-		config = function()
-			-- vim.g.everforest_transparent_background = 2
-
-			-- vim.g.everforest_background = "hard"
-			-- vim.g.everforest_better_performance = 1
-			-- vim.cmd.colorscheme("everforest")
-			-- local buffer_bg_color = "#1a1b1e"
-			-- vim.api.nvim_set_hl(0, "Normal", { bg = buffer_bg_color })
-			-- vim.api.nvim_set_hl(0, "NormalNC", { bg = buffer_bg_color })
-			-- vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = buffer_bg_color })
-			-- set_default_colors()
-			-- vim.api.nvim_set_hl(0, "CursorLine", { bold = true, bg = "#252525" })
-			-- vim.api.nvim_set_hl(0, "CursorColumn", { bold = true, bg = "#252525" })
-		end,
-	},
-	{
 		"sainnhe/gruvbox-material",
 		lazy = false,
 		priority = 1000,
@@ -49,22 +30,11 @@ return {
 			-- vim.cmd.colorscheme("gruvbox-material")
 			-- set_default_colors()
 			-- vim.api.nvim_set_hl(0, "NoiceCmdlinePopupBorder", { fg = "#ffcc77", bold = true })
-		end,
-	},
-	{
-		"projekt0n/github-nvim-theme",
-		config = function()
-			require("github-theme").setup({
-				options = {
-					-- transparent = true,
-				},
-			})
-			-- vim.cmd.colorscheme("github_light_high_contrast")
-			-- set_default_colors()
-			-- vim.api.nvim_set_hl(0, "LspReferenceText", { bg = "#efffff", bold = true })
-			-- vim.api.nvim_set_hl(0, "LspReferenceRead", { bg = "#efefff", bold = true })
-			-- vim.api.nvim_set_hl(0, "LspReferenceWrite", { bg = "#efefff", bold = true })
-			-- vim.api.nvim_set_hl(0, "llama_hl_hint", { fg = "#5f87d7", bg = "#eeeeff", italic = true, ctermfg = 209 })
+			--
+			-- local buffer_bg_color = "#1a1b1e"
+			-- vim.api.nvim_set_hl(0, "Normal", { bg = buffer_bg_color })
+			-- vim.api.nvim_set_hl(0, "NormalNC", { bg = buffer_bg_color })
+			-- vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = buffer_bg_color })
 		end,
 	},
 	{
