@@ -56,6 +56,11 @@ vim.keymap.set("n", "[q", ":cprevious<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "]t", ":tabnext<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "[t", ":tabprevious<CR>", { noremap = true, silent = true })
 
+vim.keymap.set("n", "<c-w>h", "<c-w>H", { desc = "Move window left", noremap = true, silent = true })
+vim.keymap.set("n", "<c-w>j", "<c-w>J", { desc = "Move window down", noremap = true, silent = true })
+vim.keymap.set("n", "<c-w>k", "<c-w>K", { desc = "Move window up", noremap = true, silent = true })
+vim.keymap.set("n", "<c-w>l", "<c-w>L", { desc = "Move window right", noremap = true, silent = true })
+
 vim.keymap.set("n", "<leader>RR", ":checktime<CR>", { noremap = true, silent = true, desc = "[R]efresh buffer" })
 
 local function move_or_tmux(direction, tmux_cmd)
