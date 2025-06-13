@@ -25,6 +25,7 @@ return {
 				"gofumpt",
 				"goimports",
 				"golangci-lint",
+				"staticcheck",
 				"clangd",
 				"clang-format",
 				"cpplint",
