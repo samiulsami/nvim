@@ -8,8 +8,8 @@ return {
 	config = function()
 		---@type Flash.Config
 		local opts = {
-			label = { uppercase = false, min_pattern_length = 1 },
-			search = { max_length = 2 },
+			label = { uppercase = true, min_pattern_length = 1 },
+			search = { max_length = 3 },
 			highlight = { matches = false },
 			jump = { autojump = true, nohlsearch = true },
 			modes = {
