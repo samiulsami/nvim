@@ -4,7 +4,7 @@ return {
 		local lualine_theme = "tokyonight"
 		local ok, ll_theme = pcall(require, string.format("lualine.themes.%s", lualine_theme))
 		if not ok then
-			vim.notify(string.format("tabby.nvim: lualine theme %s not found", lualine_theme))
+			vim.notify(string.format("tabby.nvim: lualine theme %s not found", lualine_theme), vim.log.levels.ERROR)
 			return
 		end
 		local theme = {

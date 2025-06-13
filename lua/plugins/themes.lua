@@ -49,11 +49,22 @@ return {
 					floats = "transparent",
 				},
 			})
-			vim.cmd.colorscheme("tokyonight-night")
+			-- vim.cmd.colorscheme("tokyonight-night")
+			-- set_default_colors()
+			-- vim.api.nvim_set_hl(0, "NoiceCmdlinePopupBorder", { fg = "#ffcc77", bold = true })
+			-- vim.api.nvim_set_hl(0, "CursorLine", { bold = true, bg = "#1a1a1a" })
+			-- vim.api.nvim_set_hl(0, "CursorColumn", { bold = true, bg = "#1a1a1a" })
+		end,
+	},
+	{
+		"bluz71/vim-moonfly-colors",
+		name = "moonfly",
+		lazy = false,
+		priority = 1000,
+		config = function()
+			vim.g.moonflyTransparent = true
+			vim.cmd.colorscheme("moonfly")
 			set_default_colors()
-			vim.api.nvim_set_hl(0, "NoiceCmdlinePopupBorder", { fg = "#ffcc77", bold = true })
-			vim.api.nvim_set_hl(0, "CursorLine", { bold = true, bg = "#1a1a1a" })
-			vim.api.nvim_set_hl(0, "CursorColumn", { bold = true, bg = "#1a1a1a" })
 		end,
 	},
 }
