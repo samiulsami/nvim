@@ -30,9 +30,8 @@ vim.keymap.set("n", "<leader>l", function()
 	vim.cmd("set number! relativenumber!")
 end, { noremap = true, silent = true, desc = "Toggle line numbers" })
 
--- (Rendered unnecessary by NeoScroll) Center the screen when moving half a page up or down
--- vim.api.nvim_set_keymap("n", "<C-d>", "<C-d>zz", { noremap = true })
--- vim.api.nvim_set_keymap("n", "<C-u>", "<C-u>zz", { noremap = true })
+vim.api.nvim_set_keymap("n", "<C-d>", "<C-d>zz", { noremap = true })
+vim.api.nvim_set_keymap("n", "<C-u>", "<C-u>zz", { noremap = true })
 
 -- Vertical split with <leader>-e
 vim.keymap.set("n", "<leader>e", ":vsplit<CR>", { noremap = true, silent = true })
