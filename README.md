@@ -15,6 +15,7 @@ sudo ln -s $(which fdfind) /usr/bin/fd
 
 #rustup
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+rustup update
 
 #nodejs
 curl -fsSL https://fnm.vercel.app/install | zsh

@@ -40,8 +40,6 @@ return {
 		vim.keymap.set("n", "<leader>tr", ":Tabby rename_tab ", { noremap = true })
 		vim.keymap.set("n", "<leader>tc", "<Cmd>tabclose<CR>", { noremap = true })
 		vim.keymap.set("n", "<leader>tO", "<Cmd>tabonly<CR>", { noremap = true })
-		vim.keymap.set("n", "<A-.>", "<Cmd>tabnext<CR>", { noremap = true, silent = true })
-		vim.keymap.set("n", "<A-,>", "<Cmd>tabprevious<CR>", { noremap = true, silent = true })
 		vim.keymap.set("n", "<leader>tmp", "<Cmd>-tabmove<CR>", { noremap = true })
 		vim.keymap.set("n", "<leader>tmn", "<Cmd>+tabmove<CR>", { noremap = true })
 		vim.keymap.set({ "t", "i", "n" }, "<A-a>", "<Cmd>tabnext 1<CR>", { noremap = true, silent = true })

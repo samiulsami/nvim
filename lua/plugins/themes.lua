@@ -75,15 +75,4 @@ return {
 			-- vim.api.nvim_set_hl(0, "CursorColumn", { bold = true, bg = "#1a1a1a" })
 		end,
 	},
-	{
-		"bluz71/vim-moonfly-colors",
-		name = "moonfly",
-		lazy = false,
-		priority = 1000,
-		config = function()
-			-- vim.g.moonflyTransparent = true
-			-- vim.cmd.colorscheme("moonfly")
-			-- set_default_colors()
-		end,
-	},
 }

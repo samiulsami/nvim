@@ -35,7 +35,7 @@ return {
 				ui_select = true,
 				formatters = {
 					file = {
-						filename_first = false,
+						filename_first = true,
 						truncate = 1000,
 						filename_only = false,
 						icon_width = 2,
@@ -162,8 +162,8 @@ return {
 
 		-- stylua: ignore
 		keys = {
-			{ "<leader>gp", function() Snacks.gitbrowse() end, { desc = "[G]ithub [P]review" } },
-			{ "<leader>P", function() Snacks.explorer.open() end, { desc = "snacks.explorer" } },
+			{ "<leader>gp", function() Snacks.gitbrowse() end, mode = { "n", "v" }, { desc = "[G]ithub [P]review" } },
+			{ "<leader>E", function() Snacks.explorer.open() end, { desc = "snacks.explorer" } },
 
 			{ "<leader>ff", function() Snacks.picker.smart({hidden = true, ignored = true}) end, desc = "Smart Find Files" },
 			{ "<leader>,", function() Snacks.picker.buffers({hidden = true, ignored = true}) end, desc = "Buffers" },

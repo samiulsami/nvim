@@ -67,7 +67,7 @@ return {
 				constrain_cursor = "editable",
 			})
 
-			vim.keymap.set("n", "<leader>p", function()
+			vim.keymap.set("n", "<leader>P", function()
 				if vim.api.nvim_buf_get_name(0):match("oil:///") then
 					require("oil").close()
 					return
