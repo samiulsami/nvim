@@ -13,7 +13,7 @@ return {
 			end, { desc = "[D]ebug the nearest [G]o test above cursor" })
 
 			local dm = require("debugmaster")
-			vim.keymap.set({ "n", "v" }, "<leader>D", dm.mode.toggle, { nowait = true })
+			vim.keymap.set({ "n", "v" }, "<leader>D", dm.mode.toggle, { nowait = true, desc = "[D]ebug Master" })
 		end,
 	},
 }
