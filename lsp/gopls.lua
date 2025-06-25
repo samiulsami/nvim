@@ -62,10 +62,6 @@ return {
 				parameterNames = true,
 				rangeVariableTypes = true,
 			},
-			staticcheck = false,
-			gofumpt = false,
-			semanticTokens = false,
-			completionBudget = 100,
 		},
 	},
 }
