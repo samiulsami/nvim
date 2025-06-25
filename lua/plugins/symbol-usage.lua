@@ -4,11 +4,6 @@ return {
 		"Wansmer/symbol-usage.nvim",
 		event = "BufReadPre",
 		config = function()
-			vim.api.nvim_set_hl(0, "SymbolUsageRounding", { fg = "#777777", italic = true })
-			vim.api.nvim_set_hl(0, "SymbolUsageContent", { fg = "#777777", italic = true })
-			vim.api.nvim_set_hl(0, "SymbolUsageRef", { fg = "#777777", italic = true })
-			vim.api.nvim_set_hl(0, "SymbolUsageImpl", { fg = "#777777", italic = true })
-
 			local function text_format(symbol)
 				local res = {}
 

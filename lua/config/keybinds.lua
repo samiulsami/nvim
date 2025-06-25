@@ -17,7 +17,10 @@ vim.keymap.set("n", "<leader>cP", function()
 	vim.notify("'" .. current_file_path .. "'\ncopied to clipboard", vim.log.levels.INFO)
 end, { noremap = true, silent = true, desc = "[C]opy [P]ath to current file" })
 
-vim.keymap.set("n", "<ESC>", ":nohlsearch<CR>", { desc = "Remove Search Highlights" })
+vim.keymap.set("n", "<ESC>", function()
+	vim.cmd("nohlsearch")
+	return "<ESC>"
+end, { expr = true, desc = "Remove Search Highlights" })
 
 vim.keymap.set(
 	"n",

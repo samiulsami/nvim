@@ -9,9 +9,11 @@ local set_default_colors = function()
 	vim.api.nvim_set_hl(0, "DiagnosticVirtualTextHint", { fg = "#5fd7d7", bg = "#2a2b2e", bold = true })
 
 	vim.api.nvim_set_hl(0, "SymbolUsageRounding", { italic = true })
-	vim.api.nvim_set_hl(0, "SymbolUsageContent", { fg = "#aaaaaa", italic = true })
-	vim.api.nvim_set_hl(0, "SymbolUsageRef", { fg = "#ff6666", italic = true })
-	vim.api.nvim_set_hl(0, "SymbolUsageImpl", { fg = "#6666ff", italic = true })
+	vim.api.nvim_set_hl(0, "SymbolUsageContent", { fg = "#6a6a6a", italic = true })
+	vim.api.nvim_set_hl(0, "SymbolUsageRef", { fg = "#6f5a5a", italic = true })
+	vim.api.nvim_set_hl(0, "SymbolUsageImpl", { fg = "#5a5a6f", italic = true })
+	vim.api.nvim_set_hl(0, "Comment", { bg = "none", fg = "#6f7b69" })
+
 	vim.api.nvim_set_hl(0, "LspInlayHint", { fg = "#5f6b68", bg = "#1f1b18", bold = true, italic = true })
 
 	vim.api.nvim_set_hl(0, "WinBar", { bold = true })
