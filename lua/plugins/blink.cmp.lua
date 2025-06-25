@@ -17,7 +17,10 @@ return {
 				"samiulsami/cmp-go-deep",
 				dependencies = { "kkharji/sqlite.lua" },
 			},
-			{ "Snikimonkd/cmp-go-pkgs" },
+			{
+				"samiulsami/cmp-go-pkgs",
+				branch = "minor-tweaks",
+			},
 			{ "Kaiser-Yang/blink-cmp-git" },
 		},
 		build = "cargo build --release",
