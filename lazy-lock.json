@@ -4,7 +4,7 @@
   "blink.compat": { "branch": "main", "commit": "1454f14a8d855a578ceeba77c62538fa1459a67c" },
   "cmp-cmdline-history": { "branch": "master", "commit": "003573b72d4635ce636234a826fa8c4ba2895ffe" },
   "cmp-go-deep": { "branch": "master", "commit": "6e5abf990ae592feff6ef43cd013d9368d5ef277" },
-  "cmp-go-pkgs": { "branch": "main", "commit": "d8c2ed12a2a6b6f0499d9a51b776d2e135ae1511" },
+  "cmp-go-pkgs": { "branch": "minor-tweaks", "commit": "060e6aad2b48a3c6bbfaffecf9c7f66ab964907b" },
   "conform.nvim": { "branch": "master", "commit": "8132ec733eed3bf415b97b76797ca41b59f51d7d" },
   "debugmaster.nvim": { "branch": "main", "commit": "aeae4c324be259856a3e9e436db89875421b78ca" },
   "everforest": { "branch": "master", "commit": "f40c2e6c8784c99c57c79edc94cd180e76450222" },
