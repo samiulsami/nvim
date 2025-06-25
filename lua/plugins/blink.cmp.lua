@@ -18,6 +18,7 @@ return {
 				dependencies = { "kkharji/sqlite.lua" },
 			},
 			{ "Snikimonkd/cmp-go-pkgs" },
+			{ "Kaiser-Yang/blink-cmp-git" },
 		},
 		build = "cargo build --release",
 
@@ -32,8 +33,16 @@ return {
 			},
 
 			sources = {
-				default = { "lsp", "path", "buffer", "go_deep", "go_pkgs", "snippets", "lazydev" },
+				default = { "lsp", "path", "buffer", "go_deep", "go_pkgs", "snippets", "lazydev", "git" },
 				providers = {
+					git = {
+						module = "blink-cmp-git",
+						name = "Git",
+						-- only enable this source when filetype is gitcommit, markdown, or 'octo'
+						enabled = function()
+							return vim.tbl_contains({ "octo", "gitcommit", "markdown" }, vim.bo.filetype)
+						end,
+					},
 					snippets = {
 						name = "snippets",
 						module = "blink.cmp.sources.snippets",
