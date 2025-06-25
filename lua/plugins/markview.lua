@@ -13,6 +13,10 @@ return {
 			require("markview").setup({
 				highlight_groups = "dark",
 				checkboxes = presets.checkboxes.nerd,
+				experimental = {
+					check_rtp = false,
+					check_rtp_message = false,
+				},
 				markdown = {
 					enable = true,
 					headings = presets.headings.arrowed,

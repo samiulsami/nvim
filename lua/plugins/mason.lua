@@ -20,7 +20,6 @@ return {
 				"yaml-language-server",
 				"yamllint",
 				"yamlfix",
-				"gopls",
 				"delve",
 				"gofumpt",
 				"goimports",
