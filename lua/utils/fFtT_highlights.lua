@@ -10,7 +10,7 @@ local function clear_fFtT_hl()
 end
 
 local charmap = {
-	["<space"] = " ",
+	["<space>"] = " ",
 	["<lt>"] = "<",
 }
 
@@ -42,6 +42,10 @@ local function map_motion_key(motion)
 				hl_group = "fFtTBackDrop",
 			})
 		end
+
+		vim.api.nvim_win_call(0, function()
+			vim.cmd("redraw")
+		end)
 
 		local ok, key = pcall(vim.fn.getchar)
 		if not ok then
@@ -92,8 +96,9 @@ local movement_keys = {
 	["0"] = true, ["^"] = true, ["$"] = true,
 	["G"] = true, ["g"] = true,
 	["i"] = true, ["a"] = true, ["A"] = true, ["I"] = true,
-	["v"] = true, ["V"] = true,
-	["<Esc>"] = true,
+	["v"] = true, ["V"] = true, ["+"] = true, ["-"] = true,
+	["<C-U>"] = true, ["<C-D>"] = true,
+	["<Esc>"] = true, ["Tab"] = true, ["S-Tab"] = true,
 }
 
 vim.on_key(function(char)
