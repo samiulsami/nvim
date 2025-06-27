@@ -13,6 +13,7 @@ return {
 				bash = { "shellcheck" },
 				json = { "jsonlint" },
 				make = { "checkmake" },
+				java = { "checkstyle" },
 			}
 			vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 				callback = function()

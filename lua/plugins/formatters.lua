@@ -29,6 +29,7 @@ return {
 			yaml = { "yamlfix" },
 			json = { "fixjson" },
 			bash = { "shfmt" },
+			-- java = { "google-java-format" },
 		},
 	},
 }

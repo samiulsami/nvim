@@ -26,18 +26,18 @@ return {
 		lazy = false,
 		priority = 1000,
 		config = function()
-			vim.g.everforest_transparent_background = 2
-
-			vim.g.everforest_background = "hard"
-			vim.g.everforest_better_performance = 1
-			vim.cmd.colorscheme("everforest")
-			local buffer_bg_color = "#1a1b1e"
-			vim.api.nvim_set_hl(0, "Normal", { bg = buffer_bg_color })
-			vim.api.nvim_set_hl(0, "NormalNC", { bg = buffer_bg_color })
-			vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = buffer_bg_color })
-			set_default_colors()
-			vim.api.nvim_set_hl(0, "CursorLine", { bold = true, bg = "#252525" })
-			vim.api.nvim_set_hl(0, "CursorColumn", { bold = true, bg = "#252525" })
+			-- vim.g.everforest_transparent_background = 2
+			--
+			-- vim.g.everforest_background = "hard"
+			-- vim.g.everforest_better_performance = 1
+			-- vim.cmd.colorscheme("everforest")
+			-- local buffer_bg_color = "#1a1b1e"
+			-- vim.api.nvim_set_hl(0, "Normal", { bg = buffer_bg_color })
+			-- vim.api.nvim_set_hl(0, "NormalNC", { bg = buffer_bg_color })
+			-- vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = buffer_bg_color })
+			-- set_default_colors()
+			-- vim.api.nvim_set_hl(0, "CursorLine", { bold = true, bg = "#252525" })
+			-- vim.api.nvim_set_hl(0, "CursorColumn", { bold = true, bg = "#252525" })
 		end,
 	},
 	{
@@ -70,11 +70,11 @@ return {
 					floats = "transparent",
 				},
 			})
-			-- vim.cmd.colorscheme("tokyonight-night")
-			-- set_default_colors()
-			-- vim.api.nvim_set_hl(0, "NoiceCmdlinePopupBorder", { fg = "#ffcc77", bold = true })
-			-- vim.api.nvim_set_hl(0, "CursorLine", { bold = true, bg = "#1a1a1a" })
-			-- vim.api.nvim_set_hl(0, "CursorColumn", { bold = true, bg = "#1a1a1a" })
+			vim.cmd.colorscheme("tokyonight-night")
+			set_default_colors()
+			vim.api.nvim_set_hl(0, "NoiceCmdlinePopupBorder", { fg = "#ffcc77", bold = true })
+			vim.api.nvim_set_hl(0, "CursorLine", { bold = true, bg = "#1a1a1a" })
+			vim.api.nvim_set_hl(0, "CursorColumn", { bold = true, bg = "#1a1a1a" })
 		end,
 	},
 }

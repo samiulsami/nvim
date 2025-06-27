@@ -24,6 +24,8 @@ return {
 				"gofumpt",
 				"goimports",
 				"golangci-lint",
+				"google-java-format",
+				"checkstyle",
 				"staticcheck",
 				"clangd",
 				"clang-format",
