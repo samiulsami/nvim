@@ -58,16 +58,16 @@ local function map_motion_key(motion)
 
 		local char
 		if type(key) == "number" then
-			char = vim.fn.keytrans(vim.fn.nr2char(key)):lower()
+			char = vim.fn.keytrans(vim.fn.nr2char(key))
 		elseif type(key) == "string" then
-			char = vim.fn.keytrans(key):lower()
+			char = vim.fn.keytrans(key)
 		else
 			return
 		end
 
-		char = charmap[char] or char
+		char = charmap[char:lower()] or char
 
-		if char == "<esc>" then
+		if char:lower() == "<esc>" then
 			clear_fFtT_hl()
 			return
 		end

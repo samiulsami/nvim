@@ -1,19 +1,25 @@
 local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
-local workspace_dir = "/home/sami/java_workspace/" .. project_name
-local homeDir = os.getenv("HOME")
+local home_dir = os.getenv("HOME")
+local workspace_base_dir = home_dir .. "/.cache/.java_workspaces/"
+local eclipse_dir = home_dir .. "/.eclipse_jdtls"
+if vim.fn.isdirectory(workspace_base_dir) == 0 then
+	vim.fn.mkdir(workspace_base_dir, "p")
+end
+local java_path = vim.fn.trim(vim.fn.system("which java"))
+local workspace_dir = workspace_base_dir .. project_name
+local equinox_launcher = vim.fn.glob(eclipse_dir .. "/plugins/org.eclipse.equinox.launcher_*.jar")
 
 local config = {
 	-- The command that starts the language server
 	-- See: https://github.com/eclipse/eclipse.jdt.ls#running-from-the-command-line
 	cmd = {
-		-- 💀
-		"/usr/lib/jvm/jdk/bin/java",
+		java_path,
 
 		"-Declipse.application=org.eclipse.jdt.ls.core.id1",
 		"-Dosgi.bundles.defaultStartLevel=4",
 		"-Declipse.product=org.eclipse.jdt.ls.core.product",
-		"-Dlog.protocol=true",
-		"-Dlog.level=ALL",
+		"-Dlog.protocol=false",
+		"-Dlog.level=ERROR",
 		"-Xmx1g",
 		"--add-modules=ALL-SYSTEM",
 		"--add-opens",
@@ -21,16 +27,12 @@ local config = {
 		"--add-opens",
 		"java.base/java.lang=ALL-UNNAMED",
 
-		-- 💀
 		"-jar",
-		homeDir .. "/eclipse_jdtls/plugins/org.eclipse.equinox.launcher_1.7.0.v20250424-1814.jar",
+		equinox_launcher,
 
-		-- 💀
 		"-configuration",
-		homeDir .. "/eclipse_jdtls/config_linux/",
+		eclipse_dir .. "/config_linux/",
 
-		-- 💀
-		-- See `data directory configuration` section in the README
 		"-data",
 		workspace_dir,
 	},
@@ -41,6 +43,10 @@ local config = {
 	-- See https://github.com/eclipse/eclipse.jdt.ls/wiki/Running-the-JAVA-LS-server-from-the-command-line#initialize-request
 	-- for a list of options
 	settings = {
+
+		-- handlers = {
+		-- 	["language/status"] = function(_, _) end,
+		-- },
 		java = {
 			references = {
 				includeDecompiledSources = true,
@@ -96,6 +102,7 @@ local config = {
 					staticStarThreshold = 9999,
 				},
 			},
+
 			codeGeneration = {
 				toString = {
 					template = "${object.className}{${member.name()}=${member.value}, ${otherMembers}}",
@@ -131,5 +138,25 @@ local config = {
 	init_options = {
 		bundles = {},
 	},
+	handlers = {
+		["language/status"] = function() end,
+		["$/progress"] = function(_, result, ctx)
+			result.value.message = "[jdtls] processing..."
+			-- result.value.token = ""
+			result.value.kind = ""
+			vim.lsp.handlers["$/progress"](_, result, ctx)
+		end,
+		["window/logMessage"] = function(_, result, ctx)
+			if result.type == vim.lsp.protocol.MessageType.Error then
+				vim.lsp.handlers["window/logMessage"](_, result, ctx)
+			end
+		end,
+		["window/showMessage"] = function(_, result, ctx)
+			if result.type == vim.lsp.protocol.MessageType.Error then
+				vim.lsp.handlers["window/showMessage"](_, result, ctx)
+			end
+		end,
+	},
 }
+
 require("jdtls").start_or_attach(config)

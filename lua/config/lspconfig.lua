@@ -14,6 +14,7 @@ vim.lsp.enable({
 	"bashls",
 })
 vim.lsp.config("*", { capabilities = capabilities })
+vim.lsp.set_log_level("error")
 vim.lsp.inlay_hint.enable(false)
 
 vim.api.nvim_set_hl(0, "LspReferenceText", { bold = true, underline = true })
