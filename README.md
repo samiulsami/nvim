@@ -22,7 +22,26 @@ curl -fsSL https://fnm.vercel.app/install | zsh
 source ~/.zshrc
 fnm install 24
 ```
+
+#### jdtls (optional)
+- setup java (21+)<br>
+- download [jdtls latest](https://www.eclipse.org/downloads/download.php?file=/jdtls/snapshots/jdt-language-server-latest.tar.gz)<br>
+- extract jdtls to `$HOME/.eclipse_jdtls`, make sure you have the `plugins`/`bin`/etc. dirs in the `$HOME/.eclipse_jdtls` folder<br>
+- if needed, follow the steps here https://github.com/mfussenegger/nvim-jdtls<br>
+
 #### Build and configure
+```bash
+git clone https://github.com/neovim/neovim.git ~/neovim
+cd ~/neovim
+make CMAKE_BUILD_TYPE=RelWithDebInfo
+sudo make install
+
+# Setup plugins
+git clone https://github.com/samiulsami/nvimconfig.git ~/.config/nvim 
+nvim
+```
+
+
 ```bash
 git clone https://github.com/neovim/neovim.git ~/neovim
 cd ~/neovim

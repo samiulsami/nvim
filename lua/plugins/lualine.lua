@@ -48,9 +48,72 @@ return {
 			return prefix .. table.concat(components, "/")
 		end
 
+		local function search_result()
+			if not vim.g.lualine_show_search_index then
+				return ""
+			end
+			local ok, result = pcall(vim.fn.searchcount, { maxcount = 9999, timeout = 500 })
+			if not ok or not result or result.total == 0 then
+				return ""
+			end
+			return string.format("[%d/%d]", result.current, result.total) or ""
+		end
+
+		vim.api.nvim_create_autocmd("CmdlineEnter", {
+			pattern = "/,?",
+			callback = function()
+				vim.g.lualine_show_search_index = true
+			end,
+		})
+
+		for _, key in ipairs({ "n", "N", "*", "#", "g*", "g#" }) do
+			vim.keymap.set("n", key, function()
+				vim.g.lualine_show_search_index = true
+				require("lualine").refresh()
+				return key
+			end, { expr = true, desc = "Show Search Count" })
+		end
+
 		local function mode()
 			local str = vim.api.nvim_get_mode()
 			return str.mode:upper()
+		end
+
+		local function macro_recording()
+			local recording_macro = vim.fn.reg_recording()
+			if recording_macro ~= "" then
+				return "@" .. recording_macro
+			end
+			return ""
+		end
+
+		vim.api.nvim_create_autocmd({ "RecordingEnter", "RecordingLeave" }, {
+			callback = function()
+				require("lualine").refresh()
+			end,
+		})
+
+		local notification_util = require("utils.notifications")
+		local notification_color = "#777777"
+		local function notifications()
+			local unseen_notifications, preview, max_level = notification_util:get_unseen_notification_stats()
+			if unseen_notifications <= 0 then
+				notification_color = "#777777"
+				return "  No notifications  "
+			end
+			if max_level <= vim.log.levels.INFO then
+				notification_color = "#339933"
+			elseif max_level <= vim.log.levels.WARN then
+				notification_color = "#bb9944"
+			else
+				notification_color = "#bb4444"
+			end
+
+			if preview == "" then
+				preview = "[Empty Message]"
+			end
+
+			return string.format("[%d] %s", unseen_notifications, preview)
 		end
 
 		local custom_lualine_theme = require("lualine.themes.tokyonight")
@@ -72,13 +135,33 @@ return {
 			},
 
 			sections = {
-				lualine_a = { mode },
+				lualine_a = {
+					mode,
+					{
+						macro_recording,
+						color = { bg = "#ff2211", fg = "#ffffff" },
+					},
+				},
 				lualine_b = { "branch", "diff" },
 				lualine_c = {
 					luaLineShortenedPath,
 					"diagnostics",
+					search_result,
 				},
-				lualine_x = { "encoding", "fileformat", "filetype" },
+				lualine_x = {
+					{
+						notifications,
+						color = function()
+							return {
+								bg = notification_color,
+								fg = "#000000",
+							}
+						end,
+					},
+					"encoding",
+					"fileformat",
+					"filetype",
+				},
 				lualine_y = { "progress" },
 				lualine_z = { "location" },
 			},

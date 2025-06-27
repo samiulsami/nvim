@@ -14,6 +14,7 @@ vim.lsp.enable({
 	"bashls",
 })
 vim.lsp.config("*", { capabilities = capabilities })
+vim.lsp.set_log_level("error")
 vim.lsp.inlay_hint.enable(false)
 
 vim.api.nvim_set_hl(0, "LspReferenceText", { bold = true, underline = true })
@@ -26,8 +27,9 @@ vim.keymap.set("n", "<leader>RL", function()
 	for _, client in pairs(vim.lsp.get_clients()) do
 		client:stop(true)
 	end
-	vim.cmd("edit")
+	vim.cmd("edit!")
 end, { noremap = true, silent = true, desc = "[R]efresh [L]sp" })
+
 vim.keymap.set("n", "<leader>th", function()
 	local hinstsEnabled = vim.lsp.inlay_hint.is_enabled()
 	vim.lsp.inlay_hint.enable(not hinstsEnabled)

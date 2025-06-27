@@ -2,14 +2,22 @@ return {
 	{
 		"tpope/vim-fugitive",
 		config = function()
-			vim.keymap.set("n", "<leader>gg", ":Git<CR>", {})
-			vim.keymap.set("n", "<leader>gd", ":Gvdiffsplit!<CR>", { desc = "[G]it [D]iff [S]plit" })
+			vim.keymap.set("n", "<leader>gg", "<Cmd>Git<CR>", {})
+			vim.keymap.set("n", "<leader>gd", "<Cmd>Gvdiffsplit!<CR>", { desc = "[G]it [D]iff [S]plit" })
 
-			vim.keymap.set("n", "<leader>gl", ":Git log --oneline --full-history<CR>", { desc = "[G]it [L]og Oneline" })
-			vim.keymap.set("n", "<leader>gL", ":Git log<CR>", { desc = "[G]it [L]og" })
+			vim.keymap.set(
+				"n",
+				"<leader>gl",
+				"<Cmd>Git log --oneline --full-history<CR>",
+				{ desc = "[G]it [L]og Oneline" }
+			)
+			vim.keymap.set("n", "<leader>gL", "<Cmd>Git log<CR>", { desc = "[G]it [L]og" })
+			vim.keymap.set("n", "<leader>gfp", "<Cmd>Git fetch --prune --all<CR>", { desc = "[G]it [F]etch [P]rune" })
 
-			local function run_shell_command(command)
-				local result = vim.fn.system(command)
+			---@param cmd string
+			---@return string, string | nil
+			local function run_shell_command(cmd)
+				local result = vim.fn.system(cmd)
 				if vim.v.shell_error ~= 0 then
 					return "", result
 				end
@@ -50,7 +58,7 @@ return {
 					vim.notify(err, vim.log.levels.ERROR)
 					return
 				end
-				vim.notify("git stash\n" .. result, vim.log.levels.INFO)
+				vim.notify("git stash " .. result, vim.log.levels.INFO)
 
 				result, err = run_shell_command("git reset --hard " .. upstream)
 				if err ~= nil then
@@ -73,8 +81,8 @@ return {
 				vim.notify(result, vim.log.levels.INFO)
 			end, { desc = "[G]it Commit [A]mend" })
 
-			vim.keymap.set("n", "<leader>gc", "<cmd>Git commit --signoff<cr>", { desc = "[G]it [C]omit" })
-			vim.keymap.set("n", "<leader>gm", ":Git mergetool<CR>", { desc = "[G]it [M]ergetool" })
+			vim.keymap.set("n", "<leader>gc", "<Cmd>Git commit --signoff<CR>", { desc = "[G]it [C]omit" })
+			vim.keymap.set("n", "<leader>gm", "<Cmd>Git mergetool<CR>", { desc = "[G]it [M]ergetool" })
 
 			vim.keymap.set("n", "gb", function()
 				local curPosXY = vim.api.nvim_win_get_cursor(0)

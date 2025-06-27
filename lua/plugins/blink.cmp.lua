@@ -153,15 +153,16 @@ return {
 					["<CR>"] = {},
 				},
 				completion = {
-					ghost_text = { enabled = false },
+					list = { selection = { preselect = false, auto_insert = false } },
+					ghost_text = { enabled = true },
 					menu = { auto_show = true },
 				},
 			},
 
 			completion = {
 				accept = { auto_brackets = { enabled = false } },
-				list = { selection = { auto_insert = false } },
-				ghost_text = { enabled = false },
+				list = { selection = { preselect = false, auto_insert = false } },
+				ghost_text = { enabled = true },
 				menu = {
 					winblend = 15,
 					auto_show = true,

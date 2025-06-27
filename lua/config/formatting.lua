@@ -29,7 +29,7 @@ vim.opt.incsearch = true
 vim.opt.showmode = false
 
 vim.opt.breakindent = true
-vim.opt.wrap = true
+vim.opt.wrap = false
 vim.opt.smartcase = true
 
 vim.opt.inccommand = "split"

@@ -1,6 +1,6 @@
 vim.opt.updatetime = 50
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
+vim.g.loaded_netrw = 0
+vim.g.loaded_netrwPlugin = 0
 vim.opt.cursorcolumn = true
 vim.opt.cursorline = true
 
@@ -24,13 +24,19 @@ vim.opt.undofile = true
 vim.opt.mouse = "a"
 vim.opt.grepprg = "rg --vimgrep --no-heading --smart-case"
 vim.opt.grepformat = "%f:%l:%m"
-vim.opt.cmdheight = 0
 vim.o.sessionoptions = "buffers,curdir,folds,help,tabpages,globals,winsize,winpos,terminal"
+vim.opt.cmdheight = 0
+
+vim.api.nvim_create_autocmd("TextYankPost", {
+	group = vim.api.nvim_create_augroup("HighlightOnYank", { clear = true }),
+	callback = function()
+		vim.hl.on_yank()
+	end,
+})
 
 vim.diagnostic.config({
-	severity_sort = true,
-	float = { border = "rounded", source = "if_many" },
 	underline = { severity = vim.diagnostic.severity.ERROR },
+	update_in_insert = false,
 	signs = {
 		text = {
 			[vim.diagnostic.severity.ERROR] = "󰅚 ",
@@ -38,19 +44,6 @@ vim.diagnostic.config({
 			[vim.diagnostic.severity.INFO] = "󰋽 ",
 			[vim.diagnostic.severity.HINT] = "󰌶 ",
 		},
-	},
-	virtual_text = {
-		source = "if_many",
-		spacing = 2,
-		format = function(diagnostic)
-			local diagnostic_message = {
-				[vim.diagnostic.severity.ERROR] = diagnostic.message,
-				[vim.diagnostic.severity.WARN] = diagnostic.message,
-				[vim.diagnostic.severity.INFO] = diagnostic.message,
-				[vim.diagnostic.severity.HINT] = diagnostic.message,
-			}
-			return diagnostic_message[diagnostic.severity]
-		end,
 	},
 })
 
