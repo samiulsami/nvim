@@ -1,4 +1,4 @@
-local fFtT_ns = vim.api.nvim_create_namespace("HighlightFMotion")
+local fFtT_ns = vim.api.nvim_create_namespace("highlightFfTtMotion")
 local incsearchHighlight = vim.api.nvim_get_hl(0, { name = "IncSearch" })
 local commentHighlight = vim.api.nvim_get_hl(0, { name = "Comment" })
 vim.api.nvim_set_hl(0, "fFtTHighlight", { fg = incsearchHighlight.fg, bg = incsearchHighlight.bg })
@@ -31,9 +31,9 @@ local function map_motion_key(motion)
 
 		local from, to
 		if motion == "f" or motion == "t" then
-			from, to = col, #line - 1
+			from, to = col + 1, #line - 1
 		elseif motion == "F" or motion == "T" then
-			from, to = 0, col
+			from, to = 0, col - 1
 		end
 
 		for i = from, to do
@@ -52,6 +52,7 @@ local function map_motion_key(motion)
 			return
 		end
 
+		---FIXME: This is theoretically a race condition.
 		vim.defer_fn(function()
 			pending_motion = false
 		end, 100)
@@ -72,8 +73,10 @@ local function map_motion_key(motion)
 			return
 		end
 
+		local match_count = 0
 		for i = from, to do
 			if line:sub(i + 1, i + 1) == char then
+				match_count = match_count + 1
 				vim.api.nvim_buf_set_extmark(bufnr, fFtT_ns, row, i, {
 					end_col = i + 1,
 					hl_group = "fFtTHighlight",
@@ -81,8 +84,12 @@ local function map_motion_key(motion)
 			end
 		end
 
-		vim.api.nvim_feedkeys(motion .. char, "n", true)
-	end, { noremap = true })
+		if match_count <= 1 then
+			clear_fFtT_hl()
+		end
+
+		return motion .. char
+	end, { expr = true, noremap = true })
 end
 
 for _, motion in ipairs({ "f", "F", "t", "T" }) do
@@ -91,14 +98,15 @@ end
 
 --stylua: ignore
 local movement_keys = {
-	["h"] = true, ["j"] = true, ["k"] = true, ["l"] = true,
-	["w"] = true, ["b"] = true, ["e"] = true,
-	["0"] = true, ["^"] = true, ["$"] = true,
-	["G"] = true, ["g"] = true,
-	["i"] = true, ["a"] = true, ["A"] = true, ["I"] = true,
-	["v"] = true, ["V"] = true, ["+"] = true, ["-"] = true,
-	["<C-U>"] = true, ["<C-D>"] = true,
-	["<Esc>"] = true, ["Tab"] = true, ["S-Tab"] = true,
+	["h"] = true, ["j"] = true, ["k"] = true, ["l"] = true, ["w"] = true,
+	["b"] = true, ["e"] = true, ["0"] = true, ["^"] = true, ["$"] = true,
+	["G"] = true, ["g"] = true, ["%"] = true, ["i"] = true, ["a"] = true,
+	["A"] = true, ["I"] = true, ["v"] = true, ["V"] = true, ["+"] = true,
+	["-"] = true, ["<C-U>"] = true, ["<C-D>"] = true, ["<Esc>"] = true,
+	["Tab"] = true, ["S-Tab"] = true, ["c"] = true, ["C"] = true,
+	["d"] = true, ["D"] = true, ["r"] = true, ["R"] = true,
+	["s"] = true, ["S"] = true,["u"] = true, ["U"] = true,
+	["<C-r>"] = true,
 }
 
 vim.on_key(function(char)
@@ -115,4 +123,4 @@ vim.on_key(function(char)
 	if movement_keys[key] then
 		clear_fFtT_hl()
 	end
-end, vim.api.nvim_create_namespace("HighlightFMotionKeyWatcher"))
+end, vim.api.nvim_create_namespace("highlightFfTtMotionKeyWatcher"))

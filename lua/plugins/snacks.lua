@@ -133,6 +133,7 @@ return {
 				win = {
 					input = {
 						keys = {
+							["<ESC>"] = { "close", mode = { "i", "n" } },
 							["<C-y>"] = { "confirm", mode = { "i", "n" } },
 							["<a-d>"] = { "preview_scroll_down", mode = { "i", "n" } },
 							["<a-u>"] = { "preview_scroll_up", mode = { "i", "n" } },
@@ -173,15 +174,23 @@ return {
 
 			{ "<leader>sf", function() Snacks.picker.files({exclude = picker_ignore_patterns, hidden = true, ignored = true}) end, desc = "Search Files" },
 			{ "<leader>sF", function() Snacks.picker.files({title = "Search All Files", hidden = true, ignored = true}) end, desc = "ALL Search Files" },
-			{ "<leader>sg", function() Snacks.picker.grep({exclude = picker_ignore_patterns, hidden = true, ignored = true}) end, desc = "Grep" },
-			{ "<leader>sG", function() Snacks.picker.grep({title = "Grep All Files", hidden = true, ignored = true}) end, desc = "ALL Grep" },
+			{ "<leader>sg", function() Snacks.picker.grep({exclude = picker_ignore_patterns, hidden = true, ignored = true, live = false, need_search = false }) end, desc = "Fuzzy Grep" },
+			{ "<leader>sG", function() Snacks.picker.grep({hidden = true, ignored = true, live = false, need_search = false }) end, desc = "Fuzzy Grep ALL Files" },
+			{ "<leader>fg", function() Snacks.picker.grep({exclude = picker_ignore_patterns, title = "Grep All Files", hidden = true, ignored = true}) end, desc = "Live Grep" },
+			{ "<leader>fG", function() Snacks.picker.grep({title = "Grep All Files", hidden = true, ignored = true}) end, desc = "Live Grep ALL files" },
 			{ "<leader>sw", function() Snacks.picker.grep_word({exclude = picker_ignore_patterns, hidden = true, ignored = true}) end, desc = "Grep Word" },
 			{ "<leader>sW", function() Snacks.picker.grep_word({title = "Grep Word All Files", hidden = true, ignored = true}) end, desc = "ALL Grep Word" },
 
-			{ "<leader>fg", function() Snacks.picker.git_files() end, desc = "Find Git Files" },
 			{ "<leader>sp", function() Snacks.picker.projects() end, desc = "Projects" },
 			{ "<leader><space>", function() Snacks.picker.recent({hidden = true, ignored = true}) end, desc = "Recent" },
-			{ "<leader>gs", function() Snacks.picker.git_stash() end, desc = "Git Stash" },
+			{ "<leader>Gf", function() Snacks.picker.git_files() end, desc = "Git files" },
+			{ "<leader>GF", function() Snacks.picker.git_log_file() end, desc = "Git log File" },
+			{ "<leader>Gl", function() Snacks.picker.git_log_line() end, desc = "Git log Line" },
+			{ "<leader>GL", function() Snacks.picker.git_log() end, desc = "Git log" },
+			{ "<leader>GG", function() Snacks.picker.git_grep() end, desc = "Git Grep" },
+			{ "<leader>Gs", function() Snacks.picker.git_stash() end, desc = "Git Stash" },
+			{ "<leader>Gd", function() Snacks.picker.git_diff() end, desc = "Git Diff" },
+			{ "<leader>Gb", function() Snacks.picker.git_branches() end, desc = "Git branches" },
 
 			{ "<leader>/", function() Snacks.picker.lines() end, desc = "Buffer Lines" },
 			{ '<leader>s"', function() Snacks.picker.registers() end, desc = "Registers" },

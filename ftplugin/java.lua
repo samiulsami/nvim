@@ -58,9 +58,6 @@ local config = {
 					-- profile = "GoogleStyle",
 				},
 			},
-			eclipse = {
-				downloadSources = true,
-			},
 			maven = {
 				downloadSources = true,
 			},
