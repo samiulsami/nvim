@@ -12,7 +12,7 @@ return {
 				throttle = 100,
 				show_all_diags_on_cursorline = true,
 				multilines = {
-					enabled = true,
+					enabled = false,
 					always_show = false,
 				},
 				virt_texts = {

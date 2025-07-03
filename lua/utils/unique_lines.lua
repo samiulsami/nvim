@@ -11,7 +11,7 @@ vim.api.nvim_create_user_command("Unique", function(opts)
 		local line = vim.fn.getline(i):match("^%s*(.-)%s*$")
 		if seen[line] then
 			vim.cmd(i .. "delete")
-			end_line = end_line - 1 -- adjust range after deletion
+			end_line = end_line - 1
 		else
 			seen[line] = true
 			i = i + 1

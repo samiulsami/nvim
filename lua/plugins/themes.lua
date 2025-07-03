@@ -41,24 +41,6 @@ return {
 		end,
 	},
 	{
-		"sainnhe/gruvbox-material",
-		lazy = false,
-		priority = 1000,
-		config = function()
-			-- vim.g.gruvbox_material_enable_italic = true
-			-- vim.g.gruvbox_material_background = "hard" -- Options: 'hard', 'soft', 'medium'
-			-- vim.g.gruvbox_material_transparent_background = 2
-			-- vim.cmd.colorscheme("gruvbox-material")
-			-- set_default_colors()
-			-- vim.api.nvim_set_hl(0, "NoiceCmdlinePopupBorder", { fg = "#ffcc77", bold = true })
-			--
-			-- local buffer_bg_color = "#1a1b1e"
-			-- vim.api.nvim_set_hl(0, "Normal", { bg = buffer_bg_color })
-			-- vim.api.nvim_set_hl(0, "NormalNC", { bg = buffer_bg_color })
-			-- vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = buffer_bg_color })
-		end,
-	},
-	{
 		"folke/tokyonight.nvim",
 		lazy = false,
 		priority = 1000,

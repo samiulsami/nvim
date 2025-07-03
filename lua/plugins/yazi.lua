@@ -27,7 +27,13 @@ return {
 		},
 		integrations = {
 			grep_in_directory = function(directory)
-				require("snacks").picker.grep({ dirs = { directory }, hidden = true, ignored = true })
+				require("snacks").picker.grep({
+					dirs = { directory },
+					hidden = true,
+					ignored = true,
+					live = false,
+					need_search = false,
+				})
 				vim.api.nvim_feedkeys("i", "n", false)
 			end,
 		},

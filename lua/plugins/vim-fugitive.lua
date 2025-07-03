@@ -7,9 +7,12 @@ return {
 
 			vim.keymap.set("n", "<leader>gl", ":Git log --oneline --full-history<CR>", { desc = "[G]it [L]og Oneline" })
 			vim.keymap.set("n", "<leader>gL", ":Git log<CR>", { desc = "[G]it [L]og" })
+			vim.keymap.set("n", "<leader>gfp", ":Git fetch --prune --all<CR>", { desc = "[G]it [F]etch [P]rune" })
 
-			local function run_shell_command(command)
-				local result = vim.fn.system(command)
+			---@param cmd string
+			---@return string, string | nil
+			local function run_shell_command(cmd)
+				local result = vim.fn.system(cmd)
 				if vim.v.shell_error ~= 0 then
 					return "", result
 				end
