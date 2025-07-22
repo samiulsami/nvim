@@ -14,6 +14,7 @@ return {
 				"shellcheck",
 				"shfmt",
 				"checkmake",
+				"jq",
 				"json-lsp",
 				"jsonlint",
 				"helm-ls",

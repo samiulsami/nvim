@@ -4,12 +4,17 @@ return {
 		---@module "fFtT-highlights"
 		---@type fFtT_highlights.opts
 		require("fFtT-highlights"):setup({
+			on_reset = function()
+				vim.cmd.nohlsearch()
+			end,
 			case_sensitivity = "smart_case",
 			match_highlight = {
 				priority = 2000,
+				persist_matches = 5,
 			},
 			backdrop = {
 				style = {
+					show_in_motion = "none",
 					on_key_press = "current_line",
 				},
 			},
