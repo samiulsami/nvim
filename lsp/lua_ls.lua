@@ -20,7 +20,10 @@ return {
 				disable = { "missing-fields" },
 			},
 			runtime = { version = "LuaJIT" },
-			completion = { callSnippet = "Replace" },
+			completion = {
+				callSnippet = "Disable",
+				keywordSnippet = "Disable",
+			},
 		},
 	},
 }

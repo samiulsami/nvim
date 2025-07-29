@@ -45,29 +45,34 @@ return {
 		-- stylua: ignore start
 		vim.keymap.set("n", "<leader>sd", function()
 			local cwd = vim.fn.getcwd()
-			fzflua.lsp_document_diagnostics({cwd_header = true, cwd = cwd, file_ignore_patterns = active_ignore_patterns}, {desc = "LSP Document Diagnostics"})
-		end)
+			fzflua.lsp_document_diagnostics({cwd_header = true, cwd = cwd, file_ignore_patterns = active_ignore_patterns})
+		end, {desc = "LSP Document Diagnostics"})
 		vim.keymap.set("n", "<leader>sD", function()
 			local cwd = vim.fn.getcwd()
-			fzflua.lsp_workspace_diagnostics({cwd_header = true, cwd = cwd, file_ignore_patterns = active_ignore_patterns}, {desc = "LSP Workspace Diagnostics"})
-		end)
+			fzflua.lsp_workspace_diagnostics({cwd_header = true, cwd = cwd, file_ignore_patterns = active_ignore_patterns})
+		end, {desc = "LSP Workspace Diagnostics"})
 		vim.keymap.set("n", "<leader>sf", function()
 			local cwd = vim.fn.getcwd()
-			fzflua.files({cwd_header = false, cwd = cwd, file_ignore_patterns = active_ignore_patterns}, {desc = "Search Files"})
-		end)
+			fzflua.files({cwd_header = false, cwd = cwd, file_ignore_patterns = active_ignore_patterns})
+		end, {desc = "Search Files"})
 		vim.keymap.set("n", "<leader>sg", function()
 			local cwd = vim.fn.getcwd()
-			fzflua.grep(function() return { cwd_header = true, cwd = cwd, search = "", file_ignore_patterns = active_ignore_patterns} end, {desc = "Live Grep"})
-		end)
-		vim.keymap.set("n", "<leader>/", function() fzflua.blines({}, {desc = "Fuzzy Search Current Buffer Lines"}) end)
+			fzflua.grep({ cwd_header = true, cwd = cwd, search = "", file_ignore_patterns = active_ignore_patterns})
+		end, {desc = "Live Grep"})
+		vim.keymap.set("n", "<leader>/", function() fzflua.blines({}) end, {desc = "Fuzzy Search Current Buffer Lines"})
 		vim.keymap.set("n", "<leader>sq", function()
 			local cwd = vim.fn.getcwd()
-			fzflua.lgrep_quickfix(function() return { cwd_header = true, cwd = cwd, search = "", file_ignore_patterns = active_ignore_patterns} end, {desc = "Live Grep Quickfix List"})
-		end)
-		vim.keymap.set("n", "<leader>ws", function()
+			fzflua.lgrep_quickfix({
+				cwd_header = true,
+				cwd = cwd,
+				search = "",
+				file_ignore_patterns = active_ignore_patterns,
+			})
+		end, {desc = "Live Grep Quickfix List"})
+		vim.keymap.set("n", "<leader>sw", function()
 			local cwd = vim.fn.getcwd()
-			fzflua.lsp_live_workspace_symbols({pwd_header = true, cwd = cwd, file_ignore_patterns = active_ignore_patterns}, {desc = "LSP Live Workspace Symbols"})
-		end)
+			fzflua.lsp_live_workspace_symbols({pwd_header = true, cwd = cwd, file_ignore_patterns = active_ignore_patterns})
+		end, {desc = "LSP Live Workspace Symbols"})
 		vim.keymap.set("n", "<leader>ds", function()
 			fzflua.lsp_document_symbols({desc = "LSP Live Document Symbols"})
 		end)
@@ -78,12 +83,13 @@ return {
 		vim.keymap.set("n", "gi", function() fzflua.lsp_implementations() end, { desc = "LSP Implementations" })
 		vim.keymap.set("n", "gD", function() fzflua.lsp_declarations() end, { desc = "LSP Declarations" })
 
-		vim.keymap.set("n", "<leader>gs", function() fzflua.git_stash({}, {desc = "Git Stash"}) end)
-		vim.keymap.set("n", "<leader>sr", function() fzflua.resume({}, {desc = "Search Resume"}) end)
-		vim.keymap.set("n", "<leader>so", function() fzflua.oldfiles({}, {desc = "Search Oldfiles"}) end)
+		vim.keymap.set("n", "<leader>gs", function() fzflua.git_stash({}) end, {desc = "Git Stash"})
+		vim.keymap.set("n", "<leader>sr", function() fzflua.resume({}) end, {desc = "Search Resume"})
+		vim.keymap.set("n", "<leader>so", function() fzflua.oldfiles({}) end, {desc = "Search Oldfiles"})
 
-		vim.keymap.set("n", "<leader>sk", function() fzflua.keymaps({}, {desc = "Search Keymaps"}) end)
-		vim.keymap.set("n", "<leader>sh", function() fzflua.help_tags({}, {desc = "Search Help Tags"}) end)
+		vim.keymap.set("n", "<leader>sk", function() fzflua.keymaps({}) end, {desc = "Search Keymaps"})
+		vim.keymap.set("n", "<leader>sc", function() fzflua.colorschemes({ winopts = { fullscreen = false } }) end, {desc = "Search Colorschemes"})
+		vim.keymap.set("n", "<leader>sh", function() fzflua.help_tags({}) end, {desc = "Search Help Tags"})
 
 		local notification_util = require("utils.notifications")
 		vim.keymap.set("n", "<leader>sn", function()
@@ -113,7 +119,7 @@ return {
 							vim.cmd("set ft=json")
 						end,
 					},
-					previewer = false,
+					previewer = nil,
 					fzf_opts = {
 						['--preview-window'] = "down:60%",
 						['--preview'] = function(items)
@@ -122,7 +128,7 @@ return {
 								if vim.fn.executable("jq") == 0 then
 									table.insert(contents, "[jq not found] ".. selected)
 								else
-									local output = vim.fn.system("echo '" .. selected .. "' | jq --color-output")
+									local output = vim.fn.system("jq --color-output", selected)
 									if vim.v.shell_error ~= 0 then
 										table.insert(contents, "Invalid JSON, or jq error: ".. selected)
 									else

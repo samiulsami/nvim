@@ -14,7 +14,7 @@ return {
 			},
 			backdrop = {
 				style = {
-					show_in_motion = "none",
+					show_in_motion = "current_line",
 					on_key_press = "current_line",
 				},
 			},

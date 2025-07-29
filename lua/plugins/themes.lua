@@ -49,8 +49,8 @@ return {
 			})
 			vim.cmd.colorscheme("tokyonight-night")
 			set_default_colors()
-			vim.api.nvim_set_hl(0, "CursorLine", { bold = true, bg = "#1a1a1a" })
-			vim.api.nvim_set_hl(0, "CursorColumn", { bold = true, bg = "#1a1a1a" })
+			vim.api.nvim_set_hl(0, "CursorLine", { bold = true, bg = "#1f1f2a" })
+			vim.api.nvim_set_hl(0, "CursorColumn", { bold = true, bg = "#1f1f2a" })
 		end,
 	},
 }

@@ -67,12 +67,17 @@ M.setup = function()
 		end
 
 		---FIXME: can probably be done better with regexes
-		M.notifications[M.tail] = vim.fn
-			.json_encode({ timestamp = timestamp, msg = msg, level = level_str })
-			:gsub("\n", "")
-			:gsub("\t", "")
-			:gsub("\r", "")
-			:gsub("\\", "")
+		M.notifications[M.tail] = vim.json
+			.encode({
+				timestamp = timestamp,
+				msg = vim.json.encode(msg),
+				level = level_str,
+			})
+			:gsub([[\n]], "")
+			:gsub([[\t]], "")
+			:gsub([[\r]], "")
+			:gsub([[\"]], "'")
+			:gsub([[\]], "")
 
 		while M.tail - M.head + 1 > M.max_notifications do
 			M.notifications[M.head] = nil
@@ -82,6 +87,42 @@ M.setup = function()
 		local ok, lualine = pcall(require, "lualine")
 		if ok then
 			lualine.refresh()
+		end
+	end
+
+	---@diagnostic disable-next-line: duplicate-set-field
+	vim.print = function(...)
+		local args = table.concat(vim.tbl_map(vim.inspect, { ... }), " ")
+		vim.notify(args, vim.log.levels.INFO)
+	end
+
+	---@diagnostic disable-next-line: duplicate-set-field
+	vim.api.nvim_echo = function(msg, _, _)
+		vim.notify(
+			table.concat(
+				vim.tbl_map(function(item)
+					return item[1]
+				end, msg),
+				""
+			),
+			vim.log.levels.INFO
+		)
+	end
+
+	local orig_diag_set = vim.diagnostic.set
+	---@diagnostic disable-next-line: duplicate-set-field
+	vim.diagnostic.set = function(ns, bufnr, diagnostics, opts)
+		local ok, err = pcall(orig_diag_set, ns, bufnr, diagnostics, opts)
+		if not ok then
+			vim.notify("Diagnostic error: " .. vim.inspect({
+				diagnostics = table.concat(
+					vim.tbl_map(function(item)
+						return item.message
+					end, diagnostics),
+					"\n"
+				),
+				err = err,
+			}), vim.log.levels.ERROR)
 		end
 	end
 end

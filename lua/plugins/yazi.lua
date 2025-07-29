@@ -23,7 +23,7 @@ return {
 			change_working_directory = "`",
 			grep_in_directory = "<c-s>",
 			replace_in_directory = "<c-r>",
-			cycle_open_buffers = "O",
+			cycle_open_buffers = "<f2>",
 		},
 		integrations = {
 			grep_in_directory = function(directory)

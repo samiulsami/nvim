@@ -36,11 +36,17 @@ vim.keymap.set(
 )
 
 vim.keymap.set("n", "]d", function()
-	vim.diagnostic.jump({ count = 1, float = true })
+	local ok, err = pcall(vim.diagnostic.jump, { count = 1, float = true })
+	if not ok then
+		vim.notify("Diagnostic error: " .. vim.inspect(err), vim.log.levels.ERROR)
+	end
 end, { noremap = true, silent = true, desc = "Jump to next Diagnostic" })
 
 vim.keymap.set("n", "[d", function()
-	vim.diagnostic.jump({ count = -1, float = true })
+	local ok, err = pcall(vim.diagnostic.jump, { count = -1, float = true })
+	if not ok then
+		vim.notify("Diagnostic error: " .. vim.inspect(err), vim.log.levels.ERROR)
+	end
 end, { noremap = true, silent = true, desc = "Jump to previous Diagnostic" })
 
 vim.keymap.set("n", "<leader>l", function()
@@ -54,6 +60,15 @@ vim.api.nvim_set_keymap("n", "<C-u>", "<C-u>zz", { noremap = true })
 vim.keymap.set("n", "<leader>e", "<Cmd>vsplit<CR>", { noremap = true, silent = true })
 -- Horizontal split with <leader>-o
 vim.keymap.set("n", "<leader>o", "<Cmd>split<CR>", { noremap = true, silent = true })
+
+vim.keymap.set("n", "<leader>O", "<C-w>o", { desc = ":Only", noremap = true, silent = true })
+
+vim.keymap.set("n", "<leader>Q", "<Cmd>qa!<CR>", { desc = "quit all", noremap = true, silent = true })
+vim.keymap.set("n", "<leader>q", "<Cmd>wqa!<CR>", { desc = "save and quit all", noremap = true, silent = true })
+vim.keymap.set("n", "<leader>w", function()
+	vim.cmd("wa!")
+	vim.notify("Saved all", vim.log.levels.INFO)
+end, { desc = "save all", noremap = true, silent = true })
 
 -- Command-line mappings for history navigation
 vim.api.nvim_set_keymap("c", "<C-p>", "<Up>", { noremap = true })

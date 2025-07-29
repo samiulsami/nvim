@@ -137,12 +137,15 @@ return {
 			sections = {
 				lualine_a = {
 					mode,
+				},
+				lualine_b = {
 					{
 						macro_recording,
 						color = { bg = "#ff2211", fg = "#ffffff" },
 					},
+					"branch",
+					"diff",
 				},
-				lualine_b = { "branch", "diff" },
 				lualine_c = {
 					luaLineShortenedPath,
 					"diagnostics",

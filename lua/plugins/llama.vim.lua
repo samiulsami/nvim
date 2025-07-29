@@ -5,7 +5,7 @@ return {
 
 		vim.g.llama_config = {
 			show_info = 0,
-			endpoint = llama_utils.host .. ":" .. llama_utils.port .. "/infill",
+			endpoint = llama_utils:endpoint(),
 			max_line_suffix = 4096,
 			auto_fim = true,
 			stop_strings = { "\n" },

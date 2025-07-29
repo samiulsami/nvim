@@ -1,6 +1,6 @@
 {
   "blink-cmp-git": { "branch": "master", "commit": "a820245eb0e5cb44ed0c27c63a41d90635b39e0e" },
-  "blink.cmp": { "branch": "main", "commit": "1a5607f90c8804cc13ea94a3ec6ea614141609bf" },
+  "blink.cmp": { "branch": "main", "commit": "a0bcedefce8d74179d0f2401d9915eaaf16974ce" },
   "blink.compat": { "branch": "main", "commit": "1454f14a8d855a578ceeba77c62538fa1459a67c" },
   "cmp-cmdline-history": { "branch": "master", "commit": "003573b72d4635ce636234a826fa8c4ba2895ffe" },
   "cmp-go-deep": { "branch": "master", "commit": "872ea1f3bb022ea4c7f79e91f821da0e19a243de" },
@@ -8,9 +8,9 @@
   "conform.nvim": { "branch": "master", "commit": "973f3cb73887d510321653044791d7937c7ec0fa" },
   "debugmaster.nvim": { "branch": "main", "commit": "3d144b98c2c23f39123fbf5f10fdff7d6480a0e6" },
   "everforest": { "branch": "master", "commit": "f40c2e6c8784c99c57c79edc94cd180e76450222" },
-  "fFtT-highlights.nvim": { "branch": "master", "commit": "03dd7d8c9a9c8bc45d35ca47493c9cd97073feb7" },
+  "fFtT-highlights.nvim": { "branch": "master", "commit": "a3e10d100890c93787022716b7b228038e905dde" },
   "friendly-snippets": { "branch": "main", "commit": "572f5660cf05f8cd8834e096d7b4c921ba18e175" },
-  "fzf-lua": { "branch": "main", "commit": "c9a2deb7bf2d8deaf56a229ff9c7bfeffa8d7d53" },
+  "fzf-lua": { "branch": "main", "commit": "c6efab0fd1d8548a760e837629b84e400ac76c79" },
   "gitsigns.nvim": { "branch": "main", "commit": "b01433169be710d6c69f7b4ee264d9670698b831" },
   "harpoon": { "branch": "harpoon2", "commit": "ed1f853847ffd04b2b61c314865665e1dadf22c7" },
   "indentmini.nvim": { "branch": "main", "commit": "0dc4bc2b3fc763420793e748b672292bc43ee722" },
@@ -21,10 +21,9 @@
   "lualine.nvim": { "branch": "master", "commit": "a94fc68960665e54408fe37dcf573193c4ce82c9" },
   "luvit-meta": { "branch": "main", "commit": "1df30b60b1b4aecfebc785aa98943db6c6989716" },
   "mason-tool-installer": { "branch": "main", "commit": "517ef5994ef9d6b738322664d5fdd948f0fdeb46" },
-  "mason.nvim": { "branch": "main", "commit": "197f6352c276bbc2d25541dfce00ec50d1a4e88f" },
-  "mini.ai": { "branch": "main", "commit": "1cd4f021a05c29acd4ab511c0981da14217daf38" },
+  "mason.nvim": { "branch": "main", "commit": "3671ab0d40aa5bd24b1686562bd0a23391ecf76a" },
   "mini.icons": { "branch": "main", "commit": "b8f6fa6f5a3fd0c56936252edcd691184e5aac0c" },
-  "neotest": { "branch": "master", "commit": "3c81345c28cd639fcc02843ed3653be462f47024" },
+  "neotest": { "branch": "master", "commit": "61d1951131e6770c815243d84a27ccd0436ec61c" },
   "neotest-golang": { "branch": "main", "commit": "9521843942423fcac9991c596ff19c1f4f500650" },
   "nvim-dap": { "branch": "master", "commit": "5dd4d50f2e6a2eaf9e57fad023d294ef371bda35" },
   "nvim-dap-go": { "branch": "main", "commit": "b4421153ead5d726603b02743ea40cf26a51ed5f" },
@@ -38,7 +37,7 @@
   "oil.nvim": { "branch": "master", "commit": "bbad9a76b2617ce1221d49619e4e4b659b3c61fc" },
   "persistence.nvim": { "branch": "main", "commit": "166a79a55bfa7a4db3e26fc031b4d92af71d0b51" },
   "plenary.nvim": { "branch": "master", "commit": "b9fd5226c2f76c951fc8ed5923d85e4de065e509" },
-  "schemastore.nvim": { "branch": "main", "commit": "67d6c391e9a372d2d8701b5b8c9ae89455561fbf" },
+  "schemastore.nvim": { "branch": "main", "commit": "3cd1c7267282b4d89618674de36a6d866981347e" },
   "sqlite.lua": { "branch": "master", "commit": "50092d60feb242602d7578398c6eb53b4a8ffe7b" },
   "supermaven-nvim": { "branch": "main", "commit": "07d20fce48a5629686aefb0a7cd4b25e33947d50" },
   "symbol-usage.nvim": { "branch": "main", "commit": "e07c07dfe7504295a369281e95a24e1afa14b243" },
@@ -50,5 +49,5 @@
   "vim-helm": { "branch": "master", "commit": "cc5ac22444332381f38084a6c7f023c25eef6201" },
   "vim-sleuth": { "branch": "master", "commit": "be69bff86754b1aa5adcbb527d7fcd1635a84080" },
   "which-key.nvim": { "branch": "main", "commit": "370ec46f710e058c9c1646273e6b225acf47cbed" },
-  "yazi.nvim": { "branch": "main", "commit": "6e4e9f0353f94ca4965c20dfc2690fb0d21730f0" }
+  "yazi.nvim": { "branch": "main", "commit": "d094f065290918569b2fe6dae9a8cd3348e99760" }
 }
