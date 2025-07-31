@@ -7,10 +7,9 @@ return {
 			on_reset = function()
 				vim.cmd.nohlsearch()
 			end,
-			case_sensitivity = "smart_case",
+			-- case_sensitivity = "smart_case",
 			match_highlight = {
 				priority = 2000,
-				persist_matches = 5,
 			},
 			backdrop = {
 				style = {

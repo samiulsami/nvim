@@ -59,6 +59,10 @@ return {
 			local cwd = vim.fn.getcwd()
 			fzflua.grep({ cwd_header = true, cwd = cwd, search = "", file_ignore_patterns = active_ignore_patterns})
 		end, {desc = "Live Grep"})
+		vim.keymap.set("n", "<leader>sj", function()
+			local cwd = vim.fn.getcwd()
+			fzflua.jumps({cwd_header = false, cwd = cwd, file_ignore_patterns = active_ignore_patterns})
+		end, {desc = "Search Jumps"})
 		vim.keymap.set("n", "<leader>/", function() fzflua.blines({}) end, {desc = "Fuzzy Search Current Buffer Lines"})
 		vim.keymap.set("n", "<leader>sq", function()
 			local cwd = vim.fn.getcwd()
@@ -83,7 +87,14 @@ return {
 		vim.keymap.set("n", "gi", function() fzflua.lsp_implementations() end, { desc = "LSP Implementations" })
 		vim.keymap.set("n", "gD", function() fzflua.lsp_declarations() end, { desc = "LSP Declarations" })
 
-		vim.keymap.set("n", "<leader>gs", function() fzflua.git_stash({}) end, {desc = "Git Stash"})
+		vim.keymap.set("n", "<leader>GF", function() fzflua.git_files({}) end, {desc = "Git Files"})
+		vim.keymap.set("n", "<leader>GD", function() fzflua.git_diff({}) end, {desc = "Git Diff"})
+		vim.keymap.set("n", "<leader>GS", function() fzflua.git_stash({}) end, {desc = "Git Stash"})
+		vim.keymap.set("n", "<leader>Gc", function() fzflua.git_commits({}) end, {desc = "Git Commits"})
+		vim.keymap.set("n", "<leader>GC", function() fzflua.git_bcommits({}) end, {desc = "Git Buffer Commits"})
+		vim.keymap.set("n", "<leader>GB", function() fzflua.git_branches({}) end, {desc = "Git Branches"})
+		vim.keymap.set("n", "<leader>GT", function() fzflua.git_tags({}) end, {desc = "Git Tags"})
+
 		vim.keymap.set("n", "<leader>sr", function() fzflua.resume({}) end, {desc = "Search Resume"})
 		vim.keymap.set("n", "<leader>so", function() fzflua.oldfiles({}) end, {desc = "Search Oldfiles"})
 

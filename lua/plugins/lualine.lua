@@ -172,6 +172,17 @@ return {
 				lualine_c = {
 					luaLineShortenedPath,
 				},
+				lualine_x = {
+					{
+						notifications,
+						color = function()
+							return {
+								bg = notification_color,
+								fg = "#000000",
+							}
+						end,
+					},
+				},
 			},
 		})
 	end,

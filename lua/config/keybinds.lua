@@ -26,8 +26,6 @@ vim.keymap.set("n", "<ESC>", function()
 	return "<ESC>"
 end, { expr = true, desc = "Remove Search Highlights" })
 
-vim.keymap.set("n", "s", "/", { silent = true, desc = "Search [/]" })
-
 vim.keymap.set(
 	"n",
 	"H",
@@ -64,9 +62,9 @@ vim.keymap.set("n", "<leader>o", "<Cmd>split<CR>", { noremap = true, silent = tr
 vim.keymap.set("n", "<leader>O", "<C-w>o", { desc = ":Only", noremap = true, silent = true })
 
 vim.keymap.set("n", "<leader>Q", "<Cmd>qa!<CR>", { desc = "quit all", noremap = true, silent = true })
-vim.keymap.set("n", "<leader>q", "<Cmd>wqa!<CR>", { desc = "save and quit all", noremap = true, silent = true })
+vim.keymap.set("n", "<leader>q", "<Cmd>q<CR>", { desc = "quit", noremap = true, silent = true })
 vim.keymap.set("n", "<leader>w", function()
-	vim.cmd("wa!")
+	vim.cmd("noautocmd wa!")
 	vim.notify("Saved all", vim.log.levels.INFO)
 end, { desc = "save all", noremap = true, silent = true })
 

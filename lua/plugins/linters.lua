@@ -7,7 +7,7 @@ return {
 				-- cpp = { "cpplint" },
 				go = {
 					"golangcilint",
-					"staticcheck",
+					-- "staticcheck",
 				},
 				yaml = { "yamllint" },
 				bash = { "shellcheck" },

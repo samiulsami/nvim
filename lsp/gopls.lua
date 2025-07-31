@@ -43,6 +43,8 @@ return {
 		gopls = {
 			completeUnimported = true,
 			usePlaceholders = false,
+			experimentalPostfixCompletions = false,
+			completeFunctionCalls = false,
 			analyses = {
 				unusedparams = true,
 				deprecated = true,

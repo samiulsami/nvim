@@ -37,6 +37,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 vim.diagnostic.config({
 	underline = { severity = vim.diagnostic.severity.ERROR },
 	update_in_insert = false,
+	virtual_text = false,
 	signs = {
 		text = {
 			[vim.diagnostic.severity.ERROR] = "󰅚 ",
