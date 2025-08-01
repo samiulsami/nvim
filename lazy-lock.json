@@ -8,10 +8,11 @@
   "conform.nvim": { "branch": "master", "commit": "973f3cb73887d510321653044791d7937c7ec0fa" },
   "debugmaster.nvim": { "branch": "main", "commit": "3d144b98c2c23f39123fbf5f10fdff7d6480a0e6" },
   "fFtT-highlights.nvim": { "branch": "master", "commit": "a3e10d100890c93787022716b7b228038e905dde" },
+  "fidget.nvim": { "branch": "main", "commit": "4ec7bed6c86b671ddde03ca1b227343cfa3e65fa" },
   "friendly-snippets": { "branch": "main", "commit": "572f5660cf05f8cd8834e096d7b4c921ba18e175" },
   "fzf-lua": { "branch": "main", "commit": "e40e2337611fa426b8bcb6989fc310035c6ec4aa" },
   "fzf-lua-frecency.nvim": { "branch": "master", "commit": "4702f03f90062cc02a95cc7fe4dce7ca518d0b93" },
-  "gitsigns.nvim": { "branch": "main", "commit": "cc2e664c7e3cd8a31af34df040d16a75cfcadced" },
+  "gitsigns.nvim": { "branch": "main", "commit": "8270378ab83540b03d09c0194ba3e208f9d0cb72" },
   "harpoon": { "branch": "harpoon2", "commit": "ed1f853847ffd04b2b61c314865665e1dadf22c7" },
   "indentmini.nvim": { "branch": "main", "commit": "0dc4bc2b3fc763420793e748b672292bc43ee722" },
   "lazy.nvim": { "branch": "main", "commit": "6c3bda4aca61a13a9c63f1c1d1b16b9d3be90d7a" },
@@ -49,5 +50,5 @@
   "vim-helm": { "branch": "master", "commit": "cc5ac22444332381f38084a6c7f023c25eef6201" },
   "vim-sleuth": { "branch": "master", "commit": "be69bff86754b1aa5adcbb527d7fcd1635a84080" },
   "which-key.nvim": { "branch": "main", "commit": "370ec46f710e058c9c1646273e6b225acf47cbed" },
-  "yazi.nvim": { "branch": "main", "commit": "aaaf35d3a0161876dd9b2701454ae186fa83c302" }
+  "yazi.nvim": { "branch": "main", "commit": "fb4256c23e5746c292ee7dcff7c240115c161753" }
 }

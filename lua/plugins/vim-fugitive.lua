@@ -11,8 +11,6 @@ return {
 				"<Cmd>Git log --oneline --full-history<CR>",
 				{ desc = "[G]it [L]og Oneline" }
 			)
-			vim.keymap.set("n", "<leader>gL", "<Cmd>Git log<CR>", { desc = "[G]it [L]og" })
-			vim.keymap.set("n", "<leader>gfp", "<Cmd>Git fetch --prune --all<CR>", { desc = "[G]it [F]etch [P]rune" })
 
 			---@param cmd string
 			---@return string, string | nil
@@ -23,6 +21,16 @@ return {
 				end
 				return result:match("^%s*(.-)%s*$"), nil
 			end
+
+			vim.keymap.set("n", "<leader>gL", "<Cmd>Git log<CR>", { desc = "[G]it [L]og" })
+			vim.keymap.set("n", "<leader>gfp", function()
+				local result, err = run_shell_command("git fetch --prune --all")
+				if err ~= nil then
+					vim.notify(err, vim.log.levels.ERROR)
+					return
+				end
+				vim.notify(result, vim.log.levels.INFO)
+			end, { desc = "[G]it [F]etch [P]rune" })
 
 			vim.keymap.set("n", "<leader>ghr", function()
 				local current_branch = vim.fn.FugitiveHead()
