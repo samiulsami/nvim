@@ -1,7 +1,8 @@
 local set_default_colors = function()
-	vim.api.nvim_set_hl(0, "LspReferenceText", { bg = "#1a1a1a", bold = true })
-	vim.api.nvim_set_hl(0, "LspReferenceRead", { bg = "#1a1a1a", bold = true })
-	vim.api.nvim_set_hl(0, "LspReferenceWrite", { bg = "#1a1a1a", bold = true })
+	local lspref_color = "#2d2f41"
+	vim.api.nvim_set_hl(0, "LspReferenceText", { bg = lspref_color, bold = true, underline = true })
+	vim.api.nvim_set_hl(0, "LspReferenceRead", { bg = lspref_color, bold = true, underline = true })
+	vim.api.nvim_set_hl(0, "LspReferenceWrite", { bg = lspref_color, bold = true, underline = true })
 
 	vim.api.nvim_set_hl(0, "SymbolUsageRounding", { italic = true })
 	vim.api.nvim_set_hl(0, "SymbolUsageContent", { fg = "#6a6a6a", italic = true })
@@ -16,25 +17,6 @@ local set_default_colors = function()
 end
 
 return {
-	{
-		"sainnhe/everforest",
-		lazy = false,
-		priority = 1000,
-		config = function()
-			-- vim.g.everforest_transparent_background = 2
-			--
-			-- vim.g.everforest_background = "hard"
-			-- vim.g.everforest_better_performance = 1
-			-- vim.cmd.colorscheme("everforest")
-			-- local buffer_bg_color = "#1a1b1e"
-			-- vim.api.nvim_set_hl(0, "Normal", { bg = buffer_bg_color })
-			-- vim.api.nvim_set_hl(0, "NormalNC", { bg = buffer_bg_color })
-			-- vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = buffer_bg_color })
-			-- set_default_colors()
-			-- vim.api.nvim_set_hl(0, "CursorLine", { bold = true, bg = "#252525" })
-			-- vim.api.nvim_set_hl(0, "CursorColumn", { bold = true, bg = "#252525" })
-		end,
-	},
 	{
 		"folke/tokyonight.nvim",
 		lazy = false,
@@ -51,6 +33,11 @@ return {
 			set_default_colors()
 			vim.api.nvim_set_hl(0, "CursorLine", { bold = true, bg = "#1f1f2a" })
 			vim.api.nvim_set_hl(0, "CursorColumn", { bold = true, bg = "#1f1f2a" })
+
+			-- local buffer_bg_color = "#191a1c"
+			-- vim.api.nvim_set_hl(0, "Normal", { bg = buffer_bg_color })
+			-- vim.api.nvim_set_hl(0, "NormalNC", { bg = buffer_bg_color })
+			-- vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = buffer_bg_color })
 		end,
 	},
 }

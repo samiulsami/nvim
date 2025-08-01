@@ -1,7 +1,10 @@
 return {
 	"ibhagwan/fzf-lua",
 	-- optional for icon support
-	dependencies = { "nvim-tree/nvim-web-devicons" },
+	dependencies = {
+		"nvim-tree/nvim-web-devicons",
+		"elanmed/fzf-lua-frecency.nvim",
+	},
 	config = function()
 		local fzflua = require("fzf-lua")
 		fzflua.setup({
@@ -51,6 +54,10 @@ return {
 			local cwd = vim.fn.getcwd()
 			fzflua.lsp_workspace_diagnostics({cwd_header = true, cwd = cwd, file_ignore_patterns = active_ignore_patterns})
 		end, {desc = "LSP Workspace Diagnostics"})
+		vim.keymap.set("n", "<leader>ff", function()
+			local cwd = vim.fn.getcwd()
+			require("fzf-lua-frecency").frecency({ cwd = cwd, cwd_only = true, display_score = true, file_ignore_patterns = active_ignore_patterns })
+		end, {desc = "Frecent files"})
 		vim.keymap.set("n", "<leader>sf", function()
 			local cwd = vim.fn.getcwd()
 			fzflua.files({cwd_header = false, cwd = cwd, file_ignore_patterns = active_ignore_patterns})

@@ -39,3 +39,34 @@ vim.keymap.set("n", "<leader>th", function()
 		vim.notify("Inlay hints disabled")
 	end
 end, { desc = "[T]oggle Inlay [H]ints" })
+
+vim.api.nvim_create_autocmd("LspAttach", {
+	group = vim.api.nvim_create_augroup("custom_lsp_attach", { clear = true }),
+	callback = function(event)
+		local client = vim.lsp.get_client_by_id(event.data.client_id)
+		if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
+			local highlight_augroup = vim.api.nvim_create_augroup("custom_lsp_highlight", { clear = false })
+
+			vim.keymap.set(
+				"n",
+				"U",
+				vim.lsp.buf.document_highlight,
+				{ buffer = event.buf, desc = "LSP Document Highlight" }
+			)
+
+			vim.api.nvim_create_autocmd({ "CursorMoved" }, {
+				buffer = event.buf,
+				group = highlight_augroup,
+				callback = vim.lsp.buf.clear_references,
+			})
+
+			vim.api.nvim_create_autocmd("LspDetach", {
+				group = vim.api.nvim_create_augroup("custom_lsp_detach", { clear = true }),
+				callback = function(event2)
+					vim.lsp.buf.clear_references()
+					vim.api.nvim_clear_autocmds({ group = "custom_lsp_highlight", buffer = event2.buf })
+				end,
+			})
+		end
+	end,
+})
