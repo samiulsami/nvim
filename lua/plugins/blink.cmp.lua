@@ -31,6 +31,7 @@ return {
 			keymap = {
 				preset = "default",
 				["<CR>"] = {},
+				["<C-c>"] = { "show" },
 				["<C-b>"] = { "scroll_documentation_up", "fallback" },
 				["<C-f>"] = { "scroll_documentation_down", "fallback" },
 			},
@@ -49,23 +50,23 @@ return {
 					snippets = {
 						name = "snippets",
 						module = "blink.cmp.sources.snippets",
-						max_items = 3,
+						max_items = 9999,
 						score_offset = 1,
 						min_keyword_length = 0,
 					},
 					buffer = {
 						name = "buffer",
 						module = "blink.cmp.sources.buffer",
-						max_items = 3,
+						max_items = 10,
 						score_offset = 2,
-						min_keyword_length = 2,
+						min_keyword_length = 0,
 					},
 					lsp = {
 						name = "lsp",
 						module = "blink.cmp.sources.lsp",
-						max_items = 5,
+						max_items = 9999,
 						score_offset = 100000000,
-						min_keyword_length = 2,
+						min_keyword_length = 0,
 					},
 					go_pkgs = {
 						name = "go_pkgs",
@@ -81,14 +82,14 @@ return {
 							db_size_limit_bytes = 200 * 1024 * 1024,
 							filetypes = { "go" },
 						},
-						max_items = 3,
-						min_keyword_length = 3,
+						max_items = 9999,
+						min_keyword_length = 0,
 						score_offset = -10000,
 					},
 					cmdline = {
 						name = "cmdline",
 						module = "blink.cmp.sources.cmdline",
-						max_items = 10,
+						max_items = 9999,
 						min_keyword_length = 0,
 						score_offset = -1000,
 						transform_items = function(_, items)
@@ -102,7 +103,7 @@ return {
 					cmdline_buffer = {
 						name = "buffer",
 						module = "blink.cmp.sources.buffer",
-						max_items = 5,
+						max_items = 10,
 						score_offset = -100,
 						min_keyword_length = 0,
 					},
@@ -110,7 +111,7 @@ return {
 						name = "cmdline_history",
 						module = "blink.compat.source",
 						timeout_ms = 100,
-						max_items = 2,
+						max_items = 30,
 						min_keyword_length = 0,
 						score_offset = -100000000,
 						transform_items = function(_, items)
@@ -125,7 +126,7 @@ return {
 						name = "LazyDev",
 						module = "lazydev.integrations.blink",
 						score_offset = 100,
-						max_items = 3,
+						max_items = 9999,
 						min_keyword_length = 0,
 					},
 				},
@@ -155,7 +156,7 @@ return {
 				completion = {
 					list = { selection = { preselect = false, auto_insert = false } },
 					ghost_text = { enabled = true },
-					menu = { auto_show = true },
+					menu = { auto_show = false },
 				},
 			},
 
@@ -165,7 +166,7 @@ return {
 				ghost_text = { enabled = true },
 				menu = {
 					winblend = 15,
-					auto_show = true,
+					auto_show = false,
 					direction_priority = { "n", "s" },
 					draw = {
 						columns = { { "label", "label_description", gap = 1 }, { "kind_icon", "kind" } },
