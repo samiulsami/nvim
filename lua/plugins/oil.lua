@@ -13,6 +13,7 @@ return {
 				"mtime",
 				"permissions",
 			}
+
 			function _G.get_oil_winbar()
 				local dir = require("oil").get_current_dir()
 				if dir then

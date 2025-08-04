@@ -25,11 +25,11 @@ return {
 		})
 
 		local file_ignore_patterns = {
-			"node_modules/*",
-			"^.git/*",
-			"vendor/*",
-			"zz_generated*",
-			"openapi_generated*",
+			"^node_modules/",
+			"^.git/",
+			"^vendor/",
+			"^zz_generated",
+			"^openapi_generated",
 		}
 		local active_ignore_patterns = file_ignore_patterns
 		local disable_ignore_patterns = false
