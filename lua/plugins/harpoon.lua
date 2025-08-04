@@ -14,7 +14,7 @@ return {
 					save_on_toggle = true,
 					sync_on_ui_close = true,
 					key_ = function()
-						return vim.loop.cwd()
+						return vim.uv.cwd()
 					end,
 				},
 			})

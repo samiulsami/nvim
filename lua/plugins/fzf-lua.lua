@@ -7,6 +7,9 @@ return {
 	},
 	config = function()
 		local fzflua = require("fzf-lua")
+		local frecency = require("fzf-lua-frecency")
+		frecency.setup()
+
 		fzflua.setup({
 			"hide",
 			winopts = {
@@ -48,19 +51,19 @@ return {
 		-- stylua: ignore start
 		vim.keymap.set("n", "<leader>sd", function()
 			local cwd = vim.fn.getcwd()
-			fzflua.lsp_document_diagnostics({cwd_header = true, cwd = cwd, file_ignore_patterns = active_ignore_patterns})
+			fzflua.lsp_document_diagnostics({ cwd_header = true, cwd = cwd, file_ignore_patterns = active_ignore_patterns})
 		end, {desc = "LSP Document Diagnostics"})
 		vim.keymap.set("n", "<leader>sD", function()
 			local cwd = vim.fn.getcwd()
-			fzflua.lsp_workspace_diagnostics({cwd_header = true, cwd = cwd, file_ignore_patterns = active_ignore_patterns})
+			fzflua.lsp_workspace_diagnostics({ cwd_header = true, cwd = cwd, file_ignore_patterns = active_ignore_patterns})
 		end, {desc = "LSP Workspace Diagnostics"})
 		vim.keymap.set("n", "<leader>ff", function()
 			local cwd = vim.fn.getcwd()
-			require("fzf-lua-frecency").frecency({ cwd = cwd, cwd_only = true, display_score = true, file_ignore_patterns = active_ignore_patterns })
+			frecency.frecency({ cwd_header = true, cwd = cwd, cwd_only = true, display_score = true, file_ignore_patterns = active_ignore_patterns })
 		end, {desc = "Frecent files"})
 		vim.keymap.set("n", "<leader>sf", function()
 			local cwd = vim.fn.getcwd()
-			fzflua.files({cwd_header = false, cwd = cwd, file_ignore_patterns = active_ignore_patterns})
+			fzflua.files({ cwd_header = false, cwd = cwd, file_ignore_patterns = active_ignore_patterns})
 		end, {desc = "Search Files"})
 		vim.keymap.set("n", "<leader>sg", function()
 			local cwd = vim.fn.getcwd()

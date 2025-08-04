@@ -6,7 +6,7 @@
 ---@field private unseen_notifications integer
 ---@field private preview string
 ---@field private max_preview_length integer
----@field private max_level integer
+---@field private max_found_level integer
 ---@field public get_unseen_notification_stats fun(self): integer, string, integer
 ---@field public reset_unseen_notifications fun(self): nil
 ---@field public get_notifications fun(self): table<string>, integer, integer notifications, head, tail
@@ -16,17 +16,17 @@ local M = {
 	tail = 0,
 	max_notifications = 100,
 	unseen_notifications = 0,
-	max_level = 0,
+	max_found_level = 0,
 	max_preview_length = 16,
 }
 
 function M:get_unseen_notification_stats()
-	return self.unseen_notifications, self.preview, self.max_level
+	return self.unseen_notifications, self.preview, self.max_found_level
 end
 
 function M:reset_unseen_notifications()
 	self.unseen_notifications = 0
-	self.max_level = 0
+	self.max_found_level = 0
 	self.preview = ""
 end
 
@@ -45,8 +45,8 @@ M.setup = function()
 			level = vim.log.levels.INFO
 		end
 
-		if level >= M.max_level then
-			M.max_level = level
+		if level >= M.max_found_level then
+			M.max_found_level = level
 			M.preview = msg
 			if #msg > M.max_preview_length then
 				M.preview = M.preview:sub(1, math.max(0, M.max_preview_length - 3)) .. "..."

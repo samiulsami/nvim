@@ -32,7 +32,6 @@ return {
 				preset = "default",
 				["<CR>"] = {},
 				["<C-c>"] = { "show" },
-				["<A-c>"] = { "show" },
 				["<C-b>"] = { "scroll_documentation_up", "fallback" },
 				["<C-f>"] = { "scroll_documentation_down", "fallback" },
 			},
@@ -51,7 +50,7 @@ return {
 					snippets = {
 						name = "snippets",
 						module = "blink.cmp.sources.snippets",
-						max_items = 9999,
+						max_items = 10,
 						score_offset = 1,
 						min_keyword_length = 0,
 					},
@@ -65,7 +64,7 @@ return {
 					lsp = {
 						name = "lsp",
 						module = "blink.cmp.sources.lsp",
-						max_items = 9999,
+						max_items = 10,
 						score_offset = 100000000,
 						min_keyword_length = 0,
 					},
@@ -80,11 +79,10 @@ return {
 						opts = {
 							debounce_cache_requests_ms = 0,
 							debounce_gopls_requests_ms = 0,
-							db_size_limit_bytes = 200 * 1024 * 1024,
 							filetypes = { "go" },
 						},
-						max_items = 9999,
-						min_keyword_length = 0,
+						max_items = 5,
+						min_keyword_length = 3,
 						score_offset = -10000,
 					},
 					cmdline = {
@@ -104,7 +102,7 @@ return {
 					cmdline_buffer = {
 						name = "buffer",
 						module = "blink.cmp.sources.buffer",
-						max_items = 10,
+						max_items = 30,
 						score_offset = -100,
 						min_keyword_length = 0,
 					},
@@ -112,7 +110,7 @@ return {
 						name = "cmdline_history",
 						module = "blink.compat.source",
 						timeout_ms = 100,
-						max_items = 30,
+						max_items = 9999,
 						min_keyword_length = 0,
 						score_offset = -100000000,
 						transform_items = function(_, items)
@@ -157,7 +155,7 @@ return {
 				completion = {
 					list = { selection = { preselect = false, auto_insert = false } },
 					ghost_text = { enabled = true },
-					menu = { auto_show = false },
+					menu = { auto_show = true },
 				},
 			},
 
@@ -167,7 +165,7 @@ return {
 				ghost_text = { enabled = true },
 				menu = {
 					winblend = 15,
-					auto_show = false,
+					auto_show = true,
 					direction_priority = { "n", "s" },
 					draw = {
 						columns = { { "label", "label_description", gap = 1 }, { "kind_icon", "kind" } },
@@ -189,6 +187,7 @@ return {
 			signature = {
 				enabled = true,
 			},
+
 			fuzzy = {
 				implementation = "prefer_rust_with_warning",
 			},

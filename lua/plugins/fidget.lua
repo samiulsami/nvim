@@ -3,7 +3,7 @@ return {
 	opts = {
 		progress = {
 			display = {
-				render_limit = 5,
+				render_limit = 4,
 				done_ttl = 1,
 			},
 		},
