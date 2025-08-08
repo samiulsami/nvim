@@ -41,7 +41,6 @@ git clone https://github.com/samiulsami/nvimconfig.git ~/.config/nvim
 nvim
 ```
 
-
 ```bash
 git clone https://github.com/neovim/neovim.git ~/neovim
 cd ~/neovim
@@ -52,7 +51,6 @@ sudo make install
 git clone https://github.com/samiulsami/nvimconfig.git ~/.config/nvim 
 nvim
 ```
-
 
 #### Set Neovim as default editor
 ```bash
