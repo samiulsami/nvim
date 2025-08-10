@@ -141,7 +141,7 @@ return {
 							local buf = vim.api.nvim_create_buf(false, true)
 							vim.api.nvim_buf_set_lines(buf, 0, -1, false, selected)
 							vim.api.nvim_set_current_buf(buf)
-							vim.cmd("set ft=json")
+							vim.cmd("setlocal ft=json wrap")
 						end,
 					},
 					previewer = nil,

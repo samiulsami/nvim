@@ -21,6 +21,7 @@ return {
 				"yaml-language-server",
 				"yamllint",
 				"yamlfix",
+				"fixjson",
 				"delve",
 				"gofumpt",
 				"goimports",
@@ -35,6 +36,6 @@ return {
 			},
 		})
 
-		vim.keymap.set("n", "<leader>M", ":Mason<CR>", { noremap = true, silent = true })
+		vim.keymap.set("n", "<leader>M", "<Cmd>Mason<CR>", { noremap = true, silent = true })
 	end,
 }

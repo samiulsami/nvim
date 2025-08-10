@@ -64,9 +64,13 @@ vim.keymap.set("n", "<leader>O", "<C-w>o", { desc = ":Only", noremap = true, sil
 vim.keymap.set("n", "<leader>Q", "<Cmd>qa!<CR>", { desc = "quit all", noremap = true, silent = true })
 vim.keymap.set("n", "<leader>q", "<Cmd>q<CR>", { desc = "quit", noremap = true, silent = true })
 vim.keymap.set("n", "<leader>w", function()
-	vim.cmd("noautocmd wa!")
-	vim.notify("Saved all", vim.log.levels.INFO)
-end, { desc = "save all", noremap = true, silent = true })
+	if vim.bo.filetype == "oil" then
+		vim.cmd("w")
+	else
+		vim.cmd("noautocmd w")
+	end
+	vim.notify("Saved current buffer", vim.log.levels.INFO)
+end, { desc = "Save current buffer", noremap = true, silent = true })
 
 -- Command-line mappings for history navigation
 vim.api.nvim_set_keymap("c", "<C-p>", "<Up>", { noremap = true })

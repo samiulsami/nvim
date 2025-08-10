@@ -27,4 +27,4 @@ require("lazy").setup({
 	checker = { enabled = true },
 })
 
-vim.keymap.set("n", "<leader>L", ":Lazy<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>L", "<Cmd>Lazy<CR>", { noremap = true, silent = true })
