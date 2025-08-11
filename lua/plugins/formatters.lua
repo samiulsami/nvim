@@ -7,22 +7,17 @@ return {
 		conform.setup({
 			notify_on_error = false,
 			formatters_by_ft = {
-				lua = { "stylua" }, -- done
-				go = {
-					"gofumpt",
-					"goimports",
-					-- "golines",
-				},
+				lua = { "stylua" },
+				go = { "gofumpt", "goimports" },
 				cpp = { "clang-format" },
 				c = { "clang-format" },
 				yaml = { "yamlfix" },
 				json = { "fixjson" },
 				bash = { "shfmt" },
-				-- java = { "google-java-format" },
 			},
 		})
 
-		vim.keymap.set("n", "<leader>F", function()
+		vim.keymap.set({ "n", "v" }, "<leader>F", function()
 			local disable_filetypes = { c = true, cpp = true }
 			local lsp_format_opt
 			local bufnr = vim.api.nvim_get_current_buf()
