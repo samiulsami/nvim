@@ -7,6 +7,8 @@ return {
 	},
 	config = function()
 		local fzflua = require("fzf-lua")
+                fzflua.register_ui_select()
+
 		local frecency = require("fzf-lua-frecency")
 		frecency.setup()
 
