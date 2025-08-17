@@ -36,7 +36,7 @@ return {
 				harpoon:list():select(4)
 			end)
 
-			vim.keymap.set("n", "<A-e>", function()
+			vim.keymap.set("n", "<A-t>", function()
 				harpoon.ui:toggle_quick_menu(harpoon:list())
 			end)
 		end,
