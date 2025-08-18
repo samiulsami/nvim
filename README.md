@@ -6,8 +6,8 @@ sudo apt update
 sudo apt install build-essential unzip git python3.12-venv xclip cmake gettext ripgrep 
 
 # fzf
-git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-~/.fzf/install
+git clone --depth 1 https://github.com/junegunn/fzf.git $HOME/.fzf
+$HOME/.fzf/install
 
 #fd
 sudo apt install fd
@@ -19,7 +19,7 @@ rustup update
 
 #nodejs
 curl -fsSL https://fnm.vercel.app/install | zsh
-source ~/.zshrc
+source $HOME/.zshrc
 fnm install 24
 ```
 
@@ -30,31 +30,24 @@ fnm install 24
 - if needed, follow the steps here https://github.com/mfussenegger/nvim-jdtls<br>
 
 #### Build and configure
+
 ```bash
-git clone https://github.com/neovim/neovim.git ~/neovim
-cd ~/neovim
+git clone https://github.com/neovim/neovim.git $HOME/neovim
+cd $HOME/neovim
 make CMAKE_BUILD_TYPE=RelWithDebInfo
 sudo make install
 
 # Setup plugins
-git clone https://github.com/samiulsami/nvimconfig.git ~/.config/nvim 
-nvim
-```
+git clone https://github.com/samiulsami/nvimconfig.git $HOME/.config/nvim
 
-```bash
-git clone https://github.com/neovim/neovim.git ~/neovim
-cd ~/neovim
-make CMAKE_BUILD_TYPE=RelWithDebInfo
-sudo make install
-
-# Setup plugins
-git clone https://github.com/samiulsami/nvimconfig.git ~/.config/nvim 
+# Setup MCP server configs
+sudo ln -s $HOME/.config/nvim/mcphub_servers.json $HOME/.config/mcphub/servers.json
 nvim
 ```
 
 #### Set Neovim as default editor
 ```bash
-sudo echo "export EDITOR='nvim -f'" >> ~/.zshrc
+sudo echo "export EDITOR='nvim -f'" >> $HOME/.zshrc
 git config --global core.editor 'nvim -f'
 ```
 ## Notes

@@ -47,14 +47,13 @@ return {
 			if require("copilot.suggestion").is_visible() then
 				require("copilot.suggestion").accept()
 			end
-                        require("copilot.suggestion").next()
+			require("copilot.suggestion").next()
 		end, { desc = "Accept Copilot suggestion (ALL)" })
 
 		vim.keymap.set("i", "<C-j>", function()
 			if require("copilot.suggestion").is_visible() then
 				require("copilot.suggestion").accept_word()
-			end
-                        require("copilot.suggestion").next()
+                        end
 		end, { desc = "Accept Copilot suggestion (Word)" })
 	end,
 }

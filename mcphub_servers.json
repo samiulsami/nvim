@@ -1,0 +1,47 @@
+{
+        "mcpServers": {
+                "context7": {
+                        "autoApprove": true,
+                        "name": "Context7 MCP",
+                        "url": "https://mcp.context7.com/mcp"
+                },
+                "kubernetes": {
+                        "autoApprove": [
+                                "pods_list",
+                                "pods_list_in_namespace",
+                                "pods_get",
+                                "namespaces_list",
+                                "helm_list",
+                                "events_list",
+                                "configuration_view",
+                                "pods_log",
+                                "pods_top",
+                                "resources_get",
+                                "resources_list"
+                        ],
+                        "command": "npx",
+                        "args": [
+                                "kubernetes-mcp-server@latest"
+                        ],
+                        "name": "Kubernetes MCP"
+                },
+                "sequential-thinking": {
+                        "args": [
+                                "-y",
+                                "@modelcontextprotocol/server-sequential-thinking"
+                        ],
+                        "autoApprove": true,
+                        "command": "npx"
+                }
+        },
+        "nativeMCPServers": {
+                "neovim": {
+                        "autoApprove": [
+                                "read_multiple_files",
+                                "read_file",
+                                "find_files"
+                        ],
+                        "disabled_resources": []
+                }
+        }
+}
