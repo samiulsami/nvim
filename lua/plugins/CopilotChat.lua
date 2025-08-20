@@ -40,15 +40,7 @@ return {
 					blend = 10,
 				},
 				auto_insert_mode = false,
-				sticky = {
-					"@context7",
-					"@kubernetes",
-					"@neovim_list_directory",
-					"@neovim_find_files",
-					"@neovim_execute_command",
-					"@neovim_read_multiple_files",
-					"@sequential_thinking",
-				},
+				sticky = {"@copilot"},
 				mappings = {
 					close = {
 						normal = "<Esc>",

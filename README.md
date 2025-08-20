@@ -39,9 +39,6 @@ sudo make install
 
 # Setup plugins
 git clone https://github.com/samiulsami/nvimconfig.git $HOME/.config/nvim
-
-# Setup MCP server configs
-sudo ln -s $HOME/.config/nvim/mcphub_servers.json $HOME/.config/mcphub/servers.json
 nvim
 ```
 

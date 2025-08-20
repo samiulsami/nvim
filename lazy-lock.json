@@ -30,7 +30,7 @@
   "mini.icons": { "branch": "main", "commit": "b8f6fa6f5a3fd0c56936252edcd691184e5aac0c" },
   "neotest": { "branch": "master", "commit": "35a59c1f59dbb954d92b74ab64a966a668cea495" },
   "neotest-golang": { "branch": "main", "commit": "e892eeb585f8bb041eb50e9fc58d6d48f62c3717" },
-  "nvim-dap": { "branch": "master", "commit": "a479e25ed5b5d331fb46ee4b9e160ff02ac64310" },
+  "nvim-dap": { "branch": "master", "commit": "f777d1d20ed50c2f312e286892c062d9c2f1c6fe" },
   "nvim-dap-go": { "branch": "main", "commit": "b4421153ead5d726603b02743ea40cf26a51ed5f" },
   "nvim-jdtls": { "branch": "master", "commit": "4d77ff02063cf88963d5cf10683ab1fd15d072de" },
   "nvim-lint": { "branch": "master", "commit": "7ef127aaede2a4d5ad8df8321e2eb4e567f29594" },
@@ -50,5 +50,5 @@
   "vim-fugitive": { "branch": "master", "commit": "61b51c09b7c9ce04e821f6cf76ea4f6f903e3cf4" },
   "vim-helm": { "branch": "master", "commit": "cc5ac22444332381f38084a6c7f023c25eef6201" },
   "which-key.nvim": { "branch": "main", "commit": "370ec46f710e058c9c1646273e6b225acf47cbed" },
-  "yazi.nvim": { "branch": "main", "commit": "ddb52bd5c1067643071b42c0d0934f4d48c8774a" }
+  "yazi.nvim": { "branch": "main", "commit": "444474f2bb5809ab736fd8c75a1a2087b0c9fa07" }
 }
