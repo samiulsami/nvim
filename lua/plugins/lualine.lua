@@ -141,16 +141,6 @@ return {
 			sections = {
 				lualine_a = {
 					mode,
-					{
-						"harpoon2",
-						icon = "",
-						indicators = { "Q", "W", "E", "R" },
-						active_indicators = { "Q", "W", "E", "R" },
-						color_active = { fg = "#ffffff" },
-						color = { bg = "#110a22", fg = "#444444" },
-						_separator = " ",
-						no_harpoon = "",
-					},
 				},
 				lualine_b = {
 					{
