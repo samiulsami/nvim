@@ -9,11 +9,15 @@ local set_default_colors = function()
 	vim.api.nvim_set_hl(0, "SymbolUsageRef", { fg = "#6f5a5a", italic = true })
 	vim.api.nvim_set_hl(0, "SymbolUsageImpl", { fg = "#5a5a6f", italic = true })
 	vim.api.nvim_set_hl(0, "Comment", { bg = "none", fg = "#6f7b69" })
-
 	vim.api.nvim_set_hl(0, "LspInlayHint", { fg = "#5f6b68", bg = "#1f1b18", bold = true, italic = true })
 
-	vim.api.nvim_set_hl(0, "WinBar", { bold = true })
-	vim.api.nvim_set_hl(0, "WinBarNC", { bold = true })
+	vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#2d2d3c", bold = true, italic = true })
+	vim.api.nvim_set_hl(0, "BlinkCmpMenu", { link = "NormalFloat" })
+	vim.api.nvim_set_hl(0, "DiagnosticFloatingError", { link = "NormalFloat" })
+	vim.api.nvim_set_hl(0, "DiagnosticFloatingWarn", { link = "NormalFloat" })
+	vim.api.nvim_set_hl(0, "DiagnosticFloatingInfo", { link = "NormalFloat" })
+	vim.api.nvim_set_hl(0, "DiagnosticFloatingHint", { link = "NormalFloat" })
+	vim.api.nvim_set_hl(0, "DiagnosticFloatingOk", { link = "NormalFloat" })
 end
 
 return {
@@ -34,10 +38,10 @@ return {
 			vim.api.nvim_set_hl(0, "CursorLine", { bold = true, bg = "#1f1f2a" })
 			vim.api.nvim_set_hl(0, "CursorColumn", { bold = true, bg = "#1f1f2a" })
 
-			-- local buffer_bg_color = "#191a1c"
-			-- vim.api.nvim_set_hl(0, "Normal", { bg = buffer_bg_color })
-			-- vim.api.nvim_set_hl(0, "NormalNC", { bg = buffer_bg_color })
-			-- vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = buffer_bg_color })
+			local buffer_bg_color = "#191a1c"
+			vim.api.nvim_set_hl(0, "Normal", { bg = buffer_bg_color })
+			vim.api.nvim_set_hl(0, "NormalNC", { bg = buffer_bg_color })
+			vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = buffer_bg_color })
 		end,
 	},
 }

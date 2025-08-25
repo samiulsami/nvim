@@ -1,9 +1,5 @@
 return {
 	"nvim-lualine/lualine.nvim",
-	dependencies = {
-		"nvim-tree/nvim-web-devicons",
-		"AndreM222/copilot-lualine",
-	},
 	config = function()
 		local function trimString(s)
 			return s:match("^%s*(.-)%s*$")
@@ -154,7 +150,6 @@ return {
 					luaLineShortenedPath,
 					"diagnostics",
 					search_result,
-					{ "copilot", show_colors = true },
 				},
 				lualine_x = {
 					{
@@ -190,17 +185,6 @@ return {
 					"encoding",
 					"fileformat",
 					"filetype",
-				},
-				lualine_x = {
-					{
-						notifications,
-						color = function()
-							return {
-								bg = notification_color,
-								fg = "#000000",
-							}
-						end,
-					},
 				},
 			},
 		})

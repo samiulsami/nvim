@@ -23,14 +23,7 @@ return {
 		config = function()
 			local chat = require("CopilotChat")
 			chat.setup({
-				prompts = {
-					think = {
-						prompt = "Make use of the 'sequentialthinking' tool to aid in reasoning and problem-solving.",
-						system_prompt = require("CopilotChat.config.prompts").COPILOT_BASE.system_prompt,
-						remember_as_sticky = true,
-					},
-				},
-				model = "gpt-4.1",
+				model = "gpt-5-mini",
 				temperature = 0.1,
 				window = {
 					layout = "float",

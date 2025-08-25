@@ -4,14 +4,6 @@ return {
 		dependencies = {
 			"rafamadriz/friendly-snippets",
 			"saghen/blink.compat",
-			{
-				"folke/lazydev.nvim",
-				ft = "lua",
-				opts = { library = { { path = "luvit-meta/library", words = { "vim%.uv" } } } },
-				dependencies = {
-					{ "Bilal2453/luvit-meta", lazy = true },
-				},
-			},
 			"dmitmel/cmp-cmdline-history",
 			{
 				"samiulsami/cmp-go-deep",
@@ -21,7 +13,6 @@ return {
 				"samiulsami/cmp-go-pkgs",
 				branch = "minor-tweaks",
 			},
-			{ "Kaiser-Yang/blink-cmp-git" },
 		},
 		build = "cargo build --release",
 
@@ -37,34 +28,26 @@ return {
 			},
 
 			sources = {
-				default = { "lsp", "path", "buffer", "go_deep", "go_pkgs", "snippets", "lazydev", "git" },
+				default = { "lsp", "path", "buffer", "go_deep", "go_pkgs", "snippets"},
 				providers = {
-					git = {
-						module = "blink-cmp-git",
-						name = "Git",
-						-- only enable this source when filetype is gitcommit, markdown, or 'octo'
-						enabled = function()
-							return vim.tbl_contains({ "octo", "gitcommit", "markdown" }, vim.bo.filetype)
-						end,
-					},
 					snippets = {
 						name = "snippets",
 						module = "blink.cmp.sources.snippets",
-						max_items = 10,
+						max_items = 3,
 						score_offset = 1,
 						min_keyword_length = 0,
 					},
 					buffer = {
 						name = "buffer",
 						module = "blink.cmp.sources.buffer",
-						max_items = 10,
+						max_items = 3,
 						score_offset = 2,
 						min_keyword_length = 0,
 					},
 					lsp = {
 						name = "lsp",
 						module = "blink.cmp.sources.lsp",
-						max_items = 10,
+						max_items = 20,
 						score_offset = 100000000,
 						min_keyword_length = 0,
 					},
@@ -121,13 +104,6 @@ return {
 							return items
 						end,
 					},
-					lazydev = {
-						name = "LazyDev",
-						module = "lazydev.integrations.blink",
-						score_offset = 100,
-						max_items = 9999,
-						min_keyword_length = 0,
-					},
 				},
 			},
 
@@ -140,7 +116,6 @@ return {
 					if type == ":" or type == "@" then
 						return {
 							"path",
-							"lazydev",
 							"cmdline",
 							"cmdline_buffer",
 							"cmdline_history",
@@ -164,7 +139,7 @@ return {
 				list = { selection = { preselect = false, auto_insert = false } },
 				ghost_text = { enabled = true },
 				menu = {
-					winblend = 15,
+					winblend = 0,
 					auto_show = true,
 					direction_priority = { "n", "s" },
 					draw = {

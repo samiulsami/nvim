@@ -22,7 +22,6 @@ return {
 				"yamllint",
 				"yamlfix",
 				"fixjson",
-				"delve",
 				"gofumpt",
 				"goimports",
 				"golangci-lint",

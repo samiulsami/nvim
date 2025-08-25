@@ -47,10 +47,11 @@ M.setup = function()
 
 		if level >= M.max_found_level then
 			M.max_found_level = level
-			M.preview = msg
-			if #msg > M.max_preview_length then
-				M.preview = M.preview:sub(1, math.max(0, M.max_preview_length - 3)) .. "..."
-			end
+		end
+
+		M.preview = msg
+		if #msg > M.max_preview_length then
+			M.preview = M.preview:sub(1, math.max(0, M.max_preview_length - 3)) .. "..."
 		end
 
 		local level_str = "INFO"

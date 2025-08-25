@@ -60,6 +60,26 @@ return {
 							require("oil").close()
 						end,
 					},
+					["<leader>sg"] = {
+						function()
+							require("fzf-lua").grep({ cwd = require("oil").get_current_dir(), search = "" })
+						end,
+						mode = "n",
+						nowait = true,
+						desc = "Grep in current oil directory",
+					},
+					["<leader>sf"] = {
+						function()
+							require("fzf-lua").files({
+								cwd_header = false,
+								cwd = require("oil").get_current_dir(),
+								file_ignore_patterns = {},
+							})
+						end,
+						mode = "n",
+						nowait = true,
+						desc = "Search in Current oil directory",
+					},
 				},
 
 				skip_confirm_for_simple_edits = false,
@@ -68,7 +88,7 @@ return {
 				constrain_cursor = "editable",
 			})
 
-			vim.keymap.set("n", "<leader>P", function()
+			vim.keymap.set("n", "<leader>p", function()
 				if vim.api.nvim_buf_get_name(0):match("oil:///") then
 					require("oil").close()
 					return
