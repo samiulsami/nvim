@@ -15,9 +15,11 @@ return {
 				make = { "checkmake" },
 				java = { "checkstyle" },
 			}
-			vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+			vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
 				callback = function()
-					require("lint").try_lint()
+					if vim.bo.modifiable then
+						require("lint").try_lint()
+					end
 				end,
 			})
 		end,

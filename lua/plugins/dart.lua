@@ -1,7 +1,5 @@
 return {
-	-- "iofq/dart.nvim",
-	"samiulsami/dart.nvim",
-	branch = "hide-tabline",
+	"iofq/dart.nvim",
 	dependencies = { "echasnovski/mini.icons" },
 	config = function()
 		local dart = require("dart")
@@ -85,8 +83,8 @@ return {
 			end, { noremap = true, silent = true, desc = "Jump to marked buffer" })
 		end
 
-		vim.api.nvim_set_hl(0, "DartCurrent", { bg = "#1d1d1d", fg = "#8888ff", bold = true})
-		vim.api.nvim_set_hl(0, "DartCurrentLabel", { bg = "#1f1f1f", fg = "#8888ff", bold = true})
+		vim.api.nvim_set_hl(0, "DartCurrent", { bg = "#1d1d1d", fg = "#8888ff", bold = true })
+		vim.api.nvim_set_hl(0, "DartCurrentLabel", { bg = "#1f1f1f", fg = "#8888ff", bold = true })
 		vim.api.nvim_set_hl(0, "DartVisibleLabel", { fg = "#7777ff", bold = true })
 		vim.api.nvim_set_hl(0, "DartVisible", { fg = "#888899", bold = true })
 

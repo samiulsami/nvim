@@ -35,7 +35,7 @@ return {
 				},
 			},
 			suggestion = {
-				enabled = true,
+				enabled = not require("utils.llama_utils"):status(),
 				auto_trigger = true,
 				hide_during_completion = false,
 				debounce = 75,

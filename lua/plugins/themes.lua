@@ -37,7 +37,7 @@ return {
 			set_default_colors()
 			vim.api.nvim_set_hl(0, "CursorLine", { bold = true, bg = "#1f1f2a" })
 			vim.api.nvim_set_hl(0, "CursorColumn", { bold = true, bg = "#1f1f2a" })
-			vim.api.nvim_set_hl(0, "TablineFIll", { bg = none, bold = true, italic = true })
+			vim.api.nvim_set_hl(0, "TablineFIll", { bold = true, italic = true })
 
 			-- local buffer_bg_color = "#191a1c"
 			-- vim.api.nvim_set_hl(0, "Normal", { bg = buffer_bg_color })
