@@ -58,17 +58,24 @@ return {
 			end,
 		})
 
-		vim.keymap.set("i", "<C-o>", function()
+		vim.keymap.set("i", "<C-O>", function()
 			if require("copilot.suggestion").is_visible() then
 				require("copilot.suggestion").accept()
 			end
 			require("copilot.suggestion").next()
 		end, { desc = "Accept Copilot suggestion (ALL)" })
 
+		vim.keymap.set("i", "<C-o>", function()
+			if require("copilot.suggestion").is_visible() then
+				require("copilot.suggestion").accept_line()
+			end
+			require("copilot.suggestion").next()
+		end, { desc = "Accept Copilot suggestion (Line)" })
+
 		vim.keymap.set("i", "<C-j>", function()
 			if require("copilot.suggestion").is_visible() then
 				require("copilot.suggestion").accept_word()
-                        end
+			end
 		end, { desc = "Accept Copilot suggestion (Word)" })
 	end,
 }
