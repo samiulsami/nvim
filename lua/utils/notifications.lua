@@ -7,10 +7,12 @@
 ---@field private preview string
 ---@field private max_preview_length integer
 ---@field private max_found_level integer
+---@field private buf_name string
 ---@field public get_unseen_notification_stats fun(self): integer, string, integer
 ---@field public reset_unseen_notifications fun(self): nil
 ---@field public get_notifications fun(self): table<string>, integer, integer notifications, head, tail
 local M = {
+	buf_name = "custom_notifications",
 	notifications = {},
 	head = 1,
 	tail = 0,
@@ -126,6 +128,76 @@ M.setup = function()
 			}), vim.log.levels.ERROR)
 		end
 	end
+
+	M:setup_keymaps()
+
+	vim.api.nvim_create_autocmd("BufLeave", {
+		pattern = M.buf_name,
+		callback = function()
+			vim.api.nvim_buf_delete(0, { force = true })
+		end,
+	})
+end
+
+function M:setup_keymaps()
+	vim.keymap.set("n", "<M-n>", function()
+		local current_buffer = vim.api.nvim_get_current_buf()
+		if self.buf_name == vim.fn.bufname(current_buffer) then
+			vim.api.nvim_buf_delete(current_buffer, { force = true })
+			return
+		end
+
+		local buf = vim.api.nvim_create_buf(false, true)
+		local notifications, head, tail = self:get_notifications()
+		if not notifications then
+			return
+		end
+
+		local all_lines = {}
+		local jq_available = vim.fn.executable("jq")
+
+		if not jq_available then
+			vim.notify("jq is not installed, displaying raw notifications", vim.log.levels.WARN)
+		end
+
+		for i = tail, head, -1 do
+			if not jq_available then
+				table.insert(all_lines, notifications[i])
+				table.insert(all_lines, "")
+				goto continue
+			end
+			local output = vim.fn.system("jq", notifications[i])
+			local notification = notifications[i]
+			if vim.v.shell_error == 0 then
+				notification = output
+			end
+			for line in notification:gmatch("[^\r\n]+") do
+				table.insert(all_lines, line)
+			end
+			table.insert(all_lines, "")
+
+			::continue::
+		end
+
+		vim.api.nvim_buf_set_lines(buf, 0, -1, false, all_lines)
+		vim.api.nvim_set_current_buf(buf)
+		vim.cmd("setlocal ft=json wrap")
+		pcall(vim.api.nvim_buf_set_name, buf, self.buf_name)
+
+		vim.api.nvim_set_hl(0, "NotificationError", { fg = "red", bold = true })
+		vim.api.nvim_set_hl(0, "NotificationWarning", { fg = "yellow", bold = true })
+		vim.api.nvim_set_hl(0, "NotificationInfo", { fg = "green" })
+		vim.api.nvim_set_hl(0, "NotificationDebug", { fg = "blue" })
+		vim.api.nvim_set_hl(0, "NotificationTrace", { fg = "gray" })
+
+		vim.fn.matchadd("NotificationError", '.*"level":[[:space:]]*"ERROR".*')
+		vim.fn.matchadd("NotificationWarning", '.*"level":[[:space:]]*"WARN".*')
+		vim.fn.matchadd("NotificationInfo", '.*"level":[[:space:]]*"INFO".*')
+		vim.fn.matchadd("NotificationDebug", '.*"level":[[:space:]]*"DEBUG".*')
+		vim.fn.matchadd("NotificationTrace", '.*"level":[[:space:]]*"TRACE".*')
+
+		self:reset_unseen_notifications()
+	end, { desc = "Show notifications", noremap = true, silent = true })
 end
 
 return M

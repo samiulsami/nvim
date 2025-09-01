@@ -35,7 +35,7 @@ return {
 				},
 			},
 			suggestion = {
-				enabled = not require("utils.llama_utils"):status(),
+				enabled = not require("utils.llama"):status(),
 				auto_trigger = true,
 				hide_during_completion = false,
 				debounce = 75,
@@ -62,14 +62,12 @@ return {
 			if require("copilot.suggestion").is_visible() then
 				require("copilot.suggestion").accept()
 			end
-			require("copilot.suggestion").next()
 		end, { desc = "Accept Copilot suggestion (ALL)" })
 
 		vim.keymap.set("i", "<C-o>", function()
 			if require("copilot.suggestion").is_visible() then
 				require("copilot.suggestion").accept_line()
 			end
-			require("copilot.suggestion").next()
 		end, { desc = "Accept Copilot suggestion (Line)" })
 
 		vim.keymap.set("i", "<C-j>", function()

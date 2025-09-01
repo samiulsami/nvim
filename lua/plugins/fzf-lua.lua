@@ -6,7 +6,7 @@ return {
 	},
 	config = function()
 		local fzflua = require("fzf-lua")
-                fzflua.register_ui_select()
+		fzflua.register_ui_select()
 
 		local frecency = require("fzf-lua-frecency")
 		frecency.setup()
@@ -64,7 +64,7 @@ return {
 		end, {desc = "Search Files (frecency)"})
 		vim.keymap.set("n", "<leader>ff", function()
 			local cwd = vim.fn.getcwd()
-			frecency.frecency({ cwd_prompt = true, cwd_header = true, cwd = cwd, cwd_only = true, all_files = false, display_score = true, file_ignore_patterns = active_ignore_patterns })
+			frecency.frecency({ fzf_opts = { ['--no-sort'] = false }, cwd_prompt = true, cwd_header = true, cwd = cwd, cwd_only = true, all_files = false, display_score = true, file_ignore_patterns = active_ignore_patterns })
 		end, {desc = "Search Frecent Files"})
 		-- vim.keymap.set("n", "<leader>sf", function()
 		-- 	local cwd = vim.fn.getcwd()
@@ -72,7 +72,7 @@ return {
 		-- end, {desc = "Search Files"})
 		vim.keymap.set("n", "<leader>sg", function()
 			local cwd = vim.fn.getcwd()
-			fzflua.grep({ cwd_header = true, cwd = cwd, search = "", file_ignore_patterns = active_ignore_patterns})
+			fzflua.live_grep({ cwd_header = true, cwd = cwd, search = "", file_ignore_patterns = active_ignore_patterns})
 		end, {desc = "Live Grep"})
 		vim.keymap.set("n", "<leader>sj", function()
 			local cwd = vim.fn.getcwd()
@@ -117,56 +117,6 @@ return {
 		vim.keymap.set("n", "<leader>sc", function() fzflua.colorschemes({ winopts = { fullscreen = false } }) end, {desc = "Search Colorschemes"})
 		vim.keymap.set("n", "<leader>sh", function() fzflua.help_tags({}) end, {desc = "Search Help Tags"})
 
-		local notification_util = require("utils.notifications")
-		vim.keymap.set("n", "<leader>sn", function()
-			fzflua.fzf_exec(coroutine.wrap(function(fzf_cb)
-				local notifications, head, tail = notification_util:get_notifications()
-				if not notifications then return end
-				local counter = tail - head + 1
-				local co = coroutine.running()
-				for i = tail, head, -1 do
-					vim.schedule(function()
-						fzf_cb(
-							notifications[i],
-							function() coroutine.resume(co) end
-						)
-						counter = counter - 1
-					end)
-					coroutine.yield()
-				end
-				fzf_cb()
-				notification_util:reset_unseen_notifications()
-			end), {
-					actions = {
-						["ctrl-q"] = function(selected, _)
-							local buf = vim.api.nvim_create_buf(false, true)
-							vim.api.nvim_buf_set_lines(buf, 0, -1, false, selected)
-							vim.api.nvim_set_current_buf(buf)
-							vim.cmd("setlocal ft=json wrap")
-						end,
-					},
-					previewer = nil,
-					fzf_opts = {
-						['--preview-window'] = "down:60%",
-						['--preview'] = function(items)
-							local contents = {}
-							vim.tbl_map(function(selected)
-								if vim.fn.executable("jq") == 0 then
-									table.insert(contents, "[jq not found] ".. selected)
-								else
-									local output = vim.fn.system("jq --color-output", selected)
-									if vim.v.shell_error ~= 0 then
-										table.insert(contents, "Invalid JSON, or jq error: ".. selected)
-									else
-										table.insert(contents, output)
-									end
-								end
-							end, items)
-							return contents
-						end
-					},
-				})
-		end, {desc = "Notification History" })
 		-- stylua: ignore end
 	end,
 }

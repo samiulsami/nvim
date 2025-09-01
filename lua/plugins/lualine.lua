@@ -161,9 +161,6 @@ return {
 							}
 						end,
 					},
-					"encoding",
-					"fileformat",
-					"filetype",
 				},
 				lualine_y = { "progress" },
 				lualine_z = { "location" },
@@ -182,9 +179,6 @@ return {
 							}
 						end,
 					},
-					"encoding",
-					"fileformat",
-					"filetype",
 				},
 			},
 		})

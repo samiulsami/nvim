@@ -7,18 +7,18 @@
 --- python3 convert_hf_to_gguf.py ~/models/Qwen/qwen2.5-coder1.5b --outfile qwen2.5-coder1.5b --outtype q8_0
 --- export GGML_CUDA_ENABLE_UNIFIED_MEMORY=1; build/bin/llama-server -m qwencoder2.5-coder1.5b.gguf --port 11397 --n-gpu-layers 500 -fa -dt 0.6 --ubatch-size 512 --batch-size 1024 --ctx-size 0 --cache-reuse 512
 
----@class utils.llama_utils
+---@class utils.llama
 ---@field status fun (self): boolean
 ---@field private host string
 ---@field private port integer
 ---@field public endpoint function(self): string
-local llama_utils = {}
+local llama = {}
 
-llama_utils.host = "127.0.0.1"
-llama_utils.port = 11397
+llama.host = "127.0.0.1"
+llama.port = 11397
 
 ---@return boolean
-function llama_utils:status()
+function llama:status()
 	local socket = vim.uv.new_tcp()
 	if not socket then
 		return false
@@ -38,8 +38,8 @@ function llama_utils:status()
 	return success
 end
 
-function llama_utils:endpoint()
+function llama:endpoint()
 	return self.host .. ":" .. self.port .. "/infill"
 end
 
-return llama_utils
+return llama
