@@ -8,7 +8,7 @@ return {
 			endpoint = llama:endpoint(),
 			auto_fim = true,
 			stop_strings = { "\n" },
-			keymap_accept_full = "<C-O>",
+			keymap_accept_full = "<C-k>",
 			keymap_accept_line = "<C-o>",
 			keymap_accept_word = "<C-j>",
 		}

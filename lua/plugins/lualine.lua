@@ -1,5 +1,8 @@
 return {
 	"nvim-lualine/lualine.nvim",
+	dependencies = {
+		"folke/tokyonight.nvim",
+	},
 	config = function()
 		local function trimString(s)
 			return s:match("^%s*(.-)%s*$")
@@ -93,19 +96,18 @@ return {
 		})
 
 		local notification_util = require("utils.notifications")
-		local notification_color = "#777777"
+		local notification_color = "#555555"
 		local function notifications()
 			local unseen_notifications, preview, max_level = notification_util:get_unseen_notification_stats()
 			if unseen_notifications <= 0 then
-				notification_color = "#777777"
-				return "  No notifications  "
+				return ""
 			end
 			if max_level <= vim.log.levels.INFO then
-				notification_color = "#339933"
+				notification_color = "#66bb77"
 			elseif max_level <= vim.log.levels.WARN then
-				notification_color = "#bb9944"
+				notification_color = "#ccaa66"
 			else
-				notification_color = "#bb4444"
+				notification_color = "#ff4444"
 			end
 
 			if preview == "" then
@@ -171,7 +173,6 @@ return {
 				},
 				lualine_x = {
 					{
-						notifications,
 						color = function()
 							return {
 								bg = notification_color,

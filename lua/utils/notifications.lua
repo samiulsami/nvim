@@ -153,36 +153,55 @@ function M:setup_keymaps()
 			return
 		end
 
-		local all_lines = {}
 		local jq_available = vim.fn.executable("jq")
 
 		if not jq_available then
 			vim.notify("jq is not installed, displaying raw notifications", vim.log.levels.WARN)
 		end
 
-		for i = tail, head, -1 do
-			if not jq_available then
-				table.insert(all_lines, notifications[i])
-				table.insert(all_lines, "")
-				goto continue
-			end
-			local output = vim.fn.system("jq", notifications[i])
-			local notification = notifications[i]
-			if vim.v.shell_error == 0 then
-				notification = output
-			end
-			for line in notification:gmatch("[^\r\n]+") do
-				table.insert(all_lines, line)
-			end
-			table.insert(all_lines, "")
+		vim.api.nvim_set_current_buf(buf)
+		pcall(vim.api.nvim_buf_set_name, buf, self.buf_name)
+		vim.cmd("setlocal ft=json wrap numberwidth=4")
 
-			::continue::
+		local current_index = tail
+		local function process_next()
+			if current_index < head then
+				return
+			end
+
+			local lines_to_add = {}
+			if not jq_available then
+				table.insert(lines_to_add, notifications[current_index])
+				table.insert(lines_to_add, "")
+			else
+				local output = vim.fn.system("jq", notifications[current_index])
+				local notification = notifications[current_index]
+				if vim.v.shell_error == 0 then
+					notification = output
+				end
+				for line in notification:gmatch("[^\r\n]+") do
+					table.insert(lines_to_add, line)
+				end
+				table.insert(lines_to_add, "")
+			end
+
+			local ok, line_count = pcall(vim.api.nvim_buf_line_count, buf)
+			if not ok then
+				return
+			end
+			ok, _ = pcall(vim.api.nvim_buf_set_lines, buf, line_count - 1, -1, false, lines_to_add)
+			if not ok then
+				return
+			end
+			if current_index % 10 == 0 then
+				vim.cmd("redraw!")
+			end
+
+			current_index = current_index - 1
+			vim.schedule(process_next)
 		end
 
-		vim.api.nvim_buf_set_lines(buf, 0, -1, false, all_lines)
-		vim.api.nvim_set_current_buf(buf)
-		vim.cmd("setlocal ft=json wrap")
-		pcall(vim.api.nvim_buf_set_name, buf, self.buf_name)
+		vim.schedule(process_next)
 
 		vim.api.nvim_set_hl(0, "NotificationError", { fg = "red", bold = true })
 		vim.api.nvim_set_hl(0, "NotificationWarning", { fg = "yellow", bold = true })

@@ -62,7 +62,7 @@ return {
 					},
 					["<leader>sg"] = {
 						function()
-							require("fzf-lua").grep({ cwd = require("oil").get_current_dir(), search = "" })
+							require("fzf-lua").live_grep({ cwd = require("oil").get_current_dir(), search = "" })
 						end,
 						mode = "n",
 						nowait = true,

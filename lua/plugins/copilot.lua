@@ -58,7 +58,7 @@ return {
 			end,
 		})
 
-		vim.keymap.set("i", "<C-O>", function()
+		vim.keymap.set("i", "<C-k>", function()
 			if require("copilot.suggestion").is_visible() then
 				require("copilot.suggestion").accept()
 			end

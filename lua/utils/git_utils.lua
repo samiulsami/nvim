@@ -67,11 +67,6 @@ vim.keymap.set("n", "<leader>ghr", function()
 	vim.ui.select(remotes, {
 		prompt = "Select remote:",
 	}, function(selected_remote)
-		if not selected_remote then
-			vim.notify("No remote selected, aborting hard reset", vim.log.levels.WARN)
-			return
-		end
-
 		local branches_result, branches_err = run_shell_command(
 			"git branch -r | grep '^[[:space:]]*"
 				.. selected_remote
@@ -108,19 +103,7 @@ vim.keymap.set("n", "<leader>ghr", function()
 		vim.ui.select(branches, {
 			prompt = "Select branch from " .. selected_remote .. ":",
 		}, function(selected_branch)
-			if not selected_branch then
-				vim.notify("No branch selected, aborting hard reset", vim.log.levels.WARN)
-				return
-			end
-
 			local upstream = selected_remote .. "/" .. selected_branch
-
-			local confirmation =
-				vim.fn.input("Hard reset to " .. upstream .. "? This will lose uncommitted changes! (y/n): ")
-			if confirmation:lower() ~= "y" and confirmation:lower() ~= "yes" then
-				vim.notify("Hard reset cancelled", vim.log.levels.WARN)
-				return
-			end
 
 			_, err = run_shell_command("git branch --set-upstream-to=" .. upstream .. " " .. current_branch)
 			if err ~= nil then
