@@ -83,14 +83,12 @@ return {
 			end, { noremap = true, silent = true, desc = "Jump to marked buffer" })
 		end
 
-		local current_bg = "#000000"
-		local visible_bg = "#000000"
 		local current_fg = "#ffffff"
 		local visible_fg = "#6666ff"
-		vim.api.nvim_set_hl(0, "DartCurrent", { bg = current_bg, fg = current_fg, bold = true })
-		vim.api.nvim_set_hl(0, "DartCurrentLabel", { bg = current_bg, fg = current_fg, bold = true })
-		vim.api.nvim_set_hl(0, "DartVisibleLabel", { bg = visible_bg, fg = visible_fg, bold = true })
-		vim.api.nvim_set_hl(0, "DartVisible", { bg = visible_bg, fg = visible_fg, bold = true })
+		vim.api.nvim_set_hl(0, "DartCurrent", { fg = current_fg, bold = true })
+		vim.api.nvim_set_hl(0, "DartCurrentLabel", { fg = current_fg, bold = true })
+		vim.api.nvim_set_hl(0, "DartVisibleLabel", { fg = visible_fg, bold = true })
+		vim.api.nvim_set_hl(0, "DartVisible", { fg = visible_fg, bold = true })
 
 		vim.api.nvim_set_hl(0, "DartPickLabel", { fg = "#ffffff", bold = true })
 		vim.api.nvim_set_hl(0, "DartCurrentModified", { link = "DartCurrent" })

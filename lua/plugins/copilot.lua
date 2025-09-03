@@ -20,19 +20,7 @@ return {
 	config = function()
 		require("copilot").setup({
 			panel = {
-				enabled = true,
-				auto_refresh = false,
-				keymap = {
-					jump_prev = "[[",
-					jump_next = "]]",
-					accept = "<CR>",
-					refresh = "gr",
-					open = "<M-CR>",
-				},
-				layout = {
-					position = "bottom", -- | top | left | right | bottom |
-					ratio = 0.4,
-				},
+				enabled = false,
 			},
 			suggestion = {
 				enabled = not require("utils.llama"):status(),
@@ -57,12 +45,6 @@ return {
 				return vim.fs.dirname(vim.fs.find(".git", { upward = true })[1])
 			end,
 		})
-
-		vim.keymap.set("i", "<C-k>", function()
-			if require("copilot.suggestion").is_visible() then
-				require("copilot.suggestion").accept()
-			end
-		end, { desc = "Accept Copilot suggestion (ALL)" })
 
 		vim.keymap.set("i", "<C-o>", function()
 			if require("copilot.suggestion").is_visible() then
