@@ -24,9 +24,9 @@ vim.keymap.set("n", "<leader>ghr", function()
 		return
 	end
 
-	local remotes_result, err = run_shell_command("git remote")
-	if err ~= nil then
-		vim.notify(err, vim.log.levels.ERROR)
+	local remotes_result, err2 = run_shell_command("git remote")
+	if err2 ~= nil then
+		vim.notify(err2, vim.log.levels.ERROR)
 		return
 	end
 
@@ -65,7 +65,7 @@ vim.keymap.set("n", "<leader>ghr", function()
 	end
 
 	vim.ui.select(remotes, {
-		prompt = "Select remote:",
+		prompt = "🚨[HARD RESETTING] Select remote:",
 	}, function(selected_remote)
 		local branches_result, branches_err = run_shell_command(
 			"git branch -r | grep '^[[:space:]]*"
@@ -101,34 +101,26 @@ vim.keymap.set("n", "<leader>ghr", function()
 		end
 
 		vim.ui.select(branches, {
-			prompt = "Select branch from " .. selected_remote .. ":",
+			prompt = "🚨[HARD RESETTING] Select branch from " .. selected_remote .. ":",
 		}, function(selected_branch)
 			local upstream = selected_remote .. "/" .. selected_branch
 
-			_, err = run_shell_command("git branch --set-upstream-to=" .. upstream .. " " .. current_branch)
-			if err ~= nil then
-				vim.notify(err, vim.log.levels.ERROR)
+			_, err2 = run_shell_command("git branch --set-upstream-to=" .. upstream .. " " .. current_branch)
+			if err2 ~= nil then
+				vim.notify(err2, vim.log.levels.ERROR)
 				return
 			end
 
-			local result = ""
-			result, err = run_shell_command("git fetch --prune --all")
-			if err ~= nil then
-				vim.notify(err, vim.log.levels.ERROR)
-				return
-			end
-			vim.notify(result, vim.log.levels.INFO)
-
-			result, err = run_shell_command("git stash")
-			if err ~= nil then
-				vim.notify(err, vim.log.levels.ERROR)
+			local result, err3 = run_shell_command("git stash")
+			if err3 ~= nil then
+				vim.notify(err3, vim.log.levels.ERROR)
 				return
 			end
 			vim.notify("git stash " .. result, vim.log.levels.INFO)
 
-			result, err = run_shell_command("git reset --hard " .. upstream)
-			if err ~= nil then
-				vim.notify(err, vim.log.levels.ERROR)
+			result, err3 = run_shell_command("git reset --hard " .. upstream)
+			if err3 ~= nil then
+				vim.notify(err3, vim.log.levels.ERROR)
 				return
 			end
 
