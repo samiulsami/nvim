@@ -1,6 +1,5 @@
 return {
 	"ibhagwan/fzf-lua",
-	-- optional for icon support
 	dependencies = {
 		"elanmed/fzf-lua-frecency.nvim",
 	},

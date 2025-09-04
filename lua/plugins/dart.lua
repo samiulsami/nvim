@@ -1,6 +1,5 @@
 return {
 	"iofq/dart.nvim",
-	dependencies = { "echasnovski/mini.icons" },
 	config = function()
 		local dart = require("dart")
 		local marklist = { "q", "w", "e", "r", "a", "s", "d", "f" }
@@ -16,19 +15,16 @@ return {
 		dart.setup({
 			marklist = marklist,
 			buflist = buflist,
-
 			tabline = {
 				always_show = false,
 				format_item = function(item)
-					local icon = _G.MiniIcons.get("file", item.content)
 					local click = string.format("%%%s@SwitchBuffer@", item.bufnr)
 					return string.format(
-						"%%#%s#%s %s%%#%s#%s %s %%X",
+						"%%#%s#%s %s%%#%s#%s %%X",
 						item.hl_label,
 						click,
 						item.label,
 						item.hl,
-						icon,
 						item.content
 					)
 				end,

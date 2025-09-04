@@ -13,6 +13,7 @@ local set_default_colors = function()
 
 	vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#2d2d3c", bold = true, italic = true })
 	vim.api.nvim_set_hl(0, "BlinkCmpMenu", { link = "NormalFloat" })
+	vim.api.nvim_set_hl(0, "BlinkCmpDoc", { link = "NormalFloat" })
 	vim.api.nvim_set_hl(0, "DiagnosticFloatingError", { link = "NormalFloat" })
 	vim.api.nvim_set_hl(0, "DiagnosticFloatingWarn", { link = "NormalFloat" })
 	vim.api.nvim_set_hl(0, "DiagnosticFloatingInfo", { link = "NormalFloat" })

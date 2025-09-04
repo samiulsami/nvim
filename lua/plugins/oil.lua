@@ -5,10 +5,8 @@ return {
 		---@module 'oil'
 		---@type oil.SetupOpts
 		opts = {},
-		dependencies = { { "echasnovski/mini.icons", opts = {} } },
 		config = function()
 			local columns = {
-				"icon",
 				"size",
 				"mtime",
 				"permissions",
@@ -19,7 +17,6 @@ return {
 				if dir then
 					return vim.fn.fnamemodify(dir, ":~")
 				else
-					-- If there is no current directory (e.g. over ssh), just show the buffer name
 					return vim.api.nvim_buf_get_name(0)
 				end
 			end
@@ -27,7 +24,7 @@ return {
 			local show_details = false
 			require("oil").setup({
 				default_file_explorer = true,
-				columns = { "icon" },
+				columns = {},
 				lsp_file_methods = {
 					enabled = true,
 					autosave_changes = true,
@@ -49,20 +46,24 @@ return {
 							if show_details then
 								require("oil").set_columns(columns)
 							else
-								require("oil").set_columns({ "icon" })
+								require("oil").set_columns({})
 							end
 						end,
 					},
 					["<ESC>"] = {
 						mode = "n",
-						desc = "[T]oggle Oil [D]etails",
+						desc = "Close Oil",
 						callback = function()
 							require("oil").close()
 						end,
 					},
 					["<leader>sg"] = {
 						function()
-							require("fzf-lua").live_grep({ cwd = require("oil").get_current_dir(), search = "" })
+							require("fzf-lua").live_grep({
+								cwd_prompt = true,
+								cwd = require("oil").get_current_dir(),
+								search = "",
+							})
 						end,
 						mode = "n",
 						nowait = true,
@@ -71,7 +72,7 @@ return {
 					["<leader>sf"] = {
 						function()
 							require("fzf-lua").files({
-								cwd_header = false,
+								cwd_prompt = true,
 								cwd = require("oil").get_current_dir(),
 								file_ignore_patterns = {},
 							})
@@ -82,18 +83,22 @@ return {
 					},
 				},
 
-				skip_confirm_for_simple_edits = false,
+				skip_confirm_for_simple_edits = true,
 
 				watch_for_changes = true,
 				constrain_cursor = "editable",
 			})
 
+			local oil_buf_name = nil
 			vim.keymap.set("n", "<leader>p", function()
-				if vim.api.nvim_buf_get_name(0):match("oil:///") then
-					require("oil").close()
+				if oil_buf_name and vim.api.nvim_buf_get_name(0) == oil_buf_name then
+					pcall(require("oil").close)
 					return
 				end
 				require("oil").open()
+				vim.schedule(function()
+					oil_buf_name = vim.api.nvim_buf_get_name(0)
+				end)
 			end, { desc = "Toggle Oil Project View" })
 		end,
 	},

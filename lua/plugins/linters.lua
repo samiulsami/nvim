@@ -5,10 +5,7 @@ return {
 			require("lint").linters_by_ft = {
 				c = { "cpplint" },
 				-- cpp = { "cpplint" },
-				go = {
-					"golangcilint",
-					-- "staticcheck",
-				},
+				go = { "golangcilint" },
 				yaml = { "yamllint" },
 				bash = { "shellcheck" },
 				json = { "jsonlint" },

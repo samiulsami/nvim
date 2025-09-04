@@ -22,13 +22,36 @@ return {
 			keymap = {
 				preset = "default",
 				["<CR>"] = {},
-				["<C-c>"] = { "show" },
+				["<C-o>"] = {
+					function(cmp)
+						if cmp.is_ghost_text_visible() or cmp.is_menu_visible() then
+							cmp.accept()
+						end
+					end,
+					"show",
+				},
+				["<C-n>"] = {
+					function(cmp)
+						if cmp.is_menu_visible() then
+							return cmp.select_next()
+						end
+					end,
+					"show",
+				},
+				["<C-p>"] = {
+					function(cmp)
+						if cmp.is_menu_visible() then
+							return cmp.select_prev()
+						end
+					end,
+					"show",
+				},
 				["<C-b>"] = { "scroll_documentation_up", "fallback" },
 				["<C-f>"] = { "scroll_documentation_down", "fallback" },
 			},
 
 			sources = {
-				default = { "lsp", "path", "buffer", "go_deep", "go_pkgs", "snippets"},
+				default = { "lsp", "path", "buffer", "go_deep", "go_pkgs", "snippets" },
 				providers = {
 					snippets = {
 						name = "snippets",
@@ -40,14 +63,14 @@ return {
 					buffer = {
 						name = "buffer",
 						module = "blink.cmp.sources.buffer",
-						max_items = 3,
+						max_items = 5,
 						score_offset = 2,
 						min_keyword_length = 0,
 					},
 					lsp = {
 						name = "lsp",
 						module = "blink.cmp.sources.lsp",
-						max_items = 20,
+						max_items = 99999,
 						score_offset = 100000000,
 						min_keyword_length = 0,
 					},
@@ -64,8 +87,8 @@ return {
 							debounce_gopls_requests_ms = 0,
 							filetypes = { "go" },
 						},
-						max_items = 5,
-						min_keyword_length = 3,
+						max_items = 10,
+						min_keyword_length = 0,
 						score_offset = -10000,
 					},
 					cmdline = {
@@ -128,19 +151,19 @@ return {
 					["<CR>"] = {},
 				},
 				completion = {
-					list = { selection = { preselect = false, auto_insert = false } },
+					list = { selection = { preselect = true, auto_insert = true } },
 					ghost_text = { enabled = true },
-					menu = { auto_show = true },
+					menu = { auto_show = false },
 				},
 			},
 
 			completion = {
 				accept = { auto_brackets = { enabled = false } },
-				list = { selection = { preselect = false, auto_insert = false } },
-				ghost_text = { enabled = true },
+				list = { selection = { preselect = true, auto_insert = true } },
+				ghost_text = { enabled = true, show_with_menu = false },
 				menu = {
 					winblend = 0,
-					auto_show = true,
+					auto_show = false,
 					direction_priority = { "n", "s" },
 					draw = {
 						columns = { { "label", "label_description", gap = 1 }, { "kind_icon", "kind" } },
