@@ -57,7 +57,7 @@ return {
 						name = "snippets",
 						module = "blink.cmp.sources.snippets",
 						max_items = 3,
-						score_offset = 1,
+						score_offset = -1000000000000000,
 						min_keyword_length = 0,
 					},
 					buffer = {

@@ -143,6 +143,7 @@ vim.api.nvim_create_autocmd({
 	"TermEnter",
 }, { pattern = "*", command = "set number" })
 
+-- slightly less strict than "gx"
 vim.keymap.set("n", "<leader>b", function()
 	local curPosXY = vim.api.nvim_win_get_cursor(0)
 	local cursorPosition = curPosXY[2]
@@ -176,10 +177,14 @@ vim.keymap.set("n", "<leader>b", function()
 		return
 	end
 
+	if not closest_url:match("^https?://") then
+		closest_url = "https://" .. closest_url
+	end
+
 	local modified_url = vim.fn.input("Confirm url: ", closest_url)
 	if modified_url == "" then
 		return
 	end
 
 	vim.ui.open(modified_url)
-end, { desc = "Open the URL under cursor with vim.ui.open" })
+end, { desc = "Open the URL under cursor in a browser with vim.ui.open" })
