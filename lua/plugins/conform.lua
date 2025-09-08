@@ -14,7 +14,7 @@ return {
 				yaml = { "yamlfix" },
 				json = { "fixjson" },
 				bash = { "shfmt" },
-                                ["*" ] = { "trim_whitespace" },
+				["*"] = { "trim_whitespace" },
 			},
 		})
 
@@ -28,6 +28,7 @@ return {
 				lsp_format_opt = "fallback"
 			end
 			conform.format({ timeout_ms = 2000, lsp_format = lsp_format_opt })
+			vim.notify("[Formatting]", vim.log.levels.INFO)
 		end, { desc = "Format buffer" })
 	end,
 }

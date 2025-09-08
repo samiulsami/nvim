@@ -144,7 +144,7 @@ vim.api.nvim_create_autocmd({
 }, { pattern = "*", command = "set number" })
 
 -- slightly less strict than "gx"
-vim.keymap.set("n", "<leader>b", function()
+vim.keymap.set("n", "<leader>B", function()
 	local curPosXY = vim.api.nvim_win_get_cursor(0)
 	local cursorPosition = curPosXY[2]
 	local line = vim.api.nvim_get_current_line()
