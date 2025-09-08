@@ -4,7 +4,7 @@ return {
 		config = function()
 			require("lint").linters_by_ft = {
 				c = { "cpplint" },
-				-- cpp = { "cpplint" },
+				cpp = { "cpplint" },
 				go = { "golangcilint" },
 				yaml = { "yamllint" },
 				bash = { "shellcheck" },
@@ -12,13 +12,11 @@ return {
 				make = { "checkmake" },
 				java = { "checkstyle" },
 			}
-			vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
-				callback = function()
-					if vim.bo.modifiable then
-						require("lint").try_lint()
-					end
-				end,
-			})
+			vim.keymap.set("n", "<leader>L", function()
+				if vim.bo.modifiable then
+					require("lint").try_lint()
+				end
+			end, { noremap = true, silent = true, desc = "Run linters" })
 		end,
 	},
 }
