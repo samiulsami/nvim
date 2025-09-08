@@ -107,9 +107,6 @@ return {
 		gopls = {
 			completeUnimported = true,
 			usePlaceholders = false,
-			experimentalPostfixCompletions = false,
-			completeFunctionCalls = false,
-			directoryFilters = { "-node_modules", "-vendor", "-testdata" },
 			analyses = {
 				unusedparams = false,
 				unusedwrite = false,
