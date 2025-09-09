@@ -22,14 +22,14 @@ return {
 			keymap = {
 				preset = "default",
 				["<CR>"] = {},
-				["<C-o>"] = {
-					function(cmp)
-						if cmp.is_ghost_text_visible() or cmp.is_menu_visible() then
-							cmp.accept()
-						end
-					end,
-					"show",
-				},
+				-- ["<C-o>"] = {
+				-- 	function(cmp)
+				-- 		if cmp.is_ghost_text_visible() or cmp.is_menu_visible() then
+				-- 			cmp.accept()
+				-- 		end
+				-- 	end,
+				-- 	"show",
+				-- },
 				["<C-n>"] = {
 					function(cmp)
 						if cmp.is_menu_visible() then
@@ -152,7 +152,7 @@ return {
 				},
 				completion = {
 					list = { selection = { preselect = true, auto_insert = true } },
-					ghost_text = { enabled = true },
+					ghost_text = { enabled = false },
 					menu = { auto_show = false },
 				},
 			},
@@ -160,7 +160,7 @@ return {
 			completion = {
 				accept = { auto_brackets = { enabled = false } },
 				list = { selection = { preselect = true, auto_insert = true } },
-				ghost_text = { enabled = true, show_with_menu = false },
+				ghost_text = { enabled = false, show_with_menu = false },
 				menu = {
 					winblend = 0,
 					auto_show = false,

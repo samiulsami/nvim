@@ -2,6 +2,7 @@ return {
 	"nvim-lualine/lualine.nvim",
 	dependencies = {
 		"folke/tokyonight.nvim",
+		"AndreM222/copilot-lualine",
 	},
 	config = function()
 		local function trimString(s)
@@ -152,6 +153,7 @@ return {
 					luaLineShortenedPath,
 					"diagnostics",
 					search_result,
+					{ "copilot", show_colors = true },
 				},
 				lualine_x = {
 					{
