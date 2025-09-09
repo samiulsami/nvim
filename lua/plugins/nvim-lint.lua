@@ -13,11 +13,12 @@ return {
 				java = { "checkstyle" },
 			}
 			vim.keymap.set("n", "<leader>L", function()
-				if vim.bo.modifiable then
-					vim.notify("[Linting]", vim.log.levels.INFO)
-					require("lint").try_lint()
+				if not vim.bo.modifiable then
+					vim.notify("[Cannot Lint file]", vim.log.levels.WARN)
+					return
 				end
-				vim.notify("[Cannot Lint file]", vim.log.levels.WARN)
+				vim.notify("[Linting]", vim.log.levels.INFO)
+				require("lint").try_lint()
 			end, { noremap = true, silent = true, desc = "Run linters" })
 		end,
 	},
