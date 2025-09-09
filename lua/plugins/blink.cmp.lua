@@ -22,14 +22,6 @@ return {
 			keymap = {
 				preset = "default",
 				["<CR>"] = {},
-				-- ["<C-o>"] = {
-				-- 	function(cmp)
-				-- 		if cmp.is_ghost_text_visible() or cmp.is_menu_visible() then
-				-- 			cmp.accept()
-				-- 		end
-				-- 	end,
-				-- 	"show",
-				-- },
 				["<C-n>"] = {
 					function(cmp)
 						if cmp.is_menu_visible() then
