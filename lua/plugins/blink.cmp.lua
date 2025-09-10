@@ -21,7 +21,14 @@ return {
 		opts = {
 			keymap = {
 				preset = "default",
-				["<CR>"] = {},
+				["<CR>"] = {
+					function(cmp)
+						if cmp.is_menu_visible() then
+							return vim.fn.getcmdtype() ~= "" and cmp.accept_and_enter() or cmp.accept()
+						end
+					end,
+					"fallback",
+				},
 				["<C-n>"] = {
 					function(cmp)
 						if cmp.is_menu_visible() then
