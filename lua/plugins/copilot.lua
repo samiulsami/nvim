@@ -29,7 +29,7 @@ return {
 				debounce = 75,
 				trigger_on_accept = true,
 			},
-			filetypes = { ["."] = true },
+			filetypes = { ["*"] = true },
 			disable_limit_reached_message = false, -- Set to `true` to suppress completion limit reached popup
 			root_dir = function()
 				return vim.fs.dirname(vim.fs.find(".git", { upward = true })[1])
