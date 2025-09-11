@@ -34,9 +34,10 @@ return {
 				enabled = enable_copilot,
 				auto_trigger = false,
 				hide_during_completion = false,
-				debounce = 75,
+				debounce = 0,
 				trigger_on_accept = true,
 			},
+			workspace_folders = { vim.fn.getcwd() },
 			filetypes = { ["*"] = true },
 			disable_limit_reached_message = false, -- Set to `true` to suppress completion limit reached popup
 			root_dir = function()
@@ -46,9 +47,11 @@ return {
 
 		local spinner = {
 			max_length = 50,
-			min_length = 15,
+			min_length = 1,
+			max_distance_from_cursor = 10,
 			repeat_ms = 50,
-			timer = nil,
+			max_lines = 1,
+
 			-- stylua: ignore
 			chars = {
 				"Ȁ", "ȁ", "Ș", "ș", "Ț", "ț", "Ȝ", "ȝ", "ȿ", "Ⱥ", "Ⱦ", "Ƚ", "Ҁ", "ҁ", "Ҍ", "ҍ", "Ґ", "ґ", "Ғ", "ғ", "Җ", "җ", "Қ", "қ", "Ң", "ң", "Ү", "ү", "Ҽ", "ҽ",
@@ -58,23 +61,27 @@ return {
 				"0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
 				"@", "#", "$", "%", "&", "*", "+", "-", "=", "~", "?", "!", "/", "\\", "|", "<", ">", "^",
 				"∂", "∑", "∏", "∫", "√", "∞", "≈", "≠", "≤", "≥", "⊕", "⊗", "⊥", "∇", "∃", "∀", "∈", "∉", "∩", "∪", "∧", "∨",
-				"♠", "♥", "♦", "♣", "♪", "♫", "☼", "☽", "☾"
+				"♠", "♥", "♦", "♣", "♪", "♫", "☼", "☽", "☾","☿", "♃", "♄", "⚳", "⚴", "⚵", "⚶", "⚷", "⚸", "⚹", "⚺",
+				"ꙮ", "꙯", "꙰", "꙱", "꙲", "꙳", "ꙴ", "ꙵ", "ꙶ", "ꙷ", "ꙸ", "ꙹ", "ꙺ", "ꙻ", "꙼", "꙽", "꙾", "ꙿ",
+				"𐌀", "𐌁", "𐌂", "𐌃", "𐌄", "𐌅", "𐌆", "𐌇", "𐌈", "𐌉", "𐌊", "𐌋", "𐌌", "𐌍", "𐌎", "𐌏", "𐌐", "𐌑", "𐌒", "𐌓", "𐌔", "𐌕"
 			},
-			hl = { "CopilotSpinnerHL1", "CopilotSpinnerHL2", "CopilotSpinnerHL3" },
+			rand_hl_group = "CopilotSpinnerHLGroup",
 			ns = vim.api.nvim_create_namespace("custom_copilot_spinner"),
+			timer = nil,
 		}
-
-		vim.api.nvim_set_hl(0, spinner.hl[1], { fg = "#ff0000", bold = true })
-		vim.api.nvim_set_hl(0, spinner.hl[2], { fg = "#000000", bold = true })
-		vim.api.nvim_set_hl(0, spinner.hl[3], { fg = "#ff3333", bold = true })
-
 		function spinner:next_string()
 			local result = {}
+			local spaces = math.random(0, self.max_distance_from_cursor)
+			for _ = 1, spaces do
+				table.insert(result, " ")
+			end
+
 			local length = math.random(self.min_length, self.max_length)
 			for _ = 1, length do
 				local index = math.random(1, #self.chars)
 				table.insert(result, self.chars[index])
 			end
+
 			return table.concat(result)
 		end
 
@@ -94,65 +101,77 @@ return {
 
 		require("copilot.status").register_status_notification_handler(function(data)
 			spinner:reset()
-			if data.status == "InProgress" then
-				if spinner.timer then
-					spinner.timer:stop()
-				end
-				spinner.timer = vim.uv.new_timer()
-				if not spinner.timer then
-					return
-				end
-				--stylua: ignore start
-				spinner.timer:start(
-					0,
-					spinner.repeat_ms,
-					vim.schedule_wrap(function()
-						if require('copilot.suggestion').is_visible() then
-							spinner:reset()
-							return
-						end
-
-						local pos = vim.api.nvim_win_get_cursor(0)
-						local row, col = pos[1] - 1, pos[2]
-						local line = vim.api.nvim_buf_get_lines(0, row, row + 1, false)[1] or ""
-						if col > #line then
-							col = #line
-						end
-
-						local extmark_id = vim.api.nvim_buf_set_extmark(
-							0,
-							spinner.ns,
-							row,
-							col,
-							{ virt_text = { { spinner:next_string(), spinner.hl[math.random(1, #spinner.hl)]} }, virt_text_pos = "inline", priority = 0 }
-						)
-
-						vim.defer_fn(function()
-							pcall(vim.api.nvim_buf_del_extmark, 0, spinner.ns, extmark_id)
-						end, spinner.repeat_ms)
-					end)
-				)
-				-- stylua: ignore end
-			else
-				spinner:reset()
+			if data.status ~= "InProgress" then
+				return
 			end
+
+			if spinner.timer then
+				spinner.timer:stop()
+			end
+			spinner.timer = vim.uv.new_timer()
+			if not spinner.timer then
+				return
+			end
+
+			spinner.timer:start(
+				0,
+				spinner.repeat_ms,
+				vim.schedule_wrap(function()
+					if require("copilot.suggestion").is_visible() then
+						spinner:reset()
+						return
+					end
+
+					local pos = vim.api.nvim_win_get_cursor(0)
+					local row, col = pos[1] - 1, pos[2]
+					local line = vim.api.nvim_buf_get_lines(0, row, row + 1, false)[1] or ""
+					if col > #line then
+						col = #line
+					end
+
+					vim.api.nvim_set_hl(0, spinner.rand_hl_group, {
+						fg = "#" .. string.format("%02x", math.random(0, 255)) .. "0000",
+						bold = true,
+					})
+
+					local num_lines = math.random(1, spinner.max_lines)
+					local extmark_ids = {}
+
+					for i = 0, num_lines - 1 do
+						local target_row = row + i
+						local ok, result = pcall(vim.api.nvim_buf_get_lines, 0, target_row, target_row + 1, false)
+						local target_line = (ok and result and result[1]) or nil
+						if not ok or not target_line then
+							break
+						end
+
+						local target_col = math.min(col, #target_line)
+
+						local extmark_id = vim.api.nvim_buf_set_extmark(0, spinner.ns, target_row, target_col, {
+							virt_text = { { spinner:next_string(), spinner.rand_hl_group } },
+							virt_text_pos = "overlay",
+							priority = 0,
+						})
+
+						table.insert(extmark_ids, extmark_id)
+					end
+
+					for _, id in ipairs(extmark_ids) do
+						vim.defer_fn(function()
+							pcall(vim.api.nvim_buf_del_extmark, 0, spinner.ns, id)
+						end, spinner.repeat_ms + math.random(1, 100))
+					end
+				end)
+			)
 		end)
 
 		local copilot_suggestion = require("copilot.suggestion")
 		vim.keymap.set("i", "<C-o>", function()
-			if copilot_suggestion.is_visible() then
-				copilot_suggestion.accept_line()
-			else
-				copilot_suggestion.next()
-			end
+			copilot_suggestion.accept_line()
 		end, { desc = "Accept Copilot suggestion (Line)" })
 
 		vim.keymap.set("i", "<C-j>", function()
-			if copilot_suggestion.is_visible() then
-				copilot_suggestion.accept_word()
-			else
-				copilot_suggestion.next()
-			end
+			copilot_suggestion.accept_word()
 		end, { desc = "Accept Copilot suggestion (Word)" })
 	end,
 }

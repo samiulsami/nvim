@@ -31,7 +31,5 @@ return {
 				"dockerfile-language-server",
 			},
 		})
-
-		vim.keymap.set("n", "<leader>M", "<Cmd>Mason<CR>", { noremap = true, silent = true })
 	end,
 }

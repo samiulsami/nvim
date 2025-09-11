@@ -8,12 +8,15 @@
 ---@field private max_preview_length integer
 ---@field private max_found_level integer
 ---@field private buf_name string
+---@field private callbacks_on_notify table<function>
+---@field public append_callback_on_notify fun(self, fn: function): nil
 ---@field public get_unseen_notification_stats fun(self): integer, string, integer
 ---@field public reset_unseen_notifications fun(self): nil
 ---@field public get_notifications fun(self): table<string>, integer, integer notifications, head, tail
 local M = {
 	buf_name = "custom_notifications",
 	notifications = {},
+	callbacks_on_notify = {},
 	head = 1,
 	tail = 0,
 	max_notifications = 100,
@@ -21,6 +24,11 @@ local M = {
 	max_found_level = 0,
 	max_preview_length = 16,
 }
+
+---@param fn function
+function M:append_callback_on_notify(fn)
+	table.insert(self.callbacks_on_notify, fn)
+end
 
 function M:get_unseen_notification_stats()
 	return self.unseen_notifications, self.preview, self.max_found_level
@@ -87,9 +95,8 @@ M.setup = function()
 			M.head = M.head + 1
 		end
 
-		local ok, lualine = pcall(require, "lualine")
-		if ok then
-			lualine.refresh()
+		for _, x in ipairs(M.callbacks_on_notify) do
+			pcall(x)
 		end
 	end
 

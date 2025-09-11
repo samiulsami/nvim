@@ -18,11 +18,6 @@ end, { noremap = true, silent = true, desc = "[C]opy [P]ath to current file" })
 
 vim.keymap.set("n", "<ESC>", function()
 	vim.cmd("nohlsearch")
-	vim.g.lualine_show_search_index = false
-	local ok, lualine = pcall(require, "lualine")
-	if ok then
-		lualine.refresh()
-	end
 	return "<ESC>"
 end, { expr = true, desc = "Remove Search Highlights" })
 

@@ -3,7 +3,7 @@
 #### Requirements
 ```bash
 sudo apt update
-sudo apt install build-essential unzip git python3.12-venv xclip cmake gettext ripgrep 
+sudo apt install build-essential unzip git python3.12-venv xclip cmake gettext ripgrep
 
 # fzf
 git clone --depth 1 https://github.com/junegunn/fzf.git $HOME/.fzf
