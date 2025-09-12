@@ -1,3 +1,6 @@
+vim.keymap.set({ "n", "v" }, "Q", "<nop>", { noremap = true, silent = true })
+vim.keymap.set({ "n", "v" }, "gQ", "<nop>", { noremap = true, silent = true })
+
 vim.opt.updatetime = 50
 vim.g.loaded_netrw = 0
 vim.g.loaded_netrwPlugin = 0
@@ -30,7 +33,7 @@ vim.opt.cmdheight = 0
 vim.api.nvim_create_autocmd("TextYankPost", {
 	group = vim.api.nvim_create_augroup("HighlightOnYank", { clear = true }),
 	callback = function()
-		vim.hl.on_yank()
+		vim.hl.on_yank({ timeout = 350 })
 	end,
 })
 
@@ -48,6 +51,4 @@ vim.diagnostic.config({
 	},
 })
 
-vim.schedule(function()
-	vim.opt.clipboard = "unnamedplus"
-end)
+vim.opt.clipboard = "unnamedplus"

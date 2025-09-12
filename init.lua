@@ -1,6 +1,5 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
-vim.keymap.set("n", "Q", "<Nop>", { noremap = true })
 
 require("utils.notifications").setup()
 require("config.lspconfig")

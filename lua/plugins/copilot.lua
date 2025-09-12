@@ -49,9 +49,8 @@ return {
 			max_length = 73,
 			min_length = 1,
 			max_distance_from_cursor = 10,
-			max_lines = 3,
+			max_lines = 1,
 			repeat_ms = 50,
-			auto_hide = true,
 
 			-- stylua: ignore
 			chars = { "Ȁ", "ȁ", "Ș", "ș", "Ț", "ț", "Ȝ", "ȝ", "ȿ", "Ⱥ", "Ⱦ", "Ƚ", "Ҁ", "ҁ", "Ҍ", "ҍ", "Ґ", "ґ", "Ғ", "ғ", "Җ",
@@ -99,6 +98,7 @@ return {
 			end
 		end
 
+		local copilot_suggestion = require("copilot.suggestion")
 		vim.api.nvim_create_autocmd({ "CursorMovedI", "InsertLeave" }, {
 			callback = function()
 				spinner:reset()
@@ -168,7 +168,6 @@ return {
 			)
 		end)
 
-		local copilot_suggestion = require("copilot.suggestion")
 		vim.keymap.set("i", "<C-o>", function()
 			if copilot_suggestion.is_visible() then
 				copilot_suggestion.accept_line()

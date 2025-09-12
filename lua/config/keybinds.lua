@@ -134,6 +134,7 @@ vim.keymap.set({ "n", "t" }, "<A-l>", function()
 end, { noremap = true, silent = true })
 
 vim.keymap.set("t", "<ESC>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
+
 vim.api.nvim_create_autocmd({
 	"TermEnter",
 }, { pattern = "*", command = "set number" })
