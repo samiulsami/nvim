@@ -2,8 +2,8 @@ return {
 	"ggml-org/llama.vim",
 	init = function()
 		local llama = require("utils.llama")
-
 		vim.g.llama_config = {
+			enable_at_startup = false,
 			show_info = 0,
 			endpoint = llama:endpoint(),
 			auto_fim = true,
@@ -15,16 +15,14 @@ return {
 
 		vim.defer_fn(function()
 			if not llama:status() then
-				vim.cmd("LlamaDisable")
-			else
-				vim.cmd("LlamaEnable")
-				vim.api.nvim_set_hl(0, "llama_hl_hint", {
-					fg = "#5f87d7",
-					bg = "#111122",
-					italic = true,
-					ctermfg = 209,
-				})
+				return
 			end
+			vim.api.nvim_set_hl(0, "llama_hl_hint", {
+				fg = "#5f87d7",
+				bg = "#111122",
+				italic = true,
+				ctermfg = 209,
+			})
 		end, 0)
 	end,
 }
