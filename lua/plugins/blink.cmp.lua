@@ -45,8 +45,9 @@ return {
 					end,
 					"show",
 				},
-				["<C-b>"] = { "scroll_documentation_up", "fallback" },
-				["<C-f>"] = { "scroll_documentation_down", "fallback" },
+				["<C-d>"] = { "show_documentation", "hide_documentation", "fallback" },
+				["<C-b>"] = { "scroll_documentation_down", "fallback" },
+				["<C-f>"] = { "scroll_documentation_up", "fallback" },
 			},
 
 			sources = {
@@ -169,10 +170,10 @@ return {
 					},
 				},
 				documentation = {
-					auto_show = true,
+					auto_show = false,
 					auto_show_delay_ms = 0,
 					update_delay_ms = 50,
-					window = { winblend = 5 },
+					window = { winblend = 0 },
 				},
 			},
 
@@ -183,6 +184,9 @@ return {
 
 			signature = {
 				enabled = true,
+				window = {
+					show_documentation = false,
+				},
 			},
 
 			fuzzy = {
