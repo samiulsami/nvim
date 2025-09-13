@@ -20,18 +20,10 @@ return {
 	cmd = "Copilot",
 	event = "VimEnter",
 	config = function()
-		local enable_copilot = not require("utils.llama"):status()
-		if not enable_copilot then
-			vim.notify("Disabling Copilot because llama.vim is active", vim.log.levels.WARN)
-			return
-		end
-
 		require("copilot").setup({
-			panel = {
-				enabled = false,
-			},
+			panel = { enabled = false },
 			suggestion = {
-				enabled = enable_copilot,
+				enabled = true,
 				auto_trigger = false,
 				hide_during_completion = true,
 				debounce = 0,
@@ -49,7 +41,7 @@ return {
 			max_length = 73,
 			min_length = 1,
 			max_distance_from_cursor = 10,
-			max_lines = 1,
+			max_lines = 3,
 			repeat_ms = 50,
 
 			-- stylua: ignore
@@ -98,13 +90,6 @@ return {
 			end
 		end
 
-		local copilot_suggestion = require("copilot.suggestion")
-		vim.api.nvim_create_autocmd({ "CursorMovedI", "InsertLeave" }, {
-			callback = function()
-				spinner:reset()
-			end,
-		})
-
 		require("copilot.status").register_status_notification_handler(function(data)
 			spinner:reset()
 			if data.status ~= "InProgress" then
@@ -118,6 +103,14 @@ return {
 			if not spinner.timer then
 				return
 			end
+
+			vim.api.nvim_create_autocmd({ "InsertLeave" }, {
+				group = vim.api.nvim_create_augroup("CopilotSpinnerInsertLeave", { clear = true }),
+				once = true,
+				callback = function()
+					spinner:reset()
+				end,
+			})
 
 			spinner.timer:start(
 				0,
@@ -168,8 +161,22 @@ return {
 			)
 		end)
 
+		local copilot_suggestion = require("copilot.suggestion")
+		local dismiss_suggestion = true
+
+		vim.api.nvim_create_autocmd({ "CursorMovedI" }, {
+			group = vim.api.nvim_create_augroup("CopilotSuggestionDismissGroup", { clear = true }),
+			callback = function()
+				if dismiss_suggestion then
+					copilot_suggestion.dismiss()
+				end
+				dismiss_suggestion = true
+			end,
+		})
+
 		vim.keymap.set("i", "<C-o>", function()
 			if copilot_suggestion.is_visible() then
+				dismiss_suggestion = false
 				copilot_suggestion.accept_line()
 				return
 			end
@@ -178,6 +185,7 @@ return {
 
 		vim.keymap.set("i", "<C-j>", function()
 			if copilot_suggestion.is_visible() then
+				dismiss_suggestion = false
 				copilot_suggestion.accept_word()
 				return
 			end
