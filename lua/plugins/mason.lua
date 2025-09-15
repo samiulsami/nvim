@@ -19,7 +19,6 @@ return {
 				"jsonlint",
 				"helm-ls",
 				"yaml-language-server",
-				"yamllint",
 				"yamlfix",
 				"fixjson",
 				"gofumpt",

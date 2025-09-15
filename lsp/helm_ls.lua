@@ -7,7 +7,7 @@ return {
 			},
 		},
 	},
-	filetypes = { "helm" },
+	filetypes = { "helm", "yaml", "json" },
 	root_markers = { "Chart.yaml" },
 	settings = {
 		["helm-ls"] = {
@@ -21,7 +21,7 @@ return {
 				enabled = true,
 				enabledForFilesGlob = "*.{yaml,yml}",
 				diagnosticsLimit = 50,
-				showDiagnosticsDirectly = false,
+				showDiagnosticsDirectly = true,
 				path = "yaml-language-server",
 				config = {
 					schemas = {

@@ -82,9 +82,17 @@ return {
 		local current_fg = "#ffffff"
 		local visible_fg = "#6666ff"
 		vim.api.nvim_set_hl(0, "DartCurrent", { fg = current_fg, bold = true })
-		vim.api.nvim_set_hl(0, "DartCurrentLabel", { fg = current_fg, bold = true })
+		vim.api.nvim_set_hl(0, "DartCurrentLabel", { fg = "orange", bold = true })
+
 		vim.api.nvim_set_hl(0, "DartVisibleLabel", { fg = visible_fg, bold = true })
 		vim.api.nvim_set_hl(0, "DartVisible", { fg = visible_fg, bold = true })
+
+		vim.api.nvim_set_hl(0, "DartMarked", { fg = visible_fg, bold = true })
+		vim.api.nvim_set_hl(0, "DartMarkedLabel", { fg = visible_fg, bold = true })
+		vim.api.nvim_set_hl(0, "DartMarkedLabelModified", { fg = visible_fg, bold = true })
+		vim.api.nvim_set_hl(0, "DartMarkedCurrent", { fg = current_fg, bold = true })
+		vim.api.nvim_set_hl(0, "DartMarkedCurrentLabel", { fg = "orange", bold = true })
+		vim.api.nvim_set_hl(0, "DartMarkedCurrentLabelModified", { fg = "orange", bold = true })
 
 		vim.api.nvim_set_hl(0, "DartPickLabel", { fg = "#ffffff", bold = true })
 		vim.api.nvim_set_hl(0, "DartCurrentModified", { link = "DartCurrent" })

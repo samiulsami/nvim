@@ -2,16 +2,10 @@ return {
 	{
 		"saghen/blink.cmp",
 		dependencies = {
-			"rafamadriz/friendly-snippets",
 			"saghen/blink.compat",
-			"dmitmel/cmp-cmdline-history",
 			{
 				"samiulsami/cmp-go-deep",
 				dependencies = { "kkharji/sqlite.lua" },
-			},
-			{
-				"samiulsami/cmp-go-pkgs",
-				branch = "minor-tweaks",
 			},
 		},
 		build = "cargo build --release",
@@ -51,15 +45,8 @@ return {
 			},
 
 			sources = {
-				default = { "lsp", "path", "buffer", "go_deep", "go_pkgs", "snippets" },
+				default = { "lsp", "path", "buffer", "go_deep", "go_pkgs" },
 				providers = {
-					snippets = {
-						name = "snippets",
-						module = "blink.cmp.sources.snippets",
-						max_items = 3,
-						score_offset = -1000000000000000,
-						min_keyword_length = 0,
-					},
 					buffer = {
 						name = "buffer",
 						module = "blink.cmp.sources.buffer",
@@ -112,21 +99,6 @@ return {
 						score_offset = -100,
 						min_keyword_length = 0,
 					},
-					cmdline_history = {
-						name = "cmdline_history",
-						module = "blink.compat.source",
-						timeout_ms = 100,
-						max_items = 9999,
-						min_keyword_length = 0,
-						score_offset = -100000000,
-						transform_items = function(_, items)
-							for _, item in ipairs(items) do
-								item.kind_name = "HISTORY"
-								item.kind_icon = "  "
-							end
-							return items
-						end,
-					},
 				},
 			},
 
@@ -134,14 +106,13 @@ return {
 				sources = function()
 					local type = vim.fn.getcmdtype()
 					if type == "/" or type == "?" then
-						return { "cmdline_buffer", "cmdline_history" }
+						return { "cmdline_buffer" }
 					end
 					if type == ":" or type == "@" then
 						return {
 							"path",
 							"cmdline",
 							"cmdline_buffer",
-							"cmdline_history",
 						}
 					end
 					return {}
