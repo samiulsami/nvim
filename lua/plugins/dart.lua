@@ -5,37 +5,10 @@ return {
 		local marklist = { "q", "w", "e", "r", "a", "s", "d", "f" }
 		local buflist = {}
 
-		vim.api.nvim_create_autocmd("VimLeavePre", {
-			once = true,
-			callback = function()
-				dart.write_session(vim.fn.sha256(vim.fn.getcwd()))
-			end,
-		})
-
 		dart.setup({
 			marklist = marklist,
 			buflist = buflist,
-			tabline = {
-				always_show = false,
-				format_item = function(item)
-					local click = string.format("%%%s@SwitchBuffer@", item.bufnr)
-					return string.format(
-						"%%#%s#%s %s%%#%s#%s %%X",
-						item.hl_label,
-						click,
-						item.label,
-						item.hl,
-						item.content
-					)
-				end,
-				order = function()
-					local order = {}
-					for i, key in ipairs(vim.list_extend(vim.deepcopy(dart.config.marklist), dart.config.buflist)) do
-						order[key] = i
-					end
-					return order
-				end,
-			},
+			tabline = { always_show = false },
 
 			mappings = {
 				mark = "",
@@ -47,40 +20,47 @@ return {
 			},
 		})
 
-		vim.keymap.set("n", "<leader>a", function()
-			local current_buf = vim.api.nvim_get_current_buf()
-			local filename = vim.api.nvim_buf_get_name(current_buf)
-			local cur_state = dart.state_from_filename(filename)
-			if not cur_state or vim.tbl_contains(buflist, cur_state.mark) then
-				dart.mark(current_buf)
-			else
-				local state = dart.state_from_filename(filename)
-				if state then
-					dart.unmark({ type = "marks", marks = { state.mark } })
-				else
-					vim.notify("File " .. filename .. " exists in dart but has no mark!", vim.log.levels.WARN)
-				end
-			end
-		end, { noremap = true, silent = true, desc = "Toggle mark on current buffer" })
-
 		vim.keymap.set("n", "<leader>A", function()
-			vim.ui.input({ prompt = "[dart] Remove ALL Marks? (y/n) " }, function(input)
-				if input and input:lower() == "y" then
-					dart.unmark({ type = "all" })
-				else
+			vim.ui.input({ prompt = "[dart] Remove ALL Marks?" }, function(input)
+				if not input then
 					vim.notify("Aborted removing all marks", vim.log.levels.INFO)
+					return
+				end
+				if input:match("^%s*(.-)%s*$") then
+					dart.unmark({ type = "all" })
 				end
 			end)
 		end, { noremap = true, silent = true, desc = "Remove ALL Marks" })
 
-		for _, key in ipairs(vim.tbl_deep_extend("force", marklist, buflist)) do
+		for _, key in ipairs(marklist) do
 			vim.keymap.set({ "n", "i", "v" }, "<A-" .. key .. ">", function()
-				dart.jump(key)
+				local current_buf = vim.api.nvim_get_current_buf()
+
+				local state_from_filename = dart.state_from_filename(vim.api.nvim_buf_get_name(current_buf))
+				local state_from_mark = dart.state_from_mark(key)
+
+				if
+					state_from_mark and not (state_from_filename and state_from_filename.mark == state_from_mark.mark)
+				then
+					dart.jump(key)
+				elseif state_from_filename then
+					dart.unmark({ type = "marks", marks = { state_from_filename.mark } })
+				end
+
+				if not state_from_mark then
+					dart.mark(current_buf, key)
+				end
 			end, { noremap = true, silent = true, desc = "Jump to marked buffer" })
 		end
 
+		for _, key in ipairs(buflist) do
+			vim.keymap.set({ "n", "i", "v" }, "<A-" .. key .. ">", function()
+				dart.jump(key)
+			end, { noremap = true, silent = true, desc = "Jump to buffer in list" })
+		end
+
 		local current_fg = "#ffffff"
-		local visible_fg = "#6666ff"
+		local visible_fg = "#7777ff"
 		vim.api.nvim_set_hl(0, "DartCurrent", { fg = current_fg, bold = true })
 		vim.api.nvim_set_hl(0, "DartCurrentLabel", { fg = "orange", bold = true })
 
@@ -97,5 +77,19 @@ return {
 		vim.api.nvim_set_hl(0, "DartPickLabel", { fg = "#ffffff", bold = true })
 		vim.api.nvim_set_hl(0, "DartCurrentModified", { link = "DartCurrent" })
 		vim.api.nvim_set_hl(0, "DartCurrentLabelModified", { link = "DartCurrentLabel" })
+
+		vim.api.nvim_create_autocmd("VimLeavePre", {
+			once = true,
+			callback = function()
+				dart.write_session(vim.fn.sha256(vim.fn.getcwd()))
+			end,
+		})
+
+		vim.api.nvim_create_autocmd("VimEnter", {
+			callback = function()
+				dart.read_session(vim.fn.sha256(vim.fn.getcwd()))
+			end,
+		})
+
 	end,
 }

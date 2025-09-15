@@ -11,11 +11,3 @@ else
 	persistence.load()
 	vim.notify("Loaded last session at " .. vim.fn.getcwd(), vim.log.levels.INFO)
 end
-
-local ok, dart = pcall(require, "dart")
-if not ok or not dart then
-	vim.notify("dart.nvim not found", vim.log.levels.WARN)
-	return
-end
-
-dart.read_session(vim.fn.sha256(vim.fn.getcwd()))
