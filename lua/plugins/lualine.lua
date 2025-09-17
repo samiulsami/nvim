@@ -133,10 +133,10 @@ return {
 						color = { bg = "#ff2211", fg = "#ffffff" },
 					},
 					"branch",
-					"diff",
 				},
 				lualine_c = {
 					luaLineShortenedPath,
+					"diff",
 					"diagnostics",
 					"searchcount",
 					"selectioncount",
