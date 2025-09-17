@@ -95,7 +95,7 @@ return {
 					cmdline_buffer = {
 						name = "buffer",
 						module = "blink.cmp.sources.buffer",
-						max_items = 30,
+						max_items = 9999,
 						score_offset = -100,
 						min_keyword_length = 0,
 					},
@@ -104,7 +104,8 @@ return {
 
 			cmdline = {
 				sources = function()
-					local type = vim.fn.getcmdtype()
+					local cmd_type, cmd_win_type = vim.fn.getcmdtype(), vim.fn.getcmdwintype()
+					local type = cmd_type == "" and cmd_win_type or cmd_type
 					if type == "/" or type == "?" then
 						return { "cmdline_buffer" }
 					end
