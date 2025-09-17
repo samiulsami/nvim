@@ -10,5 +10,7 @@ return {
 				end
 			end,
 		})
+
+		vim.keymap.set("n", "<leader>vs", "<Cmd>Sleuth<CR>", { noremap = true, silent = true, desc = "Run vim-sleuth" })
 	end,
 }

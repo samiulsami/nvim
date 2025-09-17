@@ -23,7 +23,6 @@ return {
 				"fixjson",
 				"gofumpt",
 				"goimports",
-				"golangci-lint",
 				"clangd",
 				"clang-format",
 				"cpplint",
