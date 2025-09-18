@@ -33,17 +33,20 @@ return {
 				end
 			end
 
+			local path_prefix_length_soft_limit = 0
 			for i, component in ipairs(components) do
-				if total_length <= 68 or i >= #components - 1 then
+				if total_length <= path_prefix_length_soft_limit or i >= #components - 1 then
 					break
 				end
 
 				total_length = total_length - #component
-				if component:sub(1, 1) == "." and #component > 1 then
-					components[i] = component:sub(1, 2)
-				else
-					components[i] = component:sub(1, 1)
+
+				local prefix_length = 1
+				while prefix_length + 1 <= #component and not component:sub(prefix_length, prefix_length):match("%a") do
+					prefix_length = prefix_length + 1
 				end
+				components[i] = component:sub(1, prefix_length)
+
 				total_length = total_length + #components[i]
 			end
 
