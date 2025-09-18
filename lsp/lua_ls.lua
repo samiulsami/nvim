@@ -33,22 +33,22 @@ return {
 			completion = { callSnippet = "Disable", keywordSnippet = "Disable" },
 			runtime = { version = "LuaJIT" },
 			-- Make the server aware of Neovim runtime files
-			workspace = {
-				checkThirdParty = false,
-				ignoreDir = { "site/pack/packer/start/nvim-treesitter" },
-				maxPreload = 500,
-				preloadFileSize = 100,
-				library = (function()
-					local lib = {}
-					table.insert(lib, vim.env.VIMRUNTIME)
-					for _, p in ipairs(vim.api.nvim_get_runtime_file("lua", true)) do
-						table.insert(lib, p)
-					end
-					table.insert(lib, "${3rd}/luv/library")
-					table.insert(lib, "${3rd}/busted/library")
-					return lib
-				end)(),
-			},
+			-- workspace = {
+			-- 	checkThirdParty = false,
+			-- 	ignoreDir = { "site/pack/packer/start/nvim-treesitter" },
+			-- 	maxPreload = 500,
+			-- 	preloadFileSize = 100,
+			-- 	library = (function()
+			-- 		local lib = {}
+			-- 		table.insert(lib, vim.env.VIMRUNTIME)
+			-- 		for _, p in ipairs(vim.api.nvim_get_runtime_file("lua", true)) do
+			-- 			table.insert(lib, p)
+			-- 		end
+			-- 		table.insert(lib, "${3rd}/luv/library")
+			-- 		table.insert(lib, "${3rd}/busted/library")
+			-- 		return lib
+			-- 	end)(),
+			-- },
 		},
 	},
 }

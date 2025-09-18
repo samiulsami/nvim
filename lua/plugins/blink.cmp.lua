@@ -45,7 +45,7 @@ return {
 			},
 
 			sources = {
-				default = { "lsp", "path", "buffer", "go_deep", "go_pkgs" },
+				default = { "lsp", "lazydev", "path", "buffer", "go_deep", "go_pkgs" },
 				providers = {
 					buffer = {
 						name = "buffer",
@@ -60,6 +60,20 @@ return {
 						max_items = 99999,
 						score_offset = 100000000,
 						min_keyword_length = 0,
+					},
+					lazydev = {
+						name = "LazyDev",
+						module = "lazydev.integrations.blink",
+						max_items = 999999,
+						min_keyword_length = 0,
+						score_offset = 999999999,
+						transform_items = function(_, items)
+							for _, item in ipairs(items) do
+								item.kind_name = "LAZYDEV"
+								item.kind_icon = "💤 "
+							end
+							return items
+						end,
 					},
 					go_pkgs = {
 						name = "go_pkgs",
@@ -113,6 +127,7 @@ return {
 						return {
 							"path",
 							"cmdline",
+							"lazydev",
 							"cmdline_buffer",
 						}
 					end
