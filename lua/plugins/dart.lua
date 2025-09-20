@@ -32,6 +32,9 @@ return {
 			end)
 		end, { noremap = true, silent = true, desc = "Remove ALL Marks" })
 
+		-- Upon pressing Alt+key:
+		-- if current buffer is unmarked, mark it with 'key'.
+		-- if current buffer is marked with 'key', unmark it.
 		for _, key in ipairs(marklist) do
 			vim.keymap.set({ "n", "i", "v" }, "<A-" .. key .. ">", function()
 				local current_buf = vim.api.nvim_get_current_buf()
@@ -43,11 +46,15 @@ return {
 					state_from_mark and not (state_from_filename and state_from_filename.mark == state_from_mark.mark)
 				then
 					dart.jump(key)
-				elseif state_from_filename then
-					dart.unmark({ type = "marks", marks = { state_from_filename.mark } })
+					return
 				end
 
-				if not state_from_mark then
+				if state_from_filename and state_from_mark and state_from_filename.mark == state_from_mark.mark then
+					dart.unmark({ type = "marks", marks = { state_from_filename.mark } })
+					return
+				end
+
+				if not state_from_mark and not state_from_filename then
 					dart.mark(current_buf, key)
 				end
 			end, { noremap = true, silent = true, desc = "Jump to marked buffer" })
@@ -78,18 +85,18 @@ return {
 		vim.api.nvim_set_hl(0, "DartCurrentModified", { link = "DartCurrent" })
 		vim.api.nvim_set_hl(0, "DartCurrentLabelModified", { link = "DartCurrentLabel" })
 
+		local cwd_hash = vim.fn.sha256(vim.fn.getcwd())
 		vim.api.nvim_create_autocmd("VimLeavePre", {
 			once = true,
 			callback = function()
-				dart.write_session(vim.fn.sha256(vim.fn.getcwd()))
+				dart.write_session(cwd_hash)
 			end,
 		})
 
 		vim.api.nvim_create_autocmd("VimEnter", {
 			callback = function()
-				dart.read_session(vim.fn.sha256(vim.fn.getcwd()))
+				dart.read_session(cwd_hash)
 			end,
 		})
-
 	end,
 }
