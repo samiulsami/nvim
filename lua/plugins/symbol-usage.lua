@@ -42,6 +42,7 @@ return {
 				references = { enabled = true, include_declaration = false },
 				definition = { enabled = false },
 				implementation = { enabled = false },
+				vt_priority = 0,
 				kinds = {
 					SymbolKind.Function,
 					SymbolKind.Method,

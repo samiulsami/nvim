@@ -16,7 +16,8 @@
 --- Claude Opus 4                10
 
 return {
-	"zbirenbaum/copilot.lua",
+	"samiulsami/copilot.lua",
+	branch = "export-preview-utils",
 	cmd = "Copilot",
 	event = "VimEnter",
 	config = function()
@@ -24,7 +25,7 @@ return {
 			panel = { enabled = false },
 			suggestion = {
 				enabled = true,
-				auto_trigger = false,
+				auto_trigger = true,
 				hide_during_completion = true,
 				debounce = 0,
 				trigger_on_accept = false,
@@ -116,6 +117,9 @@ return {
 				0,
 				spinner.repeat_ms,
 				vim.schedule_wrap(function()
+					if vim.b.copilot_suggestion_hidden then
+						return
+					end
 					if require("copilot.suggestion").is_visible() then
 						spinner:reset()
 						return
@@ -162,34 +166,34 @@ return {
 		end)
 
 		local copilot_suggestion = require("copilot.suggestion")
-		local dismiss_suggestion = true
 
-		vim.api.nvim_create_autocmd({ "CursorMovedI" }, {
-			group = vim.api.nvim_create_augroup("CopilotSuggestionDismissGroup", { clear = true }),
+		vim.b.copilot_suggestion_hidden = true
+		vim.api.nvim_create_autocmd({ "CursorMovedI", "InsertEnter", "InsertLeave" }, {
+			group = vim.api.nvim_create_augroup("CopilotSuggestionHideGroup", { clear = true }),
 			callback = function()
-				if dismiss_suggestion then
-					copilot_suggestion.dismiss()
+				if vim.b.copilot_suggestion_hidden then
+					copilot_suggestion.clear_preview()
 				end
-				dismiss_suggestion = true
+				vim.b.copilot_suggestion_hidden = true
 			end,
 		})
 
 		vim.keymap.set("i", "<C-o>", function()
+			vim.b.copilot_suggestion_hidden = false
 			if copilot_suggestion.is_visible() then
-				dismiss_suggestion = false
 				copilot_suggestion.accept_line()
 				return
 			end
-			copilot_suggestion.next()
+			copilot_suggestion.update_preview()
 		end, { desc = "Accept Copilot suggestion (Line)" })
 
 		vim.keymap.set("i", "<C-j>", function()
+			vim.b.copilot_suggestion_hidden = false
 			if copilot_suggestion.is_visible() then
-				dismiss_suggestion = false
 				copilot_suggestion.accept_word()
 				return
 			end
-			copilot_suggestion.next()
+			copilot_suggestion.update_preview()
 		end, { desc = "Accept Copilot suggestion (Word)" })
 	end,
 }
