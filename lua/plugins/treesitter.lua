@@ -1,6 +1,9 @@
 return {
 	{
 		"nvim-treesitter/nvim-treesitter",
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter-textobjects",
+		},
 		build = ":TSUpdate",
 		config = function()
 			local configs = require("nvim-treesitter.configs")
@@ -46,6 +49,42 @@ return {
 				folding = {
 					enable = true,
 					disable = {},
+				},
+
+				textobjects = {
+					select = {
+						enable = true,
+						lookahead = true,
+						keymaps = {
+							["af"] = "@function.outer",
+							["if"] = "@function.inner",
+							["ac"] = "@class.outer",
+							["ic"] = "@class.inner",
+							["al"] = "@loop.outer",
+							["il"] = "@loop.inner",
+							["as"] = { query = "@local.scope", query_group = "locals", desc = "around scope" },
+						},
+					},
+					move = {
+						enable = true,
+						set_jumps = true,
+						goto_next_start = {
+							["]f"] = "@function.outer",
+							["]s"] = { query = "@local.scope", query_group = "locals" },
+						},
+						goto_next_end = {
+							["]F"] = "@function.outer",
+							["]S"] = { query = "@local.scope", query_group = "locals" },
+						},
+						goto_previous_start = {
+							["[f"] = "@function.outer",
+							["[s"] = { query = "@local.scope", query_group = "locals" },
+						},
+						goto_previous_end = {
+							["[F"] = "@function.outer",
+							["[S"] = { query = "@local.scope", query_group = "locals" },
+						},
+					},
 				},
 			})
 		end,
