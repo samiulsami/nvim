@@ -68,22 +68,46 @@ return {
 
 		local current_fg = "#ffffff"
 		local visible_fg = "#7777ff"
+
 		vim.api.nvim_set_hl(0, "DartCurrent", { fg = current_fg, bold = true })
+		for _, current in ipairs({
+			"DartMarkedCurrent",
+			"DartCurrentModified",
+			"DartMarkedCurrentModified",
+		}) do
+			vim.api.nvim_set_hl(0, current, { link = "DartCurrent" })
+		end
+
 		vim.api.nvim_set_hl(0, "DartCurrentLabel", { fg = "orange", bold = true })
+		for _, current_label in ipairs({
+			"DartCurrentLabelModified",
+			"DartMarkedCurrentLabel",
+			"DartMarkedCurrentLabelModified",
+		}) do
+			vim.api.nvim_set_hl(0, current_label, { link = "DartCurrentLabel" })
+		end
+
+		vim.api.nvim_set_hl(0, "DartVisible", { fg = visible_fg, bold = true })
+		for _, visible in ipairs({
+			"DartVisibleModified",
+			"DartMarkedVisible",
+			"DartMarkedVisibleModified",
+			"DartMarked",
+			"DartMarkedModified",
+		}) do
+			vim.api.nvim_set_hl(0, visible, { link = "DartVisible" })
+		end
 
 		vim.api.nvim_set_hl(0, "DartVisibleLabel", { fg = visible_fg, bold = true })
-		vim.api.nvim_set_hl(0, "DartVisible", { fg = visible_fg, bold = true })
-
-		vim.api.nvim_set_hl(0, "DartMarked", { fg = visible_fg, bold = true })
-		vim.api.nvim_set_hl(0, "DartMarkedLabel", { fg = visible_fg, bold = true })
-		vim.api.nvim_set_hl(0, "DartMarkedLabelModified", { fg = visible_fg, bold = true })
-		vim.api.nvim_set_hl(0, "DartMarkedCurrent", { fg = current_fg, bold = true })
-		vim.api.nvim_set_hl(0, "DartMarkedCurrentLabel", { fg = "orange", bold = true })
-		vim.api.nvim_set_hl(0, "DartMarkedCurrentLabelModified", { fg = "orange", bold = true })
+		for _, visible_label in ipairs({
+			"DartVisibleLabelModified",
+			"DartMarkedLabel",
+			"DartMarkedLabelModified",
+		}) do
+			vim.api.nvim_set_hl(0, visible_label, { link = "DartVisibleLabel" })
+		end
 
 		vim.api.nvim_set_hl(0, "DartPickLabel", { fg = "#ffffff", bold = true })
-		vim.api.nvim_set_hl(0, "DartCurrentModified", { link = "DartCurrent" })
-		vim.api.nvim_set_hl(0, "DartCurrentLabelModified", { link = "DartCurrentLabel" })
 
 		local cwd_hash = vim.fn.sha256(vim.fn.getcwd())
 		vim.api.nvim_create_autocmd("VimLeavePre", {
