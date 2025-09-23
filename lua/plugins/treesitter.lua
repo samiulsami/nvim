@@ -58,10 +58,6 @@ return {
 						keymaps = {
 							["af"] = "@function.outer",
 							["if"] = "@function.inner",
-							["ac"] = "@class.outer",
-							["ic"] = "@class.inner",
-							["al"] = "@loop.outer",
-							["il"] = "@loop.inner",
 							["as"] = { query = "@local.scope", query_group = "locals", desc = "around scope" },
 						},
 					},

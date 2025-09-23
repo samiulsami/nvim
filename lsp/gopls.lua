@@ -4,7 +4,6 @@
 -- go install mvdan.cc/gofumpt@latest
 -- go install golang.org/x/tools/cmd/goimports@latest
 
-
 ---@brief
 ---
 --- https://github.com/golang/tools/tree/master/gopls
@@ -94,7 +93,7 @@ end
 
 ---@type vim.lsp.Config
 return {
-	cmd = { "gopls", "-remote=auto" },
+	cmd = { "gopls" },
 	filetypes = { "go", "gomod", "gowork", "gotmpl" },
 	root_dir = function(bufnr, on_dir)
 		local fname = vim.api.nvim_buf_get_name(bufnr)

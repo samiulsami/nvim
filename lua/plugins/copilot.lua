@@ -168,7 +168,7 @@ return {
 		local copilot_suggestion = require("copilot.suggestion")
 
 		vim.b.copilot_suggestion_hidden = true
-		vim.api.nvim_create_autocmd({ "CursorMovedI", "InsertEnter", "InsertLeave" }, {
+		vim.api.nvim_create_autocmd({ "CursorMovedI", "InsertEnter", "InsertLeave", "BufEnter" }, {
 			group = vim.api.nvim_create_augroup("CopilotSuggestionHideGroup", { clear = true }),
 			callback = function()
 				if vim.b.copilot_suggestion_hidden then

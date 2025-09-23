@@ -10,10 +10,11 @@ return {
 			-- case_sensitivity = "smart_case",
 			match_highlight = {
 				priority = 2000,
+				persist_matches = 3,
 			},
 			backdrop = {
 				style = {
-					show_in_motion = "none",
+					show_in_motion = "current_line",
 					on_key_press = "current_line",
 				},
 			},
