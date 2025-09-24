@@ -168,31 +168,37 @@ return {
 		local copilot_suggestion = require("copilot.suggestion")
 
 		vim.b.copilot_suggestion_hidden = true
+		vim.b.copilot_custom_clear_on_move = false
 		vim.api.nvim_create_autocmd({ "CursorMovedI", "InsertEnter", "InsertLeave", "BufEnter" }, {
 			group = vim.api.nvim_create_augroup("CopilotSuggestionHideGroup", { clear = true }),
 			callback = function()
-				if vim.b.copilot_suggestion_hidden then
+				if vim.b.copilot_custom_clear_on_move or vim.b.copilot_suggestion_hidden then
 					copilot_suggestion.clear_preview()
 				end
 				vim.b.copilot_suggestion_hidden = true
+				vim.b.copilot_custom_clear_on_move = false
 			end,
 		})
 
 		vim.keymap.set("i", "<C-o>", function()
 			vim.b.copilot_suggestion_hidden = false
 			if copilot_suggestion.is_visible() then
+				vim.b.copilot_custom_clear_on_move = false
 				copilot_suggestion.accept_line()
 				return
 			end
+			vim.b.copilot_custom_clear_on_move = true
 			copilot_suggestion.update_preview()
 		end, { desc = "Accept Copilot suggestion (Line)" })
 
 		vim.keymap.set("i", "<C-j>", function()
 			vim.b.copilot_suggestion_hidden = false
 			if copilot_suggestion.is_visible() then
+				vim.b.copilot_custom_clear_on_move = false
 				copilot_suggestion.accept_word()
 				return
 			end
+			vim.b.copilot_custom_clear_on_move = true
 			copilot_suggestion.update_preview()
 		end, { desc = "Accept Copilot suggestion (Word)" })
 	end,
