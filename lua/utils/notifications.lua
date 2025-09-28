@@ -60,7 +60,7 @@ M.setup = function()
 		end
 
 		M.preview = msg
-		if #msg > M.max_preview_length then
+		if msg and #msg > M.max_preview_length then
 			M.preview = M.preview:sub(1, math.max(0, M.max_preview_length - 3)) .. "..."
 		end
 
