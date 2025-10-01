@@ -14,7 +14,7 @@ return {
 		{
 			"<A-c>",
 			function()
-				require("opencode").ask("@cursor: ")
+				require("opencode").ask("@cursor: ", { clear = false, append = true, submit = false })
 			end,
 			desc = "Ask opencode about this",
 			mode = "n",
@@ -22,7 +22,7 @@ return {
 		{
 			"<A-c>",
 			function()
-				require("opencode").ask("@selection: ")
+				require("opencode").ask("@selection: ", { clear = false, append = true, submit = false })
 			end,
 			desc = "Ask opencode about selection",
 			mode = "v",

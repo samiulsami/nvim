@@ -10,6 +10,7 @@
 --- Claude Sonnet 3.5            1
 --- Claude Sonnet 3.7            1
 --- Claude Sonnet 4              1
+--- Claude Sonnet 4.5            1
 --- Gemini 2.5 Pro               1
 --- Claude Sonnet 3.7 Thinking   1.25
 --- Claude Opus 4.1              10
