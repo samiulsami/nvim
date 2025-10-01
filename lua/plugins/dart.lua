@@ -2,7 +2,7 @@ return {
 	"iofq/dart.nvim",
 	config = function()
 		local dart = require("dart")
-		local marklist = { "q", "w", "e", "r", "a", "s", "d", "f" }
+		local marklist = { "q", "w", "e"}
 		local buflist = {}
 
 		dart.setup({
