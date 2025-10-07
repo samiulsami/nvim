@@ -1,8 +1,8 @@
 local set_default_colors = function()
-	local lspref_color = "#2d2f41"
-	vim.api.nvim_set_hl(0, "LspReferenceText", { bg = lspref_color, bold = true, underline = true })
-	vim.api.nvim_set_hl(0, "LspReferenceRead", { bg = lspref_color, bold = true, underline = true })
-	vim.api.nvim_set_hl(0, "LspReferenceWrite", { bg = lspref_color, bold = true, underline = true })
+	local lspref_color = "#77ff77"
+	vim.api.nvim_set_hl(0, "LspReferenceText", { fg = "#000000", bg = lspref_color, bold = true, underline = true })
+	vim.api.nvim_set_hl(0, "LspReferenceRead", { fg = "#000000", bg = lspref_color, bold = true, underline = true })
+	vim.api.nvim_set_hl(0, "LspReferenceWrite", { fg = "#000000", bg = lspref_color, bold = true, underline = true })
 
 	vim.api.nvim_set_hl(0, "SymbolUsageRounding", { italic = true })
 	vim.api.nvim_set_hl(0, "SymbolUsageContent", { fg = "#6a6a6a", italic = true })

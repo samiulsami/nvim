@@ -44,20 +44,15 @@ vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(event)
 		local client = vim.lsp.get_client_by_id(event.data.client_id)
 		if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
-			local highlight_augroup = vim.api.nvim_create_augroup("custom_lsp_highlight", { clear = false })
-
-			vim.keymap.set(
-				"n",
-				"U",
-				vim.lsp.buf.document_highlight,
-				{ buffer = event.buf, desc = "LSP Document Highlight" }
-			)
-
-			vim.api.nvim_create_autocmd({ "CursorMoved" }, {
-				buffer = event.buf,
-				group = highlight_augroup,
-				callback = vim.lsp.buf.clear_references,
-			})
+			vim.keymap.set("n", "U", function()
+				vim.lsp.buf.clear_references()
+				vim.lsp.buf.document_highlight()
+				vim.keymap.set("n", "<esc>", function()
+					vim.lsp.buf.clear_references()
+					vim.api.nvim_buf_del_keymap(event.buf, "n", "<esc>")
+					return "<esc>"
+				end, { buffer = event.buf, expr = true, desc = "Clear LSP references" })
+			end, { buffer = event.buf, desc = "LSP Document Highlight" })
 
 			vim.api.nvim_create_autocmd("LspDetach", {
 				group = vim.api.nvim_create_augroup("custom_lsp_detach", { clear = true }),

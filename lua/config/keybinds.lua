@@ -16,9 +16,9 @@ vim.keymap.set("n", "<leader>cP", function()
 	vim.notify("'" .. current_file_path .. "'\ncopied to clipboard", vim.log.levels.INFO)
 end, { noremap = true, silent = true, desc = "[C]opy [P]ath to current file" })
 
-vim.keymap.set("n", "<ESC>", function()
+vim.keymap.set("n", "<esc>", function()
 	vim.cmd("nohlsearch")
-	return "<ESC>"
+	return "<esc>"
 end, { expr = true, desc = "Remove Search Highlights" })
 
 vim.keymap.set(
@@ -59,7 +59,7 @@ vim.keymap.set("n", "<leader>O", "<C-w>o", { desc = ":Only", noremap = true, sil
 vim.keymap.set("n", "<leader>Q", "<Cmd>qa!<CR>", { desc = "quit all", noremap = true, silent = true })
 vim.keymap.set("n", "<leader>q", "<Cmd>q<CR>", { desc = "quit", noremap = true, silent = true })
 vim.keymap.set("n", "<leader>w", function()
-	if vim.bo.filetype == "oil" then
+	if vim.bo.filetype == "Fyler" then
 		vim.cmd("w")
 	else
 		vim.cmd("noautocmd w")
@@ -68,7 +68,7 @@ vim.keymap.set("n", "<leader>w", function()
 end, { desc = "Save current buffer", noremap = true, silent = true })
 
 vim.keymap.set("n", "<leader>W", function()
-	if vim.bo.filetype == "oil" then
+	if vim.bo.filetype == "Fyler" then
 		vim.cmd("wa")
 	else
 		vim.cmd("noautocmd wa!")
@@ -133,7 +133,7 @@ vim.keymap.set({ "n", "t" }, "<A-l>", function()
 	vim.cmd("vertical resize +4")
 end, { noremap = true, silent = true })
 
-vim.keymap.set("t", "<ESC>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
+vim.keymap.set("t", "<esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
 vim.api.nvim_create_autocmd({
 	"TermEnter",

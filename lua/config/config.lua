@@ -8,10 +8,18 @@ vim.opt.cursorcolumn = true
 vim.opt.cursorline = true
 
 local cursorXYGRP = vim.api.nvim_create_augroup("CursorXYGRP", { clear = true })
-vim.api.nvim_create_autocmd(
-	{ "InsertLeave", "WinEnter" },
-	{ pattern = "*", command = "set cursorline cursorcolumn", group = cursorXYGRP }
-)
+vim.api.nvim_create_autocmd({ "InsertLeave", "WinEnter" }, {
+	pattern = "*",
+	group = cursorXYGRP,
+	callback = function(ev)
+		vim.cmd("set cursorline")
+		if vim.bo[ev.buf].filetype == "Fyler" then
+			return
+		end
+		vim.cmd("set cursorcolumn")
+	end,
+})
+
 vim.api.nvim_create_autocmd(
 	{ "InsertEnter", "WinLeave" },
 	{ pattern = "*", command = "set nocursorline nocursorcolumn", group = cursorXYGRP }
