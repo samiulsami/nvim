@@ -21,6 +21,7 @@ return {
 				"yaml-language-server",
 				"yamlfix",
 				"fixjson",
+				"golangci-lint",
 				"gofumpt",
 				"goimports",
 				"clangd",

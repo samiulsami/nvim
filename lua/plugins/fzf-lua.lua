@@ -97,6 +97,7 @@ return {
 		vim.keymap.set("n", "<leader>sk", function() fzflua.keymaps({}) end, {desc = "Search Keymaps"})
 		vim.keymap.set("n", "<leader>sc", function() fzflua.colorschemes({ winopts = { fullscreen = false } }) end, {desc = "Search Colorschemes"})
 		vim.keymap.set("n", "<leader>sh", function() fzflua.help_tags({}) end, {desc = "Search Help Tags"})
+		vim.keymap.set("n", "<leader>sH", function() fzflua.highlights({}) end, {desc = "Search Help Tags"})
 
 		-- stylua: ignore end
 	end,

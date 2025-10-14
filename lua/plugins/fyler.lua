@@ -1,10 +1,11 @@
 return {
 	"A7Lavinraj/fyler.nvim",
-	dependencies = { "nvim-mini/mini.nvim" },
+	lazy = false,
+	dependencies = { "nvim-mini/mini.icons" },
 	config = function()
 		local fyler = require("fyler")
 		fyler.setup({
-			default_explorer = true,
+			default_explorer = false,
 			mappings = {
 				["<esc>"] = "CloseView",
 				["="] = "GotoCwd",
@@ -16,7 +17,14 @@ return {
 			},
 		})
 
-		vim.keymap.set("n", "<leader>p", fyler.toggle, { desc = "Toggle File Explorer" })
+		vim.keymap.set("n", "<leader>p", function()
+			local bufdir = vim.fn.expand("%:p:h")
+			if bufdir ~= "" and vim.fn.isdirectory(bufdir) == 1 then
+				fyler.toggle({ dir = bufdir })
+			else
+				fyler.toggle()
+			end
+		end, { desc = "Toggle File Explorer" })
 
 		---@return string, string|nil
 		local get_last_dir_under_cursor = function()
@@ -41,7 +49,7 @@ return {
 		vim.api.nvim_create_autocmd({ "BufEnter", "BufNew", "FileType" }, {
 			pattern = "*",
 			callback = function(ev)
-				if vim.bo[ev.buf].filetype ~= "Fyler" then
+				if not vim.api.nvim_buf_is_valid(ev.buf) or vim.bo[ev.buf].filetype ~= "Fyler" then
 					return
 				end
 				vim.cmd("set nocursorcolumn")
@@ -57,7 +65,6 @@ return {
 				})
 
 				vim.keymap.set("n", "`", function()
-					vim.notify("HERE", vim.log.levels.INFO)
 					local dir, err = get_last_dir_under_cursor()
 					if err then
 						vim.notify(err, vim.log.levels.WARN)
@@ -81,9 +88,9 @@ return {
 
 				vim.keymap.set("n", "<leader>sf", function()
 					local ignore_patterns = require("utils.file_ignore_patterns")
-					local ok, picker = pcall(require, "mini.pick")
+					local ok, frecency = pcall(require, "fzf-lua-frecency")
 					if not ok then
-						vim.notify("mini.pick not found", vim.log.levels.ERROR)
+						vim.notify("fzf-lua-frecency not found", vim.log.levels.ERROR)
 						return
 					end
 
@@ -93,7 +100,8 @@ return {
 						return
 					end
 
-					picker.builtin.files({}, { source = { cwd = dir } })
+					--stylua: ignore
+					frecency.frecency({ fzf_opts = { ["--no-sort"] = false }, cwd_prompt = true, cwd_header = true, cwd = dir, cwd_only = true, all_files = true, display_score = true, file_ignore_patterns = ignore_patterns })
 				end, { desc = "Search Files in dir under cursor", buffer = ev.buf })
 
 				vim.keymap.set("n", "<leader>sg", function()
