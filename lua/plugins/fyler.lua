@@ -1,6 +1,6 @@
 return {
 	"A7Lavinraj/fyler.nvim",
-	dependencies = { "nvim-mini/mini.icons" },
+	dependencies = { "nvim-mini/mini.nvim" },
 	config = function()
 		local fyler = require("fyler")
 		fyler.setup({
@@ -81,9 +81,9 @@ return {
 
 				vim.keymap.set("n", "<leader>sf", function()
 					local ignore_patterns = require("utils.file_ignore_patterns")
-					local ok, frecency = pcall(require, "fzf-lua-frecency")
+					local ok, picker = pcall(require, "mini.pick")
 					if not ok then
-						vim.notify("fzf-lua-frecency not found", vim.log.levels.ERROR)
+						vim.notify("mini.pick not found", vim.log.levels.ERROR)
 						return
 					end
 
@@ -93,8 +93,7 @@ return {
 						return
 					end
 
-					--stylua: ignore
-					frecency.frecency({ fzf_opts = { ["--no-sort"] = false }, cwd_prompt = true, cwd_header = true, cwd = dir, cwd_only = true, all_files = true, display_score = true, file_ignore_patterns = ignore_patterns })
+					picker.builtin.files({}, { source = { cwd = dir } })
 				end, { desc = "Search Files in dir under cursor", buffer = ev.buf })
 
 				vim.keymap.set("n", "<leader>sg", function()

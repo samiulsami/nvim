@@ -2,7 +2,7 @@ return {
 	"ibhagwan/fzf-lua",
 	dependencies = {
 		"elanmed/fzf-lua-frecency.nvim",
-		"nvim-mini/mini.icons",
+		"nvim-mini/mini.nvim",
 	},
 	config = function()
 		local fzflua = require("fzf-lua")
