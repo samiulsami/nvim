@@ -13,7 +13,7 @@ return {
 			},
 			backdrop = {
 				style = {
-					show_in_motion = "current_line",
+					show_in_motion = "none",
 					on_key_press = "current_line",
 					persist_backdrop = false,
 				},

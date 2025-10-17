@@ -1,7 +1,6 @@
 return {
 	{
 		"stevearc/oil.nvim",
-		event = "VeryLazy",
 		---@module 'oil'
 		---@type oil.SetupOpts
 		opts = {},
@@ -48,6 +47,24 @@ return {
 							else
 								require("oil").set_columns({})
 							end
+						end,
+					},
+					["<leader>cp"] = {
+						mode = "n",
+						desc = "Copy Path",
+						callback = function()
+							local current_dir = require("oil").get_current_dir()
+							vim.fn.setreg("+", current_dir)
+							vim.notify("'" .. current_dir .. "'\ncopied to clipboard", vim.log.levels.INFO)
+						end,
+					},
+					["<leader>T"] = {
+						mode = "n",
+						desc = "Open a horizontal tmux split on current directory",
+						callback = function()
+							local current_dir = require("oil").get_current_dir()
+							local tmux_command = "tmux split-window 'cd " .. current_dir .. " && exec $SHELL'"
+							os.execute(tmux_command)
 						end,
 					},
 					["<ESC>"] = {
