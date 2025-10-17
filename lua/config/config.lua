@@ -56,4 +56,6 @@ vim.diagnostic.config({
 	},
 })
 
-vim.opt.clipboard = "unnamedplus"
+vim.schedule(function()
+	vim.opt.clipboard = "unnamedplus"
+end)
