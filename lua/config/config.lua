@@ -11,11 +11,8 @@ local cursorXYGRP = vim.api.nvim_create_augroup("CursorXYGRP", { clear = true })
 vim.api.nvim_create_autocmd({ "InsertLeave", "WinEnter" }, {
 	pattern = "*",
 	group = cursorXYGRP,
-	callback = function(ev)
+	callback = function(_)
 		vim.cmd("set cursorline")
-		if vim.bo[ev.buf].filetype == "Fyler" then
-			return
-		end
 		vim.cmd("set cursorcolumn")
 	end,
 })

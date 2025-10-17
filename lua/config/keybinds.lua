@@ -1,7 +1,7 @@
-pcall(vim.api.nvim_del_keymap,"n", "grr") -- Unbind LSP [G]oto [R]eferences
-pcall(vim.api.nvim_del_keymap,"n", "gri") -- UNbind LSP [G]oto [I]implementation
-pcall(vim.api.nvim_del_keymap,"n", "gra") -- Unbind LSP Code Actions
-pcall(vim.api.nvim_del_keymap,"n", "grn") -- Unbind LSP Rename
+pcall(vim.api.nvim_del_keymap, "n", "grr") -- Unbind LSP [G]oto [R]eferences
+pcall(vim.api.nvim_del_keymap, "n", "gri") -- UNbind LSP [G]oto [I]implementation
+pcall(vim.api.nvim_del_keymap, "n", "gra") -- Unbind LSP Code Actions
+pcall(vim.api.nvim_del_keymap, "n", "grn") -- Unbind LSP Rename
 vim.keymap.set("n", "L", "")
 
 vim.keymap.set("n", "<leader>cp", function()
@@ -59,7 +59,7 @@ vim.keymap.set("n", "<leader>O", "<C-w>o", { desc = ":Only", noremap = true, sil
 vim.keymap.set("n", "<leader>Q", "<Cmd>qa!<CR>", { desc = "quit all", noremap = true, silent = true })
 vim.keymap.set("n", "<leader>q", "<Cmd>q<CR>", { desc = "quit", noremap = true, silent = true })
 vim.keymap.set("n", "<leader>w", function()
-	if vim.bo.filetype == "Fyler" then
+	if vim.bo.filetype == "oil" then
 		vim.cmd("w")
 	else
 		vim.cmd("noautocmd w")
@@ -68,7 +68,7 @@ vim.keymap.set("n", "<leader>w", function()
 end, { desc = "Save current buffer", noremap = true, silent = true })
 
 vim.keymap.set("n", "<leader>W", function()
-	if vim.bo.filetype == "Fyler" then
+	if vim.bo.filetype == "oil" then
 		vim.cmd("wa")
 	else
 		vim.cmd("noautocmd wa!")

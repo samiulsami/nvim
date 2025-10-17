@@ -25,7 +25,7 @@ return {
 				min_gap = 0,
 			},
 			disabled_buftypes = {},
-			disabled_filetypes = { "oil", "fugitive", "lazy", "Fyler" },
+			disabled_filetypes = { "oil", "fugitive", "lazy" },
 		})
 
 		vim.api.nvim_set_hl(0, "fFtTUniqueHighlightSecondary", { fg = "#22ffaa" })

@@ -5,6 +5,7 @@ return {
 			"saghen/blink.compat",
 			{
 				"samiulsami/cmp-go-deep",
+				branch = "wip",
 				dependencies = { "kkharji/sqlite.lua" },
 			},
 		},
