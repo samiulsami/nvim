@@ -3,6 +3,7 @@
 --- GPT-5 mini                   0
 --- GPT-5                        0
 --- GPT-4o                       0
+--- Grok Code Fast 1             0.25
 --- Gemini 2.0 Flash             0.25
 --- o4-mini                      0.33
 --- o3                           1
