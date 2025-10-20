@@ -29,14 +29,24 @@ vim.keymap.set(
 )
 
 vim.keymap.set("n", "]d", function()
-	local ok, err = pcall(vim.diagnostic.jump, { count = 1, float = true })
+	local ok, err = pcall(vim.diagnostic.jump, {
+		count = 1,
+		on_jump = function(_, bufnr)
+			vim.diagnostic.open_float({ bufnr = bufnr, scope = "cursor", focus = false })
+		end,
+	})
 	if not ok then
 		vim.notify("Diagnostic error: " .. vim.inspect(err), vim.log.levels.ERROR)
 	end
 end, { noremap = true, silent = true, desc = "Jump to next Diagnostic" })
 
 vim.keymap.set("n", "[d", function()
-	local ok, err = pcall(vim.diagnostic.jump, { count = -1, float = true })
+	local ok, err = pcall(vim.diagnostic.jump, {
+		count = -1,
+		on_jump = function(_, bufnr)
+			vim.diagnostic.open_float({ bufnr = bufnr, scope = "cursor", focus = false })
+		end,
+	})
 	if not ok then
 		vim.notify("Diagnostic error: " .. vim.inspect(err), vim.log.levels.ERROR)
 	end
