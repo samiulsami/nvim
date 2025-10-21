@@ -1,7 +1,3 @@
-pcall(vim.api.nvim_del_keymap, "n", "grr") -- Unbind LSP [G]oto [R]eferences
-pcall(vim.api.nvim_del_keymap, "n", "gri") -- UNbind LSP [G]oto [I]implementation
-pcall(vim.api.nvim_del_keymap, "n", "gra") -- Unbind LSP Code Actions
-pcall(vim.api.nvim_del_keymap, "n", "grn") -- Unbind LSP Rename
 vim.keymap.set("n", "L", "")
 
 vim.keymap.set("n", "<leader>cp", function()

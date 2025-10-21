@@ -1,3 +1,10 @@
+-- :help grr
+pcall(vim.api.nvim_del_keymap, "n", "grr") -- Unbind LSP [G]oto [R]eferences
+pcall(vim.api.nvim_del_keymap, "n", "gri") -- UNbind LSP [G]oto [I]implementation
+pcall(vim.api.nvim_del_keymap, "n", "gra") -- Unbind LSP Code Actions
+pcall(vim.api.nvim_del_keymap, "n", "grn") -- Unbind LSP Rename
+pcall(vim.api.nvim_del_keymap, "n", "grt") -- Unbind LSP Type Definition
+
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.foldingRange = {
 	dynamicRegistration = false,
@@ -19,6 +26,11 @@ vim.lsp.inlay_hint.enable(false)
 vim.api.nvim_set_hl(0, "LspReferenceText", { bold = true, underline = true })
 vim.api.nvim_set_hl(0, "LspReferenceRead", { bold = true, underline = true })
 vim.api.nvim_set_hl(0, "LspReferenceWrite", { bold = true, underline = true })
+
+vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, { desc = "Builtin LSP [R]eferences" })
+vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, { desc = "Builtin LSP [D]efinition" })
+vim.keymap.set("n", "<leader>gi", vim.lsp.buf.implementation, { desc = "Builtin LSP [I]mplementation" })
+vim.keymap.set("n", "<leader>gD", vim.lsp.buf.declaration, { desc = "Builtin LSP [D]eclaration" })
 
 vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { desc = "LSP [R]e[n]ame" })
 vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "LSP [C]ode [A]ction" })
