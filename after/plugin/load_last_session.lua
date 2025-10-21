@@ -3,11 +3,12 @@ if type(arg) ~= "string" or arg ~= "." then
 	return
 end
 
-local ok, persistence = pcall(require, "persistence")
+local ok, _ = pcall(function(cmd)
+	vim.cmd(cmd)
+end, "AutoSession restore")
 if not ok then
-	vim.notify("persistence.nvim not found", vim.log.levels.WARN)
+	vim.notify("error restoring session with AutoSession", vim.log.levels.WARN)
 	return
-else
-	persistence.load()
-	vim.notify("Loaded last session at " .. vim.fn.getcwd(), vim.log.levels.INFO)
 end
+
+vim.notify("Loaded last session at " .. vim.fn.getcwd(), vim.log.levels.INFO)

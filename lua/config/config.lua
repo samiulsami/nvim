@@ -32,7 +32,7 @@ vim.opt.undofile = true
 vim.opt.mouse = "a"
 vim.opt.grepprg = "rg --vimgrep --no-heading --smart-case"
 vim.opt.grepformat = "%f:%l:%m"
-vim.o.sessionoptions = "buffers,curdir,folds,help,tabpages,globals,winsize,winpos,terminal"
+vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 vim.opt.cmdheight = 0
 
 vim.api.nvim_create_autocmd("TextYankPost", {
