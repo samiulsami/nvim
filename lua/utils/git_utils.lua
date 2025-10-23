@@ -38,7 +38,10 @@ vim.keymap.set("n", "<leader>ghr", function()
 			return
 		end
 
-		local fetch_choice = select_blocking({ "No", "Yes"}, { prompt = "🚨[HARD RESETTING] Run git fetch --prune --all?" })
+		local fetch_choice = select_blocking(
+			{ "No", "Yes" },
+			{ prompt = "🚨[HARD RESETTING] Run git fetch --prune --all?" }
+		)
 		if fetch_choice and fetch_choice == "Yes" then
 			local result, err2 = run_shell_command("git fetch --prune --all")
 			if err2 ~= nil then
@@ -159,3 +162,39 @@ vim.keymap.set("n", "<leader>ghr", function()
 end, {
 	desc = "[G]it [H]ard [R]eset",
 })
+
+vim.keymap.set("n", "<leader>gm", function()
+	local grep_command = "rg"
+	if not vim.fn.executable("rg") then
+		grep_command = "grep"
+	end
+
+	local result, err =
+		run_shell_command("git diff --name-only --diff-filter=U | xargs -r " .. grep_command .. " -n '^<<<<<<<'")
+	if err ~= nil then
+		vim.notify("error running git command: " .. err, vim.log.levels.ERROR)
+		return
+	end
+
+	if result == "" then
+		vim.notify("No conflict markers found", vim.log.levels.INFO)
+		return
+	end
+
+	local qf_list = {}
+	for line in result:gmatch("[^\n]+") do
+		local file, lnum = line:match("^([^:]+):(%d+):.*$")
+		if file and lnum then
+			table.insert(qf_list, { filename = file, lnum = tonumber(lnum), text = "" })
+		end
+	end
+
+	if #qf_list == 0 then
+		vim.notify("No conflict markers found", vim.log.levels.INFO)
+		return
+	end
+
+	vim.fn.setqflist(qf_list)
+	vim.cmd("copen")
+	vim.notify("Loaded " .. #qf_list .. " conflict markers into quickfix", vim.log.levels.INFO)
+end, { noremap = true, silent = true, desc = "Load git conflict markers into quickfix" })
