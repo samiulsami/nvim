@@ -17,6 +17,7 @@ return {
 				try_as_border = true,
 			},
 		})
+		vim.api.nvim_set_hl(0, "MiniIndentScopeSymbol", { fg = "#999955", bold = true, italic = true })
 
 		require("mini.surround").setup({
 			mappings = {
@@ -32,5 +33,7 @@ return {
 			search_method = "cover_or_next",
 		})
 		vim.api.nvim_del_keymap("v", "ys")
+
+		vim.api.nvim_set_hl(0, "MiniTablineFIll", { bold = true, italic = true })
 	end,
 }
