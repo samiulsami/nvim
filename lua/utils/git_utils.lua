@@ -164,13 +164,9 @@ end, {
 })
 
 vim.keymap.set("n", "<leader>gm", function()
-	local grep_command = "rg"
-	if not vim.fn.executable("rg") then
-		grep_command = "grep"
-	end
-
+	local grep_command = "grep"
 	local result, err =
-		run_shell_command("git diff --name-only --diff-filter=U | xargs -r " .. grep_command .. " -n '^<<<<<<<'")
+		run_shell_command("git diff --name-only --diff-filter=U | xargs -r " .. grep_command .. " -Hn '^<<<<<<<'")
 	if err ~= nil then
 		vim.notify("error running git command: " .. err, vim.log.levels.ERROR)
 		return
