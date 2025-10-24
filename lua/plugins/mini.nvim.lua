@@ -17,7 +17,7 @@ return {
 				try_as_border = true,
 			},
 		})
-		vim.api.nvim_set_hl(0, "MiniIndentScopeSymbol", { fg = "#999955", bold = true, italic = true })
+		vim.api.nvim_set_hl(0, "MiniIndentScopeSymbol", { fg = "#009090", bold = true, italic = true })
 
 		require("mini.surround").setup({
 			mappings = {
