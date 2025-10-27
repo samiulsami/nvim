@@ -6,6 +6,7 @@ vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 vim.opt.cursorcolumn = true
 vim.opt.cursorline = true
+vim.o.confirm = true
 
 local cursorXYGRP = vim.api.nvim_create_augroup("CursorXYGRP", { clear = true })
 vim.api.nvim_create_autocmd({ "InsertLeave", "WinEnter" }, {
