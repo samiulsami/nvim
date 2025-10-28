@@ -62,7 +62,7 @@ vim.keymap.set("n", "<leader>o", "<Cmd>split<CR>", { noremap = true, silent = tr
 
 vim.keymap.set("n", "<leader>O", "<C-w>o", { desc = ":Only", noremap = true, silent = true })
 
-vim.keymap.set("n", "<leader>Q", "<Cmd>qa!<CR>", { desc = "quit all", noremap = true, silent = true })
+vim.keymap.set("n", "<leader>Q", "<Cmd>q!<CR>", { desc = "force quit", noremap = true, silent = true })
 vim.keymap.set("n", "<leader>q", "<Cmd>q<CR>", { desc = "quit", noremap = true, silent = true })
 vim.keymap.set("n", "<leader>w", function()
 	if vim.bo.filetype == "oil" then
