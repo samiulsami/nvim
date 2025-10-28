@@ -1,10 +1,20 @@
-local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
 local home_dir = os.getenv("HOME")
-local workspace_base_dir = home_dir .. "/.cache/.java_workspaces/"
-local eclipse_dir = home_dir .. "/.eclipse_jdtls"
+local xdg_cache_dir = os.getenv("XDG_CACHE_HOME") or (home_dir .. "/.cache")
+local xdg_data_dir = os.getenv("XDG_DATA_HOME") or (home_dir .. "/.local/share")
+
+local workspace_base_dir = xdg_cache_dir .. ".cache/.java_workspaces/"
+local eclipse_dir = xdg_data_dir .. "/.eclipse_jdtls"
+if vim.fn.finddir(".eclipse_jdtls", xdg_data_dir, 1) == "" then
+	vim.notify("Please install eclipse jdtls in " .. eclipse_dir, vim.log.levels.ERROR)
+	return 1
+end
+
+local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
+
 if vim.fn.isdirectory(workspace_base_dir) == 0 then
 	vim.fn.mkdir(workspace_base_dir, "p")
 end
+
 local java_path = vim.fn.trim(vim.fn.system("which java"))
 local workspace_dir = workspace_base_dir .. project_name
 local equinox_launcher = vim.fn.glob(eclipse_dir .. "/plugins/org.eclipse.equinox.launcher_*.jar")
