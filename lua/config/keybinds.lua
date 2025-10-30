@@ -188,6 +188,15 @@ vim.api.nvim_create_autocmd({
 	"TermEnter",
 }, { pattern = "*", command = "set number" })
 
+vim.keymap.set("n", "<leader>T", function()
+	local tmux_command = "tmux split-window 'cd " .. vim.fn.expand("%:p:h") .. " && exec $SHELL'"
+	local result = vim.fn.system(tmux_command)
+	if vim.v.shell_error ~= 0 then
+		vim.notify("Failed to open tmux split: " .. result, vim.log.levels.ERROR)
+		return
+	end
+end, { noremap = true, silent = true, desc = "Open a horizontal tmux split on current buffer's directory" })
+
 -- slightly less strict than "gx"
 vim.keymap.set("n", "<leader>B", function()
 	local curPosXY = vim.api.nvim_win_get_cursor(0)
