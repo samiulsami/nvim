@@ -99,6 +99,49 @@ vim.keymap.set("n", "[q", "<Cmd>cprevious<CR>", { noremap = true, silent = true 
 vim.keymap.set("n", "]t", "<Cmd>tabnext<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "[t", "<Cmd>tabprevious<CR>", { noremap = true, silent = true })
 
+local seen_buffers = {}
+local prev_direction = nil
+
+local function jump_to_different_file(direction)
+	if direction ~= prev_direction then
+		seen_buffers = {}
+		prev_direction = direction
+	end
+	local step = direction == "next" and 1 or -1
+	table.insert(seen_buffers, vim.api.nvim_get_current_buf())
+
+	local jumplist_data = vim.fn.getjumplist(vim.api.nvim_get_current_win())
+	local jumplist = jumplist_data[1]
+	local initial_pos = jumplist_data[2]
+	local i = initial_pos + step
+
+	while i >= 0 and i < #jumplist do
+		local jump = jumplist[i + 1]
+		if jump and not vim.tbl_contains(seen_buffers, jump.bufnr) and vim.api.nvim_buf_is_valid(jump.bufnr) then
+			vim.cmd(
+				"normal! "
+					.. math.abs(i - initial_pos)
+					.. vim.api.nvim_replace_termcodes(direction == "next" and "<C-i>" or "<C-o>", true, false, true)
+			)
+			--add buffer to seen_buffers table
+			table.insert(seen_buffers, jump.bufnr)
+			return
+		end
+		i = i + step
+	end
+end
+
+vim.keymap.set("n", "<C-n>", function()
+	jump_to_different_file("next")
+end, { noremap = true, silent = true, desc = "Jump to next file in jump list" })
+vim.keymap.set("n", "<C-p>", function()
+	jump_to_different_file("previous")
+end, { noremap = true, silent = true, desc = "Jump to previous file in jump list" })
+vim.keymap.set("n", "<leader>cj", function()
+	vim.cmd("clearjumps")
+	vim.notify("Cleared jump list", vim.log.levels.INFO)
+end, { silent = true, noremap = true, desc = "Clear jump list" })
+
 vim.keymap.set("n", "<c-w>h", "<c-w>H", { desc = "Move window left", noremap = true, silent = true })
 vim.keymap.set("n", "<c-w>j", "<c-w>J", { desc = "Move window down", noremap = true, silent = true })
 vim.keymap.set("n", "<c-w>k", "<c-w>K", { desc = "Move window up", noremap = true, silent = true })
