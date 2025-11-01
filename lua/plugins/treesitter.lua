@@ -33,6 +33,7 @@ return {
 					"vim",
 					"vimdoc",
 					"go",
+					"latex",
 					"gotmpl",
 					"helm",
 				},
