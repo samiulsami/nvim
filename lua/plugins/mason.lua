@@ -15,6 +15,7 @@ return {
 				"shfmt",
 				"checkmake",
 				"jq",
+				"tree-sitter-cli",
 				"json-lsp",
 				"jsonlint",
 				"helm-ls",
