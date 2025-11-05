@@ -24,6 +24,8 @@ vim.keymap.set(
 	{ noremap = true, silent = true, desc = "Toggle [H]over Diagnostic Float" }
 )
 
+vim.keymap.set("n", "zf", "za", { noremap = true, silent = true, desc = "Toggle fold at cursor" })
+
 vim.keymap.set("n", "]d", function()
 	local ok, err = pcall(vim.diagnostic.jump, {
 		count = 1,
