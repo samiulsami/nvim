@@ -10,6 +10,7 @@ vim.opt.expandtab = true
 vim.opt.laststatus = 2
 vim.opt.termguicolors = true
 
+vim.o.foldmethod = "indent"
 vim.o.foldcolumn = "0"
 vim.o.foldlevel = 99
 vim.o.foldlevelstart = 99

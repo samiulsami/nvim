@@ -48,10 +48,6 @@ return {
 					enable = true,
 					disable = { "ruby" },
 				},
-				folding = {
-					enable = true,
-					disable = {},
-				},
 
 				textobjects = {
 					select = {
