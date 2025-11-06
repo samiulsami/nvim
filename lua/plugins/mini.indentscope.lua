@@ -1,0 +1,24 @@
+return {
+	"nvim-mini/mini.indentscope",
+	config = function()
+		local mini_indentscope = require("mini.indentscope")
+		mini_indentscope.setup({
+			symbol = "│",
+			draw = {
+				delay = 0,
+				animation = mini_indentscope.gen_animation.none()
+			},
+			mappings = {
+				object_scope = "",
+				object_scope_with_border = "",
+				goto_top = "[e",
+				goto_bottom = "]e",
+			},
+			options = {
+				border = "both",
+				ident_at_cursor = false,
+				try_as_border = true,
+			},
+		})
+	end,
+}
