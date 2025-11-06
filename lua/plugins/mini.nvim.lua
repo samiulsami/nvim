@@ -15,8 +15,6 @@ return {
 		})
 		vim.api.nvim_set_hl(0, "MiniIndentScopeSymbol", { fg = "#009090", bold = true, italic = true })
 
-		require("mini.splitjoin").setup({ mappings = { toggle = "S" } })
-
 		require("mini.surround").setup({
 			mappings = {
 				add = "ys",
