@@ -164,9 +164,9 @@ end, {
 })
 
 vim.keymap.set("n", "<leader>gm", function()
-	local grep_command = "grep"
+	local grep_command = "grep" -- NOTE: ripgrep's formatting differs slightly from grep in this case
 	local result, err =
-		run_shell_command("git diff --name-only --diff-filter=U | xargs -r " .. grep_command .. " -Hn '^<<<<<<<'")
+		run_shell_command("git diff --name-only --diff-filter=U | xargs -r " .. grep_command .. " -Hn -E '^(<{7}|={7}|>{7}|\\|{7})'")
 	if err ~= nil then
 		vim.notify("error running git command: " .. err, vim.log.levels.ERROR)
 		return
