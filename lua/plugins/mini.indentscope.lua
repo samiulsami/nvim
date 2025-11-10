@@ -6,13 +6,13 @@ return {
 			symbol = "│",
 			draw = {
 				delay = 0,
-				animation = mini_indentscope.gen_animation.none()
+				animation = mini_indentscope.gen_animation.none(),
 			},
 			mappings = {
 				object_scope = "",
 				object_scope_with_border = "",
-				goto_top = "[e",
-				goto_bottom = "]e",
+				goto_top = "[s",
+				goto_bottom = "]s",
 			},
 			options = {
 				border = "both",

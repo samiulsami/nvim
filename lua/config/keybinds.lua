@@ -117,7 +117,6 @@ local function jump_to_different_file(direction)
 					.. math.abs(i - initial_pos)
 					.. vim.api.nvim_replace_termcodes(direction == "next" and "<C-i>" or "<C-o>", true, false, true)
 			)
-			--add buffer to seen_buffers table
 			table.insert(seen_buffers, jump.bufnr)
 			return
 		end
