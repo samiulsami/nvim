@@ -5,7 +5,7 @@
   "cmp-go-deep": { "branch": "master", "commit": "be597889ee5755e2381208acdfe11d33675f92b1" },
   "conform.nvim": { "branch": "master", "commit": "cde4da5c1083d3527776fee69536107d98dae6c9" },
   "copilot.lua": { "branch": "master", "commit": "5bde2cfe01f049f522eeb8b52c5c723407db8bdf" },
-  "dart.nvim": { "branch": "master", "commit": "8822aabbfef95eda2b22a8f7ee08912c762ef941" },
+  "dart.nvim": { "branch": "fix-invalid-buffer", "commit": "30b1385bb5fad8e0d8d9ed6cbce58050991840e3" },
   "fFtT-highlights.nvim": { "branch": "master", "commit": "b66d65e105cb846d0507a6e80d904f9ee0377b06" },
   "fzf-lua": { "branch": "main", "commit": "996b2366489324983ac1a555cf4d156fe3786fa0" },
   "fzf-lua-frecency.nvim": { "branch": "master", "commit": "392bcd1f5053e5a6bb0d77e8f81d56712f362343" },
