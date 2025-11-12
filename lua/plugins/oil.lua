@@ -45,12 +45,11 @@ return {
 				},
 
 				float = {
-					padding = 0,
-					max_width = 0.8,
-					max_height = 0.9,
+					max_width = 0.999,
+					max_height = 0.999,
 					border = nil,
 					win_options = {
-						winblend = 5,
+						winblend = 6,
 					},
 				},
 				view_options = {
