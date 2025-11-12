@@ -1,3 +1,12 @@
+---@class file_ignore_patterns
+---@field private patterns table<string> | nil
+---@field public get_patterns fun(): table<string>
+local M = {}
+
+M.get_patterns = function()
+	return vim.list_extend({}, M.patterns or {})
+end
+
 local file_ignore_patterns = {
 	"^node_modules/",
 	"^.git/",
@@ -5,18 +14,17 @@ local file_ignore_patterns = {
 	"^zz_generated",
 	"^openapi_generated",
 }
-local active_ignore_patterns = file_ignore_patterns
-local disable_ignore_patterns = false
+
+M.patterns = file_ignore_patterns
 
 vim.keymap.set("n", "<leader>ti", function()
-	if disable_ignore_patterns then
-		active_ignore_patterns = file_ignore_patterns
-		vim.notify("Set ignore patterns to:\n" .. vim.inspect(active_ignore_patterns))
+	if M.patterns == nil then
+		M.patterns = file_ignore_patterns
+		vim.notify("Enabled ignore patterns:\n" .. vim.inspect(M.patterns), vim.log.levels.INFO)
 	else
-		vim.notify("Ignore patterns disabled")
-		active_ignore_patterns = nil
+		M.patterns = nil
+		vim.notify("Disabled ignore patterns", vim.log.levels.WARN)
 	end
-	disable_ignore_patterns = not disable_ignore_patterns
 end, { desc = "[T]oggle [I]gnore patterns" })
 
-return file_ignore_patterns
+return M

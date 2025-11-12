@@ -20,6 +20,17 @@ return {
 				end
 			end
 
+			local actions = require("fzf-lua.actions")
+
+			local function file_edit_close_float(selected, opts)
+				local win = vim.api.nvim_get_current_win()
+				local config = vim.api.nvim_win_get_config(win)
+				if config.relative ~= "" then
+					vim.api.nvim_win_close(win, false)
+				end
+				actions.file_edit(selected, opts)
+			end
+
 			local show_details = false
 			require("oil").setup({
 				default_file_explorer = false,
@@ -33,6 +44,15 @@ return {
 					winbar = "%!v:lua.get_oil_winbar()",
 				},
 
+				float = {
+					padding = 0,
+					max_width = 0.8,
+					max_height = 0.9,
+					border = nil,
+					win_options = {
+						winblend = 5,
+					},
+				},
 				view_options = {
 					show_hidden = true,
 				},
@@ -72,23 +92,19 @@ return {
 							end
 						end,
 					},
-					["<ESC>"] = {
-						mode = "n",
-						desc = "Close Oil",
-						callback = function()
-							require("oil").close()
-						end,
-					},
 					["<leader>sg"] = {
 						function()
 							require("fzf-lua").live_grep({
 								cwd_prompt = true,
 								cwd = require("oil").get_current_dir(),
 								search = "",
+								actions = {
+									["default"] = file_edit_close_float,
+								},
 							})
 						end,
 						mode = "n",
-						nowait = true,
+						nowait = false,
 						desc = "Grep in current oil directory",
 					},
 					["<leader>sf"] = {
@@ -96,11 +112,13 @@ return {
 							require("fzf-lua").files({
 								cwd_prompt = true,
 								cwd = require("oil").get_current_dir(),
-								file_ignore_patterns = {},
+								actions = {
+									["default"] = file_edit_close_float,
+								},
 							})
 						end,
 						mode = "n",
-						nowait = true,
+						nowait = false,
 						desc = "Search in Current oil directory",
 					},
 				},
@@ -109,16 +127,12 @@ return {
 				constrain_cursor = "editable",
 			})
 
-			local oil_buf_name = nil
 			vim.keymap.set("n", "<leader>p", function()
-				if oil_buf_name and vim.api.nvim_buf_get_name(0) == oil_buf_name then
+				if vim.api.nvim_buf_get_name(0):match("^oil:///") then
 					pcall(require("oil").close)
 					return
 				end
-				require("oil").open()
-				vim.schedule(function()
-					oil_buf_name = vim.api.nvim_buf_get_name(0)
-				end)
+				require("oil").open_float()
 			end, { desc = "Toggle Oil Project View" })
 		end,
 	},

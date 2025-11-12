@@ -37,32 +37,32 @@ return {
 		-- stylua: ignore start
 		vim.keymap.set("n", "<leader>sd", function()
 			local cwd = vim.fn.getcwd()
-			fzflua.lsp_document_diagnostics({ cwd_header = true, cwd = cwd, file_ignore_patterns = ignore_patterns})
+			fzflua.lsp_document_diagnostics({ cwd_header = true, cwd = cwd, file_ignore_patterns = ignore_patterns.get_patterns()})
 		end, {desc = "LSP Document Diagnostics"})
 
 		vim.keymap.set("n", "<leader>sD", function()
 			local cwd = vim.fn.getcwd()
-			fzflua.lsp_workspace_diagnostics({ cwd_header = true, cwd = cwd, file_ignore_patterns = ignore_patterns})
+			fzflua.lsp_workspace_diagnostics({ cwd_header = true, cwd = cwd, file_ignore_patterns = ignore_patterns.get_patterns()})
 		end, {desc = "LSP Workspace Diagnostics"})
 
 		vim.keymap.set("n", "<leader>sf", function()
 			local cwd = vim.fn.getcwd()
-			frecency.frecency({ fzf_opts = { ['--no-sort'] = false }, cwd_prompt = true, cwd_header = true, cwd = cwd, cwd_only = true, all_files = true, display_score = true, file_ignore_patterns = ignore_patterns})
+			frecency.frecency({ fzf_opts = { ['--no-sort'] = false }, cwd_prompt = true, cwd_header = true, cwd = cwd, cwd_only = true, all_files = true, display_score = true, file_ignore_patterns = ignore_patterns.get_patterns()})
 		end, {desc = "Search Files (frecency)"})
 
 		vim.keymap.set("n", "<leader>fs", function()
 			local cwd = vim.fn.getcwd()
-			frecency.frecency({ fzf_opts = { ['--no-sort'] = false }, cwd_prompt = true, cwd_header = true, cwd = cwd, cwd_only = true, all_files = false, display_score = true, file_ignore_patterns = ignore_patterns})
+			frecency.frecency({ fzf_opts = { ['--no-sort'] = false }, cwd_prompt = true, cwd_header = true, cwd = cwd, cwd_only = true, all_files = false, display_score = true, file_ignore_patterns = ignore_patterns.get_patterns()})
 		end, {desc = "Search Frecent Files"})
 
 		vim.keymap.set("n", "<leader>sg", function()
 			local cwd = vim.fn.getcwd()
-			fzflua.live_grep({ cwd_header = true, cwd = cwd, search = "", file_ignore_patterns = ignore_patterns})
+			fzflua.live_grep({ cwd_header = true, cwd = cwd, search = "", file_ignore_patterns = ignore_patterns.get_patterns()})
 		end, {desc = "Live Grep"})
 
 		vim.keymap.set("n", "<leader>sj", function()
 			local cwd = vim.fn.getcwd()
-			fzflua.jumps({cwd_header = false, cwd = cwd, file_ignore_patterns = ignore_patterns})
+			fzflua.jumps({cwd_header = false, cwd = cwd, file_ignore_patterns = ignore_patterns.get_patterns() })
 		end, {desc = "Search Jumps"})
 
 		vim.keymap.set("n", "<leader>/", function() fzflua.blines({}) end, {desc = "Fuzzy Search Current Buffer Lines"})
@@ -73,13 +73,13 @@ return {
 				cwd_header = true,
 				cwd = cwd,
 				search = "",
-				file_ignore_patterns = ignore_patterns,
+				file_ignore_patterns = ignore_patterns.get_patterns(),
 			})
 		end, {desc = "Live Grep Quickfix List"})
 
 		vim.keymap.set("n", "<leader>sw", function()
 			local cwd = vim.fn.getcwd()
-			fzflua.lsp_live_workspace_symbols({pwd_header = true, cwd = cwd, file_ignore_patterns = ignore_patterns})
+			fzflua.lsp_live_workspace_symbols({pwd_header = true, cwd = cwd, file_ignore_patterns = ignore_patterns.get_patterns()})
 		end, {desc = "LSP Live Workspace Symbols"})
 
 		vim.keymap.set("n", "<leader>ds", function()
