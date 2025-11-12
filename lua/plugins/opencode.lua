@@ -3,6 +3,9 @@ return {
 	config = function()
 		vim.g.opencode_opts = {
 			auto_reload = true,
+			permissions = {
+				enabled = false,
+			},
 		}
 
 		local opencode = require("opencode")
