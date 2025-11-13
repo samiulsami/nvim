@@ -154,16 +154,15 @@ function M:setup_keymaps()
 			return
 		end
 
+		local jq_available = vim.fn.executable("jq")
+		if not jq_available then
+			vim.notify("jq is not installed, displaying raw notifications", vim.log.levels.WARN)
+		end
+
 		local buf = vim.api.nvim_create_buf(false, true)
 		local notifications, head, tail = self:get_notifications()
 		if not notifications then
 			return
-		end
-
-		local jq_available = vim.fn.executable("jq")
-
-		if not jq_available then
-			vim.notify("jq is not installed, displaying raw notifications", vim.log.levels.WARN)
 		end
 
 		vim.api.nvim_set_current_buf(buf)
