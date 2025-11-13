@@ -140,7 +140,10 @@ vim.keymap.set("n", "<c-w>j", "<c-w>J", { desc = "Move window down", noremap = t
 vim.keymap.set("n", "<c-w>k", "<c-w>K", { desc = "Move window up", noremap = true, silent = true })
 vim.keymap.set("n", "<c-w>l", "<c-w>L", { desc = "Move window right", noremap = true, silent = true })
 
-vim.keymap.set("n", "<leader>RR", "<Cmd>checktime<CR>", { noremap = true, silent = true, desc = "[R]efresh buffer" })
+vim.keymap.set("n", "<leader>R", function()
+	vim.cmd("checktime")
+	vim.notify("[Refreshed buffer]", vim.log.levels.INFO)
+end, { noremap = true, silent = true, desc = "Refresh buffer" })
 
 local function move_or_tmux(direction, tmux_cmd)
 	local current_win = vim.api.nvim_get_current_win()

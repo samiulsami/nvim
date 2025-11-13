@@ -34,12 +34,6 @@ vim.keymap.set("n", "<leader>gD", vim.lsp.buf.declaration, { desc = "Builtin LSP
 
 vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { desc = "LSP [R]e[n]ame" })
 vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "LSP [C]ode [A]ction" })
-vim.keymap.set("n", "<leader>RL", function()
-	for _, client in pairs(vim.lsp.get_clients()) do
-		client:stop(true)
-	end
-	vim.cmd("edit!")
-end, { noremap = true, silent = true, desc = "[R]efresh [L]sp" })
 
 vim.keymap.set("n", "<leader>th", function()
 	local hinstsEnabled = vim.lsp.inlay_hint.is_enabled()

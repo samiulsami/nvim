@@ -1,6 +1,6 @@
 {
   "auto-session": { "branch": "main", "commit": "292492ab7af4bd8b9e37e28508bc8ce995722fd5" },
-  "blink.cmp": { "branch": "main", "commit": "7d79733aea5ef9e030b1a5ace176fa102e9ebe09" },
+  "blink.cmp": { "branch": "main", "commit": "de573225b473eb053c356b2c2f5d65aead24b66d" },
   "blink.compat": { "branch": "main", "commit": "1454f14a8d855a578ceeba77c62538fa1459a67c" },
   "cmp-go-deep": { "branch": "master", "commit": "be597889ee5755e2381208acdfe11d33675f92b1" },
   "conform.nvim": { "branch": "master", "commit": "cde4da5c1083d3527776fee69536107d98dae6c9" },
