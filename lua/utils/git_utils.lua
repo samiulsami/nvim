@@ -8,18 +8,20 @@ local function run_shell_command(cmd)
 	return result:match("^%s*(.-)%s*$"), nil
 end
 
-vim.keymap.set("n", "<leader>gfp", function()
-	local result, err = run_shell_command("git fetch --prune --all")
-	if err ~= nil then
-		vim.notify(err, vim.log.levels.ERROR)
-		return
-	end
-	vim.notify(result, vim.log.levels.INFO)
-end, { desc = "[G]it [F]etch [P]rune" })
+---@param cmd table
+---@return string, string | nil
+local function run_shell_command_no_ui_block(cmd)
+	local co = coroutine.running()
+	vim.system(cmd, { text = true }, function(_)
+		vim.schedule(function()
+			coroutine.resume(co)
+		end)
+	end)
+	return coroutine.yield()
+end
 
 local function select_blocking(items, opts)
 	local co = coroutine.running()
-
 	local result = nil
 	vim.ui.select(items, opts or {}, function(choice)
 		result = choice
@@ -29,6 +31,22 @@ local function select_blocking(items, opts)
 	coroutine.yield()
 	return result
 end
+
+vim.keymap.set("n", "<leader>gfp", function()
+	coroutine.wrap(function()
+		vim.notify("running 'git fetch --prune --all'", vim.log.levels.WARN)
+		local result, err = run_shell_command_no_ui_block({ "git", "fetch", "--prune", "--all" })
+		if err ~= nil then
+			vim.notify(err, vim.log.levels.ERROR)
+			return
+		end
+		if result and result ~= "" then
+			vim.notify(result, vim.log.levels.INFO)
+		else
+			vim.notify("git fetch --prune --all completed with no output", vim.log.levels.INFO)
+		end
+	end)()
+end, { desc = "[G]it [F]etch [P]rune" })
 
 vim.keymap.set("n", "<leader>ghr", function()
 	coroutine.wrap(function()
@@ -43,12 +61,15 @@ vim.keymap.set("n", "<leader>ghr", function()
 			{ prompt = "🚨[HARD RESETTING] Run git fetch --prune --all?" }
 		)
 		if fetch_choice and fetch_choice == "Yes" then
-			local result, err2 = run_shell_command("git fetch --prune --all")
+			vim.notify("running 'git fetch --prune --all'", vim.log.levels.WARN)
+			local result, err2 = run_shell_command_no_ui_block({ "git", "fetch", "--prune", "--all" })
 			if err2 ~= nil then
 				vim.notify(err2, vim.log.levels.ERROR)
 				return
 			end
-			vim.notify(result, vim.log.levels.INFO)
+			if result and result ~= "" then
+				vim.notify(result, vim.log.levels.INFO)
+			end
 		end
 
 		local remotes_result, err2 = run_shell_command("git remote")
@@ -165,8 +186,9 @@ end, {
 
 vim.keymap.set("n", "<leader>gm", function()
 	local grep_command = "grep" -- NOTE: ripgrep's formatting differs slightly from grep in this case
-	local result, err =
-		run_shell_command("git diff --name-only --diff-filter=U | xargs -r " .. grep_command .. " -Hn -E '^(<{7}|={7}|>{7}|\\|{7})'")
+	local result, err = run_shell_command(
+		"git diff --name-only --diff-filter=U | xargs -r " .. grep_command .. " -Hn -E '^(<{7}|={7}|>{7}|\\|{7})'"
+	)
 	if err ~= nil then
 		vim.notify("error running git command: " .. err, vim.log.levels.ERROR)
 		return
