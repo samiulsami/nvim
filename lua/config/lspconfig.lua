@@ -27,6 +27,7 @@ vim.api.nvim_set_hl(0, "LspReferenceText", { bold = true, underline = true })
 vim.api.nvim_set_hl(0, "LspReferenceRead", { bold = true, underline = true })
 vim.api.nvim_set_hl(0, "LspReferenceWrite", { bold = true, underline = true })
 
+vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "LSP hover" })
 vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, { desc = "Builtin LSP [R]eferences" })
 vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, { desc = "Builtin LSP [D]efinition" })
 vim.keymap.set("n", "<leader>gi", vim.lsp.buf.implementation, { desc = "Builtin LSP [I]mplementation" })
