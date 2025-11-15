@@ -14,6 +14,7 @@ return {
 				yaml = { "yamlfix" },
 				json = { "fixjson" },
 				bash = { "shfmt" },
+				terraform = { "terraform_fmt" },
 				["*"] = { "trim_whitespace" },
 			},
 		})

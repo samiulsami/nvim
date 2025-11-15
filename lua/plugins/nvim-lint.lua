@@ -9,6 +9,7 @@ return {
 				yaml = { "yamllint" },
 				bash = { "shellcheck" },
 				json = { "jsonlint" },
+				terraform = { "tflint" },
 				make = { "checkmake" },
 				java = { "checkstyle" },
 			}

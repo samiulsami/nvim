@@ -18,6 +18,7 @@ vim.lsp.enable({
 	"helm_ls",
 	"yamlls",
 	"jsonls",
+	"terraformls",
 	"bashls",
 })
 vim.lsp.config("*", { capabilities = capabilities })
