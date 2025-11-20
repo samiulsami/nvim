@@ -190,7 +190,7 @@ return {
 			copilot_suggestion.update_preview()
 		end, { desc = "Accept Copilot suggestion (Line)" })
 
-		vim.keymap.set("i", "<C-j>", function()
+		vim.keymap.set("i", "<C-i>", function()
 			vim.b.copilot_suggestion_hidden = false
 			if copilot_suggestion.is_visible() then
 				vim.b.copilot_custom_clear_on_move = false
