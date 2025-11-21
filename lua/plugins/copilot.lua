@@ -188,9 +188,9 @@ return {
 			end
 			vim.b.copilot_custom_clear_on_move = true
 			copilot_suggestion.update_preview()
-		end, { desc = "Accept Copilot suggestion (Line)" })
+		end, { desc = "Accept Copilot suggestion (Word)" })
 
-		vim.keymap.set("i", "<C-i>", function()
+		vim.keymap.set("i", "<A-o>", function()
 			vim.b.copilot_suggestion_hidden = false
 			if copilot_suggestion.is_visible() then
 				vim.b.copilot_custom_clear_on_move = false
@@ -199,6 +199,6 @@ return {
 			end
 			vim.b.copilot_custom_clear_on_move = true
 			copilot_suggestion.update_preview()
-		end, { desc = "Accept Copilot suggestion (Word)" })
+		end, { desc = "Accept Copilot suggestion (Line)" })
 	end,
 }
