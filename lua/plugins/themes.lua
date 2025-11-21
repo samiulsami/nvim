@@ -9,7 +9,7 @@ local set_default_colors = function()
 	vim.api.nvim_set_hl(0, "SymbolUsageRef", { fg = "#6f5a5a", italic = true })
 	vim.api.nvim_set_hl(0, "SymbolUsageImpl", { fg = "#5a5a6f", italic = true })
 	vim.api.nvim_set_hl(0, "Comment", { bg = "none", fg = "#6f7b69" })
-	vim.api.nvim_set_hl(0, "LspInlayHint", { fg = "#5f6b68", bg = "#1f1b18", bold = true, italic = true })
+	vim.api.nvim_set_hl(0, "LspInlayHint", { fg = "#555555", bold = true, italic = true })
 
 	vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#2d2d3c", bold = true, italic = true })
 	vim.api.nvim_set_hl(0, "BlinkCmpMenu", { link = "NormalFloat" })
