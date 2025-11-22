@@ -1,6 +1,21 @@
 vim.keymap.set({ "n", "v" }, "Q", "<nop>", { noremap = true, silent = true })
 vim.keymap.set({ "n", "v" }, "gQ", "<nop>", { noremap = true, silent = true })
 
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+vim.opt.hlsearch = true
+vim.opt.incsearch = true
+vim.opt.splitright = true
+vim.opt.splitbelow = true
+
+vim.opt.showmode = false
+vim.opt.breakindent = true
+vim.opt.autoindent = true
+vim.opt.smartindent = true
+vim.opt.expandtab = true
+vim.opt.wrap = false
+vim.opt.inccommand = "split"
+
 vim.opt.updatetime = 50
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
@@ -39,27 +54,6 @@ vim.opt.grepprg = "rg --vimgrep --no-heading --smart-case"
 vim.opt.grepformat = "%f:%l:%m"
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 vim.opt.cmdheight = 0
-
-vim.api.nvim_create_autocmd("TextYankPost", {
-	group = vim.api.nvim_create_augroup("HighlightOnYank", { clear = true }),
-	callback = function()
-		vim.hl.on_yank({ timeout = 350 })
-	end,
-})
-
-vim.diagnostic.config({
-	underline = { severity = vim.diagnostic.severity.ERROR },
-	update_in_insert = false,
-	virtual_text = false,
-	signs = {
-		text = {
-			[vim.diagnostic.severity.ERROR] = "󰅚 ",
-			[vim.diagnostic.severity.WARN] = "󰀪 ",
-			[vim.diagnostic.severity.INFO] = "󰋽 ",
-			[vim.diagnostic.severity.HINT] = "󰌶 ",
-		},
-	},
-})
 
 vim.schedule(function()
 	vim.opt.clipboard = "unnamedplus"

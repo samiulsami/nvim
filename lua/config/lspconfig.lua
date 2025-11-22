@@ -24,6 +24,20 @@ vim.lsp.enable({
 vim.lsp.config("*", { capabilities = capabilities })
 vim.lsp.inlay_hint.enable(false)
 
+vim.diagnostic.config({
+	underline = { severity = vim.diagnostic.severity.ERROR },
+	update_in_insert = false,
+	virtual_text = false,
+	signs = {
+		text = {
+			[vim.diagnostic.severity.ERROR] = "󰅚 ",
+			[vim.diagnostic.severity.WARN] = "󰀪 ",
+			[vim.diagnostic.severity.INFO] = "󰋽 ",
+			[vim.diagnostic.severity.HINT] = "󰌶 ",
+		},
+	},
+})
+
 vim.api.nvim_set_hl(0, "LspReferenceText", { bold = true, underline = true })
 vim.api.nvim_set_hl(0, "LspReferenceRead", { bold = true, underline = true })
 vim.api.nvim_set_hl(0, "LspReferenceWrite", { bold = true, underline = true })

@@ -150,6 +150,10 @@ local function move_or_tmux(direction, tmux_cmd)
 	vim.cmd("wincmd " .. direction)
 	if current_win == vim.api.nvim_get_current_win() then
 		vim.fn.system("tmux select-pane -" .. tmux_cmd)
+		if vim.v.shell_error ~= 0 then
+			vim.notify("Failed to move to tmux pane", vim.log.levels.ERROR)
+			return
+		end
 	end
 end
 vim.keymap.set({ "n", "t" }, "<C-h>", function()
