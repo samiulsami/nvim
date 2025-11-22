@@ -2,11 +2,9 @@ return {
 	"NickvanDyke/opencode.nvim",
 	config = function()
 		vim.g.opencode_opts = {
-			auto_reload = true,
+			auto_reload = false,
 			events = {
-				permissions = {
-					enabled = false,
-				},
+				enabled = false,
 			},
 		}
 
