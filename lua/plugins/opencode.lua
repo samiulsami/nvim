@@ -3,8 +3,10 @@ return {
 	config = function()
 		vim.g.opencode_opts = {
 			auto_reload = true,
-			permissions = {
-				enabled = false,
+			events = {
+				permissions = {
+					enabled = false,
+				},
 			},
 		}
 
