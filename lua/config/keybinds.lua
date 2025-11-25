@@ -54,8 +54,8 @@ vim.keymap.set("n", "<leader>l", function()
 	vim.cmd("set number! relativenumber!")
 end, { noremap = true, silent = true, desc = "Toggle line numbers" })
 
-vim.api.nvim_set_keymap("n", "<C-d>", "<C-d>zz", { noremap = true })
-vim.api.nvim_set_keymap("n", "<C-u>", "<C-u>zz", { noremap = true })
+vim.keymap.set("n", "<C-d>", "<C-d>zz", { noremap = true })
+vim.keymap.set("n", "<C-u>", "<C-u>zz", { noremap = true })
 
 -- Vertical split with <leader>-e
 vim.keymap.set("n", "<leader>e", "<Cmd>vsplit<CR>", { noremap = true, silent = true })
@@ -77,8 +77,8 @@ vim.keymap.set("n", "<leader>W", function()
 end, { desc = "Save all buffers", noremap = true, silent = true })
 
 -- Command-line mappings for history navigation
-vim.api.nvim_set_keymap("c", "<C-p>", "<Up>", { noremap = true })
-vim.api.nvim_set_keymap("c", "<C-n>", "<Down>", { noremap = true })
+vim.keymap.set("c", "<C-p>", "<Up>", { noremap = true })
+vim.keymap.set("c", "<C-n>", "<Down>", { noremap = true })
 
 vim.keymap.set("n", "J", "mzJ`z")
 vim.keymap.set("v", "p", '"_dP')

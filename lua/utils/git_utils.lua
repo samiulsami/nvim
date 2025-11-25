@@ -12,12 +12,19 @@ end
 ---@return string, string | nil
 local function run_shell_command_no_ui_block(cmd)
 	local co = coroutine.running()
-	vim.system(cmd, { text = true }, function(_)
+	local result, err = "", nil
+	vim.system(cmd, { text = true }, function(out)
 		vim.schedule(function()
+			result = out.stdout or ""
+			if out.code ~= 0 then
+				err = out.stderr or ("command failed with code " .. out.code)
+			end
 			coroutine.resume(co)
 		end)
 	end)
-	return coroutine.yield()
+
+	coroutine.yield()
+	return result:match("^%s*(.-)%s*$"), err
 end
 
 local function select_blocking(items, opts)

@@ -16,7 +16,7 @@ return {
 			},
 			options = {
 				border = "both",
-				ident_at_cursor = false,
+				indent_at_cursor = true,
 				try_as_border = true,
 			},
 		})
