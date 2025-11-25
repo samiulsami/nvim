@@ -22,15 +22,7 @@ return {
 		})
 
 		vim.keymap.set("n", "<leader>A", function()
-			vim.ui.input({ prompt = "[dart] Remove ALL Marks?" }, function(input)
-				if not input then
-					vim.notify("Aborted removing all marks", vim.log.levels.INFO)
-					return
-				end
-				if input:match("^%s*(.-)%s*$") then
-					dart.unmark({ type = "all" })
-				end
-			end)
+			dart.unmark({ type = "all" })
 		end, { noremap = true, silent = true, desc = "Remove ALL Marks" })
 
 		-- Upon pressing Alt+key:
