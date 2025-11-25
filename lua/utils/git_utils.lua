@@ -67,7 +67,11 @@ vim.keymap.set("n", "<leader>ghr", function()
 			{ "No", "Yes" },
 			{ prompt = "🚨[HARD RESETTING] Run git fetch --prune --all?" }
 		)
-		if fetch_choice and fetch_choice == "Yes" then
+		if not fetch_choice then
+			return
+		end
+
+		if fetch_choice == "Yes" then
 			vim.notify("running 'git fetch --prune --all'", vim.log.levels.WARN)
 			local result, err2 = run_shell_command_no_ui_block({ "git", "fetch", "--prune", "--all" })
 			if err2 ~= nil then
