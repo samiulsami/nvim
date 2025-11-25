@@ -10,6 +10,8 @@ capabilities.textDocument.foldingRange = {
 	dynamicRegistration = false,
 	lineFoldingOnly = true,
 }
+capabilities.textDocument.completion.completionItem.snippetSupport = false
+
 vim.lsp.enable({
 	"gopls",
 	"lua_ls",
