@@ -20,5 +20,10 @@ return {
 				try_as_border = true,
 			},
 		})
+
+		vim.keymap.set("n", "s", function()
+			vim.cmd("normal! m'")
+			mini_indentscope.move_cursor("top", true)
+		end, { desc = "move cursor to top of the scope" })
 	end,
 }
