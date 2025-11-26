@@ -10,5 +10,3 @@ if not ok then
 	vim.notify("error restoring session with AutoSession", vim.log.levels.WARN)
 	return
 end
-
-vim.notify("Loaded last session at " .. vim.fn.getcwd(), vim.log.levels.INFO)
