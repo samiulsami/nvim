@@ -1,6 +1,5 @@
 return {
 	"tpope/vim-rhubarb",
-	dependencies = { "tpope/vim-fugitive" },
 	config = function()
 		vim.keymap.set({ "n" }, "<leader>G", "<cmd>GBrowse<CR>", { silent = true, noremap = true, desc = "Open the current line in Github" })
 		vim.keymap.set({ "v" }, "<leader>G", function()

@@ -1,6 +1,5 @@
 return {
 	"tpope/vim-sleuth",
-	lazy = false,
 	config = function()
 		vim.api.nvim_create_autocmd("BufEnter", {
 			pattern = { "*" },

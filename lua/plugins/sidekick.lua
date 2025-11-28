@@ -1,6 +1,5 @@
 return {
 	"folke/sidekick.nvim",
-	lazy = false,
 	config = function()
 		local sidekick = require("sidekick")
 		sidekick.setup({
