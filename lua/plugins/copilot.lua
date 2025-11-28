@@ -14,6 +14,7 @@
 --- Claude Sonnet 4.5            1
 --- Gemini 2.5 Pro               1
 --- Claude Opus 4.1              10
+--- Claude Opus 4.5              1 for now, will increase to 3 after december 5th 2025
 
 return {
 	"zbirenbaum/copilot.lua",

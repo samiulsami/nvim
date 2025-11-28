@@ -82,7 +82,7 @@ return {
 						debounce_gopls_requests_ms = 0,
 						filetypes = { "go" },
 					},
-					max_items = 5,
+					max_items = 10,
 					min_keyword_length = 0,
 					score_offset = -10000,
 				},
