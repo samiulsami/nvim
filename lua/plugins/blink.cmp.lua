@@ -45,7 +45,7 @@ return {
 			},
 
 			sources = {
-				default = { "lsp", "lazydev", "path", "buffer", "go_deep", "go_pkgs" },
+				default = { "lsp", "lazydev", "path", "buffer", "go_deep" },
 				providers = {
 					buffer = {
 						name = "buffer",
@@ -75,11 +75,6 @@ return {
 							return items
 						end,
 					},
-					go_pkgs = {
-						name = "go_pkgs",
-						module = "blink.compat.source",
-						min_keyword_length = 0,
-					},
 					go_deep = {
 						name = "go_deep",
 						module = "blink.compat.source",
@@ -88,7 +83,7 @@ return {
 							debounce_gopls_requests_ms = 0,
 							filetypes = { "go" },
 						},
-						max_items = 10,
+						max_items = 5,
 						min_keyword_length = 0,
 						score_offset = -10000,
 					},
