@@ -1,9 +1,10 @@
 {
   "auto-session": { "branch": "main", "commit": "292492ab7af4bd8b9e37e28508bc8ce995722fd5" },
-  "blink.cmp": { "branch": "main", "commit": "f13226770b4947eb7e66befbeb53c3db39f13e25" },
+  "blink.cmp": { "branch": "main", "commit": "7beba91fdc61fdc84ea6d6395d614671e609f895" },
   "blink.compat": { "branch": "main", "commit": "1454f14a8d855a578ceeba77c62538fa1459a67c" },
-  "cmp-go-deep": { "branch": "master", "commit": "1531dc38ae46170b0680d57ac385e69c98fc78c1" },
+  "cmp-go-deep": { "branch": "master", "commit": "78ed8a5f538878abdaffe26add8ba0a19533e8c6" },
   "conform.nvim": { "branch": "master", "commit": "4993e07fac6679d0a5005aa7499e0bad2bd39f19" },
+  "copilot-lsp": { "branch": "main", "commit": "884034b23c3716d55b417984ad092dc2b011115b" },
   "copilot.lua": { "branch": "master", "commit": "4383e05a47493d7ff77b058c0548129eb38ec7fb" },
   "dart.nvim": { "branch": "fix-invalid-buffer", "commit": "30b1385bb5fad8e0d8d9ed6cbce58050991840e3" },
   "fFtT-highlights.nvim": { "branch": "master", "commit": "cf85eb852ed336cafb9987f38f831da516443bc9" },
