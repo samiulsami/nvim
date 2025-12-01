@@ -18,7 +18,6 @@
 
 return {
 	"zbirenbaum/copilot.lua",
-	dependencies = { "copilotlsp-nvim/copilot-lsp" },
 	lazy = false,
 	cmd = "Copilot",
 	event = "VimEnter",
@@ -33,8 +32,8 @@ return {
 				trigger_on_accept = false,
 			},
 			nes = {
-				enabled = true,
-				auto_trigger = true,
+				enabled = false,
+				auto_trigger = false,
 				keymap = {
 					accept_and_goto = "<A-;>",
 					accept = false,
