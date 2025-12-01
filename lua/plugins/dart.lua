@@ -1,5 +1,6 @@
 return {
 	"samiulsami/dart.nvim",
+	lazy = false,
 	branch = "fix-invalid-buffer",
 	config = function()
 		local dart = require("dart")
