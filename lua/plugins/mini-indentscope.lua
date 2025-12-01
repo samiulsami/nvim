@@ -1,5 +1,6 @@
 return {
 	"nvim-mini/mini.indentscope",
+	lazy = false,
 	config = function()
 		local mini_indentscope = require("mini.indentscope")
 		mini_indentscope.setup({
