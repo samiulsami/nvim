@@ -24,11 +24,32 @@ require("lazier").setup("plugins", {
 			-- it is faster to require parts of your config here
 			-- since at this point they will be bundled and bytecode compiled.
 			-- eg: require("options")
+			require("utils.notifications").setup()
+			require("config.config")
+			require("config.lspconfig")
+			require("config.appearance")
 		end,
 
 		after = function()
 			-- function to run after the ui renders.
 			-- eg: require("mappings")
+			require("config.keybinds")
+			require("utils.unique_lines")
+			require("utils.git_utils")
+
+			-- load last session
+			local arg = vim.fn.argv(0)
+			if type(arg) ~= "string" or arg ~= "." then
+				return
+			end
+
+			local ok, _ = pcall(function(cmd)
+				vim.cmd(cmd)
+			end, "AutoSession restore")
+			if not ok then
+				vim.notify("error restoring session with AutoSession", vim.log.levels.WARN)
+				return
+			end
 		end,
 
 		start_lazily = function()
@@ -57,10 +78,6 @@ require("lazier").setup("plugins", {
 		detect_changes = true,
 	},
 
-	spec = {
-		-- import your plugins
-		{ import = "plugins" },
-	},
 	-- Configure any other settings here. See the documentation for more details.
 	-- colorscheme that will be used when installing plugins.
 	-- install = { colorscheme = { "habamax" } },
