@@ -53,6 +53,10 @@ require("lazier").setup("plugins", {
 		end,
 
 		start_lazily = function()
+			-- Don't start lazily when using as manpager
+			if vim.fn.index(vim.v.argv, "+Man!") >= 0 then
+				return false
+			end
 			-- function which returns whether lazy.nvim
 			-- should start delayed or not.
 			local nonLazyLoadableExtensions = {
