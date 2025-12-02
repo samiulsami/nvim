@@ -1,5 +1,3 @@
-vim.keymap.set("n", "s", "", { desc = "no operation" })
-
 vim.keymap.set("n", "<leader>cp", function()
 	local directory_path = vim.fn.expand("%:p:h")
 	vim.fn.setreg("+", '"' .. directory_path .. '"')
