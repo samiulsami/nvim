@@ -27,7 +27,7 @@ vim.lsp.config("*", { capabilities = capabilities })
 vim.lsp.inlay_hint.enable(false)
 
 vim.diagnostic.config({
-	underline = { severity = vim.diagnostic.severity.ERROR },
+	underline = false,
 	update_in_insert = false,
 	virtual_text = false,
 	signs = {
