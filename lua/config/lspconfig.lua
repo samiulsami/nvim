@@ -16,6 +16,7 @@ vim.lsp.enable({
 	"gopls",
 	"lua_ls",
 	"clangd",
+	"scala",
 	"dockerls",
 	"helm_ls",
 	"yamlls",
