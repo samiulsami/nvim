@@ -1,7 +1,6 @@
 return {
-	"samiulsami/dart.nvim",
+	"iofq/dart.nvim",
 	lazy = false,
-	branch = "fix-invalid-buffer",
 	config = function()
 		local dart = require("dart")
 		local marklist = { "q", "w", "e" }

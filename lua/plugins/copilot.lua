@@ -2,7 +2,6 @@
 --- Raptor mini                  0
 --- GPT-4.1                      0
 --- GPT-5 mini                   0
---- GPT-5                        0
 --- GPT-4o                       0
 --- Grok Code Fast 1             0.25
 --- Claude Haiku 4.5             0.33
