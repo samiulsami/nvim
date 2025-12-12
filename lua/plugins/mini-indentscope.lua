@@ -23,8 +23,33 @@ return {
 		})
 
 		vim.keymap.set("n", "s", function()
-			vim.cmd("normal! m'")
-			mini_indentscope.move_cursor("top", true)
+			local initial_row, initial_col = unpack(vim.api.nvim_win_get_cursor(0))
+
+			---@return boolean
+			local try_move = function()
+				vim.cmd("normal! m'")
+				mini_indentscope.move_cursor("top", true)
+				local cur_row, cur_col = unpack(vim.api.nvim_win_get_cursor(0))
+				return cur_row ~= initial_row or cur_col ~= initial_col
+			end
+
+			if try_move() then
+				return
+			end
+
+			if initial_col > 0 then
+				vim.api.nvim_win_set_cursor(0, { initial_row, initial_col - 1 })
+			end
+			if try_move() then
+				return
+			end
+
+			if initial_row > 1 then
+				vim.api.nvim_win_set_cursor(0, { initial_row - 1, initial_col })
+			end
+			if not try_move() then
+				vim.notify("Already at the topmost scope", vim.log.levels.WARN)
+			end
 		end, { desc = "move cursor to top of the scope" })
 	end,
 }
