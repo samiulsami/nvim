@@ -23,6 +23,7 @@ vim.lsp.enable({
 	"jsonls",
 	"terraformls",
 	"bashls",
+	"csharp_ls",
 })
 vim.lsp.config("*", { capabilities = capabilities })
 vim.lsp.inlay_hint.enable(false)
