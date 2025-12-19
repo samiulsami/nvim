@@ -5,7 +5,7 @@ return {
 		sidekick.setup({
 			cli = { watch = false },
 			nes = {
-				enabled = false,
+				enabled = true,
 			},
 		})
 
