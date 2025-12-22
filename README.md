@@ -2,7 +2,7 @@
 
 #### Requirements
 - ripgrep
-- xclip
+- xclip/wl-clipboard
 - fzf
 - cmake
 - rustup
