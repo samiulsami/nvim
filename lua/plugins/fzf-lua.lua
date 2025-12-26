@@ -1,5 +1,6 @@
 return {
 	"ibhagwan/fzf-lua",
+	lazy = false,
 	dependencies = {
 		"elanmed/fzf-lua-frecency.nvim",
 	},

@@ -1,5 +1,6 @@
 return {
 	"nvim-lualine/lualine.nvim",
+	lazy = false,
 	dependencies = {
 		"folke/tokyonight.nvim",
 	},
