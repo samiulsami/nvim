@@ -187,8 +187,8 @@ vim.api.nvim_create_autocmd({
 }, { pattern = "*", command = "set number" })
 
 vim.keymap.set("n", "<leader>T", function()
-	local tmux_command = "tmux split-window 'cd " .. vim.fn.expand("%:p:h") .. " && exec $SHELL'"
-	local result = vim.fn.system(tmux_command)
+	local dir = vim.fn.expand("%:p:h")
+	local result = vim.fn.system({ "tmux", "split-window", "-c", dir })
 	if vim.v.shell_error ~= 0 then
 		vim.notify("Failed to open tmux split: " .. result, vim.log.levels.ERROR)
 		return

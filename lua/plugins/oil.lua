@@ -80,10 +80,8 @@ return {
 					mode = "n",
 					desc = "Open a horizontal tmux split on current directory",
 					callback = function()
-						local tmux_command = "tmux split-window 'cd "
-							.. require("oil").get_current_dir()
-							.. " && exec $SHELL'"
-						local result = vim.fn.system(tmux_command)
+						local dir = require("oil").get_current_dir()
+						local result = vim.fn.system({ "tmux", "split-window", "-c", dir })
 						if vim.v.shell_error ~= 0 then
 							vim.notify("Failed to open tmux split: " .. result, vim.log.levels.ERROR)
 							return
