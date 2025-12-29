@@ -118,7 +118,7 @@ return {
 		custom_lualine_theme.command.b.bg = "#110a22"
 		custom_lualine_theme.terminal.b.bg = "#110a22"
 
-		custom_lualine_theme.normal.c.bg = "#0a0a0a"
+		custom_lualine_theme.normal.c.bg = "#000000"
 
 		custom_lualine_theme.inactive.c.fg = "#555555"
 		custom_lualine_theme.inactive.c.bg = "#000000"

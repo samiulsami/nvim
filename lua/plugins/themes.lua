@@ -40,10 +40,12 @@ return {
 			vim.api.nvim_set_hl(0, "CursorColumn", { bold = true, bg = "#1f1f2a" })
 			vim.api.nvim_set_hl(0, "TablineFIll", { bold = true, italic = true })
 
-			-- local buffer_bg_color = "#191a1c"
-			-- vim.api.nvim_set_hl(0, "Normal", { bg = buffer_bg_color })
-			-- vim.api.nvim_set_hl(0, "NormalNC", { bg = buffer_bg_color })
-			-- vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = buffer_bg_color })
+			-- vim.schedule(function()
+			-- 	local buffer_bg_color = "#191a1c"
+			-- 	vim.api.nvim_set_hl(0, "Normal", { bg = buffer_bg_color })
+			-- 	vim.api.nvim_set_hl(0, "NormalNC", { bg = buffer_bg_color })
+			-- 	vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = buffer_bg_color })
+			-- end)
 		end,
 	},
 }
