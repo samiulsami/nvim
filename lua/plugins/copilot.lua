@@ -1,20 +1,4 @@
 --- Premium request multipliers (ref: https://docs.github.com/en/copilot/concepts/billing/copilot-requests)
---- Raptor mini                  0
---- GPT-4.1                      0
---- GPT-5 mini                   0
---- GPT-4o                       0
---- Grok Code Fast 1             0.25
---- Claude Haiku 4.5             0.33
---- GPT-5.1-Codex-Mini           0.33
---- GPT-5                        1
---- GPT-5.1                      1
---- GPT-5.1-Codex                1
---- GPT-5.1-Codex-Max            1
---- Claude Sonnet 4              1
---- Claude Sonnet 4.5            1
---- Gemini 2.5 Pro               1
---- Claude Opus 4.5              3
---- Claude Opus 4.1              10
 
 return {
 	"zbirenbaum/copilot.lua",
