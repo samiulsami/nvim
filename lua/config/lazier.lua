@@ -24,6 +24,8 @@ require("lazier").setup("plugins", {
 			-- it is faster to require parts of your config here
 			-- since at this point they will be bundled and bytecode compiled.
 			-- eg: require("options")
+			vim.schedule(vim.cmd.clearjumps)
+
 			if os.getenv("NVIM_NO_TRANSPARENCY") then
 				vim.schedule(function()
 					local buffer_bg_color = "#191a1c"

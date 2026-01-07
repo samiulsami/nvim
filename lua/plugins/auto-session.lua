@@ -8,5 +8,6 @@ return {
 		auto_save = true,
 		auto_restore = false,
 		suppressed_dirs = { "~/", "/tmp", "~/Downloads", "/" },
+		pre_save_cmds = { "clearjumps" },
 	},
 }
