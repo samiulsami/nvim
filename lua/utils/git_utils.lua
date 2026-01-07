@@ -30,9 +30,11 @@ end
 local function select_blocking(items, opts)
 	local co = coroutine.running()
 	local result = nil
-	vim.ui.select(items, opts or {}, function(choice)
-		result = choice
-		coroutine.resume(co)
+	vim.schedule(function()
+		vim.ui.select(items, opts or {}, function(choice)
+			result = choice
+			coroutine.resume(co)
+		end)
 	end)
 
 	coroutine.yield()

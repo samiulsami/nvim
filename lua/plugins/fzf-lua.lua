@@ -5,13 +5,12 @@ return {
 		"elanmed/fzf-lua-frecency.nvim",
 	},
 	config = function()
-		local fzflua = require("fzf-lua")
-		fzflua.register_ui_select()
-
 		local frecency = require("fzf-lua-frecency")
 		frecency.setup()
 
+		local fzflua = require("fzf-lua")
 		fzflua.setup({
+			ui_select = false,
 			"hide",
 			winopts = {
 				fullscreen = true,
