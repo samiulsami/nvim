@@ -13,21 +13,17 @@ return {
 			ui_select = false,
 			"hide",
 			winopts = {
-				fullscreen = true,
+				height = 0.8,
+				width = 0.8,
 				preview = {
 					layout = "vertical",
-					vertical = "down:40%",
+					vertical = "down:50%",
 				},
 			},
 			keymap = {
 				fzf = {
 					true,
 					["ctrl-q"] = "select-all+accept",
-				},
-			},
-			previewers = {
-				defaults = {
-					file_icons = "mini",
 				},
 			},
 		})
