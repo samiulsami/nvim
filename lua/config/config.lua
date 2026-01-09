@@ -10,6 +10,7 @@ vim.opt.splitbelow = true
 
 vim.opt.showmode = false
 vim.opt.breakindent = true
+vim.opt.linebreak = true
 vim.opt.autoindent = true
 vim.opt.smartindent = true
 vim.opt.expandtab = true
@@ -52,7 +53,7 @@ vim.opt.undofile = true
 vim.opt.mouse = "a"
 vim.opt.grepprg = "rg --vimgrep --no-heading --smart-case"
 vim.opt.grepformat = "%f:%l:%m"
-vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+vim.o.sessionoptions = "buffers,folds,help,tabpages,winsize,winpos"
 vim.opt.cmdheight = 0
 
 vim.schedule(function()
