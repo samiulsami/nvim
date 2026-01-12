@@ -10,8 +10,11 @@ return {
 			"permissions",
 		}
 
+		local oil = require("oil")
+		local oil_config = require("oil.config")
+
 		function _G.get_oil_winbar()
-			local dir = require("oil").get_current_dir()
+			local dir = oil.get_current_dir()
 			if dir then
 				return vim.fn.fnamemodify(dir, ":~")
 			else
@@ -19,19 +22,10 @@ return {
 			end
 		end
 
-		local actions = require("fzf-lua.actions")
+		local fzf_lua = require("fzf-lua")
+		local fzf_lua_actions = require("fzf-lua.actions")
 
-		local function file_edit_close_float(selected, opts)
-			local win = vim.api.nvim_get_current_win()
-			local config = vim.api.nvim_win_get_config(win)
-			if config.relative ~= "" then
-				vim.api.nvim_win_close(win, false)
-			end
-			actions.file_edit(selected, opts)
-		end
-
-		local show_details = false
-		require("oil").setup({
+		oil.setup({
 			default_file_explorer = false,
 			columns = {},
 			lsp_file_methods = {
@@ -59,11 +53,10 @@ return {
 				["<leader>td"] = {
 					desc = "[T]oggle Oil [D]etails",
 					callback = function()
-						show_details = not show_details
-						if show_details then
-							require("oil").set_columns(columns)
+						if #oil_config.columns ~= #columns then
+							oil.set_columns(columns)
 						else
-							require("oil").set_columns({})
+							oil.set_columns({})
 						end
 					end,
 				},
@@ -71,7 +64,7 @@ return {
 					mode = "n",
 					desc = "Copy Path",
 					callback = function()
-						local current_dir = require("oil").get_current_dir()
+						local current_dir = oil.get_current_dir()
 						vim.fn.setreg("+", current_dir)
 						vim.notify("'" .. current_dir .. "'\ncopied to clipboard", vim.log.levels.INFO)
 					end,
@@ -80,7 +73,7 @@ return {
 					mode = "n",
 					desc = "Open a horizontal tmux split on current directory",
 					callback = function()
-						local dir = require("oil").get_current_dir()
+						local dir = oil.get_current_dir()
 						local result = vim.fn.system({ "tmux", "split-window", "-c", dir })
 						if vim.v.shell_error ~= 0 then
 							vim.notify("Failed to open tmux split: " .. result, vim.log.levels.ERROR)
@@ -90,12 +83,15 @@ return {
 				},
 				["<leader>sg"] = {
 					function()
-						require("fzf-lua").live_grep({
+						fzf_lua.live_grep({
 							cwd_prompt = true,
-							cwd = require("oil").get_current_dir(),
+							cwd = oil.get_current_dir(),
 							search = "",
 							actions = {
-								["default"] = file_edit_close_float,
+								["default"] = function(selected, opts)
+									oil.close()
+									fzf_lua_actions.file_edit(selected, opts)
+								end,
 							},
 						})
 					end,
@@ -105,11 +101,14 @@ return {
 				},
 				["<leader>sf"] = {
 					function()
-						require("fzf-lua").files({
+						fzf_lua.files({
 							cwd_prompt = true,
-							cwd = require("oil").get_current_dir(),
+							cwd = oil.get_current_dir(),
 							actions = {
-								["default"] = file_edit_close_float,
+								["default"] = function(selected, opts)
+									oil.close()
+									fzf_lua_actions.file_edit(selected, opts)
+								end,
 							},
 						})
 					end,
@@ -123,12 +122,6 @@ return {
 			constrain_cursor = "editable",
 		})
 
-		vim.keymap.set("n", "<leader>p", function()
-			if vim.api.nvim_buf_get_name(0):match("^oil:///") then
-				pcall(require("oil").close)
-				return
-			end
-			require("oil").open_float()
-		end, { desc = "Toggle Oil Project View" })
+		vim.keymap.set("n", "<leader>p", oil.toggle_float, { desc = "Toggle Oil" })
 	end,
 }
