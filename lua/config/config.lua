@@ -1,6 +1,7 @@
 vim.keymap.set({ "n", "v" }, "Q", "<nop>", { noremap = true, silent = true })
 vim.keymap.set({ "n", "v" }, "gQ", "<nop>", { noremap = true, silent = true })
 
+vim.opt.updatetime = 50
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.hlsearch = true
@@ -16,12 +17,12 @@ vim.opt.smartindent = true
 vim.opt.expandtab = true
 vim.opt.wrap = false
 vim.opt.inccommand = "split"
-
-vim.opt.updatetime = 50
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
 vim.opt.cursorcolumn = true
 vim.opt.cursorline = true
+
+vim.g.conceallevel = 0
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 vim.o.confirm = true
 
 -- Disable jumplist persistence across sessions
@@ -29,14 +30,10 @@ vim.o.confirm = true
 vim.opt.shada = "!,'0,<50,s10,h"
 
 local cursorXYGRP = vim.api.nvim_create_augroup("CursorXYGRP", { clear = true })
-vim.api.nvim_create_autocmd({ "InsertLeave", "WinEnter" }, {
-	pattern = "*",
-	group = cursorXYGRP,
-	callback = function(_)
-		vim.cmd("set cursorline")
-		vim.cmd("set cursorcolumn")
-	end,
-})
+vim.api.nvim_create_autocmd(
+	{ "InsertLeave", "WinEnter" },
+	{ pattern = "*", command = "set cursorline cursorcolumn", group = cursorXYGRP }
+)
 
 vim.api.nvim_create_autocmd(
 	{ "InsertEnter", "WinLeave" },
