@@ -45,6 +45,7 @@ require("lazier").setup("plugins", {
 			-- function to run after the ui renders.
 			-- eg: require("mappings")
 			require("config.keybinds")
+			require("utils.tmux_navigation").setup_keymaps()
 			require("utils.unique_lines")
 			require("utils.git_utils")
 

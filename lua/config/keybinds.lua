@@ -143,43 +143,6 @@ vim.keymap.set("n", "<leader>R", function()
 	vim.notify("[Refreshed buffer]", vim.log.levels.INFO)
 end, { noremap = true, silent = true, desc = "Refresh buffer" })
 
-local function move_or_tmux(direction, tmux_cmd)
-	local current_win = vim.api.nvim_get_current_win()
-	vim.cmd("wincmd " .. direction)
-	if current_win == vim.api.nvim_get_current_win() then
-		vim.fn.system("tmux select-pane -" .. tmux_cmd)
-		if vim.v.shell_error ~= 0 then
-			vim.notify("Failed to move to tmux pane", vim.log.levels.ERROR)
-			return
-		end
-	end
-end
-vim.keymap.set({ "n", "t" }, "<C-h>", function()
-	move_or_tmux("h", "L")
-end, { noremap = true, silent = true })
-vim.keymap.set({ "n", "t" }, "<C-j>", function()
-	move_or_tmux("j", "D")
-end, { noremap = true, silent = true })
-vim.keymap.set({ "n", "t" }, "<C-k>", function()
-	move_or_tmux("k", "U")
-end, { noremap = true, silent = true })
-vim.keymap.set({ "n", "t" }, "<C-l>", function()
-	move_or_tmux("l", "R")
-end, { noremap = true, silent = true })
-
-vim.keymap.set({ "n", "t" }, "<A-k>", function()
-	vim.cmd("resize +4")
-end, { noremap = true, silent = true })
-vim.keymap.set({ "n", "t" }, "<A-j>", function()
-	vim.cmd("resize -4")
-end, { noremap = true, silent = true })
-vim.keymap.set({ "n", "t" }, "<A-h>", function()
-	vim.cmd("vertical resize -4")
-end, { noremap = true, silent = true })
-vim.keymap.set({ "n", "t" }, "<A-l>", function()
-	vim.cmd("vertical resize +4")
-end, { noremap = true, silent = true })
-
 vim.keymap.set("t", "<esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
 vim.api.nvim_create_autocmd({
