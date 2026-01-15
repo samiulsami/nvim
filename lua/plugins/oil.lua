@@ -24,6 +24,7 @@ return {
 
 		local fzf_lua = require("fzf-lua")
 		local fzf_lua_actions = require("fzf-lua.actions")
+		local tmux_navigator = require("utils.tmux_navigation")
 
 		oil.setup({
 			default_file_explorer = false,
@@ -50,6 +51,34 @@ return {
 			},
 
 			keymaps = {
+				["<c-h>"] = {
+					mode = "n",
+					callback = function()
+						tmux_navigator.move_or_tmux("left")
+					end,
+					desc = "Move to left window or tmux pane",
+				},
+				["<c-j>"] = {
+					mode = "n",
+					callback = function()
+						tmux_navigator.move_or_tmux("down")
+					end,
+					desc = "Move to down window or tmux pane",
+				},
+				["<c-k>"] = {
+					mode = "n",
+					callback = function()
+						tmux_navigator.move_or_tmux("up")
+					end,
+					desc = "Move to up window or tmux pane",
+				},
+				["<c-l>"] = {
+					mode = "n",
+					callback = function()
+						tmux_navigator.move_or_tmux("right")
+					end,
+					desc = "Move to right window or tmux pane",
+				},
 				["<leader>td"] = {
 					desc = "[T]oggle Oil [D]etails",
 					callback = function()
@@ -90,7 +119,7 @@ return {
 							actions = {
 								["default"] = function(selected, opts)
 									oil.close()
-									fzf_lua_actions.file_edit(selected, opts)
+									fzf_lua_actions.file_edit_or_qf(selected, opts)
 								end,
 							},
 						})
@@ -107,7 +136,7 @@ return {
 							actions = {
 								["default"] = function(selected, opts)
 									oil.close()
-									fzf_lua_actions.file_edit(selected, opts)
+									fzf_lua_actions.file_edit_or_qf(selected, opts)
 								end,
 							},
 						})
