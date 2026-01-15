@@ -53,7 +53,7 @@ return {
 
 		vim.keymap.set("n", "<leader>sg", function()
 			local cwd = vim.fn.getcwd()
-			fzflua.live_grep({ cwd_header = true, cwd = cwd, search = "", file_ignore_patterns = ignore_patterns.get_patterns()})
+			fzflua.live_grep({ cwd_header = true, cwd = cwd, search = "", hidden = true, no_ignore = true, file_ignore_patterns = ignore_patterns.get_patterns()})
 		end, {desc = "Live Grep"})
 
 		vim.keymap.set("n", "<leader>sj", function()
