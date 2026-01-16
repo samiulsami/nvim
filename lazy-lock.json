@@ -4,7 +4,7 @@
   "blink.compat": { "branch": "main", "commit": "1454f14a8d855a578ceeba77c62538fa1459a67c" },
   "cmp-go-deep": { "branch": "master", "commit": "882a572fcd09b87b3c8d9e35b06bda85bd25d285" },
   "conform.nvim": { "branch": "master", "commit": "238f542a118984a88124fc915d5b981680418707" },
-  "copilot.lua": { "branch": "master", "commit": "9688ca7ad7583c659979591d006e5ff0b0b0da07" },
+  "copilot.lua": { "branch": "master", "commit": "0ab400d547814b04b39a069208ff7b40ab22dfb5" },
   "dart.nvim": { "branch": "master", "commit": "205f809fbb27d56aff22756a97b5ba6f0c7243c3" },
   "fFtT-highlights.nvim": { "branch": "master", "commit": "4ce97e9748686825f8a9d6a3b80f76c9fd0a55ee" },
   "fzf-lua": { "branch": "main", "commit": "578a11f9f7c5f4436b833731ccceeda9479562f0" },

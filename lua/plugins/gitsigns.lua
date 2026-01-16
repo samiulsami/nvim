@@ -7,8 +7,6 @@ return {
 		config = function()
 			local on_attach = function(bufnr)
 				local gitsigns = require("gitsigns")
-
-				vim.keymap.set("n", "<leader>gb", gitsigns.blame, { desc = "[G]it [B]lame" })
 				vim.keymap.set(
 					"n",
 					"<leader>gtb",

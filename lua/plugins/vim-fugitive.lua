@@ -12,5 +12,6 @@ return {
 		)
 		vim.keymap.set("n", "<leader>gL", "<Cmd>Git log<CR>", { desc = "[G]it [L]og" })
 		vim.keymap.set("n", "<leader>gc", "<Cmd>silent Git commit --signoff<CR>", { desc = "[G]it [C]omit" })
+		vim.keymap.set("n", "<leader>gb", "<Cmd>silent Git blame<CR>", { desc = "[G]it [B]lame" })
 	end,
 }
