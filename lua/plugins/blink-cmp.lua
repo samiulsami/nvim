@@ -78,12 +78,11 @@ return {
 					name = "go_deep",
 					module = "blink.compat.source",
 					opts = {
-						debounce_cache_requests_ms = 0,
 						debounce_gopls_requests_ms = 0,
 						filetypes = { "go" },
 					},
-					max_items = 10,
-					min_keyword_length = 0,
+					max_items = 5,
+					min_keyword_length = 3,
 					score_offset = -10000,
 				},
 				cmdline = {
