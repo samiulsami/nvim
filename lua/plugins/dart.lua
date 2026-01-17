@@ -3,7 +3,7 @@ return {
 	lazy = false,
 	config = function()
 		local dart = require("dart")
-		local marklist = { "q", "w", "r" }
+		local marklist = { "q", "w", "e" }
 		local buflist = {}
 
 		dart.setup({
