@@ -8,6 +8,7 @@
 ---@field private max_preview_length integer
 ---@field private max_found_level integer
 ---@field private buf_name string
+---@field private win_id integer|nil
 ---@field private callbacks_on_notify table<function>
 ---@field public append_callback_on_notify fun(self, fn: function): nil
 ---@field public get_unseen_notification_stats fun(self): integer, string, integer
@@ -23,6 +24,18 @@ local M = {
 	unseen_notifications = 0,
 	max_found_level = 0,
 	max_preview_length = 16,
+	win_id = nil,
+	float = true,
+	float_opts = {
+		width_ratio = 0.9,
+		height_ratio = 0.9,
+		style = "minimal",
+		border = "rounded",
+		title = " Notifications ",
+		title_pos = "center",
+		relative = "editor",
+		winblend = 6,
+	},
 }
 
 ---@param fn function
@@ -137,21 +150,22 @@ M.setup = function()
 	end
 
 	M:setup_keymaps()
-
-	vim.api.nvim_create_autocmd("BufLeave", {
-		pattern = M.buf_name,
-		callback = function()
-			vim.api.nvim_buf_delete(0, { force = true })
-		end,
-	})
 end
 
 function M:setup_keymaps()
 	vim.keymap.set("n", "<M-n>", function()
-		local current_buffer = vim.api.nvim_get_current_buf()
-		if self.buf_name == vim.fn.bufname(current_buffer) then
-			vim.api.nvim_buf_delete(current_buffer, { force = true })
-			return
+		if self.float then
+			if self.win_id and vim.api.nvim_win_is_valid(self.win_id) then
+				vim.api.nvim_win_close(self.win_id, true)
+				self.win_id = nil
+				return
+			end
+		else
+			local current_buffer = vim.api.nvim_get_current_buf()
+			if self.buf_name == vim.fn.bufname(current_buffer) then
+				vim.api.nvim_buf_delete(current_buffer, { force = true })
+				return
+			end
 		end
 
 		local jq_available = vim.fn.executable("jq")
@@ -165,9 +179,41 @@ function M:setup_keymaps()
 			return
 		end
 
-		vim.api.nvim_set_current_buf(buf)
+		if self.float then
+			local width = math.floor(vim.o.columns * (self.float_opts.width_ratio or 0.8))
+			local height = math.floor(vim.o.lines * (self.float_opts.height_ratio or 0.8))
+			local row = math.floor((vim.o.lines - height) / 2)
+			local col = math.floor((vim.o.columns - width) / 2)
+
+			local opts = vim.tbl_deep_extend("force", self.float_opts, {
+				width = width,
+				height = height,
+				row = row,
+				col = col,
+			})
+			opts.width_ratio = nil
+			opts.height_ratio = nil
+			opts.winblend = nil
+
+			self.win_id = vim.api.nvim_open_win(buf, true, opts)
+
+			if self.float_opts.winblend then
+				vim.api.nvim_set_option_value("winblend", self.float_opts.winblend, { win = self.win_id })
+			end
+		else
+			vim.api.nvim_set_current_buf(buf)
+		end
+
 		pcall(vim.api.nvim_buf_set_name, buf, self.buf_name)
 		vim.cmd("setlocal ft=json wrap numberwidth=4")
+
+		vim.api.nvim_create_autocmd("BufLeave", {
+			buffer = buf,
+			once = true,
+			callback = function()
+				vim.api.nvim_buf_delete(buf, { force = true })
+			end,
+		})
 
 		local current_index = tail
 		local function process_next()
