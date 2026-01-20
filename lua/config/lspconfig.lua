@@ -41,6 +41,37 @@ vim.diagnostic.config({
 	},
 })
 
+vim.keymap.set(
+	"n",
+	"<leader>H",
+	vim.diagnostic.open_float,
+	{ noremap = true, silent = true, desc = "Toggle [H]over Diagnostic Float" }
+)
+
+vim.keymap.set("n", "]d", function()
+	local ok, err = pcall(vim.diagnostic.jump, {
+		count = 1,
+		on_jump = function(_, bufnr)
+			vim.diagnostic.open_float({ bufnr = bufnr, scope = "cursor", focus = false })
+		end,
+	})
+	if not ok then
+		vim.notify("Diagnostic error: " .. vim.inspect(err), vim.log.levels.ERROR)
+	end
+end, { noremap = true, silent = true, desc = "Jump to next Diagnostic" })
+
+vim.keymap.set("n", "[d", function()
+	local ok, err = pcall(vim.diagnostic.jump, {
+		count = -1,
+		on_jump = function(_, bufnr)
+			vim.diagnostic.open_float({ bufnr = bufnr, scope = "cursor", focus = false })
+		end,
+	})
+	if not ok then
+		vim.notify("Diagnostic error: " .. vim.inspect(err), vim.log.levels.ERROR)
+	end
+end, { noremap = true, silent = true, desc = "Jump to previous Diagnostic" })
+
 vim.api.nvim_set_hl(0, "LspReferenceText", { bold = true, underline = true })
 vim.api.nvim_set_hl(0, "LspReferenceRead", { bold = true, underline = true })
 vim.api.nvim_set_hl(0, "LspReferenceWrite", { bold = true, underline = true })

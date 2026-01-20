@@ -15,38 +15,7 @@ vim.keymap.set("n", "<esc>", function()
 	return "<esc>"
 end, { expr = true, desc = "Remove Search Highlights" })
 
-vim.keymap.set(
-	"n",
-	"H",
-	vim.diagnostic.open_float,
-	{ noremap = true, silent = true, desc = "Toggle [H]over Diagnostic Float" }
-)
-
 vim.keymap.set("n", "zf", "za", { noremap = true, silent = true, desc = "Toggle fold at cursor" })
-
-vim.keymap.set("n", "]d", function()
-	local ok, err = pcall(vim.diagnostic.jump, {
-		count = 1,
-		on_jump = function(_, bufnr)
-			vim.diagnostic.open_float({ bufnr = bufnr, scope = "cursor", focus = false })
-		end,
-	})
-	if not ok then
-		vim.notify("Diagnostic error: " .. vim.inspect(err), vim.log.levels.ERROR)
-	end
-end, { noremap = true, silent = true, desc = "Jump to next Diagnostic" })
-
-vim.keymap.set("n", "[d", function()
-	local ok, err = pcall(vim.diagnostic.jump, {
-		count = -1,
-		on_jump = function(_, bufnr)
-			vim.diagnostic.open_float({ bufnr = bufnr, scope = "cursor", focus = false })
-		end,
-	})
-	if not ok then
-		vim.notify("Diagnostic error: " .. vim.inspect(err), vim.log.levels.ERROR)
-	end
-end, { noremap = true, silent = true, desc = "Jump to previous Diagnostic" })
 
 vim.keymap.set("n", "<leader>l", function()
 	vim.cmd("set number! relativenumber!")
