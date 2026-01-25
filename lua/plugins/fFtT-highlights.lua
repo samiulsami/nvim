@@ -1,5 +1,6 @@
 return {
 	"samiulsami/fFtT-highlights.nvim",
+        lazy = false,
 	config = function()
 		---@module "fFtT-highlights"
 		---@type fFtT_highlights.opts
