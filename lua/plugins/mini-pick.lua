@@ -1,5 +1,6 @@
 return {
 	"echasnovski/mini.pick",
+	lazy = false,
 	version = false,
 	config = function()
 		local mini_pick = require("mini.pick")
