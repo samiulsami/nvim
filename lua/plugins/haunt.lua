@@ -11,8 +11,8 @@ return {
 		virt_text_pos = "eol",
 		data_dir = nil,
 		picker_keys = {
-			delete = { key = "d", mode = { "n" } },
-			edit_annotation = { key = "a", mode = { "n" } },
+			delete = { key = "ctrl-d", mode = { "n" } },
+			edit_annotation = { key = "ctrl-a", mode = { "n" } },
 		},
 	},
 	-- recommended keymaps, with a helpful prefix alias
