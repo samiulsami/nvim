@@ -7,7 +7,7 @@ return {
 		vim.keymap.set(
 			"n",
 			"<leader>gA",
-			"<Cmd>silent Git commit --amend --no-edit --signoff<CR>",
+			"<Cmd>silent Git commit --amend --no-edit --allow-empty --signoff<CR>",
 			{ desc = "[G]it Commit [A]mend" }
 		)
 		vim.keymap.set("n", "<leader>gL", "<Cmd>Git log<CR>", { desc = "[G]it [L]og" })
