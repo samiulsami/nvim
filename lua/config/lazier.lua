@@ -77,8 +77,7 @@ require("lazier").setup("plugins", {
 				gz = true,
 			}
 			local fname = vim.fn.expand("%")
-			return fname == ""
-				or vim.fn.isdirectory(fname) == 0 and not nonLazyLoadableExtensions[vim.fn.fnamemodify(fname, ":e")]
+			return vim.fn.isdirectory(fname) == 0 and not nonLazyLoadableExtensions[vim.fn.fnamemodify(fname, ":e")]
 		end,
 
 		-- whether plugins should be included in the bytecode
