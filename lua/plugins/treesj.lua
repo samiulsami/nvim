@@ -1,5 +1,7 @@
 return {
-	"Wansmer/treesj",
+	spec = {
+		{ src = "https://github.com/Wansmer/treesj" },
+	},
 	config = function()
 		local treesj = require("treesj")
 		treesj.setup({

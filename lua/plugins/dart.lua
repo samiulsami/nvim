@@ -1,6 +1,7 @@
 return {
-	"iofq/dart.nvim",
-	lazy = false,
+	spec = {
+		{ src = "https://github.com/iofq/dart.nvim" },
+	},
 	config = function()
 		local dart = require("dart")
 		local marklist = { "q", "w", "e", "r" }

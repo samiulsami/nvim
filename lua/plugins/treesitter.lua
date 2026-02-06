@@ -1,7 +1,7 @@
 return {
-	"nvim-treesitter/nvim-treesitter",
-	branch = "main",
-	lazy = false,
+	spec = {
+		{ src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main" },
+	},
 	build = ":TSUpdate",
 	config = function()
 		vim.filetype.add({

@@ -1,17 +1,17 @@
 return {
-	"Wansmer/symbol-usage.nvim",
-	event = "BufReadPre",
+	spec = {
+		{ src = "https://github.com/Wansmer/symbol-usage.nvim" },
+	},
 	config = function()
 		local function text_format(symbol)
 			local res = {}
 
-			-- Indicator that shows if there are any other symbols in the same line
 			local stacked_functions_content = symbol.stacked_count > 0 and ("+%s"):format(symbol.stacked_count) or ""
 
 			if symbol.references then
 				local usage = symbol.references <= 1 and "usage" or "usages"
 				local num = symbol.references == 0 and "no" or symbol.references
-				table.insert(res, { "󰌹 ", "SymbolUsageRef" })
+				table.insert(res, { "  ", "SymbolUsageRef" })
 				table.insert(res, { ("%s %s"):format(num, usage), "SymbolUsageContent" })
 			end
 
@@ -19,7 +19,7 @@ return {
 				if #res > 0 then
 					table.insert(res, { " ", "NonText" })
 				end
-				table.insert(res, { "󰡱 ", "SymbolUsageImpl" })
+				table.insert(res, { "  ", "SymbolUsageImpl" })
 				table.insert(res, { symbol.implementation .. " impls", "SymbolUsageContent" })
 			end
 
@@ -27,7 +27,7 @@ return {
 				if #res > 0 then
 					table.insert(res, { " ", "NonText" })
 				end
-				table.insert(res, { " ", "SymbolUsageImpl" })
+				table.insert(res, { " ", "SymbolUsageImpl" })
 				table.insert(res, { stacked_functions_content, "SymbolUsageContent" })
 			end
 

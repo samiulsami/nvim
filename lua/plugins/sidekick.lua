@@ -1,5 +1,7 @@
 return {
-	"folke/sidekick.nvim",
+	spec = {
+		{ src = "https://github.com/folke/sidekick.nvim" },
+	},
 	config = function()
 		local sidekick = require("sidekick")
 		sidekick.setup({

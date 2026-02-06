@@ -1,9 +1,8 @@
 return {
-	"mason-org/mason.nvim",
-	dependencies = {
-		"WhoIsSethDaniel/mason-tool-installer",
+	spec = {
+		{ src = "https://github.com/WhoIsSethDaniel/mason-tool-installer" },
+		{ src = "https://github.com/mason-org/mason.nvim" },
 	},
-	lazy = false,
 	config = function()
 		local ensure_installed = {
 			"stylua",

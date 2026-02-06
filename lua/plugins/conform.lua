@@ -1,6 +1,7 @@
 return {
-	"stevearc/conform.nvim",
-	cmd = { "ConformInfo" },
+	spec = {
+		{ src = "https://github.com/stevearc/conform.nvim" },
+	},
 	config = function()
 		local conform = require("conform")
 		conform.setup({

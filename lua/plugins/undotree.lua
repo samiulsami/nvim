@@ -1,12 +1,14 @@
 return {
-	"jiaoshijie/undotree",
-	dependencies = { "nvim-lua/plenary.nvim" },
-	---@module 'undotree.collector'
-	---@type UndoTreeCollector.Opts
-	opts = {
-		window = { winblend = 0 },
+	spec = {
+		{ src = "https://github.com/nvim-lua/plenary.nvim" },
+		{ src = "https://github.com/jiaoshijie/undotree" },
 	},
-	keys = {
-		{ "<leader>u", "<cmd>lua require('undotree').toggle()<cr>" },
-	},
+	config = function()
+		require("undotree").setup({
+			window = { winblend = 0 },
+		})
+		vim.keymap.set("n", "<leader>u", function()
+			require("undotree").toggle()
+		end)
+	end,
 }

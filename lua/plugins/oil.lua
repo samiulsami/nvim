@@ -1,8 +1,7 @@
 return {
-	"stevearc/oil.nvim",
-	---@module 'oil'
-	---@type oil.SetupOpts
-	opts = {},
+	spec = {
+		{ src = "https://github.com/stevearc/oil.nvim" },
+	},
 	config = function()
 		local columns = {
 			"size",

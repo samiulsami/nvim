@@ -1,11 +1,9 @@
 return {
-	"kylechui/nvim-surround",
-	version = "*",
-	event = "VeryLazy",
+	spec = {
+		{ src = "https://github.com/kylechui/nvim-surround" },
+	},
 	config = function()
-		require("nvim-surround").setup({
-			-- Configuration here, or leave empty to use defaults
-		})
+		require("nvim-surround").setup({})
 	end,
 }
 --     Old text                    Command         New text

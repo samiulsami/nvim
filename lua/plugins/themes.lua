@@ -22,23 +22,21 @@ local set_default_colors = function()
 end
 
 return {
-	{
-		"folke/tokyonight.nvim",
-		lazy = false,
-		priority = 1000,
-		config = function()
-			require("tokyonight").setup({
-				transparent = true,
-				styles = {
-					sidebars = "transparent",
-					floats = "transparent",
-				},
-			})
-			vim.cmd.colorscheme("tokyonight-night")
-			set_default_colors()
-			vim.api.nvim_set_hl(0, "CursorLine", { bold = true, bg = "#1f1f2a" })
-			vim.api.nvim_set_hl(0, "CursorColumn", { bold = true, bg = "#1f1f2a" })
-			vim.api.nvim_set_hl(0, "TablineFIll", { bold = true, italic = true })
-		end,
+	spec = {
+		{ src = "https://github.com/folke/tokyonight.nvim" },
 	},
+	config = function()
+		require("tokyonight").setup({
+			transparent = true,
+			styles = {
+				sidebars = "transparent",
+				floats = "transparent",
+			},
+		})
+		vim.cmd.colorscheme("tokyonight-night")
+		set_default_colors()
+		vim.api.nvim_set_hl(0, "CursorLine", { bold = true, bg = "#1f1f2a" })
+		vim.api.nvim_set_hl(0, "CursorColumn", { bold = true, bg = "#1f1f2a" })
+		vim.api.nvim_set_hl(0, "TablineFIll", { bold = true, italic = true })
+	end,
 }

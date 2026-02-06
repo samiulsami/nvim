@@ -1,6 +1,7 @@
 return {
-	"samiulsami/fFtT-highlights.nvim",
-        lazy = false,
+	spec = {
+		{ src = "https://github.com/samiulsami/fFtT-highlights.nvim" },
+	},
 	config = function()
 		---@module "fFtT-highlights"
 		---@type fFtT_highlights.opts

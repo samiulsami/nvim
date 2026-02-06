@@ -1,4 +1,5 @@
 return {
-	"mfussenegger/nvim-jdtls",
-	lazy = false,
+	spec = {
+		{ src = "https://github.com/mfussenegger/nvim-jdtls" },
+	},
 }

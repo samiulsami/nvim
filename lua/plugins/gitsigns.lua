@@ -1,8 +1,7 @@
 return {
-	"lewis6991/gitsigns.nvim",
-	lazy = false,
-	dependencies = {
-		"nvim-lua/plenary.nvim", -- Required dependency
+	spec = {
+		{ src = "https://github.com/nvim-lua/plenary.nvim" },
+		{ src = "https://github.com/lewis6991/gitsigns.nvim" },
 	},
 	config = function()
 		local on_attach = function(bufnr)
@@ -70,19 +69,19 @@ return {
 
 		require("gitsigns").setup({
 			signs = {
-				add = { text = "+" }, -- Sign for added lines
-				change = { text = "~" }, -- Sign for changed lines
-				delete = { text = "-" }, -- Sign for deleted lines
-				topdelete = { text = "-" }, -- Sign for deleted lines at the top
-				changedelete = { text = "≃" }, -- Sign for changed lines that were deleted
+				add = { text = "+" },
+				change = { text = "~" },
+				delete = { text = "-" },
+				topdelete = { text = "-" },
+				changedelete = { text = "≃" },
 			},
-			numhl = true, -- Highlight line numbers
-			linehl = false, -- Highlight the entire line
-			word_diff = false, -- Enable word diff for inline changes
-			current_line_blame = true, -- Enable current line blame
+			numhl = true,
+			linehl = false,
+			word_diff = false,
+			current_line_blame = true,
 			current_line_blame_opts = {
 				virt_text = true,
-				virt_text_pos = "eol", -- 'eol' | 'overlay' | 'right_align'
+				virt_text_pos = "eol",
 				delay = 100,
 				ignore_whitespace = false,
 				virt_text_priority = 0,

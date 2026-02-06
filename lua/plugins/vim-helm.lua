@@ -1,5 +1,6 @@
 return {
-	--- for helm-ls filetype detection
-	"towolf/vim-helm",
-	lazy = false,
+	spec = {
+		--- for helm-ls filetype detection
+		{ src = "https://github.com/towolf/vim-helm" },
+	},
 }

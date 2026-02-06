@@ -1,7 +1,7 @@
 return {
-	"echasnovski/mini.pick",
-	lazy = false,
-	version = false,
+	spec = {
+		{ src = "https://github.com/echasnovski/mini.pick" },
+	},
 	config = function()
 		local mini_pick = require("mini.pick")
 		local win_config = function()

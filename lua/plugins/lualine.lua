@@ -1,8 +1,6 @@
 return {
-	"nvim-lualine/lualine.nvim",
-	lazy = false,
-	dependencies = {
-		"folke/tokyonight.nvim",
+	spec = {
+		{ src = "https://github.com/nvim-lualine/lualine.nvim" },
 	},
 	config = function()
 		local function trimString(s)

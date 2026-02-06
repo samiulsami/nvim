@@ -17,7 +17,13 @@ require("config.config")
 require("config.lspconfig")
 require("config.appearance")
 require("config.keybinds")
-require("config.lazy")
+require("config.pack")
 require("utils.tmux_navigation").setup_keymaps()
 require("utils.unique_lines")
 require("utils.git_utils")
+
+if vim.fn.argc() == 1 and vim.fn.argv(0) == "." then
+	vim.schedule(function()
+		vim.cmd("AutoSession restore")
+	end)
+end

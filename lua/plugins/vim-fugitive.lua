@@ -1,6 +1,7 @@
 return {
-	"tpope/vim-fugitive",
-	lazy = false,
+	spec = {
+		{ src = "https://github.com/tpope/vim-fugitive" },
+	},
 	config = function()
 		vim.keymap.set("n", "<leader>gg", "<Cmd>Git<CR>", { desc = "[G]it Status" })
 		vim.keymap.set("n", "<leader>gl", "<Cmd>Git log --oneline --full-history<CR>", { desc = "[G]it [L]og Oneline" })
