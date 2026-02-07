@@ -29,7 +29,11 @@ return {
 			filetypes = { ["*"] = true },
 			disable_limit_reached_message = false,
 			root_dir = function()
-				return vim.fs.dirname(vim.fs.find(".git", { upward = true })[1])
+				local gitdir = vim.fs.find(".git", { upward = true })[1]
+				if not gitdir then
+					return vim.fn.getcwd()
+				end
+				return vim.fs.dirname(gitdir)
 			end,
 		})
 
