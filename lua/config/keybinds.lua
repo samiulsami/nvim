@@ -54,8 +54,8 @@ vim.keymap.set("v", "p", '"_dP')
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
-vim.keymap.set("n", "]q", "<Cmd>cnext<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "[q", "<Cmd>cprevious<CR>", { noremap = true, silent = true })
+vim.keymap.set({"n","v"}, "]q", "<Cmd>cnext<CR>", { noremap = true, silent = true })
+vim.keymap.set({"n","v"}, "[q", "<Cmd>cprevious<CR>", { noremap = true, silent = true })
 
 vim.keymap.set("n", "]t", "<Cmd>tabnext<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "[t", "<Cmd>tabprevious<CR>", { noremap = true, silent = true })
