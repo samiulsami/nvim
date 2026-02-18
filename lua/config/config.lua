@@ -53,6 +53,16 @@ vim.opt.grepformat = "%f:%l:%m"
 vim.o.sessionoptions = "buffers,folds,help,tabpages,winsize,winpos"
 vim.opt.cmdheight = 0
 
+-- Fix corrupted neovim content after tmux pane/session switch.
+-- :mode calls screenclear() before redrawing (unlike redraw! which skips the clear),
+-- so old terminal content doesn't bleed through transparent highlight groups.
+-- Requires 'focus-events on' in tmux.conf (set).
+vim.api.nvim_create_autocmd("FocusGained", {
+	callback = function()
+		vim.cmd.mode()
+	end,
+})
+
 vim.schedule(function()
 	vim.opt.clipboard = "unnamedplus"
 end)
