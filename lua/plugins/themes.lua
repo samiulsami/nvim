@@ -19,6 +19,11 @@ local set_default_colors = function()
 	vim.api.nvim_set_hl(0, "DiagnosticFloatingInfo", { link = "NormalFloat" })
 	vim.api.nvim_set_hl(0, "DiagnosticFloatingHint", { link = "NormalFloat" })
 	vim.api.nvim_set_hl(0, "DiagnosticFloatingOk", { link = "NormalFloat" })
+
+	local buffer_bg_color = "#191a1c"
+	vim.api.nvim_set_hl(0, "Normal", { bg = buffer_bg_color })
+	vim.api.nvim_set_hl(0, "NormalNC", { bg = buffer_bg_color })
+	vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = buffer_bg_color })
 end
 
 return {
@@ -27,13 +32,7 @@ return {
 		lazy = false,
 		priority = 1000,
 		config = function()
-			require("tokyonight").setup({
-				transparent = true,
-				styles = {
-					sidebars = "transparent",
-					floats = "transparent",
-				},
-			})
+			require("tokyonight").setup()
 			vim.cmd.colorscheme("tokyonight-night")
 			set_default_colors()
 			vim.api.nvim_set_hl(0, "CursorLine", { bold = true, bg = "#1f1f2a" })
