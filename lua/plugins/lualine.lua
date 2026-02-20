@@ -1,9 +1,6 @@
 return {
 	"nvim-lualine/lualine.nvim",
 	lazy = false,
-	dependencies = {
-		"folke/tokyonight.nvim",
-	},
 	config = function()
 		local function trimString(s)
 			return s:match("^%s*(.-)%s*$")
@@ -110,18 +107,26 @@ return {
 			return string.format("[%d] %s", unseen_notifications, preview)
 		end
 
-		local custom_lualine_theme = require("lualine.themes.tokyonight")
+		local custom_lualine_theme = require("lualine.themes.onedark")
+
+		local function ensure(t, ...)
+			for _, k in ipairs({ ... }) do
+				t[k] = t[k] or {}
+				t = t[k]
+			end
+			return t
+		end
+
 		custom_lualine_theme.normal.b.bg = "#110a22"
-		custom_lualine_theme.replace.b.bg = "#110a22"
-		custom_lualine_theme.insert.b.bg = "#110a22"
-		custom_lualine_theme.visual.b.bg = "#110a22"
-		custom_lualine_theme.command.b.bg = "#110a22"
-		custom_lualine_theme.terminal.b.bg = "#110a22"
-
-		custom_lualine_theme.normal.c.bg = "#000000"
-
-		custom_lualine_theme.inactive.c.fg = "#555555"
-		custom_lualine_theme.inactive.c.bg = "#000000"
+		ensure(custom_lualine_theme, "replace", "b").bg = "#110a22"
+		ensure(custom_lualine_theme, "insert", "b").bg = "#110a22"
+		ensure(custom_lualine_theme, "visual", "b").bg = "#110a22"
+		ensure(custom_lualine_theme, "command", "b").bg = "#110a22"
+		ensure(custom_lualine_theme, "terminal", "b").bg = "#110a22"
+		--
+		ensure(custom_lualine_theme, "normal", "c").bg = "#000000"
+		ensure(custom_lualine_theme, "inactive", "c").fg = "#555555"
+		ensure(custom_lualine_theme, "inactive", "c").bg = "#000000"
 
 		require("lualine").setup({
 			options = {
