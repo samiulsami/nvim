@@ -34,7 +34,7 @@ local M = {
 		title = " Notifications ",
 		title_pos = "center",
 		relative = "editor",
-		winblend = 6,
+		winblend = 2,
 	},
 }
 

@@ -43,7 +43,7 @@ return {
 				max_height = 0.999,
 				border = nil,
 				win_options = {
-					winblend = 6,
+					winblend = 4,
 				},
 			},
 			view_options = {
