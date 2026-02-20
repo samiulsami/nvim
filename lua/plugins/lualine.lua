@@ -31,7 +31,7 @@ return {
 				end
 			end
 
-			local path_prefix_length_soft_limit = 0
+			local path_prefix_length_soft_limit = 75
 			for i, component in ipairs(components) do
 				if total_length <= path_prefix_length_soft_limit or i >= #components - 1 then
 					break
@@ -93,9 +93,9 @@ return {
 				return ""
 			end
 			if max_level <= vim.log.levels.INFO then
-				notification_color = "#66bb77"
+				notification_color = "#a6ab77"
 			elseif max_level <= vim.log.levels.WARN then
-				notification_color = "#ccaa66"
+				notification_color = "#eedd5f"
 			else
 				notification_color = "#ff4444"
 			end
@@ -107,7 +107,7 @@ return {
 			return string.format("[%d] %s", unseen_notifications, preview)
 		end
 
-		local custom_lualine_theme = require("lualine.themes.onedark")
+		local custom_lualine_theme = require("lualine.themes.seoul256")
 
 		local function ensure(t, ...)
 			for _, k in ipairs({ ... }) do
@@ -117,13 +117,11 @@ return {
 			return t
 		end
 
-		custom_lualine_theme.normal.b.bg = "#110a22"
-		ensure(custom_lualine_theme, "replace", "b").bg = "#110a22"
-		ensure(custom_lualine_theme, "insert", "b").bg = "#110a22"
-		ensure(custom_lualine_theme, "visual", "b").bg = "#110a22"
-		ensure(custom_lualine_theme, "command", "b").bg = "#110a22"
-		ensure(custom_lualine_theme, "terminal", "b").bg = "#110a22"
-		--
+		for _, mode in ipairs({ "normal", "replace", "insert", "visual", "command", "terminal" }) do
+			ensure(custom_lualine_theme, mode, "b").bg = "#110a22"
+			ensure(custom_lualine_theme, mode, "c").bg = "#000000"
+		end
+
 		ensure(custom_lualine_theme, "normal", "c").bg = "#000000"
 		ensure(custom_lualine_theme, "inactive", "c").fg = "#555555"
 		ensure(custom_lualine_theme, "inactive", "c").bg = "#000000"
@@ -144,7 +142,10 @@ return {
 					"branch",
 				},
 				lualine_c = {
-					luaLineShortenedPath,
+					{
+						luaLineShortenedPath,
+						color = { fg = "#bfbfaf" },
+					},
 					"diff",
 					"diagnostics",
 					"searchcount",

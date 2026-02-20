@@ -2,6 +2,7 @@ local M = {}
 M.set_colors = function()
 	vim.api.nvim_set_hl(0, "CursorLine", { bold = true, bg = "#1b1b1b" })
 	vim.api.nvim_set_hl(0, "CursorColumn", { bold = true, bg = "#1b1b1b" })
+	vim.api.nvim_set_hl(0, "MatchParen", { fg = "#ffb86c", bold = true })
 	vim.api.nvim_set_hl(0, "TablineFIll", { bold = true, italic = true })
 
 	local lspref_color = "#77ff77"
@@ -28,7 +29,7 @@ M.set_colors = function()
 	vim.api.nvim_set_hl(0, "DiagnosticFloatingHint", { link = "NormalFloat" })
 	vim.api.nvim_set_hl(0, "DiagnosticFloatingOk", { link = "NormalFloat" })
 
-	local buffer_bg_color = "#0a0b0d"
+	local buffer_bg_color = "#0a0a0d"
 	vim.api.nvim_set_hl(0, "Normal", { bg = buffer_bg_color })
 	vim.api.nvim_set_hl(0, "NormalNC", { bg = buffer_bg_color })
 	vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = buffer_bg_color })
