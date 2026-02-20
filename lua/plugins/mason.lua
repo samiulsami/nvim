@@ -7,7 +7,7 @@ return {
 	config = function()
 		local ensure_installed = {
 			"stylua",
-			"lua-language-server",
+			"emmylua_ls",
 			"bash-language-server",
 			"shellcheck",
 			"shfmt",

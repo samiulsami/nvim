@@ -29,3 +29,6 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 		vim.hl.on_yank({ timeout = 350 })
 	end,
 })
+
+vim.cmd.colorscheme("lunaperche")
+require("utils.default_colors").set_colors()

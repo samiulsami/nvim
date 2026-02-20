@@ -14,7 +14,7 @@ capabilities.textDocument.completion.completionItem.snippetSupport = false
 
 vim.lsp.enable({
 	"gopls",
-	"lua_ls",
+	"emmylua_ls",
 	"clangd",
 	"scala",
 	"dockerls",
