@@ -7,6 +7,7 @@
   "copilot-eldritch.nvim": { "branch": "master", "commit": "485db6767c18aa6071515f0cfdab019aa65b2db2" },
   "copilot.lua": { "branch": "master", "commit": "dd3e345d59051464573d821b042f0a0c82410b5d" },
   "dart.nvim": { "branch": "master", "commit": "af7256291c8f692647004b9a9fc0e92b6084a691" },
+  "everforest-nvim": { "branch": "main", "commit": "557bce922401e247a596583679bc181d4d688554" },
   "fFtT-highlights.nvim": { "branch": "master", "commit": "4ce97e9748686825f8a9d6a3b80f76c9fd0a55ee" },
   "fzf-lua": { "branch": "main", "commit": "b2c0603216adb92c6bba81053bc996d7ae95b77a" },
   "fzf-lua-frecency.nvim": { "branch": "master", "commit": "5726403e132fe8699d670c7ef8d59dbed887b4e6" },

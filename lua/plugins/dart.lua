@@ -112,7 +112,9 @@ return {
 
 		vim.api.nvim_create_autocmd("VimEnter", {
 			callback = function()
-				dart.read_session(cwd_hash)
+				vim.schedule(function()
+					dart.read_session(cwd_hash)
+				end)
 			end,
 		})
 	end,

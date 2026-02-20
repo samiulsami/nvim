@@ -93,11 +93,11 @@ return {
 				return ""
 			end
 			if max_level <= vim.log.levels.INFO then
-				notification_color = "#449955"
+				notification_color = "#66bb77"
 			elseif max_level <= vim.log.levels.WARN then
-				notification_color = "#aa8844"
+				notification_color = "#ccaa66"
 			else
-				notification_color = "#dd2222"
+				notification_color = "#ff4444"
 			end
 
 			if preview == "" then
@@ -123,6 +123,7 @@ return {
 		ensure(custom_lualine_theme, "visual", "b").bg = "#110a22"
 		ensure(custom_lualine_theme, "command", "b").bg = "#110a22"
 		ensure(custom_lualine_theme, "terminal", "b").bg = "#110a22"
+		--
 		ensure(custom_lualine_theme, "normal", "c").bg = "#000000"
 		ensure(custom_lualine_theme, "inactive", "c").fg = "#555555"
 		ensure(custom_lualine_theme, "inactive", "c").bg = "#000000"
