@@ -29,3 +29,6 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 		vim.hl.on_yank({ timeout = 350 })
 	end,
 })
+
+vim.cmd.colorscheme("wildcharm")
+require("utils.default_colors").set_colors()

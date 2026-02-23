@@ -28,11 +28,6 @@ M.set_colors = function()
 	vim.api.nvim_set_hl(0, "DiagnosticFloatingInfo", { link = "NormalFloat" })
 	vim.api.nvim_set_hl(0, "DiagnosticFloatingHint", { link = "NormalFloat" })
 	vim.api.nvim_set_hl(0, "DiagnosticFloatingOk", { link = "NormalFloat" })
-
-	local buffer_bg_color = "#0a0a0d"
-	vim.api.nvim_set_hl(0, "Normal", { bg = buffer_bg_color })
-	vim.api.nvim_set_hl(0, "NormalNC", { bg = buffer_bg_color })
-	vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = buffer_bg_color })
 end
 
 return M
