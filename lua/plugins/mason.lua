@@ -11,7 +11,6 @@ return {
 			"bash-language-server",
 			"shellcheck",
 			"shfmt",
-			"checkmake",
 			"terraform",
 			"terraform-ls",
 			"tflint",
