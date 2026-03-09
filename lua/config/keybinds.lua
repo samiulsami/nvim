@@ -48,8 +48,8 @@ vim.keymap.set("v", "p", '"_dP')
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
-vim.keymap.set({"n","v"}, "]q", "<Cmd>cnext<CR>", { noremap = true, silent = true })
-vim.keymap.set({"n","v"}, "[q", "<Cmd>cprevious<CR>", { noremap = true, silent = true })
+vim.keymap.set({ "n", "v" }, "]q", "<Cmd>cnext<CR>", { noremap = true, silent = true })
+vim.keymap.set({ "n", "v" }, "[q", "<Cmd>cprevious<CR>", { noremap = true, silent = true })
 
 vim.keymap.set("n", "]t", "<Cmd>tabnext<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "[t", "<Cmd>tabprevious<CR>", { noremap = true, silent = true })
@@ -93,6 +93,7 @@ vim.keymap.set("n", "<C-p>", function()
 end, { noremap = true, silent = true, desc = "Jump to previous file in jump list" })
 vim.keymap.set("n", "<leader>cj", function()
 	vim.cmd("clearjumps")
+	vim.cmd("silent! wshada!")
 	vim.notify("Cleared jump list", vim.log.levels.INFO)
 end, { silent = true, noremap = true, desc = "Clear jump list" })
 

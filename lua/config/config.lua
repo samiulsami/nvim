@@ -25,10 +25,6 @@ vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 vim.o.confirm = true
 
--- Disable jumplist persistence across sessions
--- Default is: !,'100,<50,s10,h
-vim.opt.shada = "!,'0,<50,s10,h"
-
 local cursorXYGRP = vim.api.nvim_create_augroup("CursorXYGRP", { clear = true })
 vim.api.nvim_create_autocmd(
 	{ "InsertLeave", "WinEnter" },
