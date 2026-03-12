@@ -1,6 +1,6 @@
 return {
 	"samiulsami/fFtT-highlights.nvim",
-        lazy = false,
+	lazy = false,
 	config = function()
 		---@module "fFtT-highlights"
 		---@type fFtT_highlights.opts
@@ -29,5 +29,6 @@ return {
 		})
 
 		vim.api.nvim_set_hl(0, "fFtTUniqueHighlightSecondary", { fg = "#22ffaa" })
+		vim.api.nvim_set_hl(0, "fFtTMatchHighlight", { fg = "#000000", bg = "#ff9900", bold = true })
 	end,
 }
