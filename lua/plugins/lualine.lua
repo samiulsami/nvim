@@ -11,12 +11,6 @@ return {
 			local homePattern = "^/*" .. vim.fn.expand("~")
 			local prefix = ""
 
-			local colonPos = path:find(":")
-			if colonPos then
-				prefix = "[" .. path:sub(1, colonPos - 1):upper() .. "]:"
-				path = path:sub(colonPos + 1)
-			end
-
 			if vim.fn.match(path, homePattern) ~= -1 then
 				path = vim.fn.substitute(path, homePattern, "~", "")
 			end
