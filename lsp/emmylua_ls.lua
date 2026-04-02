@@ -20,7 +20,6 @@ return {
 		".luacheckrc",
 		".git",
 	},
-	workspace_required = false,
 	settings = {
 		Lua = {
 			hint = { enable = true },

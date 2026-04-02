@@ -10,6 +10,7 @@ capabilities.textDocument.foldingRange = {
 	dynamicRegistration = false,
 	lineFoldingOnly = true,
 }
+capabilities.textDocument.semanticTokens.multilineTokenSupport = true
 capabilities.textDocument.completion.completionItem.snippetSupport = false
 
 vim.lsp.enable({
@@ -23,14 +24,18 @@ vim.lsp.enable({
 	"jsonls",
 	"terraformls",
 	"bashls",
+	"harper",
 })
+
 vim.lsp.config("*", { capabilities = capabilities })
 vim.lsp.inlay_hint.enable(false)
 
+local diagnostic_virtual_line = false
 vim.diagnostic.config({
 	underline = false,
 	update_in_insert = false,
 	virtual_text = false,
+	virtual_lines = diagnostic_virtual_line,
 	signs = {
 		text = {
 			[vim.diagnostic.severity.ERROR] = "󰅚 ",
@@ -40,6 +45,11 @@ vim.diagnostic.config({
 		},
 	},
 })
+
+vim.keymap.set("n", "<leader>td", function()
+	diagnostic_virtual_line = not diagnostic_virtual_line
+	vim.diagnostic.config({ virtual_lines = diagnostic_virtual_line })
+end, { noremap = true, silent = true, desc = "[T]oggle [D]iagnostic Lines" })
 
 vim.keymap.set(
 	"n",
