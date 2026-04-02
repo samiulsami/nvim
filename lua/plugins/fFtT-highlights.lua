@@ -29,6 +29,6 @@ return {
 		})
 
 		vim.api.nvim_set_hl(0, "fFtTUniqueHighlightSecondary", { fg = "#22ffaa" })
-		vim.api.nvim_set_hl(0, "fFtTMatchHighlight", { fg = "#000000", bg = "#ff9900", bold = true })
+		vim.api.nvim_set_hl(0, "fFtTMatchHighlight", { fg = "#000000", bg = "#ffaa70", bold = true })
 	end,
 }
