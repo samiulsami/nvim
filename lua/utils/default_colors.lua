@@ -4,6 +4,9 @@ M.set_colors = function()
 	vim.api.nvim_set_hl(0, "CursorColumn", { bold = true, bg = "#1b1b1b" })
 	vim.api.nvim_set_hl(0, "MatchParen", { fg = "#ffb86c", bold = true })
 	vim.api.nvim_set_hl(0, "TablineFIll", { bold = true, italic = true })
+	vim.api.nvim_set_hl(0, "Search", { fg = "#000000", bg = "#ffaa70", bold = true })
+	vim.api.nvim_set_hl(0, "IncSearch", { fg = "#000000", bg = "#ffaa70", bold = true })
+	vim.api.nvim_set_hl(0, "CurSearch", { fg = "#000000", bg = "#999999", bold = true })
 
 	local lspref_color = "#77ff77"
 	vim.api.nvim_set_hl(0, "LspReferenceText", { fg = "#000000", bg = lspref_color, bold = true, underline = true })
