@@ -1,9 +1,6 @@
 return {
 	"lewis6991/gitsigns.nvim",
 	lazy = false,
-	dependencies = {
-		"nvim-lua/plenary.nvim", -- Required dependency
-	},
 	config = function()
 		local on_attach = function(bufnr)
 			local gitsigns = require("gitsigns")
