@@ -101,21 +101,5 @@ return {
 		end
 
 		vim.api.nvim_set_hl(0, "DartPickLabel", { fg = "#ffffff", bold = true })
-
-		local cwd_hash = vim.fn.sha256(vim.fn.getcwd())
-		vim.api.nvim_create_autocmd("VimLeavePre", {
-			once = true,
-			callback = function()
-				dart.write_session(cwd_hash)
-			end,
-		})
-
-		vim.api.nvim_create_autocmd("VimEnter", {
-			callback = function()
-				vim.schedule(function()
-					dart.read_session(cwd_hash)
-				end)
-			end,
-		})
 	end,
 }
