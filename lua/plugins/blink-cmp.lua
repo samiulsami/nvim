@@ -1,5 +1,6 @@
 return {
 	"saghen/blink.cmp",
+	version = "1.*",
 	dependencies = {
 		"saghen/blink.compat",
 		{
@@ -175,7 +176,7 @@ return {
 		},
 
 		fuzzy = {
-			implementation = "prefer_rust_with_warning",
+			implementation = "rust",
 		},
 	},
 	opts_extend = { "sources.default" },
