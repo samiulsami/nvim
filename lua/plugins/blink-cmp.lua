@@ -1,14 +1,19 @@
 return {
 	"saghen/blink.cmp",
-	version = "1.*",
 	dependencies = {
+		"saghen/blink.lib",
 		"saghen/blink.compat",
 		{
 			"samiulsami/cmp-go-deep",
 			dependencies = { "kkharji/sqlite.lua" },
 		},
 	},
-	build = "cargo build --release",
+
+	build = function()
+		-- build the fuzzy matcher, wait up to 60 seconds
+		-- you can use `gb` in `:Lazy` to rebuild the plugin as needed
+		require("blink.cmp").build():wait(60000)
+	end,
 
 	---@module 'blink.cmp'
 	---@type blink.cmp.Config
@@ -116,22 +121,6 @@ return {
 		},
 
 		cmdline = {
-			sources = function()
-				local cmd_type, cmd_win_type = vim.fn.getcmdtype(), vim.fn.getcmdwintype()
-				local type = cmd_type == "" and cmd_win_type or cmd_type
-				if type == "/" or type == "?" then
-					return { "cmdline_buffer" }
-				end
-				if type == ":" or type == "@" then
-					return {
-						"path",
-						"cmdline",
-						"lazydev",
-						"cmdline_buffer",
-					}
-				end
-				return {}
-			end,
 			keymap = {
 				preset = "inherit",
 				["<CR>"] = {},
