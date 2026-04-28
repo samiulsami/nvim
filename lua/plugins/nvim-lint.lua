@@ -5,6 +5,7 @@ return {
 			c = { "cpplint" },
 			cpp = { "cpplint" },
 			go = { "golangcilint" },
+			lua = { "luac" },
 			yaml = { "yamllint" },
 			bash = { "shellcheck" },
 			json = { "jsonlint" },

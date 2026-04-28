@@ -22,6 +22,8 @@ return {
 			"helm-ls",
 			"yaml-language-server",
 			"yamlfix",
+			"yamllint",
+			"checkstyle",
 			"fixjson",
 			"gopls",
 			"golangci-lint",
