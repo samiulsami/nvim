@@ -7,11 +7,9 @@ return {
 	config = function()
 		local ensure_installed = {
 			"stylua",
-			"emmylua_ls",
 			"bash-language-server",
 			"shellcheck",
 			"shfmt",
-			"checkmake",
 			"terraform",
 			"terraform-ls",
 			"tflint",
@@ -33,7 +31,6 @@ return {
 			"clang-format",
 			"cpplint",
 			"dockerfile-language-server",
-			"harper-ls",
 		}
 
 		-- for mason package names that don't match their executable names

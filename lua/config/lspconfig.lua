@@ -15,7 +15,6 @@ capabilities.textDocument.completion.completionItem.snippetSupport = false
 
 vim.lsp.enable({
 	"gopls",
-	"emmylua_ls",
 	"clangd",
 	"scala",
 	"dockerls",
@@ -24,7 +23,6 @@ vim.lsp.enable({
 	"jsonls",
 	"terraformls",
 	"bashls",
-	"harper",
 })
 
 vim.lsp.config("*", { capabilities = capabilities })

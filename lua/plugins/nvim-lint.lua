@@ -10,7 +10,6 @@ return {
 			bash = { "shellcheck" },
 			json = { "jsonlint" },
 			terraform = { "tflint" },
-			make = { "checkmake" },
 			java = { "checkstyle" },
 		}
 		vim.keymap.set("n", "<leader>L", function()
