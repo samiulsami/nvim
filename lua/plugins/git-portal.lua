@@ -8,7 +8,7 @@ return {
 		vim.keymap.set(
 			{ "n", "v" },
 			"<leader>G",
-			gitportal.open_file_in_browser,
+			gitportal.to_remote,
 			{desc = "Open the current line or selection in Git web interface" }
 		)
 	end,
