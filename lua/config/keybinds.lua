@@ -1,6 +1,6 @@
 vim.keymap.set("n", "<leader>cp", function()
 	local current_file_path = vim.fn.expand("%:p")
-	vim.fn.setreg("+", '"' .. current_file_path .. '"')
+	vim.fn.setreg("+", current_file_path)
 	vim.notify("'" .. current_file_path .. "'\ncopied to clipboard", vim.log.levels.INFO)
 end, { noremap = true, silent = true, desc = "[C]opy [P]ath to current file" })
 
