@@ -24,7 +24,6 @@ vim.lsp.enable({
 	"jsonls",
 	"terraformls",
 	"bashls",
-	"harper",
 })
 
 vim.lsp.config("*", { capabilities = capabilities })

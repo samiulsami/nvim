@@ -33,7 +33,6 @@ return {
 			"clang-format",
 			"cpplint",
 			"dockerfile-language-server",
-			"harper-ls",
 		}
 
 		-- for mason package names that don't match their executable names
