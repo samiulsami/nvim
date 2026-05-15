@@ -14,6 +14,9 @@ return {
 					enable = true,
 				},
 			},
+			git = {
+				enable = false,
+			},
 			sort = {
 				sorter = "case_sensitive",
 			},
@@ -27,6 +30,7 @@ return {
 			},
 			filters = {
 				dotfiles = true,
+				git_ignored = false,
 			},
 		}
 		require("nvim-tree").setup(config)
