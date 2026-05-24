@@ -1,6 +1,6 @@
+---@type PackSpec
 return {
-	"iofq/dart.nvim",
-	lazy = false,
+	src = "https://github.com/iofq/dart.nvim",
 	config = function()
 		local dart = require("dart")
 		local marklist = { "q", "w", "e", "r" }

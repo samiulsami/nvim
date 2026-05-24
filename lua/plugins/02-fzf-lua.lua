@@ -1,8 +1,8 @@
+---@type PackSpec
 return {
-	"ibhagwan/fzf-lua",
-	lazy = false,
-	dependencies = {
-		"elanmed/fzf-lua-frecency.nvim",
+	src = "https://github.com/ibhagwan/fzf-lua",
+	deps = {
+		{ src = "https://github.com/elanmed/fzf-lua-frecency.nvim" },
 	},
 	config = function()
 		local frecency = require("fzf-lua-frecency")

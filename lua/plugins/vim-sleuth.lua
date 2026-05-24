@@ -1,5 +1,6 @@
+---@type PackSpec
 return {
-	"tpope/vim-sleuth",
+	src = "https://github.com/tpope/vim-sleuth",
 	config = function()
 		vim.api.nvim_create_autocmd("BufEnter", {
 			pattern = { "*" },

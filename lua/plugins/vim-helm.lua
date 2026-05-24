@@ -1,5 +1,5 @@
+---@type PackSpec
 return {
 	--- for helm-ls filetype detection
-	"towolf/vim-helm",
-	lazy = false,
+	src = "https://github.com/towolf/vim-helm",
 }

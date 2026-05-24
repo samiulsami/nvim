@@ -1,6 +1,6 @@
+---@type PackSpec
 return {
-	"lewis6991/gitsigns.nvim",
-	lazy = false,
+	src = "https://github.com/lewis6991/gitsigns.nvim",
 	config = function()
 		local on_attach = function(bufnr)
 			local gitsigns = require("gitsigns")

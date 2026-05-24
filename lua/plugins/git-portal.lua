@@ -1,5 +1,6 @@
+---@type PackSpec
 return {
-	"https://codeberg.org/trevorhauter/gitportal.nvim",
+	src = "https://codeberg.org/trevorhauter/gitportal.nvim",
 	config = function()
 		local gitportal = require("gitportal")
 		gitportal.setup({
@@ -9,7 +10,7 @@ return {
 			{ "n", "v" },
 			"<leader>G",
 			gitportal.to_remote,
-			{desc = "Open the current line or selection in Git web interface" }
+			{ desc = "Open the current line or selection in Git web interface" }
 		)
 	end,
 }

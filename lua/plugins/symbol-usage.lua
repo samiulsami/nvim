@@ -1,6 +1,6 @@
+---@type PackSpec
 return {
-	"Wansmer/symbol-usage.nvim",
-	event = "BufReadPre",
+	src = "https://github.com/Wansmer/symbol-usage.nvim",
 	config = function()
 		local function text_format(symbol)
 			local res = {}

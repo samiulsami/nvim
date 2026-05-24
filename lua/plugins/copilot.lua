@@ -1,11 +1,9 @@
---- Premium request multipliers (ref: https://docs.github.com/en/copilot/concepts/billing/copilot-requests)
-
+---@type PackSpec
 return {
-	"zbirenbaum/copilot.lua",
-	lazy = false,
-	cmd = "Copilot",
-	event = "VimEnter",
-	dependencies = { "samiulsami/copilot-eldritch.nvim" },
+	src = "https://github.com/zbirenbaum/copilot.lua",
+	deps = {
+		{ src = "https://github.com/samiulsami/copilot-eldritch.nvim" },
+	},
 	config = function()
 		require("copilot").setup({
 			panel = { enabled = false },

@@ -1,5 +1,6 @@
+---@type PackSpec
 return {
-	"nvim-tree/nvim-tree.lua",
+	src = "https://github.com/nvim-tree/nvim-tree.lua",
 	config = function()
 		---@type nvim_tree.config
 		local config = {

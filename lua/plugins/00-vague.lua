@@ -1,7 +1,6 @@
+---@type PackSpec
 return {
-	"vague-theme/vague.nvim",
-	lazy = false,
-	priority = 1000,
+	src = "https://github.com/vague-theme/vague.nvim",
 	config = function()
 		vim.cmd("colorscheme vague")
 		require("utils.default_colors").set_colors()

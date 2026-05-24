@@ -1,8 +1,10 @@
+---@type PackSpec
 return {
-	"nvim-treesitter/nvim-treesitter",
-	branch = "main",
-	lazy = false,
-	build = ":TSUpdate",
+	src = "https://github.com/nvim-treesitter/nvim-treesitter",
+	version = "main",
+	build = function()
+		vim.cmd("TSUpdate")
+	end,
 	config = function()
 		vim.filetype.add({
 			extension = {

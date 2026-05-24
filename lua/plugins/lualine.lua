@@ -1,6 +1,6 @@
+---@type PackSpec
 return {
-	"nvim-lualine/lualine.nvim",
-	lazy = false,
+	src = "https://github.com/nvim-lualine/lualine.nvim",
 	config = function()
 		local function trimString(s)
 			return s:match("^%s*(.-)%s*$")

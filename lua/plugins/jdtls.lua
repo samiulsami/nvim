@@ -1,4 +1,4 @@
+---@type PackSpec
 return {
-	"mfussenegger/nvim-jdtls",
-	lazy = false,
+	src = "https://github.com/mfussenegger/nvim-jdtls",
 }

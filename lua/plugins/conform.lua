@@ -1,7 +1,6 @@
+---@type PackSpec
 return {
-	"stevearc/conform.nvim",
-	lazy = false,
-	cmd = { "ConformInfo" },
+	src = "https://github.com/stevearc/conform.nvim",
 	config = function()
 		local conform = require("conform")
 		conform.setup({

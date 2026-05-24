@@ -1,5 +1,6 @@
+---@type PackSpec
 return {
-	"mfussenegger/nvim-lint",
+	src = "https://github.com/mfussenegger/nvim-lint",
 	config = function()
 		require("lint").linters_by_ft = {
 			c = { "cpplint" },

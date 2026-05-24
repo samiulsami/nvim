@@ -1,6 +1,6 @@
+---@type PackSpec
 return {
-	"nvim-mini/mini.indentscope",
-	lazy = false,
+	src = "https://github.com/nvim-mini/mini.indentscope",
 	config = function()
 		local mini_indentscope = require("mini.indentscope")
 		mini_indentscope.setup({

@@ -1,13 +1,8 @@
+---@type PackSpec
 return {
-	"barrettruth/canola.nvim",
-	branch = "canola",
-
-	event = "VeryLazy",
-
-	---@module 'canola'
-	---@type canola.SetupOpts
-	opts = {},
-	init = function()
+	src = "https://github.com/barrettruth/canola.nvim",
+	version = "canola",
+	config = function()
 		local columns = {
 			"size",
 			"mtime",
@@ -150,9 +145,8 @@ return {
 			watch = true,
 			cursor = true,
 		}
-	end,
 
-	config = function()
+		require("canola.config").init()
 		vim.keymap.set("n", "<leader>p", require("canola").toggle_float, { desc = "Toggle Canola" })
 	end,
 }

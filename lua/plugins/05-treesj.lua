@@ -1,5 +1,6 @@
+---@type PackSpec
 return {
-	"Wansmer/treesj",
+	src = "https://github.com/Wansmer/treesj",
 	config = function()
 		local treesj = require("treesj")
 		treesj.setup({

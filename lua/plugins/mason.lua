@@ -1,9 +1,9 @@
+---@type PackSpec
 return {
-	"mason-org/mason.nvim",
-	dependencies = {
-		"WhoIsSethDaniel/mason-tool-installer",
+	src = "https://github.com/mason-org/mason.nvim",
+	deps = {
+		{ src = "https://github.com/WhoIsSethDaniel/mason-tool-installer" },
 	},
-	lazy = false,
 	config = function()
 		local ensure_installed = {
 			"stylua",
