@@ -10,13 +10,11 @@
 ---@field pending_builds table<string, string>
 ---@field loaded table<string, boolean>
 ---@field specs vim.pack.Spec[]
----@field configs fun()[]
 local M = {
 	build_hooks = {},
 	pending_builds = {},
 	loaded = {},
 	specs = {},
-	configs = {},
 }
 
 vim.api.nvim_create_user_command("PackUpdate", function()
@@ -31,6 +29,32 @@ vim.api.nvim_create_user_command("PackSync", function()
 	vim.pack.update(nil, { target = "lockfile" })
 end, { desc = "Sync vim.pack plugins to lockfile" })
 
+vim.api.nvim_create_user_command("PackBuildAll", function()
+	for _, spec in ipairs(M.specs) do
+		local build = M.build_hooks[spec.src]
+		if build then
+			vim.notify("Running build for plugin " .. spec.src, vim.log.levels.INFO)
+			build(spec.src)
+		end
+	end
+end, { desc = "Run build functions of all plugins" })
+
+function M:run_pending_builds()
+	for src, path in pairs(self.pending_builds) do
+		local build = self.build_hooks[src]
+		if build then
+			vim.notify("Running build for plugin " .. spec.src, vim.log.levels.INFO)
+			build(path)
+		end
+	end
+
+	self.pending_builds = {}
+end
+
+vim.api.nvim_create_user_command("PackBuild", function()
+	M:run_pending_builds()
+end, { desc = "Run pending builds for vim.pack plugins" })
+
 vim.api.nvim_create_autocmd("PackChanged", {
 	group = vim.api.nvim_create_augroup("PackBuildHooks", { clear = true }),
 	callback = function(ev)
@@ -44,9 +68,11 @@ vim.api.nvim_create_autocmd("PackChanged", {
 		end
 
 		M.pending_builds[ev.data.spec.src] = ev.data.path
+		vim.notify("Plugin " .. ev.data.spec.src .. " has pending build", vim.log.levels.WARN)
 	end,
 })
 
+---@param spec PackSpec
 function M:load_spec(spec)
 	if self.loaded[spec.src] then
 		return
@@ -65,67 +91,58 @@ function M:load_spec(spec)
 	local pack_spec = {
 		src = spec.src,
 		version = spec.version,
+		config = spec.config,
 	}
 
 	self.specs[#self.specs + 1] = pack_spec
-	self.configs[#self.configs + 1] = spec.config
-end
-
-function M:run_pending_builds()
-	for src, path in pairs(self.pending_builds) do
-		local build = self.build_hooks[src]
-		if build then
-			build(path)
-		end
-	end
-
-	self.pending_builds = {}
 end
 
 ---@param path string
 function M:load_plugins(path)
-        self.build_hooks = {}
-        self.pending_builds = {}
-        self.loaded = {}
-        self.specs = {}
-        self.configs = {}
+	self.build_hooks = {}
+	self.pending_builds = {}
+	self.loaded = {}
+	self.specs = {}
 
-        local plugin_files = vim.fn.glob(path, false, true)
-        table.sort(plugin_files)
+	local plugin_files = vim.fn.glob(path, false, true)
+	table.sort(plugin_files)
 
-        local errors = {}
+	local errors = {}
 
-        for _, plugin_file in ipairs(plugin_files) do
-                local ok, spec = pcall(dofile, plugin_file)
-                if not ok then
-                        errors[#errors + 1] = "failed to load plugin spec " .. plugin_file .. ": " .. spec
-                        goto continue
-                end
+	for _, plugin_file in ipairs(plugin_files) do
+		local ok, spec = pcall(dofile, plugin_file)
+		if not ok then
+			errors[#errors + 1] = "failed to load plugin spec " .. plugin_file .. ": " .. spec
+			goto continue
+		end
 
-                if type(spec) ~= "table" or type(spec.src) ~= "string" then
-                        errors[#errors + 1] = "invalid plugin spec in " .. plugin_file
-                        goto continue
-                end
+		if type(spec) ~= "table" or type(spec.src) ~= "string" then
+			errors[#errors + 1] = "invalid plugin spec in " .. plugin_file
+			goto continue
+		end
 
-                self:load_spec(spec)
-                ::continue::
-        end
+		self:load_spec(spec)
+		::continue::
+	end
 
-        if #errors > 0 then
-                error("error(s) occurred while loading plugin specs:\n" .. table.concat(errors, "\n"))
-        end
+	if #errors > 0 then
+		error("error(s) occurred while loading plugin specs:\n" .. table.concat(errors, "\n"))
+	end
 
-        vim.pack.add(self.specs, {
-                load = true,
-                confirm = false,
-        })
-        self:run_pending_builds()
+	vim.pack.add(self.specs, {
+		load = true,
+		confirm = false,
+	})
 
-        for _, config in ipairs(self.configs) do
-                if config then
-                        config()
-                end
-        end
+	---@param spec vim.pack.Spec
+	for _, spec in ipairs(self.specs) do
+		if spec.config then
+			local ok, err = pcall(spec.config)
+			if not ok then
+				vim.notify("failed to run config for plugin " .. spec.src .. ": " .. err, vim.log.levels.ERROR)
+			end
+		end
+	end
 end
 
 return M
