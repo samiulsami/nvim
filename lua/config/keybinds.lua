@@ -37,10 +37,6 @@ vim.keymap.set("n", "<leader>W", function()
 	vim.notify("Saved all buffers", vim.log.levels.INFO)
 end, { desc = "Save all buffers", noremap = true, silent = true })
 
--- Command-line mappings for history navigation
-vim.keymap.set("c", "<C-p>", "<Up>", { noremap = true })
-vim.keymap.set("c", "<C-n>", "<Down>", { noremap = true })
-
 vim.keymap.set("n", "J", "mzJ`z")
 vim.keymap.set("v", "p", '"_dP')
 

@@ -3,6 +3,7 @@ vim.g.maplocalleader = " "
 
 require("utils.notifications").setup()
 require("config.config")
+require("config.completion")
 require("config.lspconfig")
 require("config.appearance")
 require("config.keybinds")

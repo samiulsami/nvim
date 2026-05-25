@@ -17,6 +17,7 @@ local M = {
 	specs = {},
 }
 
+-- NOTE: this only lists pending updates. save the buffer to apply the updates
 vim.api.nvim_create_user_command("PackUpdate", function()
 	vim.pack.update()
 end, { desc = "Update all vim.pack plugins" })
