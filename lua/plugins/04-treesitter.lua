@@ -57,5 +57,12 @@ return {
 			"gotmpl",
 			"helm",
 		})
+
+		vim.api.nvim_create_autocmd("FileType", {
+			once = false,
+			callback = function(args)
+				pcall(vim.treesitter.start, args.buf)
+			end,
+		})
 	end,
 }
