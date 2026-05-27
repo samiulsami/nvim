@@ -9,6 +9,7 @@ vim.opt.incsearch = true
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 
+vim.opt.conceallevel = 0
 vim.opt.showmode = false
 vim.opt.breakindent = true
 vim.opt.linebreak = true
@@ -20,7 +21,6 @@ vim.opt.inccommand = "split"
 vim.opt.cursorcolumn = true
 vim.opt.cursorline = true
 
-vim.g.conceallevel = 0
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 vim.o.confirm = true
@@ -41,7 +41,9 @@ vim.opt.autoread = true
 vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.writebackup = false
-vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+local undo_dir = vim.fn.expand("~/.vim/undodir")
+vim.fn.mkdir(undo_dir, "p")
+vim.opt.undodir = undo_dir
 vim.opt.undofile = true
 vim.opt.mouse = "a"
 vim.opt.grepprg = "rg --vimgrep --no-heading --smart-case"

@@ -33,9 +33,9 @@ end, { desc = "Sync vim.pack plugins to lockfile" })
 vim.api.nvim_create_user_command("PackBuildAll", function()
 	for _, spec in ipairs(M.specs) do
 		local build = M.build_hooks[spec.src]
-		if build then
+		if type(build) == "function" then
 			vim.notify("Running build for plugin " .. spec.src, vim.log.levels.INFO)
-			build(spec.src)
+			pcall(build, spec.src)
 		end
 	end
 end, { desc = "Run build functions of all plugins" })
@@ -43,9 +43,9 @@ end, { desc = "Run build functions of all plugins" })
 function M:run_pending_builds()
 	for src, path in pairs(self.pending_builds) do
 		local build = self.build_hooks[src]
-		if build then
-			vim.notify("Running build for plugin " .. spec.src, vim.log.levels.INFO)
-			build(path)
+		if type(build) == "function" then
+			vim.notify("Running build for plugin " .. src, vim.log.levels.INFO)
+			pcall(build, path)
 		end
 	end
 

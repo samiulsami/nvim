@@ -29,7 +29,6 @@ return {
 			"dockerfile",
 			"c",
 			"cpp",
-			"diff",
 			"html",
 			"lua",
 			"luadoc",

@@ -168,7 +168,7 @@ function M:setup_keymaps()
 			end
 		end
 
-		local jq_available = vim.fn.executable("jq")
+		local jq_available = vim.fn.executable("jq") == 1
 		if not jq_available then
 			vim.notify("jq is not installed, displaying raw notifications", vim.log.levels.WARN)
 		end
