@@ -1,7 +1,8 @@
----@class PackSpec
+---Local plugin specification. Distinct from |vim.pack.Spec|
+---@class PluginSpec
 ---@field src string
 ---@field version? string|vim.VersionRange
----@field deps? PackSpec[]
+---@field deps? PluginSpec[]
 ---@field build? fun(path: string)
 ---@field config? fun()
 
@@ -26,9 +27,9 @@ vim.api.nvim_create_user_command("PackList", function()
 	vim.pack.update(nil, { offline = true })
 end, { desc = "List vim.pack plugins" })
 
-vim.api.nvim_create_user_command("PackSync", function()
-	vim.pack.update(nil, { target = "lockfile" })
-end, { desc = "Sync vim.pack plugins to lockfile" })
+vim.api.nvim_create_user_command("PackRevert", function()
+	vim.pack.update(nil, { offline = true, target = "lockfile" })
+end, { desc = "Revert vim.pack plugins to lockfile versions" })
 
 vim.api.nvim_create_user_command("PackBuildAll", function()
 	for _, spec in ipairs(M.specs) do
@@ -73,7 +74,7 @@ vim.api.nvim_create_autocmd("PackChanged", {
 	end,
 })
 
----@param spec PackSpec
+---@param spec PluginSpec
 function M:load_spec(spec)
 	if self.loaded[spec.src] then
 		return

@@ -1,4 +1,4 @@
----@type PackSpec
+---@type PluginSpec
 return {
 	src = "https://github.com/mason-org/mason.nvim",
 	deps = {

@@ -1,4 +1,4 @@
----@type PackSpec
+---@type PluginSpec
 return {
 	src = "https://github.com/lewis6991/gitsigns.nvim",
 	config = function()
