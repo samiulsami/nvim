@@ -42,7 +42,7 @@
       "src": "https://github.com/lewis6991/gitsigns.nvim"
     },
     "go-deep.nvim": {
-      "rev": "62267bbd9819808e42fd3861214919046e5e308f",
+      "rev": "9db5827c9a83e814134d8b53b64b5e944e61f2a5",
       "src": "/home/sami/personal/projects/go-deep.nvim"
     },
     "lazydev.nvim": {

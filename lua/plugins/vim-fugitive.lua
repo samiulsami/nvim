@@ -2,6 +2,7 @@
 return {
 	src = "https://github.com/tpope/vim-fugitive",
 	config = function()
+		vim.g.fugitive_legacy_commands = false
 		vim.keymap.set("n", "<leader>gg", "<Cmd>Git<CR>", { desc = "[G]it Status" })
 		vim.keymap.set("n", "<leader>gl", "<Cmd>Git log --oneline --full-history<CR>", { desc = "[G]it [L]og Oneline" })
 		vim.keymap.set(
