@@ -1,4 +1,4 @@
----@type PackSpec
+---@type PluginSpec
 return {
 	src = "https://codeberg.org/trevorhauter/gitportal.nvim",
 	config = function()

@@ -1,4 +1,4 @@
----@type PackSpec
+---@type PluginSpec
 return {
 	src = "https://github.com/nvim-lualine/lualine.nvim",
 	config = function()
