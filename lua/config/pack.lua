@@ -133,7 +133,7 @@ function M:load_plugins(path)
 
 	vim.pack.add(self.specs, {
 		load = true,
-		confirm = false,
+		confirm = true,
 	})
 
 	---@param spec vim.pack.Spec
