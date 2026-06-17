@@ -1,5 +1,14 @@
 {
   "plugins": {
+    "blink.cmp": {
+      "rev": "26ec6f0a1a8101eb134f8b8568d6099be015fe70",
+      "src": "https://github.com/saghen/blink.cmp",
+      "version": "'main'"
+    },
+    "blink.lib": {
+      "rev": "bf67998a314236cfba50fe311d60ef03d15d9426",
+      "src": "https://github.com/saghen/blink.lib"
+    },
     "canola.nvim": {
       "rev": "5f35cd57b2a96c490102cb74c1551a65c3bf7cf7",
       "src": "https://github.com/barrettruth/canola.nvim",
@@ -14,7 +23,7 @@
       "src": "https://github.com/samiulsami/copilot-eldritch.nvim"
     },
     "copilot.lua": {
-      "rev": "b54c05349d406f7af11b150824efa8e4f90015c6",
+      "rev": "7df55b20b5b653941f0bcff87e559cabb6fafeb0",
       "src": "https://github.com/zbirenbaum/copilot.lua"
     },
     "dart.nvim": {
@@ -42,8 +51,8 @@
       "src": "https://github.com/lewis6991/gitsigns.nvim"
     },
     "go-deep.nvim": {
-      "rev": "f11bf3335c52b8d6bb1b248dcc58d34e8d51ff94",
-      "src": "/home/sami/personal/projects/go-deep.nvim"
+      "rev": "72554f0b6bf45d18ba54c80a98f4b6db73973e51",
+      "src": "git@github.com:samiulsami/go-deep.nvim.git"
     },
     "lazydev.nvim": {
       "rev": "ff2cbcba459b637ec3fd165a2be59b7bbaeedf0d",
@@ -78,7 +87,7 @@
       "src": "https://github.com/mfussenegger/nvim-jdtls"
     },
     "nvim-lint": {
-      "rev": "d48f3a76189d03b2239f6df1b2f7e3fa8353743b",
+      "rev": "4b7957daf4b81eb578114bd6fcf20b6f5a2b59e8",
       "src": "https://github.com/mfussenegger/nvim-lint"
     },
     "nvim-surround": {
@@ -94,6 +103,10 @@
       "rev": "4916d6592ede8c07973490d9322f187e07dfefac",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter",
       "version": "'main'"
+    },
+    "quickbuf.nvim": {
+      "rev": "125a1a770abd3994ef47f9f1d8b3a5d5d681888d",
+      "src": "https://github.com/tjgao/quickbuf.nvim"
     },
     "sidekick.nvim": {
       "rev": "208e1c5b8170c01fd1d07df0139322a76479b235",
