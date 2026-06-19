@@ -5,7 +5,7 @@ return {
 		local sidekick = require("sidekick")
 		sidekick.setup({
 			cli = { watch = false },
-			nes = { enabled = false },
+			nes = { enabled = true },
 		})
 
 		local sidekick_cli = require("sidekick.cli")
