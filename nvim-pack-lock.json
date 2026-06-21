@@ -1,7 +1,7 @@
 {
   "plugins": {
     "blink.cmp": {
-      "rev": "50c696b5c3ca359305f8e241e9458b0d2d787540",
+      "rev": "bda905a4bf1b3edfa708b0be193b8c63d8620c96",
       "src": "https://github.com/saghen/blink.cmp",
       "version": "'main'"
     },
@@ -47,8 +47,8 @@
       "src": "https://github.com/lewis6991/gitsigns.nvim"
     },
     "go-deep.nvim": {
-      "rev": "113ebe49139dc545411bc958c191d8247ffa1457",
-      "src": "/home/sami/personal/projects/go-deep.nvim"
+      "rev": "a1d229e90ee7d092c5d4636297867723b42887e9",
+      "src": "git@github.com:samiulsami/go-deep.nvim.git"
     },
     "lazydev.nvim": {
       "rev": "ff2cbcba459b637ec3fd165a2be59b7bbaeedf0d",
@@ -83,7 +83,7 @@
       "src": "https://github.com/mfussenegger/nvim-jdtls"
     },
     "nvim-lint": {
-      "rev": "fd87a7ab27ee0ce1b15b56c1250fc4668fe8ac58",
+      "rev": "01c9842c089069ab497430159312b2c8868a4590",
       "src": "https://github.com/mfussenegger/nvim-lint"
     },
     "nvim-surround": {
@@ -92,7 +92,7 @@
       "version": ">=0.0.0"
     },
     "nvim-tree.lua": {
-      "rev": "fb343438d49fba8c35ecc4829d66fca7a1f0ed3d",
+      "rev": "8e8be709c9a93e1ebefde7964884a8b564bfd3e0",
       "src": "https://github.com/nvim-tree/nvim-tree.lua"
     },
     "nvim-treesitter": {
@@ -101,7 +101,7 @@
       "version": "'main'"
     },
     "quickbuf.nvim": {
-      "rev": "ec348c872e88c5670e3136613227c6e04ca84963",
+      "rev": "75b49dfd836a95cd0c80b04c1f5ac7e689e35421",
       "src": "https://github.com/tjgao/quickbuf.nvim"
     },
     "sidekick.nvim": {

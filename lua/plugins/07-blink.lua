@@ -6,6 +6,9 @@ return {
 		{ src = "https://github.com/saghen/blink.lib" },
 		{
 			src = "git@github.com:samiulsami/go-deep.nvim.git",
+			build = function(_)
+				require("go_deep").build()
+			end,
 			config = function()
 				---@type go_deep.Options
 				vim.g.go_deep = {
@@ -91,7 +94,7 @@ return {
 						name = "go_deep",
 						module = "go_deep.blink",
 						async = true,
-						max_items = 10,
+						max_items = 30,
 						min_keyword_length = 0,
 						score_offset = -10000,
 					},
