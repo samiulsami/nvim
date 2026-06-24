@@ -9,6 +9,50 @@ return {
 		frecency.setup()
 
 		local fzflua = require("fzf-lua")
+		local fzflua_config = require("fzf-lua.config")
+		local fzflua_core = require("fzf-lua.core")
+		local fzflua_make_entry = require("fzf-lua.make_entry")
+
+		local function quickfix_files()
+			local paths = {}
+			local seen = {}
+
+			for _, item in ipairs(vim.fn.getqflist()) do
+				local path = item.filename
+				if (not path or path == "") and item.bufnr and item.bufnr > 0 then
+					path = vim.api.nvim_buf_get_name(item.bufnr)
+				end
+
+				if path and path ~= "" and not seen[path] then
+					seen[path] = true
+					table.insert(paths, path)
+				end
+			end
+
+			if #paths == 0 then
+				vim.notify("Quickfix list has no files", vim.log.levels.WARN)
+				return
+			end
+
+			local opts = fzflua_config.normalize_opts({
+				cwd_prompt = true,
+				cwd_header = true,
+				cwd = vim.fn.getcwd(),
+				file_ignore_patterns = require("utils.file_ignore_patterns").get_patterns(),
+			}, "files")
+
+			local entries = vim.tbl_filter(
+				function(entry)
+					return entry ~= nil
+				end,
+				vim.tbl_map(function(path)
+					return fzflua_make_entry.file(path, opts)
+				end, paths)
+			)
+
+			fzflua_core.fzf_exec(entries, opts)
+		end
+
 		fzflua.setup({
 			ui_select = false,
 			"hide",
@@ -63,7 +107,7 @@ return {
 
 		vim.keymap.set("n", "<leader>/", function() fzflua.blines({}) end, {desc = "Fuzzy Search Current Buffer Lines"})
 
-		vim.keymap.set("n", "<leader>sq", function()
+		vim.keymap.set("n", "<leader>sQ", function()
 			local cwd = vim.fn.getcwd()
 			fzflua.lgrep_quickfix({
 				cwd_header = true,
@@ -72,6 +116,8 @@ return {
 				file_ignore_patterns = ignore_patterns.get_patterns(),
 			})
 		end, {desc = "Live Grep Quickfix List"})
+
+		vim.keymap.set("n", "<leader>sq", quickfix_files, {desc = "Search Quickfix Files List"})
 
 		vim.keymap.set("n", "<leader>sw", function()
 			local cwd = vim.fn.getcwd()
