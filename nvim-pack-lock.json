@@ -1,7 +1,7 @@
 {
   "plugins": {
     "blink.cmp": {
-      "rev": "72d81f789f1ae5f8765a87a5a5fc3562ad687df7",
+      "rev": "db8ea0b7c7ab8c8f8faa3912833c1671381e6304",
       "src": "https://github.com/saghen/blink.cmp",
       "version": "'main'"
     },
@@ -10,7 +10,7 @@
       "src": "https://github.com/saghen/blink.lib"
     },
     "canola.nvim": {
-      "rev": "88f1344be2b852cd8cad6b866d6eaf7c747abb83",
+      "rev": "3e034f56dc6ebce05cade9a323013d4804c5a7a7",
       "src": "https://github.com/barrettruth/canola.nvim",
       "version": "'canola'"
     },
@@ -39,7 +39,7 @@
       "src": "https://github.com/elanmed/fzf-lua-frecency.nvim"
     },
     "gitportal.nvim": {
-      "rev": "ee5446aa17738a419e855e2e4c01cb65e378e4cb",
+      "rev": "d2efb8d1bf141c77cfa1b5311995912bc36671d0",
       "src": "https://codeberg.org/trevorhauter/gitportal.nvim"
     },
     "gitsigns.nvim": {
@@ -59,7 +59,7 @@
       "src": "https://github.com/nvim-lualine/lualine.nvim"
     },
     "markview.nvim": {
-      "rev": "41ecde17c96941fb5b7c97995a10712738e85efe",
+      "rev": "2471f4097f8561a6880a0fe05ee0f21cbc82b374",
       "src": "https://github.com/OXY2DEV/markview.nvim"
     },
     "mason-tool-installer": {
