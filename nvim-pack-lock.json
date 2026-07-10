@@ -1,7 +1,7 @@
 {
   "plugins": {
     "blink.cmp": {
-      "rev": "9dcb1f3a9164f10c8950a790aace576f2e89dc78",
+      "rev": "72d81f789f1ae5f8765a87a5a5fc3562ad687df7",
       "src": "https://github.com/saghen/blink.cmp",
       "version": "'main'"
     },
@@ -31,7 +31,7 @@
       "src": "https://github.com/samiulsami/fFtT-highlights.nvim"
     },
     "fzf-lua": {
-      "rev": "774150bc05f774af1df614f55d156b3318c6decd",
+      "rev": "532d463f5c83595192fe740572d8fd6902b2217a",
       "src": "https://github.com/ibhagwan/fzf-lua"
     },
     "fzf-lua-frecency.nvim": {
@@ -59,7 +59,7 @@
       "src": "https://github.com/nvim-lualine/lualine.nvim"
     },
     "markview.nvim": {
-      "rev": "092c0872fd2437b3b862d253910981142d2465aa",
+      "rev": "41ecde17c96941fb5b7c97995a10712738e85efe",
       "src": "https://github.com/OXY2DEV/markview.nvim"
     },
     "mason-tool-installer": {
@@ -92,7 +92,7 @@
       "version": ">=0.0.0"
     },
     "nvim-tree.lua": {
-      "rev": "35d3511e7ad4cbfa44c78c406db663b6e2a07c0d",
+      "rev": "cf18a662cd5f200361b6fedfb794eed583e075e1",
       "src": "https://github.com/nvim-tree/nvim-tree.lua"
     },
     "nvim-treesitter": {

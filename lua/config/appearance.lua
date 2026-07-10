@@ -26,6 +26,6 @@ vim.opt.listchars = { tab = "| ", trail = "·", nbsp = "␣" }
 vim.api.nvim_create_autocmd("TextYankPost", {
 	group = vim.api.nvim_create_augroup("HighlightOnYank", { clear = true }),
 	callback = function()
-		vim.hl.on_yank({ timeout = 350 })
+		vim.hl.hl_op({ timeout = 350 })
 	end,
 })
