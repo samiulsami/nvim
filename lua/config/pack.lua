@@ -36,7 +36,10 @@ vim.api.nvim_create_user_command("PackBuildAll", function()
 		local build = M.build_hooks[spec.src]
 		if type(build) == "function" then
 			vim.notify("Running build for plugin " .. spec.src, vim.log.levels.INFO)
-			pcall(build, spec.src)
+			local ok, err = pcall(build, spec.src)
+			if not ok then
+				vim.notify("Failed to build plugin " .. spec.src .. ": " .. tostring(err), vim.log.levels.ERROR)
+			end
 		end
 	end
 end, { desc = "Run build functions of all plugins" })
@@ -46,7 +49,10 @@ function M:run_pending_builds()
 		local build = self.build_hooks[src]
 		if type(build) == "function" then
 			vim.notify("Running build for plugin " .. src, vim.log.levels.INFO)
-			pcall(build, path)
+			local ok, err = pcall(build, path)
+			if not ok then
+				vim.notify("Failed to build plugin " .. src .. ": " .. tostring(err), vim.log.levels.ERROR)
+			end
 		end
 	end
 

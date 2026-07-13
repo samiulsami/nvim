@@ -22,7 +22,24 @@ return {
 		},
 	},
 	build = function()
-		require("blink.cmp").build():pwait(60000)
+		local result = vim.system({
+			vim.v.progpath,
+			"--headless",
+			"-u",
+			"NONE",
+			"--cmd",
+			"packadd blink.lib",
+			"--cmd",
+			"packadd blink.cmp",
+			"-c",
+			[[lua local ok, err = require("blink.cmp").build():pwait(60000); if not ok then io.stderr:write(tostring(err) .. "\n"); vim.cmd("cquit 1") end]],
+			"-c",
+			"qa",
+		}, { text = true }):wait(70000)
+
+		if result.code ~= 0 then
+			error(result.stderr ~= "" and result.stderr or "blink.cmp build failed")
+		end
 	end,
 	config = function()
 		local completionItemKind = require("blink.cmp.types").CompletionItemKind
