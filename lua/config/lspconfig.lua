@@ -25,6 +25,7 @@ vim.lsp.enable({
 	"jsonls",
 	"terraformls",
 	"bashls",
+	"rust_analyzer",
 })
 
 vim.lsp.config("*", { capabilities = capabilities })

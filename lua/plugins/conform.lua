@@ -11,6 +11,7 @@ return {
 				cpp = { "clang-format" },
 				c = { "clang-format" },
 				yaml = { "yamlfix" },
+				rust = { "rustfmt", lsp_format = "fallback" },
 				json = { "fixjson" },
 				bash = { "shfmt" },
 				terraform = { "terraform_fmt" },

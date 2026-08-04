@@ -13,6 +13,7 @@ return {
 			terraform = { "tflint" },
 			make = { "checkmake" },
 			java = { "checkstyle" },
+			rust = { "clippy" },
 		}
 		vim.keymap.set("n", "<leader>L", function()
 			if not vim.bo.modifiable then
