@@ -4,6 +4,23 @@ vim.keymap.set("n", "<leader>cp", function()
 	vim.notify("'" .. current_file_path .. "'\ncopied to clipboard", vim.log.levels.INFO)
 end, { noremap = true, silent = true, desc = "[C]opy [P]ath to current file" })
 
+vim.keymap.set({ "n", "v" }, "<A-c>", function()
+	local absolute_file_path = vim.fn.expand("%:p")
+	local start_line = vim.fn.line("v")
+	local end_line = vim.fn.line(".")
+
+	if start_line > end_line then
+		start_line, end_line = end_line, start_line
+	end
+
+	local line_ref = start_line == end_line and string.format("#%d ", start_line)
+		or string.format("[offset=%d, limit=%d]", start_line, end_line - start_line)
+
+	vim.fn.setreg("+", string.format("%s%s", absolute_file_path, line_ref))
+
+	vim.notify("'" .. absolute_file_path .. "'\ncopied to clipboard", vim.log.levels.INFO)
+end, { noremap = true, silent = true, desc = "[C]opy [P]ath to current file" })
+
 vim.keymap.set("n", "<esc>", function()
 	vim.cmd("nohlsearch")
 	return "<esc>"
