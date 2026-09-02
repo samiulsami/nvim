@@ -1,12 +1,12 @@
 {
   "plugins": {
     "blink.cmp": {
-      "rev": "101d71861f6a012f2be80e4100720874330d86aa",
+      "rev": "05c1798b48d8440358e59342b77fee84c8a8f18e",
       "src": "https://github.com/saghen/blink.cmp",
       "version": "'main'"
     },
     "blink.lib": {
-      "rev": "8b04d0e0acc8565cfa4dd291a89a9212b7262633",
+      "rev": "c8fdc12c8a2fab6cf786dd7141a283f8079f902b",
       "src": "https://github.com/saghen/blink.lib"
     },
     "canola.nvim": {
@@ -41,6 +41,10 @@
     "go-deep.nvim": {
       "rev": "0aa7dfa19f63fe2e9ddb66b4677690be2c57c8d6",
       "src": "git@github.com:samiulsami/go-deep.nvim.git"
+    },
+    "hi-pos.nvim": {
+      "rev": "1cbe6be670fe9f8566049508778ee0df0ac78674",
+      "src": "https://github.com/maxonvim/hi-pos.nvim"
     },
     "lazydev.nvim": {
       "rev": "ff2cbcba459b637ec3fd165a2be59b7bbaeedf0d",
@@ -92,7 +96,7 @@
       "version": ">=0.0.0"
     },
     "nvim-treesitter": {
-      "rev": "857651fce37eba032ebe28f3a206283cdc65c45a",
+      "rev": "427e9222363d07c32d6db6169e4049c28d58d141",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter",
       "version": "'main'"
     },
@@ -101,7 +105,7 @@
       "src": "https://github.com/nvim-lua/plenary.nvim"
     },
     "quickbuf.nvim": {
-      "rev": "75b49dfd836a95cd0c80b04c1f5ac7e689e35421",
+      "rev": "9a70d2ab8513e910bacf037c6dcba4ebbf89cf71",
       "src": "https://github.com/tjgao/quickbuf.nvim"
     },
     "symbol-usage.nvim": {
