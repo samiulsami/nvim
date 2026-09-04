@@ -1,4 +1,3 @@
-vim.keymap.set({ "n", "v" }, "Q", "<nop>", { noremap = true, silent = true })
 vim.keymap.set({ "n", "v" }, "gQ", "<nop>", { noremap = true, silent = true })
 
 vim.opt.updatetime = 50

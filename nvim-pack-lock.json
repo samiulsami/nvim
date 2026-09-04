@@ -1,7 +1,7 @@
 {
   "plugins": {
     "blink.cmp": {
-      "rev": "05c1798b48d8440358e59342b77fee84c8a8f18e",
+      "rev": "2befba190e0ffa3692ab364f75604c9c2d248adf",
       "src": "https://github.com/saghen/blink.cmp",
       "version": "'main'"
     },
@@ -39,7 +39,7 @@
       "src": "https://github.com/lewis6991/gitsigns.nvim"
     },
     "go-deep.nvim": {
-      "rev": "0aa7dfa19f63fe2e9ddb66b4677690be2c57c8d6",
+      "rev": "a1138451b16bb80e4e5d1f273e03a5efa44d05e1",
       "src": "git@github.com:samiulsami/go-deep.nvim.git"
     },
     "hi-pos.nvim": {
