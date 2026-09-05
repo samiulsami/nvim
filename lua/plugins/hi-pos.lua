@@ -4,6 +4,6 @@ return {
 	config = function()
 		local pos = require("hi_pos").setup()
 
-		vim.keymap.set("n", "<leader>h", pos.start, { desc = "Start POS highlighting" })
+		vim.keymap.set("n", "<leader>h", pos.toggle, { desc = "Start POS highlighting" })
 	end,
 }
