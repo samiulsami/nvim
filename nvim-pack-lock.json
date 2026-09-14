@@ -1,16 +1,16 @@
 {
   "plugins": {
     "blink.cmp": {
-      "rev": "2befba190e0ffa3692ab364f75604c9c2d248adf",
+      "rev": "473c928d8b9b5b3f638cd085a01899972cf205c6",
       "src": "https://github.com/saghen/blink.cmp",
       "version": "'main'"
     },
     "blink.lib": {
-      "rev": "c8fdc12c8a2fab6cf786dd7141a283f8079f902b",
+      "rev": "fd9a48ebbe6ec30d5dfcc5b42c243941ccdca1aa",
       "src": "https://github.com/saghen/blink.lib"
     },
     "canola.nvim": {
-      "rev": "d7c349fd0ffc3d6e8eceefdf66af66cb1ab42826",
+      "rev": "3ca7adc52418cfadd0450fb0858413b9935f00d5",
       "src": "https://github.com/barrettruth/canola.nvim",
       "version": "'canola'"
     },
@@ -35,7 +35,7 @@
       "src": "https://codeberg.org/trevorhauter/gitportal.nvim"
     },
     "gitsigns.nvim": {
-      "rev": "5be654f2232c10ddcad19c1607a67b6b4b78fc29",
+      "rev": "f2421c550618d257048afa650413d9e542ddbe67",
       "src": "https://github.com/lewis6991/gitsigns.nvim"
     },
     "go-deep.nvim": {
@@ -75,7 +75,7 @@
       "src": "https://github.com/nvim-mini/mini.indentscope"
     },
     "mini.pick": {
-      "rev": "b27dc13b3d6dafc10e868b6ddc682cc4f047f4d1",
+      "rev": "360c1bb33610e030698d07ed15969ab4762dbcd6",
       "src": "https://github.com/echasnovski/mini.pick"
     },
     "nui.nvim": {
@@ -95,8 +95,12 @@
       "src": "https://github.com/kylechui/nvim-surround",
       "version": ">=0.0.0"
     },
+    "nvim-tree.lua": {
+      "rev": "882c54f2815bf6d02663d482c2cf9dbadf4e9b07",
+      "src": "git@github.com:nvim-tree/nvim-tree.lua"
+    },
     "nvim-treesitter": {
-      "rev": "427e9222363d07c32d6db6169e4049c28d58d141",
+      "rev": "9a168f6357ed21c3a636e1727bc7d382abc451b8",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter",
       "version": "'main'"
     },

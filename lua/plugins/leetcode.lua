@@ -7,7 +7,7 @@ return {
 	},
 	config = function()
 		require("leetcode").setup({
-			lang = "golang",
+			lang = "cpp",
 			plugins = {
 				non_standalone = true,
 			},
