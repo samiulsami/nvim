@@ -66,6 +66,9 @@ end
 return {
 	cmd = { "clangd" },
 	filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "proto" },
+	on_attach = function(client)
+		client.server_capabilities.completionProvider.triggerCharacters = {}
+	end,
 	root_markers = {
 		".clangd",
 		".clang-tidy",
