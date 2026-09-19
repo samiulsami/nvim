@@ -78,6 +78,10 @@
       "rev": "360c1bb33610e030698d07ed15969ab4762dbcd6",
       "src": "https://github.com/echasnovski/mini.pick"
     },
+    "neoscroll.nvim": {
+      "rev": "c8d29979cb0cb3a2437a8e0ae683fd82f340d3b8",
+      "src": "https://github.com/karb94/neoscroll.nvim"
+    },
     "nui.nvim": {
       "rev": "10fc361835c856ba4233ef5ea135b919bf3dce97",
       "src": "https://github.com/MunifTanjim/nui.nvim"

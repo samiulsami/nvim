@@ -32,9 +32,6 @@ vim.keymap.set("n", "<leader>l", function()
 	vim.cmd("set number! relativenumber!")
 end, { noremap = true, silent = true, desc = "Toggle line numbers" })
 
-vim.keymap.set("n", "<C-d>", "<C-d>zz", { noremap = true })
-vim.keymap.set("n", "<C-u>", "<C-u>zz", { noremap = true })
-
 -- Vertical split with <leader>-e
 vim.keymap.set("n", "<leader>e", "<Cmd>vsplit<CR>", { noremap = true, silent = true })
 -- Horizontal split with <leader>-o
