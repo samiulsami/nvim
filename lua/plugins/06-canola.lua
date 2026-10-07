@@ -1,6 +1,6 @@
 ---@type PluginSpec
 return {
-	src = "https://github.com/barrettruth/canola.nvim",
+	src = "https://forge.barrettruth.com/barrettruth/canola.nvim",
 	version = "canola",
 	config = function()
 		local columns = {

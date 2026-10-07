@@ -1,7 +1,7 @@
 {
   "plugins": {
     "blink.cmp": {
-      "rev": "473c928d8b9b5b3f638cd085a01899972cf205c6",
+      "rev": "8219b58f1c11a2fb1644d3c7116c509fa8348ec0",
       "src": "https://github.com/saghen/blink.cmp",
       "version": "'main'"
     },
@@ -10,8 +10,8 @@
       "src": "https://github.com/saghen/blink.lib"
     },
     "canola.nvim": {
-      "rev": "3ca7adc52418cfadd0450fb0858413b9935f00d5",
-      "src": "https://github.com/barrettruth/canola.nvim",
+      "rev": "5e45863eecc760c0cfc14d914fb8da6327cf01c0",
+      "src": "https://forge.barrettruth.com/barrettruth/canola.nvim",
       "version": "'canola'"
     },
     "conform.nvim": {
@@ -23,7 +23,7 @@
       "src": "https://github.com/samiulsami/fFtT-highlights.nvim"
     },
     "fzf-lua": {
-      "rev": "02bc882f208f3481aa959dbbee8ce5edad2fd8b2",
+      "rev": "ed0e0ead1789ee349cbf025900931fb402b1e05e",
       "src": "https://github.com/ibhagwan/fzf-lua"
     },
     "fzf-lua-frecency.nvim": {
@@ -35,16 +35,12 @@
       "src": "https://codeberg.org/trevorhauter/gitportal.nvim"
     },
     "gitsigns.nvim": {
-      "rev": "8d79f2410c76e62b92e51c28c82e28c1c5a3daeb",
+      "rev": "851a051e2bd2caba97e23314c68d69f1b1cf5d19",
       "src": "https://github.com/lewis6991/gitsigns.nvim"
     },
     "go-deep.nvim": {
       "rev": "a1138451b16bb80e4e5d1f273e03a5efa44d05e1",
       "src": "git@github.com:samiulsami/go-deep.nvim.git"
-    },
-    "hi-pos.nvim": {
-      "rev": "1cbe6be670fe9f8566049508778ee0df0ac78674",
-      "src": "https://github.com/maxonvim/hi-pos.nvim"
     },
     "lazydev.nvim": {
       "rev": "ff2cbcba459b637ec3fd165a2be59b7bbaeedf0d",
@@ -75,12 +71,8 @@
       "src": "https://github.com/nvim-mini/mini.indentscope"
     },
     "mini.pick": {
-      "rev": "360c1bb33610e030698d07ed15969ab4762dbcd6",
+      "rev": "8dbbb2c570613370695bea8b9bee0f11d4da5ca9",
       "src": "https://github.com/echasnovski/mini.pick"
-    },
-    "neoscroll.nvim": {
-      "rev": "c8d29979cb0cb3a2437a8e0ae683fd82f340d3b8",
-      "src": "https://github.com/karb94/neoscroll.nvim"
     },
     "nui.nvim": {
       "rev": "10fc361835c856ba4233ef5ea135b919bf3dce97",
@@ -91,7 +83,7 @@
       "src": "https://github.com/mfussenegger/nvim-jdtls"
     },
     "nvim-lint": {
-      "rev": "3d55c8f67c6ae5c15e1042571e107c7a3d5c5f4e",
+      "rev": "50ede9339d70b882e8dd63122aed403451dfc5b1",
       "src": "https://github.com/mfussenegger/nvim-lint"
     },
     "nvim-surround": {
@@ -100,7 +92,7 @@
       "version": ">=0.0.0"
     },
     "nvim-treesitter": {
-      "rev": "f603a2f4da48728f80257fb5fbb90145fd1dc173",
+      "rev": "e289100ff98969e118c702199d88b764ce9e7fdf",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter",
       "version": "'main'"
     },
@@ -117,7 +109,7 @@
       "src": "https://github.com/Wansmer/symbol-usage.nvim"
     },
     "treesj": {
-      "rev": "79aedb401bbdc7e4202f7881eab5f6feb2105b0a",
+      "rev": "9f349ba62c524f065d6f43254d731ddf8319b9bf",
       "src": "https://github.com/Wansmer/treesj"
     },
     "vague.nvim": {
